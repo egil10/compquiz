@@ -70,6 +70,7 @@
     dailyNum: $("daily-num"),
     rows: $("board-rows"),
     hints: $("hints"),
+    ytd: $("ytd"),
     entry: $("entry"),
     input: $("guess-input"),
     ac: $("ac"),
@@ -248,35 +249,41 @@
   }
 
   function sparkline(series) {
-    const w = 84, h = 26, pad = 2;
+    const w = 300, h = 36, pad = 3;
     const min = Math.min(0, ...series), max = Math.max(0, ...series);
     const span = max - min || 1;
-    const x = (i) => pad + (i / (series.length - 1)) * (w - pad * 2);
+    const x = (i) => (i / (series.length - 1)) * w;
     const y = (v) => pad + (1 - (v - min) / span) * (h - pad * 2);
     const pts = series.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+    const area = `0,${y(0).toFixed(1)} ${pts} ${w},${y(0).toFixed(1)}`;
     const last = series[series.length - 1];
-    const cls = last >= 0 ? "up" : "down";
-    return `<span class="chip spark ${cls}">
-      <svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" aria-hidden="true">
+    return `<div class="ytd ${last >= 0 ? "up" : "down"}">
+      <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true">
+        <polygon points="${area}" class="area"/>
         <line x1="0" x2="${w}" y1="${y(0).toFixed(1)}" y2="${y(0).toFixed(1)}" class="zero"/>
         <polyline points="${pts}"/>
-      </svg><b>${last >= 0 ? "+" : ""}${Math.round(last)} %</b><small>i år</small></span>`;
+      </svg>
+      <div class="ytd-label"><b>${last >= 0 ? "+" : ""}${Math.round(last)} %</b><small>i år</small></div>
+    </div>`;
   }
 
   function renderHints() {
     const t = state.target;
-    const n = state.status === "playing" ? state.hints : 0;
+    const playing = state.status === "playing";
+    const n = playing ? state.hints : 0;
+    el.ytd.innerHTML = playing && t.ytd ? sparkline(t.ytd) : "";
+
     const parts = [];
-    if (n >= 1 && t.ytd) parts.push(sparkline(t.ytd));
-    if (n >= 2 || (n >= 1 && !t.ytd)) {
-      if (t.founded) parts.push(`<span class="chip">Stiftet <b>${t.founded}</b></span>`);
-      if (t.hq) parts.push(`<span class="chip">${t.hq.split("/")[0].trim()}</span>`);
+    if (n >= 1) {
+      parts.push(`<span class="chip">Stiftet <b>${t.founded || "?"}</b></span>`);
+      parts.push(`<span class="chip">${(t.hq || "?").split("/")[0].trim()}</span>`);
     }
-    if (n >= 3) {
+    if (n >= 2) {
+      const letter = n >= 3 ? `<b>${t.name[0]}</b>…` : "";
       parts.push(
         t.logo
-          ? `<span class="chip"><img class="hint-logo" src="${t.logo}" alt=""><span><b>${t.name[0]}</b>…</span></span>`
-          : `<span class="chip"><b>${t.name[0]}</b>…</span>`
+          ? `<span class="chip"><img class="hint-logo${n >= 3 ? "" : " blur"}" src="${t.logo}" alt="">${letter}</span>`
+          : `<span class="chip"><b>${t.name[0]}</b>${n >= 3 ? t.name[1] || "" : ""}…</span>`
       );
     }
     el.hints.innerHTML = parts.join("");
@@ -711,6 +718,11 @@
     $("btn-show-result").addEventListener("click", openResult);
     el.btnNext.addEventListener("click", nextRound);
 
+    // Title = hard refresh: a fresh URL bypasses the cached page.
+    $("title-link").addEventListener("click", (e) => {
+      e.preventDefault();
+      location.replace(`${location.pathname}?r=${Date.now()}`);
+    });
     $("btn-help").addEventListener("click", () => openModal("modal-help"));
     $("btn-stats").addEventListener("click", () => {
       renderStats();

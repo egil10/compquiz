@@ -107,6 +107,11 @@ button {
   letter-spacing: -0.03em;
 }
 
+.title a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .icon-btn {
   width: 44px;
   height: 44px;
@@ -346,8 +351,8 @@ button {
 /* ---------- Hints ---------- */
 
 .hints {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
   gap: 6px;
   margin-bottom: 10px;
 }
@@ -357,42 +362,81 @@ button {
 }
 
 .chip {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  height: 34px;
-  padding: 0 10px;
-  border-radius: 999px;
+  height: 36px;
+  padding: 0 8px;
+  border-radius: 6px;
   background: var(--soft);
   font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
   animation: pop 220ms ease;
 }
 
-.spark svg {
-  display: block;
+.ytd {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  padding: 4px 12px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  background: var(--soft);
 }
 
-.spark polyline {
+.ytd svg {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  overflow: visible;
+}
+
+.ytd polyline {
   fill: none;
   stroke-width: 2;
   stroke-linejoin: round;
   stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
 }
 
-.spark .zero {
+.ytd .area {
+  stroke: none;
+  opacity: 0.12;
+}
+
+.ytd .zero {
   stroke: var(--muted);
   stroke-width: 1;
   stroke-dasharray: 2 3;
   opacity: 0.6;
+  vector-effect: non-scaling-stroke;
 }
 
-.spark.up polyline { stroke: var(--up); }
-.spark.down polyline { stroke: var(--down); }
-.spark.up b { color: var(--up); }
-.spark.down b { color: var(--down); }
+.ytd.up polyline { stroke: var(--up); }
+.ytd.down polyline { stroke: var(--down); }
+.ytd.up .area { fill: var(--up); }
+.ytd.down .area { fill: var(--down); }
+.ytd.up b { color: var(--up); }
+.ytd.down b { color: var(--down); }
 
-.spark small {
-  font-size: 11px;
+.ytd-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.1;
+  flex-shrink: 0;
+}
+
+.ytd-label b {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.ytd-label small {
+  font-size: 10px;
   color: var(--muted);
 }
 
@@ -402,6 +446,10 @@ button {
   border-radius: 5px;
   object-fit: contain;
   background: #fff;
+}
+
+.hint-logo.blur {
+  filter: blur(3px);
 }
 
 @keyframes pop {
