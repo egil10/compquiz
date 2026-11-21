@@ -437,6 +437,14 @@ def _homepage_icons(domain):
     return [u for *_, u in sorted(found, reverse=True)]
 
 
+def site_url(website):
+    """Normalise a website/domain to https://domain (no path) for the 'visit company' link."""
+    if not website:
+        return None
+    domain = re.sub(r"^https?://", "", website.strip()).split("/")[0]
+    return f"https://{domain}" if domain else None
+
+
 def fetch_logo(cid, website, refresh):
     """Pick the best logo: manual URL > apple-touch-icon / declared icons > Google favicon.
     Generic favicons (Vercel, CMS defaults, ...) listed in overrides.json are rejected."""
@@ -538,6 +546,7 @@ def main():
                 founded = None
         m["founded"] = founded
         m["logo"] = fetch_logo(c["id"], info.get("website"), refresh)
+        m["website"] = site_url(WEBSITE_OVERRIDE.get(c["id"]) or info.get("website"))
         m["ytd"] = ytd_series(sym)
         return c, m, line + f" P/E {m['pe']}  EV/EBITDA {m['evEbitda']}  est. {founded}  logo {m['logo']}"
 
@@ -560,6 +569,7 @@ def main():
             "yahoo": None, "founded": FOUNDED_OVERRIDE.get(c["id"]) or man.get("founded"),
             "logo": fetch_logo(c["id"], man.get("website"), refresh), "ytd": None,
             "status": man.get("status") or "unlisted",
+            "website": site_url(WEBSITE_OVERRIDE.get(c["id"]) or man.get("website")),
         }
         if man.get("hq"):
             c["hq"] = man["hq"]

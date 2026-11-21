@@ -15,6 +15,7 @@
       div: m.div,
       founded: m.founded,
       ytd: m.ytd,
+      website: m.website,
       logo: m.logo ? `logos/${c.id.toLowerCase()}.png` : null,
       listed: Boolean(m.yahoo)
     };
@@ -88,6 +89,8 @@
     '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>';
   const CHECK =
     '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+  const EXT =
+    '<svg class="ext" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>';
   const arrow = (deg) => `<i style="transform:rotate(${Math.round(deg)}deg)">${ARROW}</i>`;
   const check = `<i>${CHECK}</i>`;
 
@@ -426,8 +429,14 @@
       <div class="result-head">
         ${logoImg(t, "result-logo")}
         <div>
-          <h2 class="result-name" id="result-name">${t.name}</h2>
-          <p class="result-ticker">${flag(t.iso)}<span>${t.bbgTicker}</span></p>
+          <h2 class="result-name" id="result-name">${
+            t.website
+              ? `<a href="${t.website}" target="_blank" rel="noopener" title="Besøk ${t.website.replace("https://", "")}">${t.name}${EXT}</a>`
+              : t.name
+          }</h2>
+          <p class="result-ticker">${flag(t.iso)}<span>${t.bbgTicker}</span>${
+            t.website ? `<a class="site" href="${t.website}" target="_blank" rel="noopener">${t.website.replace("https://", "").replace(/^www\./, "")}</a>` : ""
+          }</p>
         </div>
       </div>
       <p class="result-desc">${t.clue}</p>

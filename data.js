@@ -17,7 +17,8 @@
       div: m.div ?? null,
       ytd,
       founded: m.founded ?? null,
-      logo: m.logo ? `logos/${c.id.toLowerCase()}.png` : null
+      logo: m.logo ? `logos/${c.id.toLowerCase()}.png` : null,
+      website: m.website || null
     };
   });
 
@@ -57,7 +58,7 @@
   const COLS = [
     ["rank", "#", (r) => r.rank, (r) => r.rank, true, 3],
     ["name", "Selskap", (r) => r.name, (r) =>
-      `<span class="dt-co">${flag(r.iso)}${r.logo ? `<img class="logo" src="${r.logo}" alt="" loading="lazy">` : '<span class="logo logo-fallback">' + r.name[0] + "</span>"}<span class="dt-nm"><b title="${r.name}">${r.name}</b><small>${r.bbgTicker || ""}</small></span></span>`, false, 1],
+      `<span class="dt-co">${flag(r.iso)}${r.logo ? `<img class="logo" src="${r.logo}" alt="" loading="lazy">` : '<span class="logo logo-fallback">' + r.name[0] + "</span>"}<span class="dt-nm">${r.website ? `<a href="${r.website}" target="_blank" rel="noopener" title="${r.name} – ${r.website.replace("https://", "")}">` : ""}<b title="${r.name}">${r.name}</b>${r.website ? "</a>" : ""}<small>${r.bbgTicker || ""}</small></span></span>`, false, 1],
     ["sector", "Sektor", (r) => r.sector, (r) => SHORT_SECTOR[r.sector] || r.sector, false, 2],
     ["mcap", "Mcap", (r) => r.mcap, (r) => (r.implied ? `<span class="na" title="Implisitt fra Folketrygdfondets post (unotert)">≈</span>` : "") + fmtB(r.mcap), true, 1],
     ["pe", "P/E", (r) => r.pe, (r) => (r.pe == null ? why(r, r.peNote) : fmtX(r.pe)), true, 1],
