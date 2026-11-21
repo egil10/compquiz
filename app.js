@@ -1,34 +1,44 @@
 (function () {
   "use strict";
 
-  const MULT = window.PORTFOLIO_MULTIPLES || {};
-  const MAJOR = (window.PORTFOLIO_COMPANIES || []).filter((c) => c.isMajorPool);
-  // Only companies with live key figures are playable/guessable.
-  const COMPANIES = MAJOR.filter((c) => MULT[c.bbgTicker]).map((c) => {
-    const m = MULT[c.bbgTicker];
+  const MD = window.MARKET_DATA || {};
+  const ALL = window.PORTFOLIO_COMPANIES || [];
+  // Every portfolio company with market data is guessable.
+  const COMPANIES = ALL.filter((c) => MD[c.id]).map((c) => {
+    const m = MD[c.id];
     return {
       ...c,
       pe: m.pe,
       evEbitda: m.evEbitda,
-      mcapBNOK: m.mcapBNOK ?? c.mcapBNOK,
-      sharePriceNOK: m.priceNOK ?? c.sharePriceNOK
+      mcapBNOK: m.mcapBNOK,
+      priceNOK: m.priceNOK,
+      div: m.div,
+      founded: m.founded,
+      ytd: m.ytd,
+      logo: m.logo ? `logos/${c.id.toLowerCase()}.png` : null
     };
   });
+  const BY_ID = new Map(COMPANIES.map((c) => [c.id, c]));
+  // Daily answers come from the larger, well-known holdings.
+  const DAILY_POOL = ALL.filter((c) => c.isMajorPool);
 
   const MAX_GUESSES = 6;
   const MAX_HINTS = 3;
-  const FLIP_STAGGER = 260;
+  const FLIP_STAGGER = 220;
   const FLIP_DURATION = 500;
+  const TILE_COUNT = 6;
+  const EXACT = 0.05; // green: within ±5 %
+  const NEAR = 0.25; // yellow: within ±25 %
   const STORE_DAILY = "folketrygdle_daily_v2";
   const STORE_STATS = "folketrygdle_stats_2026";
   const WIN_WORDS = ["Geni!", "Imponerende!", "Strålende!", "Flott!", "Bra!", "Puh!"];
 
   const COUNTRY = {
-    Norge: { lat: 59.91, lon: 10.75, iso: "NO" },
-    Sverige: { lat: 59.33, lon: 18.06, iso: "SE" },
-    Danmark: { lat: 55.68, lon: 12.57, iso: "DK" },
-    Finland: { lat: 60.17, lon: 24.94, iso: "FI" },
-    Island: { lat: 64.15, lon: -21.94, iso: "IS" }
+    Norge: { lat: 59.91, lon: 10.75 },
+    Sverige: { lat: 59.33, lon: 18.06 },
+    Danmark: { lat: 55.68, lon: 12.57 },
+    Finland: { lat: 60.17, lon: 24.94 },
+    Island: { lat: 64.15, lon: -21.94 }
   };
 
   const SECTOR_CLUSTER = {
@@ -39,11 +49,13 @@
     Finans: "fin", Eiendom: "fin",
     Helse: "health"
   };
-
   const SHORT_SECTOR = {
     Konsumvarer: "Konsum",
     "Varige konsumvarer": "Varig konsum",
-    Telekommunikasjon: "Telekom"
+    Telekommunikasjon: "Telekom",
+    Materialer: "Råvarer",
+    Teknologi: "Tech",
+    Forsyning: "Kraft"
   };
 
   const ARROW =
@@ -51,6 +63,7 @@
   const CHECK =
     '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
   const arrow = (deg) => `<i style="transform:rotate(${Math.round(deg)}deg)">${ARROW}</i>`;
+  const check = `<i>${CHECK}</i>`;
 
   const $ = (id) => document.getElementById(id);
   const el = {
@@ -62,7 +75,6 @@
     ac: $("ac"),
     btnHint: $("btn-hint"),
     doneBar: $("done-bar"),
-    btnShowResult: $("btn-show-result"),
     btnNext: $("btn-next"),
     resultBody: $("result-body"),
     statsBody: $("stats-body"),
@@ -96,16 +108,16 @@
       .replace(/[^a-z0-9 ]/g, "")
       .trim();
 
-  const iso = (c) => c.iso || (COUNTRY[c.country] || {}).iso || "";
   const sectorShort = (s) => SHORT_SECTOR[s] || s;
 
   function fmtB(b) {
     if (b >= 1000) return `${(b / 1000).toFixed(1).replace(/\.0$/, "")}T`;
-    if (b >= 100) return `${Math.round(b)}B`;
-    if (b >= 10) return `${b.toFixed(0)}B`;
-    return `${b.toFixed(1)}B`;
+    if (b >= 10) return `${Math.round(b)}B`;
+    if (b >= 1) return `${b.toFixed(1)}B`;
+    return `${Math.round(b * 1000)}M`;
   }
   const fmtX = (v) => (v == null ? "–" : `${v >= 20 ? Math.round(v) : +v.toFixed(1)}x`);
+  const fmtPct = (v) => (v == null ? "–" : `${v >= 10 ? v.toFixed(0) : v >= 1 ? v.toFixed(1) : v.toFixed(2)}%`);
 
   function bearing(from, to) {
     const a = COUNTRY[from], b = COUNTRY[to];
@@ -129,12 +141,11 @@
       h ^= dateKey.charCodeAt(i);
       h = Math.imul(h, 16777619);
     }
-    // Hash over the full pool so the daily pick stays stable when data coverage changes;
-    // step forward to the next company that has key figures.
-    const start = Math.abs(h) % MAJOR.length;
+    // Step forward until we hit a company that has market data.
+    const start = Math.abs(h) % DAILY_POOL.length;
     let company = COMPANIES[0];
-    for (let i = 0; i < MAJOR.length; i++) {
-      const found = COMPANIES.find((c) => c.id === MAJOR[(start + i) % MAJOR.length].id);
+    for (let i = 0; i < DAILY_POOL.length; i++) {
+      const found = BY_ID.get(DAILY_POOL[(start + i) % DAILY_POOL.length].id);
       if (found) {
         company = found;
         break;
@@ -145,53 +156,55 @@
 
   /* ---------- evaluation ---------- */
 
-  function evalNum(g, t, closeRatio, fmt, isWin) {
+  function evalNum(g, t, fmt, isWin) {
     if (g == null && t == null) return { s: "exact", v: "–", icon: "" };
     if (g == null) return { s: "wrong", v: "–", icon: "" };
     if (t == null) return { s: "wrong", v: fmt(g), icon: '<i class="na">–</i>' };
-    if (isWin || g === t) return { s: "exact", v: fmt(g), icon: `<i>${CHECK}</i>` };
-    const diff = Math.abs(g - t) / Math.max(Math.abs(t), 0.01);
-    const ratio = Math.max(g, t) / Math.max(Math.min(g, t), 0.01);
-    const s = diff <= 0.15 ? "exact" : ratio <= closeRatio ? "close" : "wrong";
+    if (isWin || fmt(g) === fmt(t)) return { s: "exact", v: fmt(g), icon: check };
+    const diff = Math.abs(g - t) / Math.max(Math.abs(t), 1e-9);
+    const s = diff <= EXACT ? "exact" : diff <= NEAR ? "close" : "wrong";
     return { s, v: fmt(g), icon: arrow(t > g ? 0 : 180) };
   }
 
   function evaluate(g, t) {
     const win = g.id === t.id;
     const sameCountry = g.country === t.country;
-    const sameSector = g.sector === t.sector;
     const related = SECTOR_CLUSTER[g.sector] === SECTOR_CLUSTER[t.sector];
     return {
       win,
       tiles: [
         {
           s: sameCountry ? "exact" : "wrong",
-          v: iso(g),
-          icon: sameCountry ? `<i>${CHECK}</i>` : arrow(bearing(g.country, t.country)),
+          v: g.iso,
+          icon: sameCountry ? check : arrow(bearing(g.country, t.country)),
           title: g.country
         },
         {
-          s: sameSector ? "exact" : related ? "close" : "wrong",
+          s: g.sector === t.sector ? "exact" : related ? "close" : "wrong",
           v: sectorShort(g.sector),
           icon: "",
           title: g.sector,
           small: true
         },
-        evalNum(g.mcapBNOK, t.mcapBNOK, 2, fmtB, win),
-        evalNum(g.pe, t.pe, 1.5, fmtX, win),
-        evalNum(g.evEbitda, t.evEbitda, 1.5, fmtX, win)
+        evalNum(g.mcapBNOK, t.mcapBNOK, fmtB, win),
+        evalNum(g.pe, t.pe, fmtX, win),
+        evalNum(g.evEbitda, t.evEbitda, fmtX, win),
+        evalNum(g.ownershipPct, t.ownershipPct, fmtPct, win)
       ]
     };
   }
 
   /* ---------- rendering ---------- */
 
+  const logoImg = (c, cls = "logo") =>
+    c.logo
+      ? `<img class="${cls}" src="${c.logo}" alt="" loading="lazy" onerror="this.remove()">`
+      : `<span class="${cls} logo-fallback">${c.name[0]}</span>`;
+
   function tileHtml(t, animate, i, win) {
     const flipDelay = i * FLIP_STAGGER;
-    const bounceDelay = 4 * FLIP_STAGGER + FLIP_DURATION + i * 90;
-    const delay = animate
-      ? ` style="animation-delay:${flipDelay}ms${win ? `, ${bounceDelay}ms` : ""}"`
-      : "";
+    const bounceDelay = (TILE_COUNT - 1) * FLIP_STAGGER + FLIP_DURATION + i * 80;
+    const delay = animate ? ` style="animation-delay:${flipDelay}ms${win ? `, ${bounceDelay}ms` : ""}"` : "";
     return `<div class="tile s-${t.s}${animate ? " flip" : ""}${t.small ? " small" : ""}"${delay}${
       t.title ? ` title="${t.title}"` : ""
     }><b>${t.v}</b>${t.icon}</div>`;
@@ -206,46 +219,67 @@
         const anim = animateLast && r === state.guesses.length - 1;
         html.push(`
           <div class="row${anim && ev.win ? " win" : ""}">
-            <div class="row-name">${g.name}<span>${g.bbgTicker}</span></div>
+            <div class="row-name">${logoImg(g)}${g.name}</div>
             <div class="tiles">${ev.tiles.map((t, i) => tileHtml(t, anim, i, ev.win)).join("")}</div>
           </div>`);
+      } else if (state.status === "lost" && !state.revealing) {
+        if (r === state.guesses.length) html.push(solutionRow());
       } else {
         const active = r === state.guesses.length && state.status === "playing";
         html.push(`
           <div class="row empty${active ? " active" : ""}">
-            <div class="row-name">${active ? '<em id="live-name"></em>' : "&nbsp;"}</div>
-            <div class="tiles">${'<div class="tile"></div>'.repeat(5)}</div>
+            <div class="row-name">${active ? '<em id="live-name"></em>' : ""}</div>
+            <div class="tiles">${'<div class="tile"></div>'.repeat(TILE_COUNT)}</div>
           </div>`);
       }
     }
+    if (state.status === "lost" && !state.revealing && state.guesses.length >= MAX_GUESSES) html.push(solutionRow());
     el.rows.innerHTML = html.join("");
   }
 
-  function maskName(text, c) {
-    let out = text;
-    [c.name, ...(c.aliases || [])]
-      .filter((p) => p && p.length >= 3)
-      .forEach((p) => {
-        out = out.replace(new RegExp(p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi"), "___");
-      });
-    return out;
+  function solutionRow() {
+    const t = state.target;
+    const tiles = evaluate(t, t).tiles.map((x) => ({ ...x, s: "answer", icon: "" }));
+    return `
+      <div class="row solution">
+        <div class="row-name">${logoImg(t)}${t.name}<span class="tag">Fasit</span></div>
+        <div class="tiles">${tiles.map((x, i) => tileHtml(x, false, i)).join("")}</div>
+      </div>`;
   }
 
-  function hintTexts(t) {
-    return [
-      `Folketrygdfondet eier <b>${t.ownershipPct.toFixed(2)} %</b> · post nr. <b>${t.rank}</b> i porteføljen`,
-      `Hovedkontor i <b>${t.hq}</b> · navnet starter på <b>${t.name[0]}</b>`,
-      maskName(t.clue, t)
-    ];
+  function sparkline(series) {
+    const w = 84, h = 26, pad = 2;
+    const min = Math.min(0, ...series), max = Math.max(0, ...series);
+    const span = max - min || 1;
+    const x = (i) => pad + (i / (series.length - 1)) * (w - pad * 2);
+    const y = (v) => pad + (1 - (v - min) / span) * (h - pad * 2);
+    const pts = series.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+    const last = series[series.length - 1];
+    const cls = last >= 0 ? "up" : "down";
+    return `<span class="chip spark ${cls}">
+      <svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" aria-hidden="true">
+        <line x1="0" x2="${w}" y1="${y(0).toFixed(1)}" y2="${y(0).toFixed(1)}" class="zero"/>
+        <polyline points="${pts}"/>
+      </svg><b>${last >= 0 ? "+" : ""}${Math.round(last)} %</b><small>i år</small></span>`;
   }
 
   function renderHints() {
     const t = state.target;
-    const shown = state.status === "playing" ? state.hints : 0;
-    el.hints.innerHTML = hintTexts(t)
-      .slice(0, shown)
-      .map((h, i) => `<p><span class="n">${i + 1}</span><span>${h}</span></p>`)
-      .join("");
+    const n = state.status === "playing" ? state.hints : 0;
+    const parts = [];
+    if (n >= 1 && t.ytd) parts.push(sparkline(t.ytd));
+    if (n >= 2 || (n >= 1 && !t.ytd)) {
+      if (t.founded) parts.push(`<span class="chip">Stiftet <b>${t.founded}</b></span>`);
+      if (t.hq) parts.push(`<span class="chip">${t.hq.split("/")[0].trim()}</span>`);
+    }
+    if (n >= 3) {
+      parts.push(
+        t.logo
+          ? `<span class="chip"><img class="hint-logo" src="${t.logo}" alt=""><span><b>${t.name[0]}</b>…</span></span>`
+          : `<span class="chip"><b>${t.name[0]}</b>…</span>`
+      );
+    }
+    el.hints.innerHTML = parts.join("");
 
     if (state.hints >= MAX_HINTS) {
       el.btnHint.textContent = state.giveUpArmed ? "Sikker?" : "Gi opp";
@@ -260,7 +294,7 @@
     const done = state.status !== "playing";
     el.entry.classList.toggle("hidden", done);
     el.doneBar.classList.toggle("hidden", !done);
-    el.btnNext.textContent = state.mode === "daily" ? "Spill frispill" : "Neste selskap";
+    el.btnNext.textContent = state.mode === "daily" ? "Frispill" : "Neste";
     el.dailyNum.textContent = `#${state.dailyNumber}`;
     document.querySelectorAll(".mode-btn").forEach((b) =>
       b.classList.toggle("active", b.dataset.mode === state.mode)
@@ -277,24 +311,20 @@
 
   function shareText() {
     const ICON = { exact: "🟩", close: "🟨", wrong: "⬛" };
-    const head = state.mode === "daily" ? `Folketrygdle #${state.dailyNumber}` : "Folketrygdle (frispill)";
+    const head = state.mode === "daily" ? `Trygdle #${state.dailyNumber}` : "Trygdle";
     const score = state.status === "won" ? state.guesses.length : "X";
     const hints = state.hints ? ` · ${state.hints} hint` : "";
-    const rows = state.guesses.map((g) =>
-      evaluate(g, state.target).tiles.map((t) => ICON[t.s]).join("")
-    );
+    const rows = state.guesses.map((g) => evaluate(g, state.target).tiles.map((t) => ICON[t.s]).join(""));
     return `${head} ${score}/${MAX_GUESSES}${hints}\n\n${rows.join("\n")}\n\n${location.origin}${location.pathname}`;
   }
 
   function share() {
     const text = shareText();
-    if (navigator.share && matchMedia("(pointer: coarse)").matches) {
+    if (navigator.share && isTouch()) {
       navigator.share({ text }).catch(() => {});
-      return;
-    }
-    if (navigator.clipboard) {
+    } else if (navigator.clipboard) {
       navigator.clipboard.writeText(text).then(
-        () => toast("Kopiert til utklippstavlen"),
+        () => toast("Kopiert"),
         () => toast("Kunne ikke kopiere")
       );
     }
@@ -312,30 +342,34 @@
   function openResult() {
     const t = state.target;
     const won = state.status === "won";
+    const ytd = t.ytd ? t.ytd[t.ytd.length - 1] : null;
     const facts = [
-      ["Land", `${t.country}`],
+      ["Land", t.country],
       ["Sektor", t.sector],
-      ["Børsverdi", `${fmtB(t.mcapBNOK)} NOK`],
+      ["Børsverdi", `${fmtB(t.mcapBNOK)} kr`],
       ["P/E", fmtX(t.pe)],
       ["EV/EBITDA", fmtX(t.evEbitda)],
-      ["FTF eier", `${t.ownershipPct.toFixed(2)} %`]
+      ["FTF eier", fmtPct(t.ownershipPct)],
+      ["Utbytte", fmtPct(t.div)],
+      ["Kurs i år", ytd == null ? "–" : `${ytd >= 0 ? "+" : ""}${Math.round(ytd)} %`],
+      ["Stiftet", t.founded || "–"]
     ];
     el.resultBody.innerHTML = `
-      <p class="result-kicker">${won ? `Løst på ${state.guesses.length}/${MAX_GUESSES}` : "Ikke denne gangen"}</p>
+      ${logoImg(t, "result-logo")}
+      <p class="result-kicker">${won ? `${state.guesses.length}/${MAX_GUESSES}` : "Bedre lykke neste gang"}</p>
       <h2 class="result-name" id="result-name">${t.name}</h2>
-      <p class="result-ticker">${t.bbgTicker} · ${t.hq}</p>
-      <p class="result-desc">${t.clue}</p>
+      <p class="result-ticker">${t.bbgTicker}${t.hq ? ` · ${t.hq}` : ""}</p>
       <dl class="facts">${facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
       ${
         state.mode === "daily"
           ? `<div class="result-foot">
-              <div class="cd"><span>Neste selskap om</span><b id="cd">${countdown()}</b></div>
-              <button class="primary-btn share" id="btn-share">Del</button>
+              <div class="cd"><span>Neste</span><b id="cd">${countdown()}</b></div>
+              <button class="primary-btn" id="btn-share">Del</button>
             </div>
-            <button class="ghost-btn wide" id="btn-result-next">Spill frispill</button>`
+            <button class="ghost-btn wide" id="btn-result-next">Frispill</button>`
           : `<div class="result-foot">
               <button class="ghost-btn" id="btn-share">Del</button>
-              <button class="primary-btn" id="btn-result-next">Neste selskap</button>
+              <button class="primary-btn" id="btn-result-next">Neste</button>
             </div>`
       }`;
     $("btn-share").addEventListener("click", share);
@@ -359,7 +393,7 @@
     if (!company || state.status !== "playing" || state.revealing) return;
     if (state.guesses.some((g) => g.id === company.id)) {
       toast("Allerede gjettet");
-      shakeActiveRow();
+      shake();
       return;
     }
 
@@ -378,7 +412,7 @@
     state.revealing = true;
     renderBoard(true);
     renderHints();
-    const total = 4 * FLIP_STAGGER + FLIP_DURATION;
+    const total = (TILE_COUNT - 1) * FLIP_STAGGER + FLIP_DURATION;
     // Settle tiles into their final state even if animations were paused (e.g. background tab).
     setTimeout(() => el.rows.querySelectorAll(".flip").forEach((t) => t.classList.remove("flip")), total + 1000);
     setTimeout(() => {
@@ -388,6 +422,7 @@
         toast(WIN_WORDS[state.guesses.length - 1]);
         setTimeout(openResult, 1300);
       } else if (state.status === "lost") {
+        renderBoard();
         toast(state.target.name, 2500);
         setTimeout(openResult, 1600);
       } else if (!isTouch()) {
@@ -472,12 +507,11 @@
         const name = norm(c.name);
         const tick = norm(c.ticker);
         const bbg = norm(c.bbgTicker);
-        const words = name.split(" ");
         let s = 0;
         if (tick === nq || bbg === nq || name === nq) s = 100;
         else if (tick.startsWith(nq) || bbg.startsWith(nq)) s = 90;
         else if (name.startsWith(nq)) s = 85;
-        else if (words.some((w) => w.startsWith(nq))) s = 75;
+        else if (name.split(" ").some((w) => w.startsWith(nq))) s = 75;
         else if ((c.aliases || []).some((a) => norm(a).includes(nq))) s = 65;
         else if (name.includes(nq)) s = 55;
         return { c, s };
@@ -495,19 +529,16 @@
     state.acList = search(q);
     state.acIdx = 0;
     if (!q.trim()) return hideAc();
-    if (!state.acList.length) {
-      el.ac.innerHTML = '<div class="ac-empty">Ingen treff</div>';
-    } else {
-      el.ac.innerHTML = state.acList
-        .map(
-          (c, i) => `
+    el.ac.innerHTML = state.acList.length
+      ? state.acList
+          .map(
+            (c, i) => `
           <button type="button" class="ac-row${i === 0 ? " active" : ""}" data-i="${i}" role="option">
-            <span class="ac-name">${c.name}</span>
-            <span class="ac-tick">${c.bbgTicker}</span>
+            ${logoImg(c)}<span class="ac-name">${c.name}</span><span class="ac-tick">${c.bbgTicker}</span>
           </button>`
-        )
-        .join("");
-    }
+          )
+          .join("")
+      : '<div class="ac-empty">Ingen treff</div>';
     el.ac.classList.remove("hidden");
   }
 
@@ -542,7 +573,7 @@
     try {
       const saved = JSON.parse(localStorage.getItem(STORE_DAILY) || "null");
       if (!saved || saved.dateKey !== d.dateKey || saved.targetId !== d.company.id) return;
-      state.guesses = saved.guessIds.map((id) => COMPANIES.find((c) => c.id === id)).filter(Boolean);
+      state.guesses = saved.guessIds.map((id) => BY_ID.get(id)).filter(Boolean);
       state.hints = saved.hints || 0;
       state.status = saved.status || "playing";
     } catch (e) {}
@@ -581,11 +612,10 @@
     el.statsBody.innerHTML = `
       <div class="kpis">
         <div><b>${s.played}</b><span>Spilt</span></div>
-        <div><b>${pct}</b><span>Seier %</span></div>
-        <div><b>${s.currentStreak}</b><span>Streak</span></div>
+        <div><b>${pct}</b><span>Vunnet %</span></div>
+        <div><b>${s.currentStreak}</b><span>Rekke</span></div>
         <div><b>${s.maxStreak}</b><span>Beste</span></div>
       </div>
-      <h3 class="dist-title">Fordeling</h3>
       <div class="dist">
         ${[1, 2, 3, 4, 5, 6]
           .map((n) => {
@@ -596,8 +626,7 @@
             )}%">${v}</div></div>`;
           })
           .join("")}
-      </div>
-      <p class="stats-note">Kun daglige runder teller.</p>`;
+      </div>`;
   }
 
   /* ---------- ui utils ---------- */
@@ -610,7 +639,7 @@
     toastTimer = setTimeout(() => el.toast.classList.remove("show"), ms);
   }
 
-  function shakeActiveRow() {
+  function shake() {
     const row = el.rows.querySelector(".row.active") || el.entry;
     row.classList.remove("shake");
     void row.offsetWidth;
@@ -627,6 +656,13 @@
     $(id).classList.add("hidden");
     if (!document.querySelector(".overlay:not(.hidden)")) document.body.classList.remove("modal-open");
     if (id === "modal-result") clearInterval(cdTimer);
+  }
+
+  function renderSource() {
+    const d = (s) => (s ? s.split("-").reverse().join(".") : "");
+    const m = window.MARKET_META || {};
+    const p = window.PORTFOLIO_META || {};
+    $("source").textContent = `Kurser ${m.source || "Yahoo Finance"} ${d(m.date)} · Beholdning ${d(p.reportDate)}`;
   }
 
   /* ---------- events ---------- */
@@ -652,28 +688,27 @@
         e.preventDefault();
         if (n) submitGuess(state.acList[state.acIdx]);
         else if (el.input.value.trim()) {
-          toast("Fant ikke selskapet");
-          shakeActiveRow();
+          toast("Ukjent selskap");
+          shake();
         }
       } else if (e.key === "Escape") {
         hideAc();
       }
     });
 
-    // pointerdown so the input keeps focus (keyboard stays open on mobile)
+    // pointerdown keeps input focus, so the mobile keyboard stays open.
     el.ac.addEventListener("pointerdown", (e) => {
       const row = e.target.closest(".ac-row");
       if (!row) return;
       e.preventDefault();
       submitGuess(state.acList[Number(row.dataset.i)]);
     });
-
     document.addEventListener("pointerdown", (e) => {
       if (!e.target.closest(".entry")) hideAc();
     });
 
     el.btnHint.addEventListener("click", onHintClick);
-    el.btnShowResult.addEventListener("click", openResult);
+    $("btn-show-result").addEventListener("click", openResult);
     el.btnNext.addEventListener("click", nextRound);
 
     $("btn-help").addEventListener("click", () => openModal("modal-help"));
@@ -686,7 +721,7 @@
         localStorage.removeItem(STORE_STATS);
       } catch (e) {}
       renderStats();
-      toast("Statistikk nullstilt");
+      toast("Nullstilt");
     });
 
     document.querySelectorAll("[data-close]").forEach((b) =>
@@ -700,15 +735,6 @@
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") document.querySelectorAll(".overlay:not(.hidden)").forEach((o) => closeModal(o.id));
     });
-  }
-
-  function renderSource() {
-    const meta = window.MULTIPLES_META || {};
-    const pMeta = window.PORTFOLIO_META || {};
-    const fmtDate = (d) => (d ? d.split("-").reverse().join(".") : "");
-    $("source").textContent =
-      `Kurs og multipler: ${meta.source || "Yahoo Finance"} ${fmtDate(meta.date)} · ` +
-      `FTF-beholdning ${fmtDate(pMeta.reportDate)}`;
   }
 
   function init() {

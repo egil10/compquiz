@@ -1,0 +1,463 @@
+#!/usr/bin/env python3
+"""Rebuild all game data from primary sources.
+
+    pip install yfinance
+    python3 scripts/update_data.py [--refresh-logos]
+
+1. Holdings: every company in Folketrygdfondet's equity portfolio (SPN + SFT),
+   parsed from folketrygdfondet.no. Companies held by both funds are merged.
+2. Market data per company from Yahoo Finance (yfinance): market cap, price,
+   trailing P/E, EV/EBITDA, dividend yield, 52-week return. Figures reported in
+   another currency than the listing are FX-adjusted before computing ratios.
+3. Founding year from Wikidata (P571), matched by exchange ticker, then by name.
+4. Logo (site icon via Google's favicon service), saved to logos/<id>.png.
+5. Year-to-date weekly price series for the sparkline hint.
+
+Writes portfolio_data.js and market_data.js. Hand-written fields in
+portfolio_data.js (hq, aliases, clue, tickers, daily pool) are preserved.
+"""
+import collections
+import concurrent.futures
+import datetime as dt
+import json
+import pathlib
+import re
+import struct
+import sys
+import threading
+import time
+import urllib.parse
+import urllib.request
+
+import yfinance as yf
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+FTF_URL = "https://www.folketrygdfondet.no/nb/folketrygdfondet/portefoljeoversikt/selskaper"
+UA = {"User-Agent": "TrygdleDataBot/1.0 (https://github.com/egil10/compquiz)"}
+
+SUFFIX = {"Norge": ".OL", "Sverige": ".ST", "Danmark": ".CO", "Finland": ".HE", "Island": ".IC"}
+BBG_EXCH = {"Norge": "NO", "Sverige": "SS", "Danmark": "DC", "Finland": "FH", "Island": "IR"}
+ISO = {"Norge": "NO", "Sverige": "SE", "Danmark": "DK", "Finland": "FI", "Island": "IS"}
+COUNTRY_QID = {"Norge": "Q20", "Sverige": "Q34", "Danmark": "Q35", "Finland": "Q33", "Island": "Q189"}
+NORDIC_EXCHANGES = ["Q909158", "Q581755", "Q1019983", "Q1019992", "Q107190302", "Q4346290", "Q1674303"]
+
+# Yahoo symbols that can't be derived from the Bloomberg ticker.
+YAHOO_OVERRIDE = {
+    "NDA FH": "NDA-FI.HE", "EURN NO": "CMBTO.OL", "ELOPK NO": "ELO.OL",
+    "STEND SS": "STEF-B.ST", "JOHN SS": "JOMA.ST", "INVES SS": "ORES.ST", "AKTIE SS": "FAG.ST",
+    "OMA FH": "OMASP.HE", "MT DC": "MTHH.CO", "HAMPI IR": "HAMP.IC", "REITI IR": "REITIR.IC",
+    "HEIMA IR": "HEIMAR.IC",
+}
+# Wrong/renamed Bloomberg tickers in the source data.
+BBG_FIX = {
+    "EURN NO": "CMBTO NO", "STEND SS": "STEFB SS", "JOHN SS": "JOMA SS", "INVES SS": "ORES SS",
+    "AKTIE SS": "FAG SS", "OMA FH": "OMASP FH", "MT DC": "MTHH DC",
+}
+for _old, _new in BBG_FIX.items():
+    YAHOO_OVERRIDE.setdefault(_new, YAHOO_OVERRIDE.get(_old))
+# Founding years where Wikidata is missing or matches the wrong entity.
+FOUNDED_OVERRIDE = {
+    "FTF001248": 1972,  # Equinor (Statoil)
+    "FTF001702": 2002,  # Subsea 7
+    "FTF001287": 1985,  # Frontline
+    "FTF001112": 1968,  # Bakkafrost
+    "FTF001388": 1937,  # Kid
+    "FTF001692": 1959,  # Stolt-Nielsen
+    "FTF001150": 1995,  # Bouvet
+    "FTF001257": 2006,  # Evolution
+    "FTF001361": 1978,  # Indutrade
+}
+
+PE_MAX = 250
+EV_EBITDA_MAX = 150
+
+
+def get(url, accept=None, tries=4):
+    headers = dict(UA)
+    if accept:
+        headers["Accept"] = accept
+    for i in range(tries):
+        try:
+            return urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=60).read()
+        except Exception as e:
+            if i == tries - 1:
+                raise
+            time.sleep(3 * (i + 1))
+
+
+def norm(s):
+    s = (s or "").lower().replace("ø", "o").replace("æ", "ae").replace("å", "a")
+    s = s.replace("ä", "a").replace("ö", "o").replace("ü", "u").replace("é", "e")
+    return re.sub(r"[^a-z0-9]", "", s)
+
+
+# ---------------------------------------------------------------- holdings
+
+def fetch_holdings():
+    page = get(FTF_URL).decode("utf-8").replace('\\"', '"')
+    rows = [json.loads(o) for o in re.findall(r'\{"type":"equities","issuerId":"[^{}]*\}', page)]
+    if len(rows) < 100:
+        sys.exit(f"Only parsed {len(rows)} holdings from {FTF_URL}; page format changed?")
+    merged = collections.OrderedDict()
+    for r in rows:
+        m = merged.setdefault(r["issuerId"], {
+            "id": r["issuerId"], "name": r["name"].strip(), "country": r["country"],
+            "sector": r["sector"], "funds": [], "marketValueMNOK": 0.0, "shares": 0,
+            "ownershipPct": 0.0, "date": r["date"],
+        })
+        m["funds"].append(r["fund"])
+        m["marketValueMNOK"] += r["marketValue"] or 0
+        m["shares"] += r["equity"] or 0
+        m["ownershipPct"] += (r["ownershipPercent"] or 0) * 100
+    out = sorted(merged.values(), key=lambda c: -c["marketValueMNOK"])
+    for i, c in enumerate(out, 1):
+        c["rank"] = i
+        c["fund"] = "+".join(sorted(set(c.pop("funds")), reverse=True))  # "SPN", "SFT", "SPN+SFT"
+        c["marketValueMNOK"] = round(c["marketValueMNOK"], 2)
+        c["ownershipPct"] = round(c["ownershipPct"], 2)
+    return out, rows[0]["date"]
+
+
+def load_previous():
+    path = ROOT / "portfolio_data.js"
+    if not path.exists():
+        return {}
+    src = path.read_text(encoding="utf-8")
+    arr = src[src.index("window.PORTFOLIO_COMPANIES = ") + len("window.PORTFOLIO_COMPANIES = "):]
+    prev = json.loads(arr.strip().rstrip(";"))
+    return {norm(c["name"]): c for c in prev}
+
+
+def load_previous_market():
+    """Founding years rarely change; reuse them instead of hitting Wikidata again."""
+    path = ROOT / "market_data.js"
+    if not path.exists():
+        return {}
+    src = path.read_text(encoding="utf-8")
+    return json.loads(src[src.index("window.MARKET_DATA = ") + len("window.MARKET_DATA = "):].strip().rstrip(";"))
+
+
+# ---------------------------------------------------------------- yahoo
+
+_fx = {}
+
+
+_fx_lock = threading.Lock()
+
+
+def _quote(pair):
+    for i in range(3):
+        try:
+            closes = yf.Ticker(f"{pair}=X").history(period="1mo")["Close"].dropna()
+            if len(closes):
+                return float(closes.iloc[-1])
+        except Exception:
+            pass
+        time.sleep(2 * (i + 1))
+    return None
+
+
+def fx(src, dst):
+    if not src or not dst or src == dst:
+        return 1.0
+    with _fx_lock:
+        if (src, dst) not in _fx:
+            rate = _quote(src + dst)
+            if rate is None:  # thin pairs like ISKNOK: cross via USD
+                a, b = _quote(src + "USD") or (1 / (_quote("USD" + src) or float("nan"))), _quote("USD" + dst)
+                rate = a * b if a and b and a == a else None
+            if rate is None:
+                raise RuntimeError(f"No FX rate for {src}{dst}")
+            _fx[(src, dst)] = rate
+        return _fx[(src, dst)]
+
+
+def num(v):
+    return v if isinstance(v, (int, float)) and v == v else None
+
+
+def info_for(symbol):
+    for i in range(3):
+        try:
+            info = yf.Ticker(symbol).info
+            return info if num(info.get("marketCap")) and info.get("currency") else None
+        except Exception as e:
+            if "404" in str(e) or "Not Found" in str(e):
+                return None
+            time.sleep(4 * (i + 1))
+    return None
+
+
+def yahoo_candidates(c, known=None):
+    bbg = c.get("bbgTicker")
+    sfx = SUFFIX[c["country"]]
+    if known:
+        yield known
+    if bbg in YAHOO_OVERRIDE:
+        yield YAHOO_OVERRIDE[bbg]
+    if bbg:
+        root = bbg.split(" ")[0]
+        yield root + sfx
+        if len(root) > 3 and root[-1] in "ABC":
+            yield f"{root[:-1]}-{root[-1]}{sfx}"
+        if c["country"] == "Finland":
+            yield root + "-FI" + sfx
+    try:
+        for q in yf.Search(c["name"], max_results=10).quotes:
+            if q.get("symbol", "").endswith(sfx):
+                yield q["symbol"]
+    except Exception:
+        pass
+
+
+def resolve_yahoo(c, known=None):
+    seen = set()
+    for sym in yahoo_candidates(c, known):
+        if sym in seen:
+            continue
+        seen.add(sym)
+        info = info_for(sym)
+        if info:
+            return sym, info
+    return None, None
+
+
+def market_figures(info, sector):
+    cur = info["currency"]
+    fin = info.get("financialCurrency") or cur
+    mcap = num(info.get("marketCap"))
+    ev = num(info.get("enterpriseValue"))
+    ni = num(info.get("netIncomeToCommon"))
+    ebitda = num(info.get("ebitda"))
+    price = num(info.get("regularMarketPrice")) or num(info.get("currentPrice"))
+    f = fx(fin, cur)
+
+    if cur == fin and num(info.get("trailingPE")):
+        pe = info["trailingPE"]
+    else:
+        pe = mcap / (ni * f) if ni else None
+    if pe is not None and not (0 < pe <= PE_MAX):
+        pe = None
+
+    ev_ebitda = ev / (ebitda * f) if ev and ebitda else None
+    if sector == "Finans" or (ev_ebitda is not None and not (0 < ev_ebitda <= EV_EBITDA_MAX)):
+        ev_ebitda = None
+
+    div = num(info.get("dividendYield")) or 0.0  # percent
+    ret = num(info.get("52WeekChange"))
+    to_nok = fx(cur, "NOK")
+    return {
+        "mcapBNOK": round(mcap * to_nok / 1e9, 2),
+        "priceNOK": round(price * to_nok, 2) if price else None,
+        "pe": round(pe, 1) if pe else None,
+        "evEbitda": round(ev_ebitda, 1) if ev_ebitda else None,
+        "div": round(div, 1) if div <= 25 else None,
+        "ret1y": round(ret * 100) if ret is not None else None,
+    }
+
+
+def ytd_series(symbol):
+    """Weekly closes since Jan 1, as % change from the first close (for the sparkline hint)."""
+    try:
+        start = f"{dt.date.today().year}-01-01"
+        closes = yf.Ticker(symbol).history(start=start, interval="1wk")["Close"].dropna().tolist()
+    except Exception:
+        return None
+    if len(closes) < 4 or not closes[0]:
+        return None
+    return [round((v / closes[0] - 1) * 100, 1) for v in closes]
+
+
+# ---------------------------------------------------------------- wikidata
+
+def sparql(query):
+    url = "https://query.wikidata.org/sparql?" + urllib.parse.urlencode({"query": query})
+    return json.loads(get(url, "application/sparql-results+json"))["results"]["bindings"]
+
+
+def wikidata_ticker_years():
+    q = """SELECT ?ticker ?inception WHERE {
+      ?item p:P414 ?st . ?st ps:P414 ?ex . ?st pq:P249 ?ticker . ?item wdt:P571 ?inception .
+      VALUES ?ex { %s } }""" % " ".join("wd:" + x for x in NORDIC_EXCHANGES)
+    years = {}
+    for b in sparql(q):
+        y = int(b["inception"]["value"][:5].lstrip("+")[:4]) if b["inception"]["value"][1:5].isdigit() else None
+        if y:
+            k = norm(b["ticker"]["value"])
+            years[k] = min(years.get(k, 9999), y)
+    return years
+
+
+def wbapi(params):
+    params = {**params, "format": "json"}
+    return json.loads(get("https://www.wikidata.org/w/api.php?" + urllib.parse.urlencode(params)))
+
+
+def year_of(claims):
+    ys = []
+    for cl in claims.get("P571", []):
+        t = cl.get("mainsnak", {}).get("datavalue", {}).get("value", {}).get("time", "")
+        m = re.match(r"\+(\d{4})", t)
+        if m:
+            ys.append(int(m.group(1)))
+    return min(ys) if ys else None
+
+
+def wikidata_name_year(c):
+    """Search Wikidata by name; prefer exact label matches and listed companies in the right country."""
+    base = re.sub(r"\s*\(.*?\)", "", c["name"]).strip()
+    names = dict.fromkeys([base, re.sub(r"\b(ASA|AB|A/S|Oyj|Plc|Holding|Holdings|Group|Gruppen)\b", "", base).strip()])
+    hits = {}
+    for n in names:
+        for lang in ("en", "nb", "sv"):
+            try:
+                res = wbapi({"action": "wbsearchentities", "search": n, "language": lang, "type": "item", "limit": 7})
+            except Exception:
+                continue
+            for h in res.get("search", []):
+                hits.setdefault(h["id"], h.get("label", ""))
+    if not hits:
+        return None
+    ids = list(hits)[:40]
+    ents = {}
+    for i in range(0, len(ids), 20):
+        ents.update(wbapi({"action": "wbgetentities", "ids": "|".join(ids[i:i + 20]), "props": "claims"}).get("entities", {}))
+    want = COUNTRY_QID[c["country"]]
+    targets = {norm(n) for n in names}
+    best = None
+    for rank, qid in enumerate(ids):
+        claims = ents.get(qid, {}).get("claims", {})
+        countries = {cl["mainsnak"].get("datavalue", {}).get("value", {}).get("id") for cl in claims.get("P17", [])}
+        y = year_of(claims)
+        if not y or want not in countries:
+            continue
+        score = (norm(hits[qid]) in targets) * 4 + ("P414" in claims) * 3 + ("P452" in claims or "P1128" in claims) - rank * 0.01
+        if best is None or score > best[0]:
+            best = (score, y)
+    return best[1] if best and best[0] >= 1 else None
+
+
+# ---------------------------------------------------------------- logos
+
+def fetch_logo(cid, website, refresh):
+    path = ROOT / "logos" / f"{cid.lower()}.png"
+    if path.exists() and not refresh:
+        return True
+    if not website:
+        return False
+    domain = re.sub(r"^https?://(www\.)?", "", website).split("/")[0]
+    try:
+        data = get(f"https://www.google.com/s2/favicons?domain={domain}&sz=128", tries=1)
+    except Exception:
+        return False
+    if data[:8] != b"\x89PNG\r\n\x1a\n" or struct.unpack(">II", data[16:24])[0] < 32:
+        return False  # Google's 16px fallback globe
+    path.parent.mkdir(exist_ok=True)
+    path.write_bytes(data)
+    return True
+
+
+# ---------------------------------------------------------------- main
+
+def generic_clue(c):
+    adj = {"Norge": "Norsk", "Sverige": "Svensk", "Danmark": "Dansk", "Finland": "Finsk", "Island": "Islandsk"}
+    return f"{adj[c['country']]} selskap innen {c['sector'].lower()}."
+
+
+def main():
+    refresh = "--refresh-logos" in sys.argv
+    holdings, report_date = fetch_holdings()
+    prev = load_previous()
+    print(f"Holdings: {len(holdings)} companies ({report_date})")
+
+    print("Wikidata ticker index…")
+    try:
+        tick_years = wikidata_ticker_years()
+    except Exception as e:  # query service is often rate limited; name search still works
+        print(f"  skipped ({e})")
+        tick_years = {}
+    prev_market = load_previous_market()
+
+    def process(h):
+        p = prev.get(norm(h["name"]), {})
+        c = {
+            "rank": h["rank"], "id": h["id"], "name": h["name"],
+            "ticker": p.get("ticker", ""), "bbgTicker": p.get("bbgTicker", ""),
+            "iso": ISO[h["country"]], "hq": p.get("hq", ""), "aliases": p.get("aliases", []),
+            "country": h["country"], "sector": h["sector"], "fund": h["fund"],
+            "marketValueMNOK": h["marketValueMNOK"], "ownershipPct": h["ownershipPct"],
+            "shares": h["shares"], "isMajorPool": bool(p.get("isMajorPool")),
+            "clue": p.get("clue") or generic_clue(h),
+        }
+        if c["bbgTicker"] in BBG_FIX:
+            c["ticker"] = BBG_FIX[c["bbgTicker"]].split(" ")[0]
+            c["bbgTicker"] = BBG_FIX[c["bbgTicker"]]
+        sym, info = resolve_yahoo(c, prev_market.get(c["id"], {}).get("yahoo"))
+        line = f"{h['rank']:3} {h['name'][:28]:28} {sym or '-':14}"
+        if not info:
+            return c, None, line + " NO MARKET DATA"
+        try:
+            m = market_figures(info, c["sector"])
+        except Exception as e:
+            return c, None, line + f" FAILED ({e})"
+        m["yahoo"] = sym
+        if not c["bbgTicker"]:
+            root = sym.split(".")[0].replace("-", "")
+            c["ticker"], c["bbgTicker"] = root, f"{root} {BBG_EXCH[c['country']]}"
+        if not c["hq"]:
+            c["hq"] = info.get("city", "")
+        root_keys = {norm(sym.split(".")[0]), norm(c["bbgTicker"].split(" ")[0])}
+        founded = (
+            FOUNDED_OVERRIDE.get(c["id"])
+            or (None if "--refresh-founded" in sys.argv else prev_market.get(c["id"], {}).get("founded"))
+            or next((tick_years[k] for k in root_keys if k in tick_years), None)
+        )
+        if not founded:
+            try:
+                founded = wikidata_name_year(c)
+            except Exception:
+                founded = None
+        m["founded"] = founded
+        m["logo"] = fetch_logo(c["id"], info.get("website"), refresh)
+        m["ytd"] = ytd_series(sym)
+        return c, m, line + f" P/E {m['pe']}  EV/EBITDA {m['evEbitda']}  est. {founded}  logo {m['logo']}"
+
+    companies, market = [], {}
+    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
+        for n, (c, m, line) in enumerate(pool.map(process, holdings), 1):
+            print(f"[{n:3}/{len(holdings)}] {line}", flush=True)
+            companies.append(c)
+            if m:
+                market[c["id"]] = m
+
+    today = dt.date.today().isoformat()
+    total = round(sum(c["marketValueMNOK"] for c in companies), 2)
+    (ROOT / "portfolio_data.js").write_text(
+        "// Generert av scripts/update_data.py fra Folketrygdfondets porteføljeoversikt.\n"
+        f"// Kilde: {FTF_URL}\n"
+        f'window.PORTFOLIO_META = {{ reportDate: "{report_date}", totalCompanies: {len(companies)}, totalEquitiesMNOK: {total} }};\n\n'
+        "window.PORTFOLIO_COMPANIES = " + json.dumps(companies, ensure_ascii=False, indent=2) + ";\n",
+        encoding="utf-8",
+    )
+    body = ",\n".join(f"  {json.dumps(k)}: {json.dumps(v, ensure_ascii=False)}" for k, v in market.items())
+    (ROOT / "market_data.js").write_text(
+        "// Generert av scripts/update_data.py – ikke rediger for hånd.\n"
+        "// Yahoo Finance: børsverdi, kurs, P/E (TTM), EV/EBITDA (TTM), utbytte %, 52-ukers avkastning %,\n"
+        "// ytd = ukentlig kursutvikling i år (% fra første handelsuke).\n"
+        "// Wikidata: stiftelsesår (founded). Logoer: Google favicon-tjeneste. null = ikke meningsfullt / mangler.\n"
+        f'window.MARKET_META = {{ source: "Yahoo Finance", date: "{today}" }};\n'
+        f"window.MARKET_DATA = {{\n{body}\n}};\n",
+        encoding="utf-8",
+    )
+    missing = [c["name"] for c in companies if c["id"] not in market]
+    no_year = [c["name"] for c in companies if c["id"] in market and not market[c["id"]]["founded"]]
+    print(f"\n{len(companies)} companies, {len(market)} with market data, "
+          f"{len(market) - len(no_year)} with founding year, {sum(m['logo'] for m in market.values())} logos.")
+    if missing:
+        print("No market data:", ", ".join(missing))
+    if no_year:
+        print("No founding year:", ", ".join(no_year))
+
+
+if __name__ == "__main__":
+    main()

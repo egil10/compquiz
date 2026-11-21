@@ -1,30 +1,38 @@
-# Folketrygdle
+# Trygdle
 
-Et Wordle-inspirert daglig finansspill: gjett selskapet i Folketrygdfondets aksjeportefølje på 6 forsøk.
+Wordle for Folketrygdfondets aksjeportefølje: finn selskapet på 6 forsøk.
 
-## Slik spiller du
+## Regler
 
-Skriv selskapsnavn eller ticker (f.eks. `EQNR`, `NOVOB`) og trykk Enter. Hvert forsøk gir fem fargede ruter:
+Skriv navn eller ticker og trykk Enter. Hvert forsøk gir seks ruter:
 
-| Rute | Grønn | Gul | Pil |
-| --- | --- | --- | --- |
-| **Land** | Riktig land | – | Peker mot fasitens land |
-| **Sektor** | Riktig sektor | Beslektet sektor | – |
-| **Børsverdi** | Innen ±15 % | Innen 2x | ↑ fasit er større / ↓ mindre |
-| **P/E** | Innen ±15 % | Innen 1,5x | ↑ / ↓ |
-| **EV/EBITDA** | Innen ±15 % | Innen 1,5x | ↑ / ↓ |
+| Land | Sektor | Mcap | P/E | EV/EBITDA | Eier |
+| --- | --- | --- | --- | --- | --- |
+| Land, pil mot fasit | Bransje | Børsverdi | Trailing P/E | EV / EBITDA (TTM) | Folketrygdfondets eierandel |
 
-`–` betyr at tallet ikke er meningsfullt (negativt resultat, eller EV/EBITDA for finansselskaper).
+- **Grønn**: riktig (tall innen ±5 %)
+- **Gul**: nær (beslektet sektor, tall innen ±25 %)
+- **Grå**: feil. ↑ / ↓ viser om fasit er høyere eller lavere.
+- **–**: ikke meningsfullt (negativt resultat, EV/EBITDA for finans).
 
-**Hint** gir opptil tre ledetråder (Folketrygdfondets eierandel og post, hovedkontor, beskrivelse). Etter tre hint blir knappen til «Gi opp».
+**Hint** (3): kursutvikling i år (minigraf) → stiftelsesår og by → logo og forbokstav. Deretter «Gi opp».
 
-**Daglig** gir alle samme selskap hver dag. **Frispill** gir ubegrenset med tilfeldige runder. Kun daglige runder teller i statistikken.
+**Daglig** gir alle samme selskap hver dag (blant de større postene). **Frispill** trekker fra hele porteføljen.
 
-## Filer
+## Data
 
-- `portfolio_data.js` – porteføljedata (land, sektor, børsverdi, eierandel m.m.)
-- `multiples.js` – børsverdi, kurs, P/E og EV/EBITDA fra Yahoo Finance (generert)
-- `scripts/update_multiples.py` – henter ferske tall: `pip install yfinance && python3 scripts/update_multiples.py`
-- `app.js`, `styles.css`, `index.html` – selve spillet (ingen byggesteg, bare åpne `index.html`)
+Alt genereres av `scripts/update_data.py`:
 
-P/E er trailing 12 måneder, EV/EBITDA er enterprise value / EBITDA (TTM). Tall rapportert i annen valuta enn noteringen (f.eks. Equinor i USD) valutajusteres. EV/EBITDA settes til «–» for finansselskaper. Dato for datauttrekket vises nederst i spillet. Kun til underholdning, ikke investeringsråd.
+```
+pip install yfinance
+python3 scripts/update_data.py            # --refresh-logos for å hente logoer på nytt
+```
+
+| Fil | Innhold | Kilde |
+| --- | --- | --- |
+| `portfolio_data.js` | Alle selskaper i SPN og SFT, beholdning, eierandel, sektor | [folketrygdfondet.no](https://www.folketrygdfondet.no/nb/folketrygdfondet/portefoljeoversikt/selskaper) |
+| `market_data.js` | Børsverdi, kurs, P/E, EV/EBITDA, utbytte, kurs i år | Yahoo Finance (yfinance) |
+| | Stiftelsesår | Wikidata |
+| `logos/` | Logoer | Google favicon-tjeneste |
+
+Tall rapportert i annen valuta enn noteringen (f.eks. Equinor i USD) valutajusteres. Datoene for uttrekket vises nederst i spillet. Kun til underholdning, ikke investeringsråd.

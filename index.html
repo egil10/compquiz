@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#121213" media="(prefers-color-scheme: dark)" />
-  <title>Folketrygdle</title>
+  <title>Trygdle</title>
   <meta name="description" content="Gjett dagens selskap i Folketrygdfondets portefølje på seks forsøk." />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Crect width='36' height='36' rx='8' fill='%236aaa64'/%3E%3Crect x='9' y='19' width='4' height='8' rx='1' fill='%23fff'/%3E%3Crect x='16' y='14' width='4' height='13' rx='1' fill='%23fff'/%3E%3Crect x='23' y='9' width='4' height='18' rx='1' fill='%23fff'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,7 +20,7 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       </button>
     </div>
-    <h1 class="title">Folketrygdle</h1>
+    <h1 class="title">Trygdle</h1>
     <div class="topbar-side right">
       <button id="btn-stats" class="icon-btn" aria-label="Statistikk">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
@@ -38,42 +38,44 @@
       <div class="board-head">
         <span>Land</span>
         <span>Sektor</span>
-        <span>Børsverdi</span>
+        <span>Mcap</span>
         <span>P/E</span>
-        <span>EV/EBITDA</span>
+        <span title="EV/EBITDA">EV/EBITDA</span>
+        <span title="Folketrygdfondets eierandel">Eier</span>
       </div>
       <div id="board-rows"></div>
     </section>
 
-    <section class="entry" id="entry">
-      <div id="hints" class="hints" aria-live="polite"></div>
-      <div id="ac" class="ac hidden" role="listbox"></div>
-      <div class="entry-row">
-        <input
-          type="text"
-          id="guess-input"
-          class="guess-input"
-          placeholder="Skriv selskap eller ticker"
-          autocomplete="off"
-          autocorrect="off"
-          autocapitalize="off"
-          spellcheck="false"
-          enterkeyhint="go"
-          aria-label="Gjett selskap"
-        />
-        <button id="btn-hint" class="hint-btn" type="button">Hint</button>
-      </div>
-    </section>
+    <div class="dock">
+      <section class="entry" id="entry">
+        <div id="hints" class="hints" aria-live="polite"></div>
+        <div id="ac" class="ac hidden" role="listbox"></div>
+        <div class="entry-row">
+          <input
+            type="text"
+            id="guess-input"
+            class="guess-input"
+            placeholder="Selskap eller ticker"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            enterkeyhint="go"
+            aria-label="Gjett selskap"
+          />
+          <button id="btn-hint" class="hint-btn" type="button">Hint</button>
+        </div>
+      </section>
 
-    <section id="done-bar" class="done-bar hidden">
-      <button id="btn-show-result" class="ghost-btn" type="button">Vis resultat</button>
-      <button id="btn-next" class="primary-btn" type="button">Neste selskap</button>
-    </section>
+      <section id="done-bar" class="done-bar hidden">
+        <button id="btn-show-result" class="ghost-btn" type="button">Resultat</button>
+        <button id="btn-next" class="primary-btn" type="button">Neste</button>
+      </section>
 
-    <p id="source" class="source"></p>
+      <p id="source" class="source"></p>
+    </div>
   </main>
 
-  <!-- Result -->
   <div class="overlay hidden" id="modal-result" role="dialog" aria-modal="true" aria-labelledby="result-name">
     <div class="sheet">
       <button class="close-btn" data-close="modal-result" aria-label="Lukk">&times;</button>
@@ -81,53 +83,45 @@
     </div>
   </div>
 
-  <!-- Stats -->
   <div class="overlay hidden" id="modal-stats" role="dialog" aria-modal="true">
     <div class="sheet">
       <button class="close-btn" data-close="modal-stats" aria-label="Lukk">&times;</button>
       <h2 class="sheet-title">Statistikk</h2>
       <div id="stats-body"></div>
-      <button id="btn-reset-stats" class="link-btn" type="button">Nullstill statistikk</button>
+      <button id="btn-reset-stats" class="link-btn" type="button">Nullstill</button>
     </div>
   </div>
 
-  <!-- Help -->
   <div class="overlay hidden" id="modal-help" role="dialog" aria-modal="true">
     <div class="sheet">
       <button class="close-btn" data-close="modal-help" aria-label="Lukk">&times;</button>
       <h2 class="sheet-title">Slik spiller du</h2>
-      <p class="help-lead">Gjett selskapet i Folketrygdfondets portefølje på <strong>6 forsøk</strong>.</p>
-      <ul class="help-list">
-        <li>Skriv navn eller ticker (f.eks. <code>EQNR</code>, <code>NOVOB</code>) og trykk Enter.</li>
-        <li>Fargene viser hvor nær du er.</li>
-      </ul>
+      <p class="help-lead">Finn selskapet i Folketrygdfondets portefølje på 6 forsøk.</p>
 
-      <div class="help-example">
-        <div class="row-name">Mowi <span>MOWI NO</span></div>
-        <div class="tiles">
-          <div class="tile s-exact"><b>NO</b></div>
-          <div class="tile s-close small"><b>Konsum</b></div>
-          <div class="tile s-wrong"><b>96B</b><i>↑</i></div>
-          <div class="tile s-close"><b>18x</b><i>↓</i></div>
-          <div class="tile s-wrong"><b>10x</b><i>↑</i></div>
-        </div>
+      <div class="tiles help-example">
+        <div class="tile s-exact"><b>NO</b></div>
+        <div class="tile s-close small"><b>Konsum</b></div>
+        <div class="tile s-wrong"><b>119B</b><i>↑</i></div>
+        <div class="tile s-close"><b>15x</b><i>↓</i></div>
+        <div class="tile s-exact"><b>9x</b></div>
+        <div class="tile s-wrong"><b>3.5%</b><i>↓</i></div>
       </div>
 
       <ul class="legend">
-        <li><span class="sw s-exact"></span>Riktig, eller innenfor ±15 %</li>
-        <li><span class="sw s-close"></span>Nær: beslektet sektor, børsverdi innen 2x, multippel innen 1,5x</li>
-        <li><span class="sw s-wrong"></span>Langt unna</li>
-        <li><span class="sw-txt">↑ ↓</span>Fasit er høyere / lavere. Pilen ved land peker mot fasit.</li>
-        <li><span class="sw-txt">–</span>Ikke meningsfullt (negativt resultat, eller EV/EBITDA for finansselskaper). Under et tall: fasit mangler meningsfull verdi.</li>
+        <li><span class="sw s-exact"></span>Riktig</li>
+        <li><span class="sw s-close"></span>Nær (±25 %)</li>
+        <li><span class="sw s-wrong"></span>Feil</li>
+        <li><span class="sw-txt">↑↓</span>Fasit er høyere / lavere</li>
+        <li><span class="sw-txt">–</span>Ikke meningsfullt</li>
       </ul>
-      <p class="help-foot">Trykk <strong>Hint</strong> for ledetråder om Folketrygdfondets eierandel, hovedkontor og virksomhet. Nytt daglig selskap hver midnatt. P/E og EV/EBITDA er siste 12 måneder fra Yahoo Finance.</p>
+      <p class="help-foot">Hint: kurs i år, stiftelsesår, logo.<br />Nytt selskap hver dag.</p>
     </div>
   </div>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script src="portfolio_data.js"></script>
-  <script src="multiples.js"></script>
+  <script src="market_data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
