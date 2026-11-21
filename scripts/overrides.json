@@ -694,7 +694,14 @@
     "FTF002048": "https://mb.cision.com/Public/15764/logo/92612f9f4fa58e63_org.png",
     "FTF002004": "https://endomines.com/wp-content/uploads/2024/01/Endomines_Logo_RGB.png",
     "FTF001436": "https://www.orron.com/wp-content/uploads/2022/06/Orron_logo_color_featured.png",
-    "FTF001995": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Better_Collective_Logo.png"
+    "FTF001995": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Better_Collective_Logo.png",
+    "FTF001653": "https://www.sparebank1.no/etc.clientlibs/settings/wcm/designs/sb1/nettsider/clientlib_base/resources/favicon.png",
+    "FTF001597": "https://www.sats.no/static-files/favicons/sats/apple-touch-icon.a80036e630396cfd.png",
+    "FTF001241": "https://upload.wikimedia.org/wikipedia/de/thumb/4/46/ELOPAK_Logo.svg/330px-ELOPAK_Logo.svg.png",
+    "FTF001780": "https://www.valmet.com/contentassets/d81878da83e2451c94d3d2cc1a3ee7a3/valmet-logo-1200x630.png",
+    "FTF001062": "https://www.akerasa.com/~/media/Images/A/aker-corp/logo/og-logo.jpg",
+    "FTF001485": "https://www.nordea.no/static/common/img/favicon_192x192.png",
+    "FTF001817": "https://www.wilhelmsen.com/Static/prod/images/logo--large.png"
   },
   "logo_blocklist": [
     "f0c0aecc8696c0f0"

@@ -465,9 +465,7 @@ def fetch_logo(cid, website, refresh):
         if w >= 128:
             break
     if not best:
-        if path.exists() and refresh:
-            path.unlink()
-        return False
+        return path.exists()  # keep a previously saved logo if every source fails now
     path.parent.mkdir(exist_ok=True)
     path.write_bytes(best)
     return True
