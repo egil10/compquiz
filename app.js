@@ -115,7 +115,6 @@
     guesses: [],
     hints: 0,
     status: "playing",
-    dailyNumber: 1,
     dateKey: "",
     day: null, // selected archive day (null = today)
     revealing: false,
@@ -174,32 +173,23 @@
   const shortDate = (key = dateKeyToday()) =>
     dateOf(key).toLocaleDateString("nb-NO", { day: "numeric", month: "short" }).replace(/\.$/, "");
 
-  // Deterministic shuffle of the daily pool, identical for every player: day N of the
-  // calendar gets entry N of the shuffled list, so no repeats until the pool is exhausted.
-  const DAILY_ORDER = (() => {
-    // Shuffle the whole pool (not just companies that currently have data) so the
-    // sequence never shifts when data coverage changes; gaps are skipped at lookup.
-    const ids = DAILY_POOL.map((c) => c.id).sort();
-    let seed = 20261101;
-    const rand = () => {
-      seed = (seed + 0x6d2b79f5) | 0;
-      let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
-      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    };
-    for (let i = ids.length - 1; i > 0; i--) {
-      const j = Math.floor(rand() * (i + 1));
-      [ids[i], ids[j]] = [ids[j], ids[i]];
-    }
-    return ids;
-  })();
+  // Day N after START_DATE gets entry N of the frozen schedule in daily_order.js
+  // (identical for every player, no repeats until the list wraps around).
+  const DAILY_ORDER = window.DAILY_ORDER || DAILY_POOL.map((c) => c.id).sort();
 
   function dailyInfo(dateKey = state.day || dateKeyToday()) {
     const num = Math.round((dateOf(dateKey) - dateOf(START_DATE)) / 86400000);
     const n = DAILY_ORDER.length;
+    // Each pass through the list uses a different stride (coprime with n), so after the
+    // first ~4 months the companies come back in a new order instead of repeating it.
+    const gcd = (a, b) => (b ? gcd(b, a % b) : a);
+    const cycle = Math.max(0, Math.floor(num / n));
+    let stride = 1 + cycle * 6;
+    while (gcd(stride, n) !== 1) stride++;
+    const base = (((num % n) + n) % n) * stride;
     let company = null;
     for (let k = 0; k < n && !company; k++) {
-      const c = BY_ID.get(DAILY_ORDER[(((num + k) % n) + n) % n]);
+      const c = BY_ID.get(DAILY_ORDER[(base + k) % n]);
       if (c && c.listed) company = c;
     }
     return { dateKey, num: num + 1, company: company || COMPANIES[0] };
@@ -549,7 +539,6 @@
 
   function startRound() {
     const d = dailyInfo();
-    state.dailyNumber = d.num;
     state.dateKey = d.dateKey;
     state.guesses = [];
     state.hints = 0;
@@ -698,6 +687,12 @@
 
   function recordStats(won, n) {
     const s = getStats();
+    // A streak only continues if the previous daily was played yesterday.
+    const today = dateKeyToday();
+    const y = new Date();
+    y.setDate(y.getDate() - 1);
+    if (s.lastDate && s.lastDate !== keyOf(y) && s.lastDate !== today) s.currentStreak = 0;
+    s.lastDate = today;
     s.played++;
     if (won) {
       s.won++;

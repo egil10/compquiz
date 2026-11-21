@@ -54,6 +54,10 @@
 
   function renderStats() {
     const s = T.getStats();
+    // Streak is broken if the last daily was played before yesterday.
+    const y = new Date();
+    y.setDate(y.getDate() - 1);
+    if (s.lastDate && s.lastDate < T.keyOf(y)) s.currentStreak = 0;
     const pct = s.played ? Math.round((s.won / s.played) * 100) : 0;
     const max = Math.max(1, ...Object.values(s.dist));
     $("stats-body").innerHTML = `
