@@ -60,11 +60,10 @@
 
   // Header navigation always loads a fresh copy of the target page (cache-busting
   // ?t=…), so an old cached page can never send you somewhere unexpected.
-  // The game page handles its own date/Frispill toggle in place (see app.js).
+  // This includes the date / Frispill links: ./ = today's daily, ./?frispill = practice.
   header.addEventListener("click", (e) => {
     const a = e.target.closest("a[href]");
     if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
-    if (page === "game" && a.classList.contains("mode-btn")) return;
     e.preventDefault();
     const href = a.getAttribute("href");
     location.href = href + (href.includes("?") ? "&" : "?") + "t=" + Date.now();

@@ -793,15 +793,7 @@
   /* ---------- events ---------- */
 
   function bind() {
-    // On the game page the date / Frispill links simply toggle the mode in place
-    // (date = today's daily, Frispill = practice). On sub-pages they are plain links.
-    document.querySelectorAll(".mode-btn").forEach((b) =>
-      b.addEventListener("click", (e) => {
-        e.preventDefault();
-        if (state.revealing) return;
-        setMode(b.dataset.mode);
-      })
-    );
+    // Date / Frispill / page links are handled by shell.js (fresh page loads).
 
     el.input.addEventListener("input", updateAc);
     el.input.addEventListener("focus", updateAc);
