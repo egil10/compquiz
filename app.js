@@ -128,6 +128,10 @@
     return (Math.atan2(dLon, dLat) * 180) / Math.PI;
   }
 
+  // e.g. "21. nov"
+  const shortDate = () =>
+    new Date().toLocaleDateString("nb-NO", { day: "numeric", month: "short" }).replace(/\.$/, "");
+
   function dateKeyToday() {
     const d = new Date();
     return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
@@ -302,7 +306,7 @@
     el.entry.classList.toggle("hidden", done);
     el.doneBar.classList.toggle("hidden", !done);
     el.btnNext.textContent = state.mode === "daily" ? "Frispill" : "Neste";
-    el.dailyNum.textContent = `#${state.dailyNumber}`;
+    el.dailyNum.textContent = shortDate();
     document.querySelectorAll(".mode-btn").forEach((b) =>
       b.classList.toggle("active", b.dataset.mode === state.mode)
     );
@@ -318,7 +322,7 @@
 
   function shareText() {
     const ICON = { exact: "🟩", close: "🟨", wrong: "⬛" };
-    const head = state.mode === "daily" ? `Trygdle #${state.dailyNumber}` : "Trygdle";
+    const head = state.mode === "daily" ? `Trygdle ${shortDate()}` : "Trygdle";
     const score = state.status === "won" ? state.guesses.length : "X";
     const hints = state.hints ? ` · ${state.hints} hint` : "";
     const rows = state.guesses.map((g) => evaluate(g, state.target).tiles.map((t) => ICON[t.s]).join(""));
