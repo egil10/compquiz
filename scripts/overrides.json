@@ -1,0 +1,50 @@
+{
+  "founded": {
+    "FTF001248": {
+      "year": 1972,
+      "name": "Equinor",
+      "source": "Statoil founded 1972"
+    },
+    "FTF001702": {
+      "year": 2002,
+      "name": "Subsea 7",
+      "source": ""
+    },
+    "FTF001287": {
+      "year": 1985,
+      "name": "Frontline",
+      "source": ""
+    },
+    "FTF001112": {
+      "year": 1968,
+      "name": "Bakkafrost",
+      "source": ""
+    },
+    "FTF001388": {
+      "year": 1937,
+      "name": "Kid",
+      "source": ""
+    },
+    "FTF001692": {
+      "year": 1959,
+      "name": "Stolt-Nielsen",
+      "source": ""
+    },
+    "FTF001150": {
+      "year": 1995,
+      "name": "Bouvet",
+      "source": ""
+    },
+    "FTF001257": {
+      "year": 2006,
+      "name": "Evolution",
+      "source": ""
+    },
+    "FTF001361": {
+      "year": 1978,
+      "name": "Indutrade",
+      "source": ""
+    }
+  },
+  "website": {}
+}

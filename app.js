@@ -58,6 +58,22 @@
     Forsyning: "Kraft"
   };
 
+  // Small Nordic-cross flags (inline SVG renders everywhere, unlike emoji flags).
+  const FLAG_COLORS = {
+    NO: ["#BA0C2F", "#FFFFFF", "#00205B"],
+    IS: ["#02529C", "#FFFFFF", "#DC1E35"],
+    SE: ["#006AA7", "#FECC00"],
+    DK: ["#C8102E", "#FFFFFF"],
+    FI: ["#FFFFFF", "#002F6C"]
+  };
+  function flag(iso) {
+    const [bg, cross, inner] = FLAG_COLORS[iso] || ["#ccc", "#fff"];
+    const c = (x, w, y, h, fill) =>
+      `<rect x="${x}" y="0" width="${w}" height="16" fill="${fill}"/><rect x="0" y="${y}" width="22" height="${h}" fill="${fill}"/>`;
+    const body = inner ? c(6, 4, 6, 4, cross) + c(7, 2, 7, 2, inner) : c(6, 3, 6.5, 3, cross);
+    return `<svg class="flag" viewBox="0 0 22 16" aria-label="${iso}"><rect width="22" height="16" fill="${bg}"/>${body}</svg>`;
+  }
+
   const ARROW =
     '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>';
   const CHECK =
@@ -180,7 +196,7 @@
       tiles: [
         {
           s: sameCountry ? "exact" : "wrong",
-          v: g.iso,
+          v: flag(g.iso),
           icon: sameCountry ? check : arrow(bearing(g.country, t.country)),
           title: g.country
         },
@@ -431,6 +447,7 @@
       renderControls();
       if (state.status === "won") {
         toast(WIN_WORDS[state.guesses.length - 1]);
+        confetti();
         setTimeout(openResult, 1300);
       } else if (state.status === "lost") {
         renderBoard();
@@ -641,6 +658,52 @@
   }
 
   /* ---------- ui utils ---------- */
+
+  // Lightweight canvas confetti for wins (no library).
+  function confetti() {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const canvas = document.createElement("canvas");
+    canvas.className = "confetti";
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext("2d");
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const W = (canvas.width = innerWidth * dpr);
+    const H = (canvas.height = innerHeight * dpr);
+    const colors = ["#6aaa64", "#c9b458", "#4dabf7", "#ff6b6b", "#ffd43b", "#ffffff"];
+    const count = innerWidth < 500 ? 110 : 180;
+    const parts = Array.from({ length: count }, () => ({
+      x: W / 2 + (Math.random() - 0.5) * W * 0.3,
+      y: H * 0.35,
+      vx: (Math.random() - 0.5) * 18 * dpr,
+      vy: (-Math.random() * 16 - 6) * dpr,
+      w: (6 + Math.random() * 6) * dpr,
+      h: (3 + Math.random() * 4) * dpr,
+      r: Math.random() * Math.PI,
+      vr: (Math.random() - 0.5) * 0.4,
+      c: colors[(Math.random() * colors.length) | 0]
+    }));
+    const start = performance.now();
+    (function frame(now) {
+      const t = now - start;
+      ctx.clearRect(0, 0, W, H);
+      for (const p of parts) {
+        p.vy += 0.45 * dpr;
+        p.vx *= 0.99;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.r += p.vr;
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, 1 - t / 2600);
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.r);
+        ctx.fillStyle = p.c;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h * Math.abs(Math.cos(p.r * 2)));
+        ctx.restore();
+      }
+      if (t < 2600) requestAnimationFrame(frame);
+      else canvas.remove();
+    })(start);
+  }
 
   let toastTimer;
   function toast(msg, ms = 1600) {

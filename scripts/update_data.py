@@ -55,18 +55,10 @@ BBG_FIX = {
 }
 for _old, _new in BBG_FIX.items():
     YAHOO_OVERRIDE.setdefault(_new, YAHOO_OVERRIDE.get(_old))
-# Founding years where Wikidata is missing or matches the wrong entity.
-FOUNDED_OVERRIDE = {
-    "FTF001248": 1972,  # Equinor (Statoil)
-    "FTF001702": 2002,  # Subsea 7
-    "FTF001287": 1985,  # Frontline
-    "FTF001112": 1968,  # Bakkafrost
-    "FTF001388": 1937,  # Kid
-    "FTF001692": 1959,  # Stolt-Nielsen
-    "FTF001150": 1995,  # Bouvet
-    "FTF001257": 2006,  # Evolution
-    "FTF001361": 1978,  # Indutrade
-}
+# Hand-checked values (founding years, websites for logos) live in scripts/overrides.json.
+OVERRIDES = json.loads((ROOT / "scripts" / "overrides.json").read_text(encoding="utf-8"))
+FOUNDED_OVERRIDE = {k: v["year"] for k, v in OVERRIDES.get("founded", {}).items()}
+WEBSITE_OVERRIDE = OVERRIDES.get("website", {})
 
 PE_MAX = 250
 EV_EBITDA_MAX = 150
@@ -339,19 +331,77 @@ def wikidata_name_year(c):
 
 # ---------------------------------------------------------------- logos
 
+def _png_size(data):
+    return struct.unpack(">II", data[16:24]) if data[:8] == b"\x89PNG\r\n\x1a\n" else (0, 0)
+
+
+def _to_png(data):
+    """Convert ico/jpg/webp bytes to PNG (needs Pillow); returns None if not possible."""
+    if _png_size(data)[0]:
+        return data
+    try:
+        import io
+        from PIL import Image
+        img = Image.open(io.BytesIO(data))
+        if hasattr(img, "ico"):  # pick the largest icon in an .ico
+            img.size = max(img.ico.sizes())
+        img = img.convert("RGBA")
+        out = io.BytesIO()
+        img.save(out, "PNG")
+        return out.getvalue()
+    except Exception:
+        return None
+
+
+def _site_icon(domain):
+    """Look for apple-touch-icon / large icon links on the homepage."""
+    try:
+        html = get(f"https://{domain}", tries=1).decode("utf-8", "ignore")
+    except Exception:
+        try:
+            html = get(f"https://www.{domain}", tries=1).decode("utf-8", "ignore")
+        except Exception:
+            return None
+    links = re.findall(r"<link[^>]+>", html, re.I)
+    ranked = []
+    for tag in links:
+        rel = re.search(r'rel=["\']([^"\']+)', tag, re.I)
+        href = re.search(r'href=["\']([^"\']+)', tag, re.I)
+        if not rel or not href or "icon" not in rel.group(1).lower():
+            continue
+        size = re.search(r'sizes=["\'](\d+)', tag)
+        score = (100 if "apple" in rel.group(1).lower() else 0) + int(size.group(1) if size else 0)
+        ranked.append((score, urllib.parse.urljoin(f"https://{domain}/", href.group(1))))
+    for _, url in sorted(ranked, reverse=True):
+        if url.endswith(".svg"):
+            continue
+        try:
+            png = _to_png(get(url, tries=1))
+        except Exception:
+            continue
+        if png and _png_size(png)[0] >= 32:
+            return png
+    return None
+
+
 def fetch_logo(cid, website, refresh):
     path = ROOT / "logos" / f"{cid.lower()}.png"
     if path.exists() and not refresh:
         return True
+    website = WEBSITE_OVERRIDE.get(cid) or website
     if not website:
         return False
     domain = re.sub(r"^https?://(www\.)?", "", website).split("/")[0]
+    data = None
     try:
-        data = get(f"https://www.google.com/s2/favicons?domain={domain}&sz=128", tries=1)
+        g = get(f"https://www.google.com/s2/favicons?domain={domain}&sz=128", tries=1)
+        if _png_size(g)[0] >= 32:  # smaller = Google's fallback globe
+            data = g
     except Exception:
+        pass
+    data = data or _site_icon(domain)
+    if not data:
         return False
-    if data[:8] != b"\x89PNG\r\n\x1a\n" or struct.unpack(">II", data[16:24])[0] < 32:
-        return False  # Google's 16px fallback globe
     path.parent.mkdir(exist_ok=True)
     path.write_bytes(data)
     return True
