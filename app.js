@@ -15,7 +15,8 @@
       div: m.div,
       founded: m.founded,
       ytd: m.ytd,
-      logo: m.logo ? `logos/${c.id.toLowerCase()}.png` : null
+      logo: m.logo ? `logos/${c.id.toLowerCase()}.png` : null,
+      listed: Boolean(m.yahoo)
     };
   });
   const BY_ID = new Map(COMPANIES.map((c) => [c.id, c]));
@@ -167,7 +168,9 @@
   // Deterministic shuffle of the daily pool, identical for every player: day N of the
   // calendar gets entry N of the shuffled list, so no repeats until the pool is exhausted.
   const DAILY_ORDER = (() => {
-    const ids = DAILY_POOL.map((c) => c.id).filter((id) => BY_ID.has(id)).sort();
+    // Shuffle the whole pool (not just companies that currently have data) so the
+    // sequence never shifts when data coverage changes; gaps are skipped at lookup.
+    const ids = DAILY_POOL.map((c) => c.id).sort();
     let seed = 20261101;
     const rand = () => {
       seed = (seed + 0x6d2b79f5) | 0;
@@ -184,8 +187,13 @@
 
   function dailyInfo(dateKey = state.day || dateKeyToday()) {
     const num = Math.round((dateOf(dateKey) - dateOf(START_DATE)) / 86400000);
-    const idx = ((num % DAILY_ORDER.length) + DAILY_ORDER.length) % DAILY_ORDER.length;
-    return { dateKey, num: num + 1, company: BY_ID.get(DAILY_ORDER[idx]) };
+    const n = DAILY_ORDER.length;
+    let company = null;
+    for (let k = 0; k < n && !company; k++) {
+      const c = BY_ID.get(DAILY_ORDER[(((num + k) % n) + n) % n]);
+      if (c && c.listed) company = c;
+    }
+    return { dateKey, num: num + 1, company: company || COMPANIES[0] };
   }
 
   /* ---------- evaluation ---------- */
@@ -398,14 +406,14 @@
   function openResult() {
     const t = state.target;
     const won = state.status === "won";
-    const grid = state.guesses
-      .map(
-        (g) =>
-          `<div class="mini-row">${evaluate(g, t)
-            .tiles.map((x) => `<span class="mini s-${x.s}"></span>`)
-            .join("")}</div>`
-      )
-      .join("");
+    // Always 6 rows; unused attempts are drawn as empty squares.
+    const grid = Array.from({ length: MAX_GUESSES }, (_, r) => {
+      const g = state.guesses[r];
+      const cells = g
+        ? evaluate(g, t).tiles.map((x) => `<span class="mini s-${x.s}"></span>`)
+        : Array.from({ length: TILE_COUNT }, () => '<span class="mini empty"></span>');
+      return `<div class="mini-row">${cells.join("")}</div>`;
+    }).join("");
     const facts = [
       ["Børsverdi", `${fmtB(t.mcapBNOK)} kr`],
       ["P/E", fmtX(t.pe)],

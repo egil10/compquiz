@@ -60,6 +60,7 @@ OVERRIDES = json.loads((ROOT / "scripts" / "overrides.json").read_text(encoding=
 FOUNDED_OVERRIDE = {k: v["year"] for k, v in OVERRIDES.get("founded", {}).items()}
 WEBSITE_OVERRIDE = OVERRIDES.get("website", {})
 DESC_OVERRIDE = OVERRIDES.get("desc", {})  # short hand-written descriptions (≤ 95 chars)
+MANUAL_MARKET = OVERRIDES.get("manual_market", {})  # holdings Yahoo doesn't cover (unlisted etc.)
 LOGO_URL = OVERRIDES.get("logo_url", {})  # direct image URLs from manual review
 LOGO_BLOCKLIST = OVERRIDES.get("logo_blocklist", [])  # dHashes of generic favicons
 
@@ -277,6 +278,9 @@ def market_figures(info, sector, symbol=None):
         "evEbitda": round(ev_ebitda, 1) if ev_ebitda else None,
         "div": round(div, 1) if div <= 25 else None,
         "ret1y": round(ret * 100) if ret is not None else None,
+        # Why a multiple is missing: "neg" = negative earnings/EBITDA, "fin" = not meaningful for finance.
+        "peNote": None if pe else ("neg" if (ni is not None and ni < 0) or (num(info.get("trailingEps")) or 0) < 0 else None),
+        "evNote": None if ev_ebitda else ("fin" if sector == "Finans" else "neg" if ebitda is not None and ebitda < 0 else None),
     }
 
 
@@ -510,7 +514,7 @@ def main():
         sym, info = resolve_yahoo(c, prev_market.get(c["id"], {}).get("yahoo"))
         line = f"{h['rank']:3} {h['name'][:28]:28} {sym or '-':14}"
         if not info:
-            return c, None, line + " NO MARKET DATA"
+            return no_yahoo(c, line)
         try:
             m = market_figures(info, c["sector"], sym)
         except Exception as e:
@@ -536,6 +540,32 @@ def main():
         m["logo"] = fetch_logo(c["id"], info.get("website"), refresh)
         m["ytd"] = ytd_series(sym)
         return c, m, line + f" P/E {m['pe']}  EV/EBITDA {m['evEbitda']}  est. {founded}  logo {m['logo']}"
+
+    def no_yahoo(c, line):
+        """No Yahoo data: reuse yesterday's figures if we had them (transient failure), else
+        build a minimal entry from manual overrides and the value implied by FTF's stake."""
+        old = prev_market.get(c["id"])
+        if old and old.get("yahoo"):
+            return c, {**old, "stale": True}, line + " (Yahoo failed, kept previous data)"
+        man = MANUAL_MARKET.get(c["id"], {})
+        implied = (
+            round(c["marketValueMNOK"] / c["ownershipPct"] * 100 / 1000, 2)
+            if c["ownershipPct"] > 0 and c["marketValueMNOK"] > 0 else None
+        )
+        m = {
+            "mcapBNOK": man.get("mcapBNOK") or implied,
+            "mcapImplied": not man.get("mcapBNOK") and implied is not None,
+            "priceNOK": None, "pe": man.get("pe"), "evEbitda": man.get("evEbitda"),
+            "div": man.get("div"), "ret1y": None, "peNote": None, "evNote": None,
+            "yahoo": None, "founded": FOUNDED_OVERRIDE.get(c["id"]) or man.get("founded"),
+            "logo": fetch_logo(c["id"], man.get("website"), refresh), "ytd": None,
+            "status": man.get("status") or "unlisted",
+        }
+        if man.get("hq"):
+            c["hq"] = man["hq"]
+        if not m["mcapBNOK"]:
+            return c, None, line + " NO MARKET DATA"
+        return c, m, line + f" manual/implied mcap {m['mcapBNOK']}"
 
     companies, market = [], {}
     with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:

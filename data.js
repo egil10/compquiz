@@ -10,6 +10,10 @@
       mcap: m.mcapBNOK ?? null,
       pe: m.pe ?? null,
       ev: m.evEbitda ?? null,
+      peNote: m.peNote,
+      evNote: m.evNote,
+      implied: m.mcapImplied,
+      unlisted: m.yahoo == null,
       div: m.div ?? null,
       ytd,
       founded: m.founded ?? null,
@@ -33,6 +37,12 @@
   }
 
   const dash = '<span class="na">–</span>';
+  // Explain a missing multiple instead of a bare dash.
+  const why = (r, note) =>
+    note === "neg" ? '<span class="na" title="Negativt resultat">neg.</span>'
+    : note === "fin" ? '<span class="na" title="Ikke meningsfullt for finansselskaper">n/a</span>'
+    : r.unlisted ? '<span class="na" title="Unotert">unot.</span>'
+    : dash;
   const fmtB = (b) => (b == null ? dash : b >= 1000 ? `${(b / 1000).toFixed(2)}T` : b >= 10 ? `${Math.round(b)}B` : `${b.toFixed(1)}B`);
   const fmtX = (v) => (v == null ? dash : `${v >= 20 ? Math.round(v) : v.toFixed(1)}x`);
   const fmtP = (v, d = 1) => (v == null ? dash : `${v.toFixed(d)}%`);
@@ -49,9 +59,9 @@
     ["name", "Selskap", (r) => r.name, (r) =>
       `<span class="dt-co">${flag(r.iso)}${r.logo ? `<img class="logo" src="${r.logo}" alt="" loading="lazy">` : '<span class="logo logo-fallback">' + r.name[0] + "</span>"}<span class="dt-nm"><b title="${r.name}">${r.name}</b><small>${r.bbgTicker || ""}</small></span></span>`, false, 1],
     ["sector", "Sektor", (r) => r.sector, (r) => SHORT_SECTOR[r.sector] || r.sector, false, 2],
-    ["mcap", "Mcap", (r) => r.mcap, (r) => fmtB(r.mcap), true, 1],
-    ["pe", "P/E", (r) => r.pe, (r) => fmtX(r.pe), true, 1],
-    ["ev", "EV/EBITDA", (r) => r.ev, (r) => fmtX(r.ev), true, 2],
+    ["mcap", "Mcap", (r) => r.mcap, (r) => (r.implied ? `<span class="na" title="Implisitt fra Folketrygdfondets post (unotert)">≈</span>` : "") + fmtB(r.mcap), true, 1],
+    ["pe", "P/E", (r) => r.pe, (r) => (r.pe == null ? why(r, r.peNote) : fmtX(r.pe)), true, 1],
+    ["ev", "EV/EBITDA", (r) => r.ev, (r) => (r.ev == null ? why(r, r.evNote) : fmtX(r.ev)), true, 2],
     ["own", "Eier", (r) => r.ownershipPct, (r) => fmtP(r.ownershipPct, r.ownershipPct >= 10 ? 1 : 2), true, 2],
     ["fund", "Fond", (r) => r.fund, (r) => `<span class="dt-fund">${r.fund}</span>`, false, 3],
     ["div", "Utb.", (r) => r.div, (r) => fmtP(r.div), true, 3],
