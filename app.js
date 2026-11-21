@@ -369,7 +369,6 @@
   function openResult() {
     const t = state.target;
     const won = state.status === "won";
-    const ytd = t.ytd ? t.ytd[t.ytd.length - 1] : null;
     const facts = [
       ["Land", t.country],
       ["Sektor", t.sector],
@@ -378,7 +377,7 @@
       ["EV/EBITDA", fmtX(t.evEbitda)],
       ["FTF eier", fmtPct(t.ownershipPct)],
       ["Utbytte", fmtPct(t.div)],
-      ["Kurs i år", ytd == null ? "–" : `${ytd >= 0 ? "+" : ""}${Math.round(ytd)} %`],
+      ["Kurs", t.priceNOK ? `${t.priceNOK >= 100 ? Math.round(t.priceNOK) : t.priceNOK.toFixed(2)} kr` : "–"],
       ["Stiftet", t.founded || "–"]
     ];
     el.resultBody.innerHTML = `
@@ -386,6 +385,7 @@
       <p class="result-kicker">${won ? `${state.guesses.length}/${MAX_GUESSES}` : "Bedre lykke neste gang"}</p>
       <h2 class="result-name" id="result-name">${t.name}</h2>
       <p class="result-ticker">${t.bbgTicker}${t.hq ? ` · ${t.hq}` : ""}</p>
+      ${t.ytd ? sparkline(t.ytd) : ""}
       <dl class="facts">${facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
       ${
         state.mode === "daily"

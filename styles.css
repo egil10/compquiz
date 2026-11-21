@@ -859,6 +859,10 @@ code {
 }
 
 
+.sheet .ytd {
+  margin-bottom: 10px;
+}
+
 .facts {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
