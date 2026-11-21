@@ -219,7 +219,7 @@
         const anim = animateLast && r === state.guesses.length - 1;
         html.push(`
           <div class="row${anim && ev.win ? " win" : ""}">
-            <div class="row-name">${logoImg(g)}${g.name}</div>
+            <div class="row-name">${logoImg(g)}<span class="nm">${g.name}</span><span class="tk">${g.bbgTicker}</span></div>
             <div class="tiles">${ev.tiles.map((t, i) => tileHtml(t, anim, i, ev.win)).join("")}</div>
           </div>`);
       } else if (state.status === "lost" && !state.revealing) {
@@ -242,7 +242,7 @@
     const tiles = evaluate(t, t).tiles.map((x) => ({ ...x, s: "answer", icon: "" }));
     return `
       <div class="row solution">
-        <div class="row-name">${logoImg(t)}${t.name}<span class="tag">Fasit</span></div>
+        <div class="row-name">${logoImg(t)}<span class="nm">${t.name}</span><span class="tk">${t.bbgTicker}</span><span class="tag">Fasit</span></div>
         <div class="tiles">${tiles.map((x, i) => tileHtml(x, false, i)).join("")}</div>
       </div>`;
   }
