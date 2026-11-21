@@ -135,8 +135,6 @@
     state.q = e.target.value;
     render();
   });
-  const dl = document.getElementById("daily-link");
-  if (dl) dl.textContent = new Date().toLocaleDateString("nb-NO", { day: "numeric", month: "short" }).replace(/\.$/, "");
   renderFilters();
   render();
 })();

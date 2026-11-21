@@ -106,7 +106,6 @@
     btnHint: $("btn-hint"),
     doneBar: $("done-bar"),
     btnNext: $("btn-next"),
-    statsBody: $("stats-body"),
     toast: $("toast")
   };
 
@@ -255,6 +254,12 @@
       ? `<img class="${cls}" src="${c.logo}" alt="" loading="lazy" onerror="this.remove()">`
       : `<span class="${cls} logo-fallback">${c.name[0]}</span>`;
 
+  // Company name, linking to its website (opens in a new tab).
+  const nameLink = (c) =>
+    c.website
+      ? `<a class="nm" href="${c.website}" target="_blank" rel="noopener" title="${c.website.replace("https://", "")}">${c.name}</a>`
+      : `<span class="nm">${c.name}</span>`;
+
   function tileHtml(t, animate, i, win) {
     const flipDelay = i * FLIP_STAGGER;
     const bounceDelay = (TILE_COUNT - 1) * FLIP_STAGGER + FLIP_DURATION + i * 80;
@@ -273,7 +278,7 @@
         const anim = animateLast && r === state.guesses.length - 1;
         html.push(`
           <div class="row${anim && ev.win ? " win" : ""}">
-            <div class="row-name">${logoImg(g)}<span class="nm">${g.name}</span><span class="tk">${g.bbgTicker}</span></div>
+            <div class="row-name">${logoImg(g)}${nameLink(g)}<span class="tk">${g.bbgTicker}</span></div>
             <div class="tiles">${ev.tiles.map((t, i) => tileHtml(t, anim, i, ev.win)).join("")}</div>
           </div>`);
       } else if (state.status === "lost" && !state.revealing) {
@@ -296,7 +301,7 @@
     const tiles = evaluate(t, t).tiles.map((x) => ({ ...x, s: "answer", icon: "" }));
     return `
       <div class="row solution">
-        <div class="row-name">${logoImg(t)}<span class="nm">${t.name}</span><span class="tk">${t.bbgTicker}</span><span class="tag">Fasit</span></div>
+        <div class="row-name">${logoImg(t)}${nameLink(t)}<span class="tk">${t.bbgTicker}</span><span class="tag">Fasit</span></div>
         <div class="tiles">${tiles.map((x, i) => tileHtml(x, false, i)).join("")}</div>
       </div>`;
   }
@@ -375,7 +380,8 @@
     const score = state.status === "won" ? state.guesses.length : "X";
     const hints = state.hints ? ` · ${state.hints} hint` : "";
     const rows = state.guesses.map((g) => evaluate(g, state.target).tiles.map((t) => ICON[t.s]).join(""));
-    return `${head} ${score}/${MAX_GUESSES}${hints}\n\n${rows.join("\n")}\n\n${location.origin}${location.pathname}`;
+    const url = state.mode === "daily" ? dayUrl(state.dateKey) : `${location.origin}${location.pathname}`;
+    return `${head} ${score}/${MAX_GUESSES}${hints}\n\n${rows.join("\n")}\n\n${url}`;
   }
 
   function share(e) {
@@ -557,6 +563,16 @@
     el.input.value = "";
     hideAc();
     renderAll();
+    syncUrl();
+  }
+
+  // The address bar always names the day being played, so it can be copied and shared.
+  function dayUrl(key) {
+    return `${location.origin}${location.pathname}?${key}`;
+  }
+  function syncUrl() {
+    const want = state.mode === "daily" ? `?${state.dateKey}` : "";
+    if (location.search !== want || location.hash) history.replaceState(null, "", location.pathname + want);
   }
 
   function setMode(mode) {
@@ -661,73 +677,6 @@
     state.status = saved.status || "playing";
   }
 
-  /* ---------- calendar ---------- */
-
-  const MONTHS = ["januar", "februar", "mars", "april", "mai", "juni", "juli", "august", "september", "oktober", "november", "desember"];
-  let calMonth = null; // Date of the first day of the shown month
-
-  function renderCalendar() {
-    const today = dateKeyToday();
-    const first = dateOf(START_DATE);
-    if (!calMonth) {
-      const sel = dateOf(state.mode === "daily" ? state.dateKey : today);
-      calMonth = new Date(sel.getFullYear(), sel.getMonth(), 1);
-    }
-    const y = calMonth.getFullYear(), m = calMonth.getMonth();
-    const lead = (new Date(y, m, 1).getDay() + 6) % 7; // Monday first
-    const days = new Date(y, m + 1, 0).getDate();
-    const cells = [];
-    for (let i = 0; i < lead; i++) cells.push('<span class="cal-day empty"></span>');
-    for (let d = 1; d <= days; d++) {
-      const key = keyOf(new Date(y, m, d));
-      const disabled = key < START_DATE || key > today;
-      const saved = disabled ? null : loadDay(key);
-      const res = saved && saved.status !== "playing" ? ` ${saved.status}` : saved && saved.guessIds.length ? " started" : "";
-      const sel = state.mode === "daily" && key === state.dateKey ? " selected" : "";
-      cells.push(
-        `<button class="cal-day${res}${sel}${key === today ? " today" : ""}" data-day="${key}"${disabled ? " disabled" : ""}>${d}</button>`
-      );
-    }
-    const prevOk = new Date(y, m, 1) > first;
-    const nextOk = new Date(y, m + 1, 1) <= dateOf(today);
-    $("cal-body").innerHTML = `
-      <div class="cal-nav">
-        <button class="icon-btn sm" id="cal-prev" ${prevOk ? "" : "disabled"} aria-label="Forrige måned">‹</button>
-        <b>${MONTHS[m]} ${y}</b>
-        <button class="icon-btn sm" id="cal-next" ${nextOk ? "" : "disabled"} aria-label="Neste måned">›</button>
-      </div>
-      <div class="cal-grid">
-        ${["ma", "ti", "on", "to", "fr", "lø", "sø"].map((d) => `<span class="cal-dow">${d}</span>`).join("")}
-        ${cells.join("")}
-      </div>
-      <div class="cal-legend"><span class="won"></span>Løst<span class="lost"></span>Ikke løst<span class="started"></span>Påbegynt</div>`;
-    $("cal-prev").onclick = () => {
-      calMonth = new Date(y, m - 1, 1);
-      renderCalendar();
-    };
-    $("cal-next").onclick = () => {
-      calMonth = new Date(y, m + 1, 1);
-      renderCalendar();
-    };
-    $("cal-body").querySelectorAll(".cal-day[data-day]:not([disabled])").forEach((b) => {
-      b.onclick = () => playDay(b.dataset.day);
-    });
-  }
-
-  function openCalendar() {
-    calMonth = null;
-    renderCalendar();
-    openModal("modal-calendar");
-  }
-
-  function playDay(key) {
-    if (state.revealing) return;
-    closeModal("modal-calendar");
-    state.mode = "daily";
-    state.day = isToday(key) ? null : key;
-    startRound();
-  }
-
   function getStats() {
     const base = { played: 0, won: 0, currentStreak: 0, maxStreak: 0, dist: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 } };
     try {
@@ -751,31 +700,6 @@
     try {
       localStorage.setItem(STORE_STATS, JSON.stringify(s));
     } catch (e) {}
-  }
-
-  function renderStats() {
-    const s = getStats();
-    const pct = s.played ? Math.round((s.won / s.played) * 100) : 0;
-    const max = Math.max(1, ...Object.values(s.dist));
-    const cur = state.mode === "daily" && state.status === "won" ? state.guesses.length : 0;
-    el.statsBody.innerHTML = `
-      <div class="kpis">
-        <div><b>${s.played}</b><span>Spilt</span></div>
-        <div><b>${pct}</b><span>Vunnet %</span></div>
-        <div><b>${s.currentStreak}</b><span>Rekke</span></div>
-        <div><b>${s.maxStreak}</b><span>Beste</span></div>
-      </div>
-      <div class="dist">
-        ${[1, 2, 3, 4, 5, 6]
-          .map((n) => {
-            const v = s.dist[n] || 0;
-            return `<div class="dist-row"><span>${n}</span><div class="bar${n === cur ? " cur" : ""}" style="width:${Math.max(
-              7,
-              (v / max) * 100
-            )}%">${v}</div></div>`;
-          })
-          .join("")}
-      </div>`;
   }
 
   /* ---------- ui utils ---------- */
@@ -870,9 +794,10 @@
 
   function bind() {
     document.querySelectorAll(".mode-btn").forEach((b) =>
-      b.addEventListener("click", () => {
-        // Tapping the date while already on a daily puzzle opens the calendar.
-        if (b.dataset.mode === "daily" && state.mode === "daily") openCalendar();
+      b.addEventListener("click", (e) => {
+        e.preventDefault();
+        // Tapping the date while already on today's puzzle goes to the calendar page.
+        if (b.dataset.mode === "daily" && state.mode === "daily" && !state.day) location.href = "kalender.html";
         else setMode(b.dataset.mode);
       })
     );
@@ -916,25 +841,11 @@
     $("btn-show-result").addEventListener("click", openResult);
     el.btnNext.addEventListener("click", nextRound);
 
-    // Title = hard refresh: a fresh URL bypasses the cached page.
+    // Title = reload the page (keeps the day in the URL).
     $("title-link").addEventListener("click", (e) => {
       e.preventDefault();
-      location.replace(`${location.pathname}?r=${Date.now()}`);
+      location.reload();
     });
-    $("btn-help").addEventListener("click", () => openModal("modal-help"));
-    $("btn-calendar").addEventListener("click", openCalendar);
-    $("btn-stats").addEventListener("click", () => {
-      renderStats();
-      openModal("modal-stats");
-    });
-    $("btn-reset-stats").addEventListener("click", () => {
-      try {
-        localStorage.removeItem(STORE_STATS);
-      } catch (e) {}
-      renderStats();
-      toast("Nullstilt");
-    });
-
     document.querySelectorAll("[data-close]").forEach((b) =>
       b.addEventListener("click", () => closeModal(b.dataset.close))
     );
@@ -949,23 +860,22 @@
   }
 
   function init() {
+    const wantPractice = location.hash === "#frispill";
     renderSource();
     bind();
+    // Shareable day URLs: ?2026-11-21 (also accepts ?dag=2026-11-21)
+    const m = location.search.match(/(\d{4}-\d\d-\d\d)/);
+    if (m && m[1] >= START_DATE && m[1] < dateKeyToday()) state.day = m[1];
     startRound();
-    let firstVisit = false;
+    // First visit: show the rules page once.
     try {
-      firstVisit = !localStorage.getItem("folketrygdle_seen_help");
-      localStorage.setItem("folketrygdle_seen_help", "1");
+      if (!localStorage.getItem("folketrygdle_seen_help")) {
+        localStorage.setItem("folketrygdle_seen_help", "1");
+        location.replace(`hjelp.html?ny=1&neste=${encodeURIComponent(location.search + location.hash)}`);
+        return;
+      }
     } catch (e) {}
-    // Deep links from the table page: #hjelp, #kalender, #statistikk, #frispill
-    const hash = location.hash.slice(1);
-    if (hash) history.replaceState(null, "", location.pathname);
-    if (hash === "frispill") setMode("practice");
-    else if (hash === "kalender") openCalendar();
-    else if (hash === "statistikk") {
-      renderStats();
-      openModal("modal-stats");
-    } else if (hash === "hjelp" || firstVisit) openModal("modal-help");
+    if (wantPractice) setMode("practice");
     // A finished daily just shows the finished board; "Resultat" reopens the popup.
   }
 

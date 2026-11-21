@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8" />
+  <title>Trygdle</title>
+  <script>
+    // GitHub Pages serves this for unknown paths: /compquiz/2026-11-21 → /compquiz/?2026-11-21
+    (function () {
+      var parts = location.pathname.split("/").filter(Boolean);
+      var last = parts[parts.length - 1] || "";
+      var base = "/" + parts.slice(0, -1).join("/") + "/";
+      if (parts.length && /^\d{4}-\d\d-\d\d$/.test(last)) location.replace(base + "?" + last);
+      else location.replace(parts.length ? "/" + parts[0] + "/" : "/");
+    })();
+  </script>
+</head>
+<body></body>
+</html>

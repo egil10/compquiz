@@ -40,3 +40,8 @@ python3 scripts/update_data.py            # --refresh-logos for å hente logoer 
 | `logos/` | Logoer | Google favicon-tjeneste |
 
 Tall rapportert i annen valuta enn noteringen (f.eks. Equinor i USD) valutajusteres. Datoene for uttrekket vises nederst i spillet. Kun til underholdning, ikke investeringsråd.
+
+## Lenker
+
+- `?2026-11-21` (eller `/2026-11-21`) åpner dagens selskap for den datoen – fin for å dele med venner.
+- `hjelp.html`, `kalender.html`, `statistikk.html`, `data.html` er egne sider med samme topplinje.
