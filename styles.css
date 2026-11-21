@@ -378,7 +378,7 @@ button {
 .hints {
   display: grid;
   /* city gets the room; fund, dividend and logo stay compact */
-  grid-template-columns: minmax(0, 1fr) auto auto auto;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   gap: 6px;
   margin-bottom: 10px;
 }
@@ -1019,10 +1019,6 @@ code {
   line-height: 1.45;
   color: var(--muted);
   margin: 12px 0 12px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 .result-sheet .ytd {

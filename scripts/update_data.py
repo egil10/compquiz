@@ -59,6 +59,7 @@ for _old, _new in BBG_FIX.items():
 OVERRIDES = json.loads((ROOT / "scripts" / "overrides.json").read_text(encoding="utf-8"))
 FOUNDED_OVERRIDE = {k: v["year"] for k, v in OVERRIDES.get("founded", {}).items()}
 WEBSITE_OVERRIDE = OVERRIDES.get("website", {})
+DESC_OVERRIDE = OVERRIDES.get("desc", {})  # short hand-written descriptions (≤ 95 chars)
 LOGO_URL = OVERRIDES.get("logo_url", {})  # direct image URLs from manual review
 LOGO_BLOCKLIST = OVERRIDES.get("logo_blocklist", [])  # dHashes of generic favicons
 
@@ -501,7 +502,7 @@ def main():
             "country": h["country"], "sector": h["sector"], "fund": h["fund"],
             "marketValueMNOK": h["marketValueMNOK"], "ownershipPct": h["ownershipPct"],
             "shares": h["shares"], "isMajorPool": bool(p.get("isMajorPool")),
-            "clue": p.get("clue") or generic_clue(h),
+            "clue": DESC_OVERRIDE.get(h["id"]) or p.get("clue") or generic_clue(h),
         }
         if c["bbgTicker"] in BBG_FIX:
             c["ticker"] = BBG_FIX[c["bbgTicker"]].split(" ")[0]

@@ -15,7 +15,7 @@ Skriv navn eller ticker og trykk Enter. Hvert forsøk gir sju ruter:
 - **Grå**: feil. ↑ / ↓ viser om fasit er høyere eller lavere.
 - **–**: ikke meningsfullt (negativt resultat, EV/EBITDA for finans).
 
-Kursutviklingen i år vises alltid over søkefeltet. **Hint** (3): by og fond (SPN/SFT) → utbytte → logo (grå og uskarp → farget og uskarp → skarp). Deretter «Gi opp».
+Kursutviklingen i år vises alltid over søkefeltet. **Hint** (3): by → fond (SPN/SFT) → logo (grå og uskarp → farget og uskarp → skarp). Deretter «Gi opp».
 
 **Daglig** gir alle samme selskap hver dag (forhåndsbestemt rekkefølge fra 1. november 2026, lik for alle). Kalenderen øverst lar deg spille tidligere dager. **Frispill** trekker fra hele porteføljen.
 

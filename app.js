@@ -306,13 +306,12 @@
     const n = playing ? state.hints : 0;
     el.ytd.innerHTML = t.ytd ? sparkline(t.ytd) : "";
 
-    // From the first hint, four fixed slots: city, fund (SPN/SFT), dividend, logo. Each hint reveals a bit more.
+    // From the first hint, three fixed slots: city, fund (SPN/SFT), logo. Each hint reveals more. Each hint reveals a bit more.
     const parts = [];
     if (n >= 1) {
       const city = (t.hq || "?").split("/")[0].trim();
       parts.push(`<span class="chip city" title="Hovedkontor">${city}</span>`);
-      parts.push(`<span class="chip fund" title="Fond som eier aksjen">${t.fund}</span>`);
-      parts.push(`<span class="chip${n >= 2 ? "" : " dim"}">Utb. <b>${n >= 2 ? fmtPct(t.div) : "?"}</b></span>`);
+      parts.push(`<span class="chip fund${n >= 2 ? "" : " dim"}" title="Fond som eier aksjen">${n >= 2 ? t.fund : "?"}</span>`);
       const stage = n >= 3 ? "" : n >= 2 ? " blur" : " blur grey";
       parts.push(
         t.logo
