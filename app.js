@@ -555,7 +555,6 @@
     state.mode = mode;
     if (mode === "daily") state.day = null;
     startRound();
-    if (mode === "daily" && state.status !== "playing") openResult();
   }
 
   function nextRound() {
@@ -718,7 +717,6 @@
     state.mode = "daily";
     state.day = isToday(key) ? null : key;
     startRound();
-    if (state.status !== "playing") openResult();
   }
 
   function getStats() {
@@ -951,7 +949,7 @@
       localStorage.setItem("folketrygdle_seen_help", "1");
     } catch (e) {}
     if (firstVisit) openModal("modal-help");
-    else if (state.status !== "playing") openResult();
+    // A finished daily just shows the finished board; "Resultat" reopens the popup.
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
