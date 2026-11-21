@@ -57,4 +57,27 @@
       ${link("kalender.html", "calendar", "Tidligere dager", icon('<rect x="3" y="4.5" width="18" height="16.5" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/>'))}
       ${link("statistikk.html", "stats", "Statistikk", icon('<path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/>', 22))}
     </div>`;
+
+  // Header navigation always loads a fresh copy of the target page (cache-busting
+  // ?t=…), so an old cached page can never send you somewhere unexpected.
+  // The game page handles its own date/Frispill toggle in place (see app.js).
+  header.addEventListener("click", (e) => {
+    const a = e.target.closest("a[href]");
+    if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    if (page === "game" && a.classList.contains("mode-btn")) return;
+    e.preventDefault();
+    const href = a.getAttribute("href");
+    location.href = href + (href.includes("?") ? "&" : "?") + "t=" + Date.now();
+  });
+
+  // Tidy the address bar (drop the cache-busting parameter).
+  if (/[?&]t=\d+/.test(location.search)) {
+    const q = location.search.replace(/[?&]t=\d+/, "").replace(/^&/, "?");
+    history.replaceState(null, "", location.pathname + (q === "?" ? "" : q) + location.hash);
+  }
+
+  // Coming back via the browser's back/forward cache: reload so the page is current.
+  window.addEventListener("pageshow", (e) => {
+    if (e.persisted) location.reload();
+  });
 })();

@@ -20,7 +20,7 @@
       const disabled = key < T.START_DATE || key > today;
       const saved = disabled ? null : T.loadDay(key);
       const res = saved && saved.status !== "playing" ? ` ${saved.status}` : saved && saved.guessIds.length ? " started" : "";
-      const href = `./?${key}`;
+      const href = `./?${key}`; // game reads the date from the query
       cells.push(
         disabled
           ? `<span class="cal-day off">${d}</span>`
