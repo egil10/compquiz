@@ -4,16 +4,14 @@
   const COMPANIES = window.PORTFOLIO_COMPANIES || [];
   const MAX_GUESSES = 6;
 
-  // Approximate capital coordinates for compass direction feedback
   const COUNTRY_COORDS = {
-    Norge: { lat: 59.91, lon: 10.75 },
-    Sverige: { lat: 59.33, lon: 18.06 },
-    Danmark: { lat: 55.68, lon: 12.57 },
-    Finland: { lat: 60.17, lon: 24.94 },
-    Island: { lat: 64.15, lon: -21.94 }
+    Norge: { lat: 59.91, lon: 10.75, iso: "NO" },
+    Sverige: { lat: 59.33, lon: 18.06, iso: "SE" },
+    Danmark: { lat: 55.68, lon: 12.57, iso: "DK" },
+    Finland: { lat: 60.17, lon: 24.94, iso: "FI" },
+    Island: { lat: 64.15, lon: -21.94, iso: "IS" }
   };
 
-  // Related ICB sector clusters for Close ("Beslektet") feedback
   const SECTOR_CLUSTERS = {
     Energi: "ENERGI_KRAFT",
     Forsyning: "ENERGI_KRAFT",
@@ -28,14 +26,44 @@
     Helse: "HELSE"
   };
 
+  const SHORT_SECTOR = {
+    Energi: "Energi",
+    Forsyning: "Forsyning",
+    Industri: "Industri",
+    Materialer: "Materialer",
+    Konsumvarer: "Konsum",
+    "Varige konsumvarer": "Varig konsum",
+    Teknologi: "Teknologi",
+    Telekommunikasjon: "Telekom",
+    Finans: "Finans",
+    Eiendom: "Eiendom",
+    Helse: "Helse"
+  };
+
   const ALL_SECTORS = Object.keys(SECTOR_CLUSTERS);
 
+  // Clean inline SVGs (12px)
+  const SVG = {
+    up: '<svg class="svg-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>',
+    down: '<svg class="svg-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>',
+    check: '<svg class="svg-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+    bulb: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>',
+    pin: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+    tag: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>',
+    copy: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>',
+    refresh: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>'
+  };
+
+  function compassSvg(deg) {
+    return `<svg class="svg-arrow" style="transform:rotate(${Math.round(deg)}deg)" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>`;
+  }
+
   let state = {
-    mode: "daily", // 'daily' | 'practice-major' | 'practice-norway' | 'practice-all'
+    mode: "daily",
     target: null,
     guesses: [],
     unlockedClues: { 1: false, 2: false, 3: false },
-    status: "playing", // 'playing' | 'won' | 'lost'
+    status: "playing",
     dailyNumber: 1,
     dailyDateKey: "",
     candidatesOpen: false,
@@ -46,7 +74,7 @@
 
   const el = {
     roundLabel: document.getElementById("round-label"),
-    attemptText: document.getElementById("attempt-text"),
+    attemptDots: document.getElementById("attempt-dots"),
     btnClue1: document.getElementById("btn-clue-1"),
     btnClue2: document.getElementById("btn-clue-2"),
     btnClue3: document.getElementById("btn-clue-3"),
@@ -87,29 +115,26 @@
     toast: document.getElementById("toast")
   };
 
-  function fmtNum(n, decimals = 1) {
-    return Number(n).toLocaleString("nb-NO", {
-      minimumFractionDigits: decimals,
-      maximumFractionDigits: decimals
-    });
+  function getBbg(c) {
+    if (c.bbgTicker) return c.bbgTicker;
+    const suffixMap = { Norge: "NO", Sverige: "SS", Danmark: "DC", Finland: "FH", Island: "IR" };
+    return `${(c.ticker || "").replace("-", "")} ${suffixMap[c.country] || "NO"}`;
   }
 
-  function fmtMcap(bnok) {
-    if (bnok >= 100) return `${fmtNum(bnok, 0)} mrd.`;
-    if (bnok >= 10) return `${fmtNum(bnok, 1)} mrd.`;
-    return `${fmtNum(bnok, 2)} mrd.`;
+  function getIso(c) {
+    if (c.iso) return c.iso;
+    return (COUNTRY_COORDS[c.country] && COUNTRY_COORDS[c.country].iso) || "NO";
   }
 
-  function fmtFtfHolding(mnok) {
-    if (mnok >= 1000) {
-      return `${fmtNum(mnok / 1000, 1)} mrd.`;
-    }
-    return `${fmtNum(mnok, 0)} MNOK`;
+  function fmtCompactNOK(bnok) {
+    if (bnok >= 100) return `${Math.round(bnok)}B`;
+    if (bnok >= 10) return `${bnok.toFixed(1)}B`;
+    return `${bnok.toFixed(2)}B`;
   }
 
-  function fmtFundLabel(fund) {
-    if (fund === "SFT+SPN" || fund === "SPN+SFT") return "SPN+SFT";
-    return fund;
+  function fmtCompactFTF(mnok) {
+    if (mnok >= 1000) return `${(mnok / 1000).toFixed(1)}B`;
+    return `${Math.round(mnok)}M`;
   }
 
   function getActivePool(mode = state.mode) {
@@ -122,24 +147,15 @@
     return COMPANIES;
   }
 
-  function getCompassDirection(fromCountry, toCountry) {
-    if (fromCountry === toCountry) return "Riktig";
+  function getCompassIcon(fromCountry, toCountry) {
+    if (fromCountry === toCountry) return SVG.check;
     const c1 = COUNTRY_COORDS[fromCountry];
     const c2 = COUNTRY_COORDS[toCountry];
-    if (!c1 || !c2) return "Ulik";
-
+    if (!c1 || !c2) return "";
     const dLat = c2.lat - c1.lat;
     const dLon = (c2.lon - c1.lon) * Math.cos(((c1.lat + c2.lat) * Math.PI) / 360);
     const angle = (Math.atan2(dLon, dLat) * 180) / Math.PI;
-
-    if (angle >= -22.5 && angle < 22.5) return "Nord ↑";
-    if (angle >= 22.5 && angle < 67.5) return "Nordøst ↗";
-    if (angle >= 67.5 && angle < 112.5) return "Øst →";
-    if (angle >= 112.5 && angle < 157.5) return "Sørøst ↘";
-    if (angle >= 157.5 || angle < -157.5) return "Sør ↓";
-    if (angle >= -157.5 && angle < -112.5) return "Sørvest ↙";
-    if (angle >= -112.5 && angle < -67.5) return "Vest ←";
-    return "Nordvest ↖";
+    return compassSvg(angle);
   }
 
   function evaluateGuess(guess, target) {
@@ -149,8 +165,8 @@
     const countryExact = guess.country === target.country;
     const countryEval = {
       state: countryExact ? "exact" : "wrong",
-      name: guess.country,
-      sub: countryExact ? "Riktig" : getCompassDirection(guess.country, target.country),
+      iso: getIso(guess),
+      icon: getCompassIcon(guess.country, target.country),
       code: countryExact ? "[=]" : "[x]"
     };
 
@@ -160,8 +176,7 @@
     const sectorState = sectorExact ? "exact" : sameCluster ? "close" : "wrong";
     const sectorEval = {
       state: sectorState,
-      name: guess.sector,
-      sub: sectorExact ? "Riktig" : sameCluster ? "Beslektet" : "Ulik",
+      name: SHORT_SECTOR[guess.sector] || guess.sector,
       code: sectorExact ? "[=]" : sameCluster ? "[~]" : "[x]"
     };
 
@@ -172,20 +187,13 @@
     const mcapDiffPct = Math.abs(guess.mcapBNOK - target.mcapBNOK) / Math.max(target.mcapBNOK, 0.1);
     const mcapState = isWin || mcapDiffPct <= 0.15 ? "exact" : mcapRatio <= 2.2 ? "close" : "wrong";
     const mcapHigher = target.mcapBNOK > guess.mcapBNOK;
-    const mcapArrow = isWin || guess.mcapBNOK === target.mcapBNOK ? "" : mcapHigher ? "↑" : "↓";
-    const mcapSub = isWin
-      ? "Riktig"
-      : mcapState === "exact"
-      ? "Innenfor ±15 %"
-      : mcapHigher
-      ? "Høyere"
-      : "Lavere";
+    const mcapIcon =
+      isWin || guess.mcapBNOK === target.mcapBNOK ? SVG.check : mcapHigher ? SVG.up : SVG.down;
 
     const mcapEval = {
       state: mcapState,
-      val: fmtMcap(guess.mcapBNOK),
-      arrow: mcapArrow,
-      sub: mcapSub,
+      val: fmtCompactNOK(guess.mcapBNOK),
+      icon: mcapIcon,
       code: mcapState === "exact" ? "[=]" : mcapHigher ? "[^]" : "[v]"
     };
 
@@ -201,14 +209,14 @@
         ? "close"
         : "wrong";
     const ftfHigher = target.marketValueMNOK > guess.marketValueMNOK;
-    const ftfArrow = isWin || guess.rank === target.rank ? "" : ftfHigher ? "↑" : "↓";
-    const ftfSub = `#${guess.rank}${ftfArrow ? (ftfHigher ? " · Større post" : " · Mindre post") : ""}`;
+    const ftfIcon =
+      isWin || guess.rank === target.rank ? SVG.check : ftfHigher ? SVG.up : SVG.down;
 
     const ftfEval = {
       state: ftfState,
-      val: fmtFtfHolding(guess.marketValueMNOK),
-      arrow: ftfArrow,
-      sub: ftfSub,
+      val: fmtCompactFTF(guess.marketValueMNOK),
+      rank: `#${guess.rank}`,
+      icon: ftfIcon,
       code: ftfState === "exact" ? "[=]" : ftfHigher ? "[^]" : "[v]"
     };
 
@@ -222,16 +230,17 @@
         ? "close"
         : "wrong";
     const ownHigher = target.ownershipPct > guess.ownershipPct;
-    const ownArrow = isWin || guess.ownershipPct === target.ownershipPct ? "" : ownHigher ? "↑" : "↓";
-    const ownSub = isWin
-      ? fmtFundLabel(guess.fund)
-      : `${fmtFundLabel(guess.fund)} · ${ownHigher ? "Høyere %" : "Lavere %"}`;
+    const ownIcon =
+      isWin || guess.ownershipPct === target.ownershipPct
+        ? SVG.check
+        : ownHigher
+        ? SVG.up
+        : SVG.down;
 
     const ownEval = {
       state: ownState,
-      val: `${fmtNum(guess.ownershipPct, 2)} %`,
-      arrow: ownArrow,
-      sub: ownSub,
+      val: `${guess.ownershipPct.toFixed(1)}%`,
+      icon: ownIcon,
       code: ownState === "exact" ? "[=]" : ownHigher ? "[^]" : "[v]"
     };
 
@@ -393,17 +402,19 @@
     const t = state.target;
     if (!t) return;
 
-    if (state.mode === "daily") {
-      el.roundLabel.textContent = `Daglig #${state.dailyNumber}`;
-    } else if (state.mode === "practice-major") {
-      el.roundLabel.textContent = "Frispill (Kjente)";
-    } else if (state.mode === "practice-norway") {
-      el.roundLabel.textContent = "Frispill (Norge)";
-    } else {
-      el.roundLabel.textContent = "Frispill (Alle 334)";
-    }
+    el.roundLabel.textContent =
+      state.mode === "daily" ? `#${state.dailyNumber}` : state.mode === "practice-norway" ? "NO" : "2026";
 
-    el.attemptText.textContent = `${state.guesses.length} / ${MAX_GUESSES} forsøk`;
+    // Render 6 attempt dots
+    const dots = [];
+    for (let i = 0; i < MAX_GUESSES; i++) {
+      let cls = "attempt-dot";
+      if (i < state.guesses.length) {
+        cls += state.guesses[i].id === t.id ? " won" : " used";
+      }
+      dots.push(`<span class="${cls}"></span>`);
+    }
+    el.attemptDots.innerHTML = dots.join("");
 
     el.btnClue1.classList.toggle("unlocked", Boolean(state.unlockedClues[1]));
     el.btnClue2.classList.toggle("unlocked", Boolean(state.unlockedClues[2]));
@@ -412,27 +423,28 @@
     const lines = [];
     if (state.unlockedClues[1]) {
       lines.push({
-        tag: "Virksomhet",
+        icon: SVG.bulb,
         text: maskCompanyName(t.clue, t)
       });
     }
     if (state.unlockedClues[2]) {
       lines.push({
-        tag: "Kurs & By",
-        text: `Hovedkontor: ${t.hq} · Aksjekurs (2026): ca. ${fmtNum(t.sharePriceNOK, 2)} NOK · Fond: ${fmtFundLabel(t.fund)}`
+        icon: SVG.pin,
+        text: `${t.hq} · Kurs: ~${Math.round(t.sharePriceNOK)} NOK · ${t.fund}`
       });
     }
     if (state.unlockedClues[3]) {
-      const cleanName = t.name.trim();
-      const first = cleanName.charAt(0).toUpperCase();
-      const last = cleanName.charAt(cleanName.length - 1).toUpperCase();
-      const maskedTicker =
-        t.ticker.length > 2
-          ? `${t.ticker[0]}${"·".repeat(t.ticker.length - 2)}${t.ticker[t.ticker.length - 1]}`
-          : `${t.ticker[0]}·`;
+      const bbg = getBbg(t);
+      const parts = bbg.split(" ");
+      const root = parts[0];
+      const exch = parts[1] || "";
+      const maskedBbg =
+        root.length > 2
+          ? `${root[0]}${"·".repeat(root.length - 2)}${root[root.length - 1]} ${exch}`
+          : `${root[0]}· ${exch}`;
       lines.push({
-        tag: "Navn",
-        text: `Starter på «${first}», slutter på «${last}» (${cleanName.length} tegn) · Ticker: ${maskedTicker}`
+        icon: SVG.tag,
+        text: `Navn: ${t.name[0].toUpperCase()}… (${t.name.length}) · BBG: ${maskedBbg}`
       });
     }
 
@@ -445,7 +457,7 @@
         .map(
           (l) => `
           <div class="clue-row">
-            <span class="clue-tag">${l.tag}</span>
+            <span class="clue-icon">${l.icon}</span>
             <span>${l.text}</span>
           </div>`
         )
@@ -455,40 +467,37 @@
 
   function renderCandidatesPanel() {
     const ded = computeDeductions();
-    const count = ded.candidates.length;
-    el.candidateCountText.textContent = `${count} mulige`;
+    el.candidateCountText.textContent = String(ded.candidates.length);
     el.candidateChevron.classList.toggle("open", state.candidatesOpen);
 
     const pills = [];
-    if (ded.confirmedCountry) pills.push(`<span class="ded-pill">Land: <strong>${ded.confirmedCountry}</strong></span>`);
-    if (ded.confirmedSector) pills.push(`<span class="ded-pill">Sektor: <strong>${ded.confirmedSector}</strong></span>`);
-
+    if (ded.confirmedCountry) {
+      const iso = (COUNTRY_COORDS[ded.confirmedCountry] || {}).iso || ded.confirmedCountry;
+      pills.push(`<span class="ded-pill"><strong>${iso}</strong></span>`);
+    }
+    if (ded.confirmedSector) {
+      pills.push(`<span class="ded-pill"><strong>${SHORT_SECTOR[ded.confirmedSector] || ded.confirmedSector}</strong></span>`);
+    }
     if (ded.minMcap > 0 || ded.maxMcap < Infinity) {
       const mcapTxt =
         ded.minMcap > 0 && ded.maxMcap < Infinity
-          ? `${fmtNum(ded.minMcap, 1)}–${fmtNum(ded.maxMcap, 1)} mrd.`
+          ? `${fmtCompactNOK(ded.minMcap)}–${fmtCompactNOK(ded.maxMcap)}`
           : ded.minMcap > 0
-          ? `> ${fmtMcap(ded.minMcap)}`
-          : `< ${fmtMcap(ded.maxMcap)}`;
-      pills.push(`<span class="ded-pill">Børsverdi: <strong>${mcapTxt}</strong></span>`);
+          ? `>${fmtCompactNOK(ded.minMcap)}`
+          : `<${fmtCompactNOK(ded.maxMcap)}`;
+      pills.push(`<span class="ded-pill">MCap <strong>${mcapTxt}</strong></span>`);
     }
-
     if (ded.minRank > 1 || ded.maxRank < COMPANIES.length) {
-      pills.push(`<span class="ded-pill">Rang: <strong>#${ded.minRank}–#${ded.maxRank}</strong></span>`);
+      pills.push(`<span class="ded-pill"><strong>#${ded.minRank}–#${ded.maxRank}</strong></span>`);
     }
-
     if (ded.minOwn > 0 || ded.maxOwn < 100) {
       const ownTxt =
         ded.minOwn > 0 && ded.maxOwn < 100
-          ? `${fmtNum(ded.minOwn, 2)}–${fmtNum(ded.maxOwn, 2)} %`
+          ? `${ded.minOwn.toFixed(1)}–${ded.maxOwn.toFixed(1)}%`
           : ded.minOwn > 0
-          ? `> ${fmtNum(ded.minOwn, 2)} %`
-          : `< ${fmtNum(ded.maxOwn, 2)} %`;
-      pills.push(`<span class="ded-pill">Eierandel: <strong>${ownTxt}</strong></span>`);
-    }
-
-    if (pills.length === 0) {
-      pills.push(`<span class="ded-pill">Ingen begrensninger ennå</span>`);
+          ? `>${ded.minOwn.toFixed(1)}%`
+          : `<${ded.maxOwn.toFixed(1)}%`;
+      pills.push(`<span class="ded-pill">Eier <strong>${ownTxt}</strong></span>`);
     }
     el.deductionSummary.innerHTML = pills.join("");
 
@@ -506,11 +515,11 @@
         <button class="cand-btn" data-id="${c.id}">
           <div class="cand-info">
             <div class="cand-title">${c.name}</div>
-            <div class="cand-meta">${c.country} · ${c.sector}</div>
+            <div class="cand-bbg">${getBbg(c)} · ${SHORT_SECTOR[c.sector] || c.sector}</div>
           </div>
           <div class="cand-num">
-            <div>${fmtMcap(c.mcapBNOK)}</div>
-            <div>#${c.rank} · ${fmtNum(c.ownershipPct, 1)}%</div>
+            <div>${fmtCompactNOK(c.mcapBNOK)}</div>
+            <div>#${c.rank}</div>
           </div>
         </button>`
       )
@@ -531,42 +540,33 @@
         return `
         <div class="grid-row">
           <div class="cell cell-company ${ev.isWin ? "state-exact" : ""}">
-            <div class="cell-primary">${g.name}</div>
-            <div class="cell-secondary">${g.ticker} · ${g.hq}</div>
+            <span class="cell-company-name" title="${g.name}">${g.name}</span>
+            <span class="cell-bbg-tag">${getBbg(g)}</span>
           </div>
 
-          <div class="cell state-${ev.country.state}">
-            <div class="cell-primary">${ev.country.name}</div>
-            <div class="cell-secondary">${ev.country.sub}</div>
+          <div class="cell state-${ev.country.state}" title="${g.country}">
+            <span>${ev.country.iso}</span>
+            ${ev.country.icon}
           </div>
 
-          <div class="cell state-${ev.sector.state}">
-            <div class="cell-primary">${ev.sector.name}</div>
-            <div class="cell-secondary">${ev.sector.sub}</div>
+          <div class="cell state-${ev.sector.state}" title="${g.sector}">
+            <span class="sector-cell-text">${ev.sector.name}</span>
           </div>
 
-          <div class="cell state-${ev.mcap.state}">
-            <div class="cell-primary cell-mono">
-              <span>${ev.mcap.val}</span>
-              ${ev.mcap.arrow ? `<span class="dir-arrow">${ev.mcap.arrow}</span>` : ""}
-            </div>
-            <div class="cell-secondary">${ev.mcap.sub}</div>
+          <div class="cell state-${ev.mcap.state} cell-mono">
+            <span>${ev.mcap.val}</span>
+            ${ev.mcap.icon}
           </div>
 
-          <div class="cell state-${ev.ftf.state}">
-            <div class="cell-primary cell-mono">
-              <span>${ev.ftf.val}</span>
-              ${ev.ftf.arrow ? `<span class="dir-arrow">${ev.ftf.arrow}</span>` : ""}
-            </div>
-            <div class="cell-secondary">${ev.ftf.sub}</div>
+          <div class="cell state-${ev.ftf.state} cell-mono">
+            <span>${ev.ftf.val}</span>
+            <span class="rank-sub">${ev.ftf.rank}</span>
+            ${ev.ftf.icon}
           </div>
 
-          <div class="cell state-${ev.own.state}">
-            <div class="cell-primary cell-mono">
-              <span>${ev.own.val}</span>
-              ${ev.own.arrow ? `<span class="dir-arrow">${ev.own.arrow}</span>` : ""}
-            </div>
-            <div class="cell-secondary">${ev.own.sub}</div>
+          <div class="cell state-${ev.own.state} cell-mono">
+            <span>${ev.own.val}</span>
+            ${ev.own.icon}
           </div>
         </div>`;
       })
@@ -608,43 +608,25 @@
 
     el.resultBanner.innerHTML = `
       <div class="result-header">
-        <div>
-          <div class="result-kicker">${isWon ? `Løst på ${state.guesses.length} av ${MAX_GUESSES} forsøk` : "Runden er avsluttet · Fasit"}</div>
-          <div class="result-title">${t.name} <span style="font-weight:400;color:var(--text-muted)">(${t.ticker})</span></div>
+        <div class="result-title-group">
+          <span class="result-title">${t.name}</span>
+          <span class="bbg-pill">${getBbg(t)}</span>
         </div>
         <div class="result-actions">
-          <button id="btn-share-result" class="text-btn-sm">Kopier resultat</button>
-          <button id="btn-play-again-banner" class="submit-btn" style="padding:6px 14px;font-size:12px;">Ny runde</button>
+          <button id="btn-share-result" class="action-btn" title="Kopier resultat">${SVG.copy}<span>Del</span></button>
+          <button id="btn-play-again-banner" class="action-btn primary">${SVG.refresh}<span>Ny</span></button>
         </div>
       </div>
 
       <p class="result-desc">${t.clue}</p>
 
       <div class="result-stats">
-        <div class="res-stat">
-          <span class="res-stat-label">Land &amp; By</span>
-          <span class="res-stat-val">${t.country} (${t.hq})</span>
-        </div>
-        <div class="res-stat">
-          <span class="res-stat-label">ICB-Sektor</span>
-          <span class="res-stat-val">${t.sector}</span>
-        </div>
-        <div class="res-stat">
-          <span class="res-stat-label">Børsverdi</span>
-          <span class="res-stat-val">${fmtMcap(t.mcapBNOK)} NOK</span>
-        </div>
-        <div class="res-stat">
-          <span class="res-stat-label">FTF-Post (#Rang)</span>
-          <span class="res-stat-val">${fmtFtfHolding(t.marketValueMNOK)} (#${t.rank})</span>
-        </div>
-        <div class="res-stat">
-          <span class="res-stat-label">FTF Eierandel</span>
-          <span class="res-stat-val">${fmtNum(t.ownershipPct, 2)} %</span>
-        </div>
-        <div class="res-stat">
-          <span class="res-stat-label">Aksjekurs &amp; Fond</span>
-          <span class="res-stat-val">${fmtNum(t.sharePriceNOK, 2)} kr (${fmtFundLabel(t.fund)})</span>
-        </div>
+        <span class="res-pill"><strong>${getIso(t)}</strong> · ${t.hq}</span>
+        <span class="res-pill"><strong>${t.sector}</strong></span>
+        <span class="res-pill">MCap <strong>${fmtCompactNOK(t.mcapBNOK)} NOK</strong></span>
+        <span class="res-pill">FTF <strong>${fmtCompactFTF(t.marketValueMNOK)} (#${t.rank})</strong></span>
+        <span class="res-pill">Eier <strong>${t.ownershipPct.toFixed(2)}%</strong></span>
+        <span class="res-pill">Kurs <strong>${Math.round(t.sharePriceNOK)} kr</strong></span>
       </div>
     `;
 
@@ -660,7 +642,7 @@
 
   function copyShareResult() {
     const modeTitle =
-      state.mode === "daily" ? `Folketrygdle #${state.dailyNumber}` : `Folketrygdle (Frispill)`;
+      state.mode === "daily" ? `Folketrygdle #${state.dailyNumber}` : `Folketrygdle`;
     const score =
       state.status === "won" ? `${state.guesses.length}/${MAX_GUESSES}` : `X/${MAX_GUESSES}`;
 
@@ -672,17 +654,17 @@
     const text = `${modeTitle} ${score}\n${rows.join("\n")}\nhttps://egil10.github.io/compquiz/`;
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(() => {
-        showToast("Resultat kopiert til utklippstavlen");
+        showToast("Kopiert");
       });
     } else {
-      showToast("Resultat kopiert");
+      showToast("Kopiert");
     }
   }
 
   function submitGuess(company) {
     if (!company || state.status !== "playing") return;
     if (state.guesses.some((g) => g.id === company.id)) {
-      showToast(`Du har allerede gjettet ${company.name}`);
+      showToast(`Allerede gjettet: ${company.name}`);
       return;
     }
 
@@ -690,7 +672,6 @@
     el.searchInput.value = "";
     hideAutocomplete();
 
-    // Auto-reveal hints progressively
     if (state.guesses.length >= 2) state.unlockedClues[1] = true;
     if (state.guesses.length >= 4) state.unlockedClues[2] = true;
     if (state.guesses.length >= 5) state.unlockedClues[3] = true;
@@ -735,33 +716,46 @@
     }
 
     const q = el.searchInput.value.trim().toLowerCase();
+    const qClean = q.replace(/\s+equity$/i, "").trim();
     const smartOnly = el.chkSmartFilter.checked && state.guesses.length > 0;
     const ded = computeDeductions();
     const candidateIds = new Set(ded.candidates.map((c) => c.id));
     const guessedIds = new Set(state.guesses.map((g) => g.id));
 
     let list = COMPANIES.filter((c) => !guessedIds.has(c.id));
-    if (smartOnly) {
+    if (smartOnly && qClean.length === 0) {
       list = list.filter((c) => candidateIds.has(c.id));
     }
 
-    if (q.length > 0) {
-      list = list
+    if (qClean.length > 0) {
+      // When user explicitly types a ticker/name, search all unguessed companies (or prioritize candidates)
+      const baseList = smartOnly ? list.filter((c) => candidateIds.has(c.id)) : list;
+      const sourceList = baseList.length > 0 ? baseList : list;
+
+      list = sourceList
         .map((c) => {
           const nameL = c.name.toLowerCase();
-          const tickerL = c.ticker.toLowerCase();
-          const aliasMatch = (c.aliases || []).some((a) => a.toLowerCase().includes(q));
-          const sectorMatch = c.sector.toLowerCase().includes(q);
-          const countryMatch = c.country.toLowerCase().includes(q);
-          const hqMatch = (c.hq || "").toLowerCase().includes(q);
+          const tickerL = (c.ticker || "").toLowerCase();
+          const bbgL = getBbg(c).toLowerCase();
+          const bbgRootL = bbgL.split(" ")[0];
+          const aliasMatch = (c.aliases || []).some((a) => a.toLowerCase().includes(qClean));
 
           let score = 0;
-          if (nameL === q || tickerL === q) score = 100;
-          else if (nameL.startsWith(q) || tickerL.startsWith(q)) score = 85;
-          else if (aliasMatch) score = 75;
-          else if (nameL.includes(q)) score = 60;
-          else if (hqMatch || sectorMatch || countryMatch) score = 35;
+          if (bbgL === qClean || bbgRootL === qClean || tickerL === qClean || nameL === qClean) {
+            score = 100;
+          } else if (bbgL.startsWith(qClean) || tickerL.startsWith(qClean)) {
+            score = 92;
+          } else if (nameL.startsWith(qClean)) {
+            score = 85;
+          } else if (aliasMatch) {
+            score = 75;
+          } else if (nameL.includes(qClean) || bbgL.includes(qClean)) {
+            score = 60;
+          }
 
+          if (score > 0 && candidateIds.has(c.id)) {
+            score += 4;
+          }
           return { company: c, score };
         })
         .filter((item) => item.score > 0)
@@ -769,16 +763,16 @@
         .map((item) => item.company);
     } else {
       const poolIds = new Set(getActivePool().map((c) => c.id));
-      list = list.filter((c) => poolIds.has(c.id)).slice(0, 25);
+      list = list.filter((c) => poolIds.has(c.id)).slice(0, 22);
     }
 
-    state.acFiltered = list.slice(0, 25);
+    state.acFiltered = list.slice(0, 22);
     state.acHighlightIdx = 0;
 
     if (state.acFiltered.length === 0) {
       el.acDropdown.innerHTML = `
         <div class="ac-row" style="justify-content:center;color:var(--text-muted);">
-          Ingen treff. Skru av «Kun mulige» for å søke i hele porteføljen.
+          Ingen treff
         </div>`;
       el.acDropdown.classList.remove("hidden");
       return;
@@ -790,14 +784,14 @@
         return `
         <div class="ac-row ${idx === state.acHighlightIdx ? "active" : ""}" data-idx="${idx}" role="option">
           <div class="ac-left">
+            <span class="bbg-pill">${getBbg(c)}</span>
             <span class="ac-name">${c.name}</span>
-            <span class="ac-ticker">${c.ticker}</span>
-            <span class="ac-sub">${c.country} · ${c.sector}</span>
-            ${state.guesses.length > 0 && isCand ? '<span class="ac-fit">Mulig</span>' : ""}
+            ${state.guesses.length > 0 && isCand ? '<span class="ac-dot-fit" title="Passer ledetråder"></span>' : ""}
           </div>
           <div class="ac-right">
-            <span>${fmtMcap(c.mcapBNOK)}</span>
-            <span>#${c.rank} (${fmtNum(c.ownershipPct, 1)}%)</span>
+            <span>${SHORT_SECTOR[c.sector] || c.sector}</span>
+            <span>${fmtCompactNOK(c.mcapBNOK)}</span>
+            <span>#${c.rank}</span>
           </div>
         </div>`;
       })
@@ -901,7 +895,7 @@
       </div>
       <div class="stat-card">
         <div class="stat-val">${s.maxStreak}</div>
-        <div class="stat-lbl">Maks streak</div>
+        <div class="stat-lbl">Maks</div>
       </div>
     `;
 
@@ -923,7 +917,7 @@
 
   function initExplorerModal() {
     el.explorerSector.innerHTML =
-      `<option value="ALL">Alle sektorer (11)</option>` +
+      `<option value="ALL">Alle sektorer</option>` +
       ALL_SECTORS.map((s) => `<option value="${s}">${s}</option>`).join("");
 
     const updateTable = () => {
@@ -939,10 +933,10 @@
         if (fund !== "ALL" && !c.fund.includes(fund)) return false;
         if (q) {
           const matchName = c.name.toLowerCase().includes(q);
+          const matchBbg = getBbg(c).toLowerCase().includes(q);
           const matchTicker = c.ticker.toLowerCase().includes(q);
-          const matchHq = (c.hq || "").toLowerCase().includes(q);
           const matchAlias = (c.aliases || []).some((a) => a.toLowerCase().includes(q));
-          if (!matchName && !matchTicker && !matchHq && !matchAlias) return false;
+          if (!matchName && !matchBbg && !matchTicker && !matchAlias) return false;
         }
         return true;
       });
@@ -955,26 +949,22 @@
         return a.rank - b.rank;
       });
 
-      const totalFtfMNOK = filtered.reduce((acc, c) => acc + c.marketValueMNOK, 0);
-      el.explorerSummaryStrip.innerHTML = `
-        <span>Viser <strong>${filtered.length}</strong> av 334 selskaper</span>
-        <span>·</span>
-        <span>Samlet FTF-verdi: <strong>${fmtNum(totalFtfMNOK / 1000, 2)} mrd. NOK</strong></span>
-      `;
+      const totalFtfBNOK = filtered.reduce((acc, c) => acc + c.marketValueMNOK, 0) / 1000;
+      el.explorerSummaryStrip.textContent = `${filtered.length} selskaper · FTF: ${totalFtfBNOK.toFixed(1)}B NOK`;
 
       el.explorerTbody.innerHTML = filtered
         .map(
           (c) => `
           <tr>
             <td class="cell-mono">#${c.rank}</td>
-            <td><strong>${c.name}</strong> <span class="ac-ticker">${c.ticker}</span></td>
-            <td>${c.country}</td>
-            <td>${c.sector}</td>
-            <td class="cell-mono">${fmtMcap(c.mcapBNOK)}</td>
-            <td class="cell-mono">${fmtFtfHolding(c.marketValueMNOK)}</td>
-            <td class="cell-mono">${fmtNum(c.ownershipPct, 2)} %</td>
-            <td class="cell-mono">${fmtNum(c.sharePriceNOK, 2)} kr</td>
-            <td class="cell-mono">${fmtFundLabel(c.fund)}</td>
+            <td><strong>${c.name}</strong></td>
+            <td><span class="bbg-pill">${getBbg(c)}</span></td>
+            <td>${getIso(c)}</td>
+            <td>${SHORT_SECTOR[c.sector] || c.sector}</td>
+            <td class="cell-mono">${fmtCompactNOK(c.mcapBNOK)}</td>
+            <td class="cell-mono">${fmtCompactFTF(c.marketValueMNOK)}</td>
+            <td class="cell-mono">${c.ownershipPct.toFixed(2)}%</td>
+            <td class="cell-mono">${c.fund}</td>
           </tr>`
         )
         .join("");
@@ -1034,7 +1024,7 @@
     if (toastTimer) clearTimeout(toastTimer);
     toastTimer = setTimeout(() => {
       el.toast.classList.add("hidden");
-    }, 2400);
+    }, 2200);
   }
 
   function bindEvents() {
@@ -1146,7 +1136,7 @@
     el.btnResetStats.addEventListener("click", () => {
       localStorage.removeItem("folketrygdle_stats_2026");
       renderStatsModal();
-      showToast("Statistikk nullstilt");
+      showToast("Nullstilt");
     });
   }
 

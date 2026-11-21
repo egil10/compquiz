@@ -12,6 +12,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001248",
     "name": "Equinor",
     "ticker": "EQNR",
+    "bbgTicker": "EQNR NO",
+    "iso": "NO",
     "hq": "Stavanger",
     "aliases": [
       "Statoil",
@@ -35,6 +37,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001204",
     "name": "DNB Bank",
     "ticker": "DNB",
+    "bbgTicker": "DNB NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Den norske Bank",
@@ -58,6 +62,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001409",
     "name": "Kongsberg Gruppen",
     "ticker": "KOG",
+    "bbgTicker": "KOG NO",
+    "iso": "NO",
     "hq": "Kongsberg",
     "aliases": [
       "Kongsberg Defence",
@@ -81,6 +87,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001501",
     "name": "Norsk Hydro",
     "ticker": "NHY",
+    "bbgTicker": "NHY NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Hydro Aluminium"
@@ -103,6 +111,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001063",
     "name": "Aker BP",
     "ticker": "AKRBP",
+    "bbgTicker": "AKRBP NO",
+    "iso": "NO",
     "hq": "Fornebu",
     "aliases": [
       "Det norske oljeselskap",
@@ -126,6 +136,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001695",
     "name": "Storebrand",
     "ticker": "STB",
+    "bbgTicker": "STB NO",
+    "iso": "NO",
     "hq": "Lysaker",
     "aliases": [
       "SPP",
@@ -149,6 +161,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001462",
     "name": "Mowi",
     "ticker": "MOWI",
+    "bbgTicker": "MOWI NO",
+    "iso": "NO",
     "hq": "Bergen",
     "aliases": [
       "Marine Harvest",
@@ -172,6 +186,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001733",
     "name": "Telenor",
     "ticker": "TEL",
+    "bbgTicker": "TEL NO",
+    "iso": "NO",
     "hq": "Fornebu",
     "aliases": [
       "Televerket"
@@ -194,6 +210,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001702",
     "name": "Subsea 7",
     "ticker": "SUBC",
+    "bbgTicker": "SUBC NO",
+    "iso": "NO",
     "hq": "Stavanger / London",
     "aliases": [
       "Acergy",
@@ -217,6 +235,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001536",
     "name": "Orkla",
     "ticker": "ORK",
+    "bbgTicker": "ORK NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Orkla Foods",
@@ -240,6 +260,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001820",
     "name": "Yara International",
     "ticker": "YAR",
+    "bbgTicker": "YAR NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Hydro Agri"
@@ -262,6 +284,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001296",
     "name": "Gjensidige Forsikring",
     "ticker": "GJF",
+    "bbgTicker": "GJF NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Gjensidige"
@@ -284,6 +308,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001653",
     "name": "SpareBank 1 Sør-Norge",
     "ticker": "SB1NO",
+    "bbgTicker": "SB1NO NO",
+    "iso": "NO",
     "hq": "Stavanger",
     "aliases": [
       "SR-Bank",
@@ -308,6 +334,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001512",
     "name": "Novo Nordisk",
     "ticker": "NOVO-B",
+    "bbgTicker": "NOVOB DC",
+    "iso": "DK",
     "hq": "Bagsværd (København)",
     "aliases": [
       "Ozempic",
@@ -331,6 +359,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001788",
     "name": "Vend Marketplaces",
     "ticker": "VEND",
+    "bbgTicker": "VEND NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Schibsted",
@@ -356,6 +386,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001495",
     "name": "Nordic Semiconductor",
     "ticker": "NOD",
+    "bbgTicker": "NOD NO",
+    "iso": "NO",
     "hq": "Trondheim",
     "aliases": [
       "Nordic Semi"
@@ -378,6 +410,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001587",
     "name": "SalMar",
     "ticker": "SALM",
+    "bbgTicker": "SALM NO",
+    "iso": "NO",
     "hq": "Frøya",
     "aliases": [
       "NTS",
@@ -401,6 +435,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001096",
     "name": "Atlas Copco",
     "ticker": "ATCO-A",
+    "bbgTicker": "ATCOA SS",
+    "iso": "SE",
     "hq": "Nacka (Stockholm)",
     "aliases": [
       "Atlas"
@@ -423,6 +459,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001811",
     "name": "Vår Energi",
     "ticker": "VAR",
+    "bbgTicker": "VAR NO",
+    "iso": "NO",
     "hq": "Sandnes",
     "aliases": [
       "Eni Norge",
@@ -446,6 +484,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001062",
     "name": "Aker",
     "ticker": "AKER",
+    "bbgTicker": "AKER NO",
+    "iso": "NO",
     "hq": "Fornebu",
     "aliases": [
       "Aker ASA",
@@ -469,6 +509,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001287",
     "name": "Frontline",
     "ticker": "FRO",
+    "bbgTicker": "FRO NO",
+    "iso": "NO",
     "hq": "Limassol / Oslo",
     "aliases": [
       "John Fredriksen",
@@ -492,6 +534,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001365",
     "name": "Investor",
     "ticker": "INVE-B",
+    "bbgTicker": "INVEB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Investor AB",
@@ -515,6 +559,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001786",
     "name": "Veidekke",
     "ticker": "VEI",
+    "bbgTicker": "VEI NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Veidekke Entreprenør"
@@ -537,6 +583,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001392",
     "name": "Kitron",
     "ticker": "KIT",
+    "bbgTicker": "KIT NO",
+    "iso": "NO",
     "hq": "Billingstad (Asker)",
     "aliases": [
       "Kitron ASA"
@@ -559,6 +607,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002021",
     "name": "Kongsberg Maritime",
     "ticker": "KMAR",
+    "bbgTicker": "KMAR NO",
+    "iso": "NO",
     "hq": "Kongsberg / Ålesund",
     "aliases": [
       "Rolls-Royce Commercial Marine"
@@ -581,6 +631,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001210",
     "name": "DOF Group",
     "ticker": "DOFG",
+    "bbgTicker": "DOFG NO",
+    "iso": "NO",
     "hq": "Austevoll",
     "aliases": [
       "DOF",
@@ -605,6 +657,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001747",
     "name": "Tomra Systems",
     "ticker": "TOM",
+    "bbgTicker": "TOM NO",
+    "iso": "NO",
     "hq": "Asker",
     "aliases": [
       "Tomra"
@@ -627,6 +681,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001737",
     "name": "TGS",
     "ticker": "TGS",
+    "bbgTicker": "TGS NO",
+    "iso": "NO",
     "hq": "Asker / Oslo",
     "aliases": [
       "TGS-NOPEC",
@@ -651,6 +707,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001112",
     "name": "Bakkafrost",
     "ticker": "BAKKA",
+    "bbgTicker": "BAKKA NO",
+    "iso": "NO",
     "hq": "Glyvrar (Færøyene)",
     "aliases": [
       "Færøyene Laks"
@@ -673,6 +731,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001485",
     "name": "Nordea Bank",
     "ticker": "NDA-FI",
+    "bbgTicker": "NDA FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [
       "Nordea",
@@ -696,6 +756,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001254",
     "name": "Europris",
     "ticker": "EPR",
+    "bbgTicker": "EPR NO",
+    "iso": "NO",
     "hq": "Fredrikstad",
     "aliases": [
       "ÖoB"
@@ -718,6 +780,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001558",
     "name": "Protector Forsikring",
     "ticker": "PROT",
+    "bbgTicker": "PROT NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Protector"
@@ -740,6 +804,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001311",
     "name": "Hafnia",
     "ticker": "HAFNI",
+    "bbgTicker": "HAFNI NO",
+    "iso": "NO",
     "hq": "Singapore / Oslo",
     "aliases": [
       "BW Hafnia"
@@ -762,6 +828,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001246",
     "name": "Epiroc",
     "ticker": "EPI-A",
+    "bbgTicker": "EPIA SS",
+    "iso": "SE",
     "hq": "Nacka (Stockholm)",
     "aliases": [
       "Atlas Copco Mining"
@@ -784,6 +852,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001149",
     "name": "Borregaard",
     "ticker": "BORR",
+    "bbgTicker": "BORR NO",
+    "iso": "NO",
     "hq": "Sarpsborg",
     "aliases": [
       "Borregaard Industrier"
@@ -806,6 +876,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001104",
     "name": "AutoStore Holdings",
     "ticker": "AUTO",
+    "bbgTicker": "AUTO NO",
+    "iso": "NO",
     "hq": "Nedre Vats (Vindafjord)",
     "aliases": [
       "AutoStore",
@@ -829,6 +901,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001056",
     "name": "AF Gruppen",
     "ticker": "AFG",
+    "bbgTicker": "AFG NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Anlegg og Fjell",
@@ -852,6 +926,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001163",
     "name": "BW LPG",
     "ticker": "BWLPG",
+    "bbgTicker": "BWLPG NO",
+    "iso": "NO",
     "hq": "Oslo / Singapore",
     "aliases": [
       "Bergesen",
@@ -875,6 +951,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001715",
     "name": "Swedbank",
     "ticker": "SWED-A",
+    "bbgTicker": "SWEDA SS",
+    "iso": "SE",
     "hq": "Sundbyberg (Stockholm)",
     "aliases": [
       "Föreningssparbanken"
@@ -897,6 +975,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001480",
     "name": "Nokia",
     "ticker": "NOKIA",
+    "bbgTicker": "NOKIA FH",
+    "iso": "FI",
     "hq": "Esbo (Espoo)",
     "aliases": [
       "Nokia Networks"
@@ -919,6 +999,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001506",
     "name": "Norwegian Air Shuttle",
     "ticker": "NAS",
+    "bbgTicker": "NAS NO",
+    "iso": "NO",
     "hq": "Fornebu",
     "aliases": [
       "Norwegian",
@@ -942,6 +1024,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001605",
     "name": "Scatec",
     "ticker": "SCATC",
+    "bbgTicker": "SCATC NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Scatec Solar"
@@ -964,6 +1048,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001218",
     "name": "DSV",
     "ticker": "DSV",
+    "bbgTicker": "DSV DC",
+    "iso": "DK",
     "hq": "Hedehusene (København)",
     "aliases": [
       "DSV Panalpina",
@@ -987,6 +1073,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001207",
     "name": "DNO",
     "ticker": "DNO",
+    "bbgTicker": "DNO NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Det Norske Oljeselskap"
@@ -1009,6 +1097,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001189",
     "name": "Danske Bank",
     "ticker": "DANSKE",
+    "bbgTicker": "DANSKE DC",
+    "iso": "DK",
     "hq": "København",
     "aliases": [
       "Den Danske Bank"
@@ -1031,6 +1121,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001095",
     "name": "Atea",
     "ticker": "ATEA",
+    "bbgTicker": "ATEA NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Merkantildata",
@@ -1054,6 +1146,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001068",
     "name": "Aker Solutions",
     "ticker": "AKSO",
+    "bbgTicker": "AKSO NO",
+    "iso": "NO",
     "hq": "Fornebu",
     "aliases": [
       "Kværner",
@@ -1077,6 +1171,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001350",
     "name": "Höegh Autoliners",
     "ticker": "HAUTO",
+    "bbgTicker": "HAUTO NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Leif Höegh",
@@ -1100,6 +1196,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001092",
     "name": "Assa Abloy",
     "ticker": "ASSA-B",
+    "bbgTicker": "ASSAB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "TrioVing",
@@ -1123,6 +1221,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001792",
     "name": "Vestas Wind Systems",
     "ticker": "VWS",
+    "bbgTicker": "VWS DC",
+    "iso": "DK",
     "hq": "Aarhus",
     "aliases": [
       "Vestas"
@@ -1145,6 +1245,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001812",
     "name": "Wallenius Wilhelmsen",
     "ticker": "WAWI",
+    "bbgTicker": "WAWI NO",
+    "iso": "NO",
     "hq": "Lysaker",
     "aliases": [
       "Wilhelmsen"
@@ -1167,6 +1269,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001238",
     "name": "Elkem",
     "ticker": "ELK",
+    "bbgTicker": "ELK NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Elektrokemisk"
@@ -1189,6 +1293,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001165",
     "name": "Cadeler",
     "ticker": "CADLR",
+    "bbgTicker": "CADLR NO",
+    "iso": "NO",
     "hq": "København / Oslo",
     "aliases": [
       "Swire Blue Ocean",
@@ -1212,6 +1318,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001589",
     "name": "Sampo",
     "ticker": "SAMPO",
+    "bbgTicker": "SAMPO FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [
       "If Skadeforsikring",
@@ -1235,6 +1343,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001719",
     "name": "Synaferd (eierselskap i Visma)",
     "ticker": "VISMA",
+    "bbgTicker": "VISMA NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Visma"
@@ -1257,6 +1367,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001425",
     "name": "Lerøy Seafood Group",
     "ticker": "LSG",
+    "bbgTicker": "LSG NO",
+    "iso": "NO",
     "hq": "Bergen",
     "aliases": [
       "Lerøy",
@@ -1280,6 +1392,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001803",
     "name": "Volvo",
     "ticker": "VOLV-B",
+    "bbgTicker": "VOLVB SS",
+    "iso": "SE",
     "hq": "Göteborg",
     "aliases": [
       "AB Volvo",
@@ -1304,6 +1418,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001757",
     "name": "Tryg",
     "ticker": "TRYG",
+    "bbgTicker": "TRYG DC",
+    "iso": "DK",
     "hq": "Ballerup (København)",
     "aliases": [
       "Tryg Forsikring",
@@ -1328,6 +1444,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001513",
     "name": "Novonesis",
     "ticker": "NSIS-B",
+    "bbgTicker": "NSISB DC",
+    "iso": "DK",
     "hq": "Bagsværd (København)",
     "aliases": [
       "Novozymes",
@@ -1351,6 +1469,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001192",
     "name": "Demant",
     "ticker": "DEMANT",
+    "bbgTicker": "DEMANT DC",
+    "iso": "DK",
     "hq": "Smørum (København)",
     "aliases": [
       "William Demant",
@@ -1374,6 +1494,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001814",
     "name": "Wartsila",
     "ticker": "WRT1V",
+    "bbgTicker": "WRT1V FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [
       "Wärtsilä"
@@ -1396,6 +1518,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001072",
     "name": "Alfa Laval",
     "ticker": "ALFA",
+    "bbgTicker": "ALFA SS",
+    "iso": "SE",
     "hq": "Lund",
     "aliases": [
       "Alfa"
@@ -1418,6 +1542,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001275",
     "name": "FLSmidth & Co",
     "ticker": "FLS",
+    "bbgTicker": "FLS DC",
+    "iso": "DK",
     "hq": "Valby (København)",
     "aliases": [
       "FLSmidth"
@@ -1440,6 +1566,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001406",
     "name": "Kone",
     "ticker": "KNEBV",
+    "bbgTicker": "KNEBV FH",
+    "iso": "FI",
     "hq": "Esbo (Espoo)",
     "aliases": [
       "KONE"
@@ -1462,6 +1590,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001146",
     "name": "Bonheur",
     "ticker": "BONHR",
+    "bbgTicker": "BONHR NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Fred. Olsen",
@@ -1485,6 +1615,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001433",
     "name": "Link Mobility Group Holding",
     "ticker": "LINK",
+    "bbgTicker": "LINK NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Link Mobility"
@@ -1507,6 +1639,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001310",
     "name": "H. Lundbeck",
     "ticker": "HLUN-B",
+    "bbgTicker": "HLUNB DC",
+    "iso": "DK",
     "hq": "Valby (København)",
     "aliases": [
       "Lundbeck"
@@ -1529,6 +1663,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001249",
     "name": "Ericsson",
     "ticker": "ERIC-B",
+    "bbgTicker": "ERICB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "LM Ericsson"
@@ -1551,6 +1687,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001775",
     "name": "UPM-Kymmene",
     "ticker": "UPM",
+    "bbgTicker": "UPM FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [
       "UPM"
@@ -1573,6 +1711,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001854",
     "name": "SoftwareOne",
     "ticker": "SWON",
+    "bbgTicker": "SWON NO",
+    "iso": "NO",
     "hq": "Stans / Oslo",
     "aliases": [
       "Crayon",
@@ -1596,6 +1736,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001620",
     "name": "Skandinaviska Enskilda Banken",
     "ticker": "SEB-A",
+    "bbgTicker": "SEBA SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "SEB"
@@ -1618,6 +1760,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001075",
     "name": "Ambu",
     "ticker": "AMBU-B",
+    "bbgTicker": "AMBUB DC",
+    "iso": "DK",
     "hq": "Ballerup (København)",
     "aliases": [
       "Ambu A/S"
@@ -1640,6 +1784,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001597",
     "name": "Sats",
     "ticker": "SATS",
+    "bbgTicker": "SATS NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "SATS Elixia",
@@ -1663,6 +1809,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001817",
     "name": "Wilh. Wilhelmsen Holding",
     "ticker": "WWI",
+    "bbgTicker": "WWI NO",
+    "iso": "NO",
     "hq": "Lysaker",
     "aliases": [
       "Wilhelmsen Ships Service"
@@ -1685,6 +1833,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001388",
     "name": "Kid",
     "ticker": "KID",
+    "bbgTicker": "KID NO",
+    "iso": "NO",
     "hq": "Lier",
     "aliases": [
       "Kid Interiør",
@@ -1708,6 +1858,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001376",
     "name": "Jyske Bank",
     "ticker": "JYSK",
+    "bbgTicker": "JYSK DC",
+    "iso": "DK",
     "hq": "Silkeborg",
     "aliases": [
       "Jyske"
@@ -1730,6 +1882,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001181",
     "name": "Coloplast",
     "ticker": "COLO-B",
+    "bbgTicker": "COLOB DC",
+    "iso": "DK",
     "hq": "Humlebæk",
     "aliases": [
       "Coloplast A/S"
@@ -1752,6 +1906,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001292",
     "name": "Genmab",
     "ticker": "GMAB",
+    "bbgTicker": "GMAB DC",
+    "iso": "DK",
     "hq": "København",
     "aliases": [
       "Darzalex"
@@ -1774,6 +1930,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001241",
     "name": "Elopak",
     "ticker": "ELOPK",
+    "bbgTicker": "ELOPK NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Pure-Pak"
@@ -1796,6 +1954,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001692",
     "name": "Stolt-Nielsen",
     "ticker": "SNI",
+    "bbgTicker": "SNI NO",
+    "iso": "NO",
     "hq": "London / Oslo",
     "aliases": [
       "Stolt Tankers",
@@ -1819,6 +1979,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001847",
     "name": "NKT",
     "ticker": "NKT",
+    "bbgTicker": "NKT DC",
+    "iso": "DK",
     "hq": "Brøndby (København)",
     "aliases": [
       "NKT Cables"
@@ -1841,6 +2003,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001463",
     "name": "MPC Container Ships",
     "ticker": "MPCC",
+    "bbgTicker": "MPCC NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "MPC"
@@ -1863,6 +2027,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001477",
     "name": "Neste",
     "ticker": "NESTE",
+    "bbgTicker": "NESTE FH",
+    "iso": "FI",
     "hq": "Esbo (Espoo)",
     "aliases": [
       "Neste Oil"
@@ -1885,6 +2051,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002035",
     "name": "Nordnet",
     "ticker": "SAVE",
+    "bbgTicker": "SAVE SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Nordnet Bank"
@@ -1907,6 +2075,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001434",
     "name": "Loomis",
     "ticker": "LOOMIS",
+    "bbgTicker": "LOOMIS SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Securitas Cash Handling"
@@ -1929,6 +2099,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001106",
     "name": "Avanza Bank Holding",
     "ticker": "AZA",
+    "bbgTicker": "AZA SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Avanza"
@@ -1951,6 +2123,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001240",
     "name": "Elmera Group",
     "ticker": "ELMRA",
+    "bbgTicker": "ELMRA NO",
+    "iso": "NO",
     "hq": "Bergen",
     "aliases": [
       "Fjordkraft",
@@ -1975,6 +2149,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001848",
     "name": "Norbit",
     "ticker": "NORBT",
+    "bbgTicker": "NORBT NO",
+    "iso": "NO",
     "hq": "Trondheim",
     "aliases": [
       "Norbit ASA"
@@ -1997,6 +2173,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001457",
     "name": "Metso",
     "ticker": "METSO",
+    "bbgTicker": "METSO FH",
+    "iso": "FI",
     "hq": "Esbo (Espoo)",
     "aliases": [
       "Metso Outotec"
@@ -2019,6 +2197,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001896",
     "name": "Euronav",
     "ticker": "EURN",
+    "bbgTicker": "EURN NO",
+    "iso": "NO",
     "hq": "Antwerpen / Oslo",
     "aliases": [
       "CMB.TECH"
@@ -2041,6 +2221,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001780",
     "name": "Valmet",
     "ticker": "VALMT",
+    "bbgTicker": "VALMT FH",
+    "iso": "FI",
     "hq": "Esbo (Espoo)",
     "aliases": [
       "Valmet Oyj"
@@ -2063,6 +2245,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001883",
     "name": "Beijer Ref",
     "ticker": "BEIJ-B",
+    "bbgTicker": "BEIJB SS",
+    "iso": "SE",
     "hq": "Malmö",
     "aliases": [
       "Beijer"
@@ -2085,6 +2269,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001366",
     "name": "ISS",
     "ticker": "ISS",
+    "bbgTicker": "ISS DC",
+    "iso": "DK",
     "hq": "Søborg (København)",
     "aliases": [
       "ISS Facility Services"
@@ -2107,6 +2293,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001251",
     "name": "Essity",
     "ticker": "ESSITY-B",
+    "bbgTicker": "ESSITYB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Libero",
@@ -2132,6 +2320,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001712",
     "name": "Svenska Handelsbanken",
     "ticker": "SHB-A",
+    "bbgTicker": "SHBA SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Handelsbanken"
@@ -2154,6 +2344,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001301",
     "name": "GN Store Nord",
     "ticker": "GN",
+    "bbgTicker": "GN DC",
+    "iso": "DK",
     "hq": "Ballerup (København)",
     "aliases": [
       "Jabra",
@@ -2178,6 +2370,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001849",
     "name": "Norconsult",
     "ticker": "NORCO",
+    "bbgTicker": "NORCO NO",
+    "iso": "NO",
     "hq": "Sandvika (Bærum)",
     "aliases": [
       "Norconsult ASA"
@@ -2200,6 +2394,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001166",
     "name": "Hiab",
     "ticker": "HIAB",
+    "bbgTicker": "HIAB FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [
       "Cargotec"
@@ -2222,6 +2418,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001167",
     "name": "Carlsberg Breweries",
     "ticker": "CARL-B",
+    "bbgTicker": "CARLB DC",
+    "iso": "DK",
     "hq": "København",
     "aliases": [
       "Carlsberg",
@@ -2246,6 +2444,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001828",
     "name": "Ørsted",
     "ticker": "ORSTED",
+    "bbgTicker": "ORSTED DC",
+    "iso": "DK",
     "hq": "Fredericia",
     "aliases": [
       "DONG Energy"
@@ -2268,6 +2468,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001150",
     "name": "Bouvet",
     "ticker": "BOUV",
+    "bbgTicker": "BOUV NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Bouvet ASA"
@@ -2290,6 +2492,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001157",
     "name": "Bravida Holding",
     "ticker": "BRAV",
+    "bbgTicker": "BRAV SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Bravida"
@@ -2312,6 +2516,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001976",
     "name": "Vaisala",
     "ticker": "VAIAS",
+    "bbgTicker": "VAIAS FH",
+    "iso": "FI",
     "hq": "Vanda (Vantaa)",
     "aliases": [
       "Vaisala Oyj"
@@ -2334,6 +2540,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001244",
     "name": "Entra",
     "ticker": "ENTRA",
+    "bbgTicker": "ENTRA NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Entra Eiendom"
@@ -2356,6 +2564,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001717",
     "name": "Swedish Orphan Biovitrum",
     "ticker": "SOBI",
+    "bbgTicker": "SOBI SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Sobi"
@@ -2378,6 +2588,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001389",
     "name": "Kinnevik",
     "ticker": "KINN-B",
+    "bbgTicker": "KINNB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Investment AB Kinnevik"
@@ -2400,6 +2612,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001917",
     "name": "Investment AB Latour",
     "ticker": "LATO-B",
+    "bbgTicker": "LATOB SS",
+    "iso": "SE",
     "hq": "Göteborg",
     "aliases": [
       "Latour"
@@ -2422,6 +2636,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001947",
     "name": "OEM International",
     "ticker": "OEM-B",
+    "bbgTicker": "OEMB SS",
+    "iso": "SE",
     "hq": "Tranås",
     "aliases": [
       "OEM"
@@ -2444,6 +2660,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001101",
     "name": "Austevoll Seafood",
     "ticker": "AUSS",
+    "bbgTicker": "AUSS NO",
+    "iso": "NO",
     "hq": "Austevoll",
     "aliases": [
       "Austevoll",
@@ -2467,6 +2685,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001257",
     "name": "Evolution",
     "ticker": "EVO",
+    "bbgTicker": "EVO SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Evolution Gaming"
@@ -2489,6 +2709,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001870",
     "name": "ALK-Abelló",
     "ticker": "ALK-B",
+    "bbgTicker": "ALKB DC",
+    "iso": "DK",
     "hq": "Hørsholm",
     "aliases": [
       "ALK"
@@ -2511,6 +2733,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001236",
     "name": "Elisa",
     "ticker": "ELISA",
+    "bbgTicker": "ELISA FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [
       "Elisa Oyj"
@@ -2533,6 +2757,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001929",
     "name": "Mandatum",
     "ticker": "MANTA",
+    "bbgTicker": "MANTA FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [
       "Mandatum Life"
@@ -2555,6 +2781,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001541",
     "name": "Pandora",
     "ticker": "PNDORA",
+    "bbgTicker": "PNDORA DC",
+    "iso": "DK",
     "hq": "København",
     "aliases": [
       "Pandora Jewelry"
@@ -2577,6 +2805,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001711",
     "name": "Svenska Cellulosa",
     "ticker": "SCA-B",
+    "bbgTicker": "SCAB SS",
+    "iso": "SE",
     "hq": "Sundsvall",
     "aliases": [
       "SCA"
@@ -2599,6 +2829,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001145",
     "name": "Boliden",
     "ticker": "BOL",
+    "bbgTicker": "BOL SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Boliden Odda"
@@ -2621,6 +2853,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001892",
     "name": "Camurus",
     "ticker": "CAMX",
+    "bbgTicker": "CAMX SS",
+    "iso": "SE",
     "hq": "Lund",
     "aliases": [
       "FluidCrystal"
@@ -2643,6 +2877,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001247",
     "name": "EQT",
     "ticker": "EQT",
+    "bbgTicker": "EQT SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "EQT Partners"
@@ -2665,6 +2901,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001586",
     "name": "Sagax",
     "ticker": "SAGA-B",
+    "bbgTicker": "SAGAB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "AB Sagax"
@@ -2687,6 +2925,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001346",
     "name": "Huhtamäki",
     "ticker": "HUH1V",
+    "bbgTicker": "HUH1V FH",
+    "iso": "FI",
     "hq": "Esbo (Espoo)",
     "aliases": [
       "Huhtamaki"
@@ -2709,6 +2949,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001880",
     "name": "Asker Healthcare Group",
     "ticker": "ASKER",
+    "bbgTicker": "ASKER SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Asker"
@@ -2731,6 +2973,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001381",
     "name": "Kalmar",
     "ticker": "KALMAR",
+    "bbgTicker": "KALMAR FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [
       "Kalmar Oyj"
@@ -2753,6 +2997,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001980",
     "name": "Verisure",
     "ticker": "VERI",
+    "bbgTicker": "VERI SS",
+    "iso": "SE",
     "hq": "Malmö / Genève",
     "aliases": [
       "Securitas Direct"
@@ -2775,6 +3021,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001852",
     "name": "Röko",
     "ticker": "ROKO-B",
+    "bbgTicker": "ROKOB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Röko AB"
@@ -2797,6 +3045,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001293",
     "name": "Getinge",
     "ticker": "GETI-B",
+    "bbgTicker": "GETIB SS",
+    "iso": "SE",
     "hq": "Göteborg",
     "aliases": [
       "Getinge AB"
@@ -2819,6 +3069,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002009",
     "name": "General Oceans",
     "ticker": "GOCE",
+    "bbgTicker": "GOCE NO",
+    "iso": "NO",
     "hq": "Bergen / London",
     "aliases": [
       "Nortek"
@@ -2841,6 +3093,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001881",
     "name": "Attendo",
     "ticker": "ATT",
+    "bbgTicker": "ATT SS",
+    "iso": "SE",
     "hq": "Danderyd (Stockholm)",
     "aliases": [
       "Attendo Norge"
@@ -2863,6 +3117,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001874",
     "name": "Ambea",
     "ticker": "AMBEA",
+    "bbgTicker": "AMBEA SS",
+    "iso": "SE",
     "hq": "Solna (Stockholm)",
     "aliases": [
       "Stendi",
@@ -2887,6 +3143,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001699",
     "name": "Storskogen Group",
     "ticker": "STOR-B",
+    "bbgTicker": "STORB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Storskogen"
@@ -2909,6 +3167,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001871",
     "name": "ALM Brand",
     "ticker": "ALMB",
+    "bbgTicker": "ALMB DC",
+    "iso": "DK",
     "hq": "København",
     "aliases": [
       "Codan Forsikring"
@@ -2931,6 +3191,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001427",
     "name": "Lifco",
     "ticker": "LIFCO-B",
+    "bbgTicker": "LIFCOB SS",
+    "iso": "SE",
     "hq": "Enköping",
     "aliases": [
       "Carl Bennet"
@@ -2953,6 +3215,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001120",
     "name": "Bavarian Nordic",
     "ticker": "BAVA",
+    "bbgTicker": "BAVA DC",
+    "iso": "DK",
     "hq": "Hellerup (København)",
     "aliases": [
       "Bavarian"
@@ -2975,6 +3239,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001866",
     "name": "AddLife",
     "ticker": "ALIF-B",
+    "bbgTicker": "ALIFB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Addtech Life Science"
@@ -2997,6 +3263,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001478",
     "name": "NIBE Industrier",
     "ticker": "NIBE-B",
+    "bbgTicker": "NIBEB SS",
+    "iso": "SE",
     "hq": "Markaryd",
     "aliases": [
       "NIBE"
@@ -3019,6 +3287,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001361",
     "name": "Indutrade",
     "ticker": "INDU-C",
+    "bbgTicker": "INDUC SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Indutrade AB"
@@ -3041,6 +3311,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001920",
     "name": "Islandsbanki",
     "ticker": "ISB",
+    "bbgTicker": "ISB IR",
+    "iso": "IS",
     "hq": "Reykjavik",
     "aliases": [
       "Íslandsbanki"
@@ -3063,6 +3335,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001384",
     "name": "Karnell Group",
     "ticker": "KARN-B",
+    "bbgTicker": "KARNB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Karnell"
@@ -3085,6 +3359,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001740",
     "name": "Tieto",
     "ticker": "TIETO",
+    "bbgTicker": "TIETO FH",
+    "iso": "FI",
     "hq": "Esbo (Espoo)",
     "aliases": [
       "Tietoevry",
@@ -3108,6 +3384,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001534",
     "name": "Orion",
     "ticker": "ORNBV",
+    "bbgTicker": "ORNBV FH",
+    "iso": "FI",
     "hq": "Esbo (Espoo)",
     "aliases": [
       "Orion Pharma"
@@ -3130,6 +3408,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001582",
     "name": "Royal Unibrew",
     "ticker": "RBREW",
+    "bbgTicker": "RBREW DC",
+    "iso": "DK",
     "hq": "Faxe",
     "aliases": [
       "Royal Beer",
@@ -3153,6 +3433,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001879",
     "name": "Arion Banki",
     "ticker": "ARION",
+    "bbgTicker": "ARION IR",
+    "iso": "IS",
     "hq": "Reykjavik",
     "aliases": [
       "Arion Bank"
@@ -3175,6 +3457,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001051",
     "name": "A.P. Møller - Mærsk",
     "ticker": "MAERSK-B",
+    "bbgTicker": "MAERSKB DC",
+    "iso": "DK",
     "hq": "København",
     "aliases": [
       "Maersk",
@@ -3198,6 +3482,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001308",
     "name": "Gränges",
     "ticker": "GRNG",
+    "bbgTicker": "GRNG SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Gränges Aluminium"
@@ -3220,6 +3506,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001235",
     "name": "Elekta",
     "ticker": "EKTA-B",
+    "bbgTicker": "EKTAB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Gamma Knife"
@@ -3242,6 +3530,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001915",
     "name": "Hoist Finance",
     "ticker": "HOFI",
+    "bbgTicker": "HOFI SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Hoist"
@@ -3264,6 +3554,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001890",
     "name": "Bufab",
     "ticker": "BUFAB",
+    "bbgTicker": "BUFAB SS",
+    "iso": "SE",
     "hq": "Värnamo",
     "aliases": [
       "Bulten Fasteners"
@@ -3286,6 +3578,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001913",
     "name": "HMS Networks",
     "ticker": "HMS",
+    "bbgTicker": "HMS SS",
+    "iso": "SE",
     "hq": "Halmstad",
     "aliases": [
       "Anybus",
@@ -3309,6 +3603,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001575",
     "name": "Rockwool",
     "ticker": "ROCK-B",
+    "bbgTicker": "ROCKB DC",
+    "iso": "DK",
     "hq": "Hedehusene",
     "aliases": [
       "Rockwool"
@@ -3331,6 +3627,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001932",
     "name": "Medicover",
     "ticker": "MCOV-B",
+    "bbgTicker": "MCOVB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Medicover Healthcare"
@@ -3353,6 +3651,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001407",
     "name": "Konecranes",
     "ticker": "KCR",
+    "bbgTicker": "KCR FH",
+    "iso": "FI",
     "hq": "Hyvinge (Hyvinkää)",
     "aliases": [
       "Konecranes Oyj"
@@ -3375,6 +3675,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001281",
     "name": "Fortum",
     "ticker": "FORTUM",
+    "bbgTicker": "FORTUM FH",
+    "iso": "FI",
     "hq": "Esbo (Espoo)",
     "aliases": [
       "Fortum Oyj",
@@ -3398,6 +3700,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001877",
     "name": "AQ Group",
     "ticker": "AQ",
+    "bbgTicker": "AQ SS",
+    "iso": "SE",
     "hq": "Västerås",
     "aliases": [
       "Aros Kvalitetsplast"
@@ -3420,6 +3724,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001074",
     "name": "Alleima",
     "ticker": "ALLEI",
+    "bbgTicker": "ALLEI SS",
+    "iso": "SE",
     "hq": "Sandviken",
     "aliases": [
       "Sandvik Materials Technology"
@@ -3442,6 +3748,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001885",
     "name": "BioArctic",
     "ticker": "BIOA-B",
+    "bbgTicker": "BIOAB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Leqembi",
@@ -3465,6 +3773,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001964",
     "name": "Sdiptech",
     "ticker": "SDIP-B",
+    "bbgTicker": "SDIPB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Sdiptech AB"
@@ -3487,6 +3797,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001753",
     "name": "Trelleborg",
     "ticker": "TREL-B",
+    "bbgTicker": "TRELB SS",
+    "iso": "SE",
     "hq": "Trelleborg",
     "aliases": [
       "Trelleborg AB"
@@ -3509,6 +3821,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001131",
     "name": "Billerud",
     "ticker": "BILL",
+    "bbgTicker": "BILL SS",
+    "iso": "SE",
     "hq": "Solna",
     "aliases": [
       "BillerudKorsnäs"
@@ -3531,6 +3845,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001945",
     "name": "Odfjell Drilling",
     "ticker": "ODL",
+    "bbgTicker": "ODL NO",
+    "iso": "NO",
     "hq": "Bergen",
     "aliases": [
       "Deepsea Atlantic",
@@ -3554,6 +3870,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001360",
     "name": "Industrivärden",
     "ticker": "INDU-A",
+    "bbgTicker": "INDUA SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "AB Industrivärden"
@@ -3576,6 +3894,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001887",
     "name": "Bittium",
     "ticker": "BITTI",
+    "bbgTicker": "BITTI FH",
+    "iso": "FI",
     "hq": "Uleåborg (Oulu)",
     "aliases": [
       "Elektrobit"
@@ -3598,6 +3918,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001853",
     "name": "Sentia",
     "ticker": "SNTIA",
+    "bbgTicker": "SNTIA NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "HENT",
@@ -3621,6 +3943,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001886",
     "name": "BioGaia",
     "ticker": "BIOG-B",
+    "bbgTicker": "BIOGB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Probiotika"
@@ -3643,6 +3967,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001882",
     "name": "Beijer Alma",
     "ticker": "BEIJE",
+    "bbgTicker": "BEIJE SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -3656,13 +3982,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 339492,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen materialsektoren (metall, gruvedrift, skog/treforedling eller spesialkjemi). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 16.4 mrd. kr."
+    "clue": "Svensk selskap innen materialsektoren (metall, gruvedrift, skog/treforedling eller spesialkjemi) (SFT, børsverdi ca. 16.4 mrd. kr)."
   },
   {
     "rank": 164,
     "id": "FTF001940",
     "name": "NOBA Bank Group",
     "ticker": "NOBA",
+    "bbgTicker": "NOBA SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Bank Norwegian",
@@ -3687,6 +4015,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001909",
     "name": "Hagar",
     "ticker": "HAGA",
+    "bbgTicker": "HAGA IR",
+    "iso": "IS",
     "hq": "Kopavogur (Reykjavik)",
     "aliases": [
       "Bónus",
@@ -3711,6 +4041,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001727",
     "name": "Saab",
     "ticker": "SAAB-B",
+    "bbgTicker": "SAABB SS",
+    "iso": "SE",
     "hq": "Stockholm / Linköping",
     "aliases": [
       "Gripen",
@@ -3735,6 +4067,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001891",
     "name": "Bure Equity",
     "ticker": "BURE",
+    "bbgTicker": "BURE SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Bure"
@@ -3757,6 +4091,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001387",
     "name": "Kesko",
     "ticker": "KESKOB",
+    "bbgTicker": "KESKOB FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [
       "K-Group",
@@ -3780,6 +4116,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001895",
     "name": "Cloetta",
     "ticker": "CLA-B",
+    "bbgTicker": "CLAB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Läkerol",
@@ -3805,6 +4143,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001955",
     "name": "RaySearch Laboratories",
     "ticker": "RAY-B",
+    "bbgTicker": "RAYB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "RayStation"
@@ -3827,6 +4167,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001863",
     "name": "Zealand Pharma",
     "ticker": "ZEAL",
+    "bbgTicker": "ZEAL DC",
+    "iso": "DK",
     "hq": "Søborg (København)",
     "aliases": [
       "Zealand"
@@ -3849,6 +4191,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001990",
     "name": "AFRY",
     "ticker": "AFRY",
+    "bbgTicker": "AFRY SS",
+    "iso": "SE",
     "hq": "Solna (Stockholm)",
     "aliases": [
       "ÅF Pöyry"
@@ -3871,6 +4215,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001888",
     "name": "Bonesupport Holding",
     "ticker": "BONEX",
+    "bbgTicker": "BONEX SS",
+    "iso": "SE",
     "hq": "Lund",
     "aliases": [
       "Cerament"
@@ -3893,6 +4239,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001923",
     "name": "Karnov Group",
     "ticker": "KAR",
+    "bbgTicker": "KAR SS",
+    "iso": "SE",
     "hq": "Stockholm / København",
     "aliases": [
       "Lovdata-partner",
@@ -3916,6 +4264,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001960",
     "name": "RVRC Holding",
     "ticker": "RVRC",
+    "bbgTicker": "RVRC SS",
+    "iso": "SE",
     "hq": "Borås",
     "aliases": [
       "RevolutionRace"
@@ -3938,6 +4288,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001903",
     "name": "Festi",
     "ticker": "FESTI",
+    "bbgTicker": "FESTI IR",
+    "iso": "IS",
     "hq": "Kopavogur (Reykjavik)",
     "aliases": [
       "Krónan",
@@ -3962,6 +4314,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001912",
     "name": "Hexatronic Group",
     "ticker": "HTRO",
+    "bbgTicker": "HTRO SS",
+    "iso": "SE",
     "hq": "Göteborg",
     "aliases": [
       "Hexatronic"
@@ -3984,6 +4338,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001070",
     "name": "Aktia Bank",
     "ticker": "AKTIA",
+    "bbgTicker": "AKTIA FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [
       "Aktia"
@@ -4006,6 +4362,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001894",
     "name": "CHEMOMETEC",
     "ticker": "CHEMM",
+    "bbgTicker": "CHEMM DC",
+    "iso": "DK",
     "hq": "Allerød",
     "aliases": [
       "NucleoCounter"
@@ -4028,6 +4386,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001938",
     "name": "NCAB Group",
     "ticker": "NCAB",
+    "bbgTicker": "NCAB SS",
+    "iso": "SE",
     "hq": "Sundbyberg (Stockholm)",
     "aliases": [
       "NCAB"
@@ -4050,6 +4410,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001967",
     "name": "SJF Bank",
     "ticker": "SJF",
+    "bbgTicker": "SJF DC",
+    "iso": "DK",
     "hq": "København",
     "aliases": [],
     "country": "Danmark",
@@ -4063,13 +4425,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 144726,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Dansk børsnotert selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 9.1 mrd. kr."
+    "clue": "Dansk selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap) (SFT, børsverdi ca. 9.1 mrd. kr)."
   },
   {
     "rank": 182,
     "id": "FTF001545",
     "name": "Pexip Holding",
     "ticker": "PEXIP",
+    "bbgTicker": "PEXIP NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Pexip"
@@ -4092,6 +4456,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001435",
     "name": "Lundbergs",
     "ticker": "LUND-B",
+    "bbgTicker": "LUNDB SS",
+    "iso": "SE",
     "hq": "Norrköping / Stockholm",
     "aliases": [
       "L E Lundbergföretagen",
@@ -4115,6 +4481,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001941",
     "name": "Nolato",
     "ticker": "NOLAT",
+    "bbgTicker": "NOLAT SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -4128,13 +4496,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 1582740,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 12.0 mrd. kr."
+    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 12.0 mrd. kr)."
   },
   {
     "rank": 185,
     "id": "FTF002023",
     "name": "Lindab International",
     "ticker": "LIAB",
+    "bbgTicker": "LIAB SS",
+    "iso": "SE",
     "hq": "Båstad",
     "aliases": [
       "Lindab"
@@ -4157,6 +4527,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001897",
     "name": "Electrolux Professional",
     "ticker": "EPRO-B",
+    "bbgTicker": "EPROB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Electrolux Storkjøkken"
@@ -4179,6 +4551,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001899",
     "name": "Embla Medical",
     "ticker": "EMBLA",
+    "bbgTicker": "EMBLA DC",
+    "iso": "DK",
     "hq": "Reykjavik / København",
     "aliases": [
       "Össur"
@@ -4201,6 +4575,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001986",
     "name": "Xvivo Perfusion",
     "ticker": "XVIVO",
+    "bbgTicker": "XVIVO SS",
+    "iso": "SE",
     "hq": "Göteborg",
     "aliases": [
       "XVIVO"
@@ -4223,6 +4599,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001963",
     "name": "Schouw & Co",
     "ticker": "SCHOU",
+    "bbgTicker": "SCHOU DC",
+    "iso": "DK",
     "hq": "København",
     "aliases": [],
     "country": "Danmark",
@@ -4236,13 +4614,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 86667,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Dansk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 22.0 mrd. kr."
+    "clue": "Dansk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 22.0 mrd. kr)."
   },
   {
     "rank": 190,
     "id": "FTF001900",
     "name": "Engcon",
     "ticker": "ENGCON-B",
+    "bbgTicker": "ENGCONB SS",
+    "iso": "SE",
     "hq": "Strömsund",
     "aliases": [
       "Tiltrotator"
@@ -4265,6 +4645,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001138",
     "name": "BlueNord",
     "ticker": "BNOR",
+    "bbgTicker": "BNOR NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Norwegian Energy Company",
@@ -4288,6 +4670,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001749",
     "name": "Torm",
     "ticker": "TRMD-A",
+    "bbgTicker": "TRMDA DC",
+    "iso": "DK",
     "hq": "Hellerup (København)",
     "aliases": [
       "TORM"
@@ -4310,6 +4694,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001934",
     "name": "MilDef Group",
     "ticker": "MILDEF",
+    "bbgTicker": "MILDEF SS",
+    "iso": "SE",
     "hq": "Helsingborg",
     "aliases": [
       "MilDef"
@@ -4332,6 +4718,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001714",
     "name": "SWECO",
     "ticker": "SWEC-B",
+    "bbgTicker": "SWECB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Sweco Norge"
@@ -4354,6 +4742,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001560",
     "name": "Ratos",
     "ticker": "RATO-B",
+    "bbgTicker": "RATOB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Plantasjen",
@@ -4377,6 +4767,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001869",
     "name": "Alimak Group",
     "ticker": "ALIG",
+    "bbgTicker": "ALIG SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Alimak"
@@ -4399,6 +4791,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001916",
     "name": "Instalco",
     "ticker": "INSTAL",
+    "bbgTicker": "INSTAL SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Instalco Norge"
@@ -4421,6 +4815,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001966",
     "name": "SP Group",
     "ticker": "SP",
+    "bbgTicker": "SP DC",
+    "iso": "DK",
     "hq": "København",
     "aliases": [],
     "country": "Danmark",
@@ -4434,13 +4830,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 112023,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Dansk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 7.4 mrd. kr."
+    "clue": "Dansk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 7.4 mrd. kr)."
   },
   {
     "rank": 199,
     "id": "FTF001918",
     "name": "INVISIO",
     "ticker": "IVSO",
+    "bbgTicker": "IVSO SS",
+    "iso": "SE",
     "hq": "København / Stockholm",
     "aliases": [
       "Invisio"
@@ -4463,6 +4861,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001688",
     "name": "Stendörren Fastigheter",
     "ticker": "STEND",
+    "bbgTicker": "STEND SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -4476,13 +4876,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 377694,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 5.8 mrd. kr."
+    "clue": "Svensk selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling) (SFT, børsverdi ca. 5.8 mrd. kr)."
   },
   {
     "rank": 201,
     "id": "FTF001188",
     "name": "Dampskibsselskabet NORDEN",
     "ticker": "DNORD",
+    "bbgTicker": "DNORD DC",
+    "iso": "DK",
     "hq": "Hellerup (København)",
     "aliases": [
       "NORDEN"
@@ -4505,6 +4907,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001919",
     "name": "Inwido",
     "ticker": "INWI",
+    "bbgTicker": "INWI SS",
+    "iso": "SE",
     "hq": "Malmö",
     "aliases": [
       "Lyssand",
@@ -4529,6 +4933,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001902",
     "name": "Fastighetsbolaget Emilshus",
     "ticker": "FASTI",
+    "bbgTicker": "FASTI SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -4542,13 +4948,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 1167274,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 6.5 mrd. kr."
+    "clue": "Svensk selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling) (SFT, børsverdi ca. 6.5 mrd. kr)."
   },
   {
     "rank": 204,
     "id": "FTF001873",
     "name": "Amasten Fastighets",
     "ticker": "AMAST",
+    "bbgTicker": "AMAST SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -4562,13 +4970,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 3779464,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 2.4 mrd. kr."
+    "clue": "Svensk selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling) (SFT, børsverdi ca. 2.4 mrd. kr)."
   },
   {
     "rank": 205,
     "id": "FTF001996",
     "name": "BioMar Group",
     "ticker": "BIOMAR",
+    "bbgTicker": "BIOMAR DC",
+    "iso": "DK",
     "hq": "Aarhus",
     "aliases": [
       "BioMar"
@@ -4591,6 +5001,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001968",
     "name": "Systemair",
     "ticker": "SYSR",
+    "bbgTicker": "SYSR SS",
+    "iso": "SE",
     "hq": "Skinnskatteberg",
     "aliases": [
       "Systemair Villavent"
@@ -4613,6 +5025,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001949",
     "name": "Olvi",
     "ticker": "OLVAS",
+    "bbgTicker": "OLVAS FH",
+    "iso": "FI",
     "hq": "Idensalmi (Iisalmi)",
     "aliases": [
       "Olvi Brewery"
@@ -4635,6 +5049,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001987",
     "name": "Bergman & Beving",
     "ticker": "BERGM",
+    "bbgTicker": "BERGM SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -4648,13 +5064,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 204148,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 7.9 mrd. kr."
+    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 7.9 mrd. kr)."
   },
   {
     "rank": 209,
     "id": "FTF001867",
     "name": "Akastor",
     "ticker": "AKAST",
+    "bbgTicker": "AKAST NO",
+    "iso": "NO",
     "hq": "Fornebu",
     "aliases": [
       "MHWirth",
@@ -4678,6 +5096,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001969",
     "name": "Terveystalo",
     "ticker": "TTALO",
+    "bbgTicker": "TTALO FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [
       "Terveystalo"
@@ -4700,6 +5120,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001931",
     "name": "MedCap",
     "ticker": "MEDCA",
+    "bbgTicker": "MEDCA SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -4713,13 +5135,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 111250,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen helsesektoren (legemidler, bioteknologi, medisinsk utstyr eller helsetjenester). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 8.1 mrd. kr."
+    "clue": "Svensk selskap innen helsesektoren (legemidler, bioteknologi, medisinsk utstyr eller helsetjenester) (SFT, børsverdi ca. 8.1 mrd. kr)."
   },
   {
     "rank": 212,
     "id": "FTF001910",
     "name": "Hanza",
     "ticker": "HANZA",
+    "bbgTicker": "HANZA SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -4733,13 +5157,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 394068,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 9.3 mrd. kr."
+    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 9.3 mrd. kr)."
   },
   {
     "rank": 213,
     "id": "FTF002049",
     "name": "SkiStar",
     "ticker": "SKIS-B",
+    "bbgTicker": "SKISB SS",
+    "iso": "SE",
     "hq": "Sälen",
     "aliases": [
       "Trysil",
@@ -4764,6 +5190,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001939",
     "name": "Nivika Fastigheter",
     "ticker": "NIVIK",
+    "bbgTicker": "NIVIK SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -4777,13 +5205,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 1541949,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 2.7 mrd. kr."
+    "clue": "Svensk selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling) (SFT, børsverdi ca. 2.7 mrd. kr)."
   },
   {
     "rank": 215,
     "id": "FTF002012",
     "name": "GRK Infra",
     "ticker": "GRK",
+    "bbgTicker": "GRK FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [],
     "country": "Finland",
@@ -4797,13 +5227,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 258585,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Finsk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 9.3 mrd. kr."
+    "clue": "Finsk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 9.3 mrd. kr)."
   },
   {
     "rank": 216,
     "id": "FTF001082",
     "name": "Arendals Fossekompani",
     "ticker": "AFK",
+    "bbgTicker": "AFK NO",
+    "iso": "NO",
     "hq": "Arendal",
     "aliases": [
       "Volue",
@@ -4827,6 +5259,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002030",
     "name": "Napatech",
     "ticker": "NAPA",
+    "bbgTicker": "NAPA NO",
+    "iso": "NO",
     "hq": "København / Oslo",
     "aliases": [
       "Napatech A/S"
@@ -4849,6 +5283,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001975",
     "name": "UIE",
     "ticker": "UIE",
+    "bbgTicker": "UIE DC",
+    "iso": "DK",
     "hq": "København",
     "aliases": [],
     "country": "Danmark",
@@ -4862,13 +5298,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 99558,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Dansk børsnotert selskap innen konsumvaresektoren (sjømat, mat, drikke eller dagligvarer). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 16.7 mrd. kr."
+    "clue": "Dansk selskap innen konsumvaresektoren (sjømat, mat, drikke eller dagligvarer) (SFT, børsverdi ca. 16.7 mrd. kr)."
   },
   {
     "rank": 219,
     "id": "FTF001846",
     "name": "Moreld",
     "ticker": "MORLD",
+    "bbgTicker": "MORLD NO",
+    "iso": "NO",
     "hq": "Stavanger",
     "aliases": [
       "Apply",
@@ -4892,6 +5330,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001265",
     "name": "Fastighets AB Balder",
     "ticker": "BALD-B",
+    "bbgTicker": "BALDB SS",
+    "iso": "SE",
     "hq": "Göteborg",
     "aliases": [
       "Erik Selin",
@@ -4915,6 +5355,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001542",
     "name": "Pareto Bank",
     "ticker": "PARB",
+    "bbgTicker": "PARB NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Pareto"
@@ -4937,6 +5379,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001954",
     "name": "Raisio",
     "ticker": "RAISI",
+    "bbgTicker": "RAISI FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [],
     "country": "Finland",
@@ -4950,13 +5394,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 1770247,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Finsk børsnotert selskap innen konsumvaresektoren (sjømat, mat, drikke eller dagligvarer). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 4.6 mrd. kr."
+    "clue": "Finsk selskap innen konsumvaresektoren (sjømat, mat, drikke eller dagligvarer) (SFT, børsverdi ca. 4.6 mrd. kr)."
   },
   {
     "rank": 223,
     "id": "FTF002060",
     "name": "Thule Group",
     "ticker": "THULE",
+    "bbgTicker": "THULE SS",
+    "iso": "SE",
     "hq": "Malmö",
     "aliases": [
       "Thule"
@@ -4979,6 +5425,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002006",
     "name": "Finnair Plc",
     "ticker": "FIA1S",
+    "bbgTicker": "FIA1S FH",
+    "iso": "FI",
     "hq": "Vanda (Helsingfors)",
     "aliases": [
       "Finnair"
@@ -5001,6 +5449,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001933",
     "name": "Metsä Board",
     "ticker": "METSÄ",
+    "bbgTicker": "METSÄ FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [],
     "country": "Finland",
@@ -5014,13 +5464,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 1573196,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Finsk børsnotert selskap innen materialsektoren (metall, gruvedrift, skog/treforedling eller spesialkjemi). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 10.9 mrd. kr."
+    "clue": "Finsk selskap innen materialsektoren (metall, gruvedrift, skog/treforedling eller spesialkjemi) (SFT, børsverdi ca. 10.9 mrd. kr)."
   },
   {
     "rank": 226,
     "id": "FTF001821",
     "name": "YIT",
     "ticker": "YIT",
+    "bbgTicker": "YIT FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [
       "Lemminkäinen"
@@ -5043,6 +5495,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001339",
     "name": "HEXPOL",
     "ticker": "HPOL-B",
+    "bbgTicker": "HPOLB SS",
+    "iso": "SE",
     "hq": "Malmö",
     "aliases": [
       "Hexpol Compounding"
@@ -5065,6 +5519,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002032",
     "name": "Nedhalia Topco",
     "ticker": "NEDH",
+    "bbgTicker": "NEDH NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "ECIT"
@@ -5087,6 +5543,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001970",
     "name": "Avarda Bank",
     "ticker": "AVARD",
+    "bbgTicker": "AVARD SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -5100,13 +5558,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 248253,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 11.9 mrd. kr."
+    "clue": "Svensk selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap) (SFT, børsverdi ca. 11.9 mrd. kr)."
   },
   {
     "rank": 230,
     "id": "FTF001305",
     "name": "Grieg Seafood",
     "ticker": "GSF",
+    "bbgTicker": "GSF NO",
+    "iso": "NO",
     "hq": "Bergen",
     "aliases": [
       "Grieg"
@@ -5129,6 +5589,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002040",
     "name": "Ovzon",
     "ticker": "OVZON",
+    "bbgTicker": "OVZON SS",
+    "iso": "SE",
     "hq": "Solna (Stockholm)",
     "aliases": [
       "Ovzon-3"
@@ -5151,6 +5613,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001985",
     "name": "Vitrolife",
     "ticker": "VITR",
+    "bbgTicker": "VITR SS",
+    "iso": "SE",
     "hq": "Göteborg",
     "aliases": [
       "IVF"
@@ -5173,6 +5637,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001950",
     "name": "Paratus Energy Services",
     "ticker": "PLSV",
+    "bbgTicker": "PLSV NO",
+    "iso": "NO",
     "hq": "Hamilton / Oslo",
     "aliases": [
       "Seadrill",
@@ -5196,6 +5662,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001988",
     "name": "ABG Sundal Collier",
     "ticker": "ABG",
+    "bbgTicker": "ABG NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "ABGSC"
@@ -5218,6 +5686,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002042",
     "name": "Qt Group",
     "ticker": "QTCOM",
+    "bbgTicker": "QTCOM FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [
       "Qt",
@@ -5241,6 +5711,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001385",
     "name": "KB Components",
     "ticker": "KB",
+    "bbgTicker": "KB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -5254,13 +5726,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 1100000,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens pensjonsfond Norge (SPN)) med en børsverdi på ca. 2.2 mrd. kr."
+    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SPN, børsverdi ca. 2.2 mrd. kr)."
   },
   {
     "rank": 237,
     "id": "FTF001943",
     "name": "NTG Nordic Transport Group",
     "ticker": "NTG",
+    "bbgTicker": "NTG DC",
+    "iso": "DK",
     "hq": "København",
     "aliases": [],
     "country": "Danmark",
@@ -5274,13 +5748,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 148085,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Dansk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 6.6 mrd. kr."
+    "clue": "Dansk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 6.6 mrd. kr)."
   },
   {
     "rank": 238,
     "id": "FTF001242",
     "name": "Endúr",
     "ticker": "ENDUR",
+    "bbgTicker": "ENDUR NO",
+    "iso": "NO",
     "hq": "Lysaker",
     "aliases": [
       "Endur",
@@ -5304,6 +5780,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001184",
     "name": "Coor Service Management Holding",
     "ticker": "COOR",
+    "bbgTicker": "COOR SS",
+    "iso": "SE",
     "hq": "Kista (Stockholm)",
     "aliases": [
       "Coor Norge"
@@ -5326,6 +5804,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001928",
     "name": "Lindex Group",
     "ticker": "LINDEX",
+    "bbgTicker": "LINDEX FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [
       "Stockmann",
@@ -5349,6 +5829,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001528",
     "name": "Okea",
     "ticker": "OKEA",
+    "bbgTicker": "OKEA NO",
+    "iso": "NO",
     "hq": "Trondheim",
     "aliases": [
       "OKEA ASA",
@@ -5372,6 +5854,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001990",
     "name": "Addnode Group",
     "ticker": "ANOD-B",
+    "bbgTicker": "ANODB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Symetri"
@@ -5394,6 +5878,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001878",
     "name": "Archer",
     "ticker": "ARCH",
+    "bbgTicker": "ARCH NO",
+    "iso": "NO",
     "hq": "Stavanger",
     "aliases": [
       "Seawell"
@@ -5416,6 +5902,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001983",
     "name": "Vimian Group",
     "ticker": "VIMIAN",
+    "bbgTicker": "VIMIAN SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Veterinærmedisin"
@@ -5438,6 +5926,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001989",
     "name": "Acast",
     "ticker": "ACAST",
+    "bbgTicker": "ACAST SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Acast Podcast"
@@ -5460,6 +5950,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002047",
     "name": "Scanfil",
     "ticker": "SCANF",
+    "bbgTicker": "SCANF FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [],
     "country": "Finland",
@@ -5473,13 +5965,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 265527,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Finsk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 9.3 mrd. kr."
+    "clue": "Finsk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 9.3 mrd. kr)."
   },
   {
     "rank": 247,
     "id": "FTF001084",
     "name": "Arjo",
     "ticker": "ARJO-B",
+    "bbgTicker": "ARJOB SS",
+    "iso": "SE",
     "hq": "Malmö",
     "aliases": [
       "Getinge Patient Handling"
@@ -5502,6 +5996,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001997",
     "name": "Bohus",
     "ticker": "BOHUS",
+    "bbgTicker": "BOHUS NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Bohus Møbler"
@@ -5524,6 +6020,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001926",
     "name": "Kvika banki",
     "ticker": "KVIKA",
+    "bbgTicker": "KVIKA IR",
+    "iso": "IS",
     "hq": "Reykjavik",
     "aliases": [],
     "country": "Island",
@@ -5537,13 +6035,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 35210110,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Islandsk børsnotert selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 4.5 mrd. kr."
+    "clue": "Islandsk selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap) (SFT, børsverdi ca. 4.5 mrd. kr)."
   },
   {
     "rank": 250,
     "id": "FTF002027",
     "name": "Matas",
     "ticker": "MATAS",
+    "bbgTicker": "MATAS DC",
+    "iso": "DK",
     "hq": "Allerød",
     "aliases": [
       "KICKS"
@@ -5566,6 +6066,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001707",
     "name": "Sveafastigheter",
     "ticker": "SVEAF",
+    "bbgTicker": "SVEAF SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -5579,13 +6081,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 1141969,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling). Inngår i Folketrygdfondets 2026-portefølje (Statens pensjonsfond Norge (SPN)) med en børsverdi på ca. 6.1 mrd. kr."
+    "clue": "Svensk selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling) (SPN, børsverdi ca. 6.1 mrd. kr)."
   },
   {
     "rank": 252,
     "id": "FTF001524",
     "name": "Odfjell",
     "ticker": "ODF",
+    "bbgTicker": "ODF NO",
+    "iso": "NO",
     "hq": "Bergen",
     "aliases": [
       "Odfjell SE",
@@ -5609,6 +6113,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001971",
     "name": "Tokmanni Group",
     "ticker": "TOKMAN",
+    "bbgTicker": "TOKMAN FH",
+    "iso": "FI",
     "hq": "Mäntsälä",
     "aliases": [
       "Dollarstore"
@@ -5631,6 +6137,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001935",
     "name": "Momentum Group",
     "ticker": "MOMEN",
+    "bbgTicker": "MOMEN SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -5644,13 +6152,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 286986,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 5.8 mrd. kr."
+    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 5.8 mrd. kr)."
   },
   {
     "rank": 255,
     "id": "FTF002067",
     "name": "ZAPTEC",
     "ticker": "ZAP",
+    "bbgTicker": "ZAP NO",
+    "iso": "NO",
     "hq": "Stavanger",
     "aliases": [
       "Zaptec Go",
@@ -5674,6 +6184,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001972",
     "name": "Troax Group",
     "ticker": "TROAX",
+    "bbgTicker": "TROAX SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -5687,13 +6199,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 312723,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen materialsektoren (metall, gruvedrift, skog/treforedling eller spesialkjemi). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 6.3 mrd. kr."
+    "clue": "Svensk selskap innen materialsektoren (metall, gruvedrift, skog/treforedling eller spesialkjemi) (SFT, børsverdi ca. 6.3 mrd. kr)."
   },
   {
     "rank": 257,
     "id": "FTF001965",
     "name": "Smartoptics Group",
     "ticker": "SMOP",
+    "bbgTicker": "SMOP NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Smartoptics"
@@ -5716,6 +6230,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001876",
     "name": "Appear",
     "ticker": "APR",
+    "bbgTicker": "APR NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Appear TV"
@@ -5738,6 +6254,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001875",
     "name": "Apotea",
     "ticker": "APOTEA",
+    "bbgTicker": "APOTEA SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Apotea.se"
@@ -5760,6 +6278,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001999",
     "name": "BW Energy",
     "ticker": "BWE",
+    "bbgTicker": "BWE NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "BW Offshore"
@@ -5782,6 +6302,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001108",
     "name": "Axactor",
     "ticker": "AXA",
+    "bbgTicker": "AXA NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Axactor ASA"
@@ -5804,6 +6326,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002013",
     "name": "Gruvaktiebolaget Viscaria",
     "ticker": "GRUVA",
+    "bbgTicker": "GRUVA SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -5817,13 +6341,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 1687040,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen materialsektoren (metall, gruvedrift, skog/treforedling eller spesialkjemi). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 4.8 mrd. kr."
+    "clue": "Svensk selskap innen materialsektoren (metall, gruvedrift, skog/treforedling eller spesialkjemi) (SFT, børsverdi ca. 4.8 mrd. kr)."
   },
   {
     "rank": 263,
     "id": "FTF001526",
     "name": "Odfjell Technology",
     "ticker": "OTL",
+    "bbgTicker": "OTL NO",
+    "iso": "NO",
     "hq": "Bergen",
     "aliases": [
       "Odfjell Well Services"
@@ -5846,6 +6372,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001449",
     "name": "Medistim",
     "ticker": "MEDI",
+    "bbgTicker": "MEDI NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Medistim ASA"
@@ -5868,6 +6396,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001937",
     "name": "Multiconsult",
     "ticker": "MULTI",
+    "bbgTicker": "MULTI NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Multiconsult Norge"
@@ -5890,6 +6420,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002002",
     "name": "Eastnine",
     "ticker": "EASTN",
+    "bbgTicker": "EASTN SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -5903,13 +6435,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 550000,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 4.5 mrd. kr."
+    "clue": "Svensk selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling) (SFT, børsverdi ca. 4.5 mrd. kr)."
   },
   {
     "rank": 267,
     "id": "FTF001951",
     "name": "Ponsse",
     "ticker": "PONS1V",
+    "bbgTicker": "PONS1V FH",
+    "iso": "FI",
     "hq": "Vieremä",
     "aliases": [
       "Ponsse Skogsmaskiner"
@@ -5932,6 +6466,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001884",
     "name": "BHG Group",
     "ticker": "BHG",
+    "bbgTicker": "BHG SS",
+    "iso": "SE",
     "hq": "Malmö",
     "aliases": [
       "Bygghemma",
@@ -5955,6 +6491,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002031",
     "name": "Nederman Holding",
     "ticker": "NEDER",
+    "bbgTicker": "NEDER SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -5968,13 +6506,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 186376,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 4.7 mrd. kr."
+    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 4.7 mrd. kr)."
   },
   {
     "rank": 270,
     "id": "FTF002061",
     "name": "Trifork Group",
     "ticker": "TRIFOR",
+    "bbgTicker": "TRIFOR DC",
+    "iso": "DK",
     "hq": "Aarhus",
     "aliases": [
       "Trifork"
@@ -5997,6 +6537,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001930",
     "name": "Marimekko",
     "ticker": "MEKKO",
+    "bbgTicker": "MEKKO FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [
       "Unikko"
@@ -6019,6 +6561,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001957",
     "name": "Rejlers",
     "ticker": "REJLE",
+    "bbgTicker": "REJLE SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -6032,13 +6576,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 166525,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 3.3 mrd. kr."
+    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 3.3 mrd. kr)."
   },
   {
     "rank": 273,
     "id": "FTF001905",
     "name": "Framery Group",
     "ticker": "FRAMERY",
+    "bbgTicker": "FRAMERY FH",
+    "iso": "FI",
     "hq": "Tammerfors (Tampere)",
     "aliases": [
       "Framery Pods"
@@ -6061,6 +6607,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002008",
     "name": "F-Secure",
     "ticker": "FSECURE",
+    "bbgTicker": "FSECURE FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [
       "WithSecure"
@@ -6083,6 +6631,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002005",
     "name": "Ependion",
     "ticker": "EPEND",
+    "bbgTicker": "EPEND SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -6096,13 +6646,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 159675,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 4.8 mrd. kr."
+    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 4.8 mrd. kr)."
   },
   {
     "rank": 276,
     "id": "FTF001502",
     "name": "Norske Skog",
     "ticker": "NSKOG",
+    "bbgTicker": "NSKOG NO",
+    "iso": "NO",
     "hq": "Oslo / Skogn / Halden",
     "aliases": [
       "Norske Skogindustrier"
@@ -6125,6 +6677,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001958",
     "name": "Revenio Group",
     "ticker": "REG1V",
+    "bbgTicker": "REG1V FH",
+    "iso": "FI",
     "hq": "Vanda (Vantaa)",
     "aliases": [
       "iCare"
@@ -6147,6 +6701,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002046",
     "name": "Scandi Standard",
     "ticker": "SCST",
+    "bbgTicker": "SCST SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Den Stolte Hane",
@@ -6171,6 +6727,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001197",
     "name": "DFDS",
     "ticker": "DFDS",
+    "bbgTicker": "DFDS DC",
+    "iso": "DK",
     "hq": "København",
     "aliases": [
       "København-båten",
@@ -6194,6 +6752,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001936",
     "name": "Morrow Bank",
     "ticker": "MOBA",
+    "bbgTicker": "MOBA SS",
+    "iso": "SE",
     "hq": "Lysaker",
     "aliases": [
       "Komplett Bank"
@@ -6216,6 +6776,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002066",
     "name": "Yubico",
     "ticker": "YUBICO",
+    "bbgTicker": "YUBICO SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "YubiKey"
@@ -6238,6 +6800,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001901",
     "name": "Enity Holding",
     "ticker": "ENITY",
+    "bbgTicker": "ENITY SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -6251,13 +6815,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 296219,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 3.5 mrd. kr."
+    "clue": "Svensk selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap) (SFT, børsverdi ca. 3.5 mrd. kr)."
   },
   {
     "rank": 283,
     "id": "FTF002014",
     "name": "Hampidjan",
     "ticker": "HAMPI",
+    "bbgTicker": "HAMPI IR",
+    "iso": "IS",
     "hq": "Reykjavik",
     "aliases": [],
     "country": "Island",
@@ -6271,13 +6837,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 3092412,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Islandsk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 4.2 mrd. kr."
+    "clue": "Islandsk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 4.2 mrd. kr)."
   },
   {
     "rank": 284,
     "id": "FTF002022",
     "name": "Lassila & Tikanoja",
     "ticker": "LASSI",
+    "bbgTicker": "LASSI FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [],
     "country": "Finland",
@@ -6291,13 +6859,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 258000,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Finsk børsnotert selskap innen forsyningssektoren (fornybar kraftproduksjon, strømsalg eller miljøtjenester). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 3.0 mrd. kr."
+    "clue": "Finsk selskap innen forsyningssektoren (fornybar kraftproduksjon, strømsalg eller miljøtjenester) (SFT, børsverdi ca. 3.0 mrd. kr)."
   },
   {
     "rank": 285,
     "id": "FTF001956",
     "name": "Reitir",
     "ticker": "REITI",
+    "bbgTicker": "REITI IR",
+    "iso": "IS",
     "hq": "Reykjavik",
     "aliases": [],
     "country": "Island",
@@ -6311,13 +6881,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 2106429,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Islandsk børsnotert selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 6.2 mrd. kr."
+    "clue": "Islandsk selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling) (SFT, børsverdi ca. 6.2 mrd. kr)."
   },
   {
     "rank": 286,
     "id": "FTF001868",
     "name": "Aker Biomarine",
     "ticker": "AKBM",
+    "bbgTicker": "AKBM NO",
+    "iso": "NO",
     "hq": "Fornebu",
     "aliases": [
       "Superba Krill",
@@ -6341,6 +6913,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001992",
     "name": "Anora Group",
     "ticker": "ANORA",
+    "bbgTicker": "ANORA FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [
       "Arcus",
@@ -6365,6 +6939,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001952",
     "name": "Proact IT Group",
     "ticker": "PROAC",
+    "bbgTicker": "PROAC SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -6378,13 +6954,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 142786,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen teknologisektoren (programvare, halvledere, IT-tjenester eller digitale plattformer). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 3.5 mrd. kr."
+    "clue": "Svensk selskap innen teknologisektoren (programvare, halvledere, IT-tjenester eller digitale plattformer) (SFT, børsverdi ca. 3.5 mrd. kr)."
   },
   {
     "rank": 289,
     "id": "FTF002063",
     "name": "Truecaller",
     "ticker": "TRUE-B",
+    "bbgTicker": "TRUEB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Truecaller App"
@@ -6407,6 +6985,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001394",
     "name": "Klaveness Combination Carriers",
     "ticker": "KCC",
+    "bbgTicker": "KCC NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Torvald Klaveness"
@@ -6429,6 +7009,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001474",
     "name": "NEL",
     "ticker": "NEL",
+    "bbgTicker": "NEL NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Nel Hydrogen"
@@ -6451,6 +7033,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002036",
     "name": "Note",
     "ticker": "NOTE",
+    "bbgTicker": "NOTE SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -6464,13 +7048,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 103739,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen teknologisektoren (programvare, halvledere, IT-tjenester eller digitale plattformer). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 4.6 mrd. kr."
+    "clue": "Svensk selskap innen teknologisektoren (programvare, halvledere, IT-tjenester eller digitale plattformer) (SFT, børsverdi ca. 4.6 mrd. kr)."
   },
   {
     "rank": 293,
     "id": "FTF002000",
     "name": "Cynca Nordic",
     "ticker": "CYNCA",
+    "bbgTicker": "CYNCA SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -6484,13 +7070,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 984410,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 6.2 mrd. kr."
+    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 6.2 mrd. kr)."
   },
   {
     "rank": 294,
     "id": "FTF002019",
     "name": "Kempower",
     "ticker": "KEMPOWR",
+    "bbgTicker": "KEMPOWR FH",
+    "iso": "FI",
     "hq": "Lahtis (Lahti)",
     "aliases": [
       "Kemppi"
@@ -6513,6 +7101,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001998",
     "name": "BTS Group",
     "ticker": "BTS",
+    "bbgTicker": "BTS SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -6526,13 +7116,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 90822,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 3.3 mrd. kr."
+    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 3.3 mrd. kr)."
   },
   {
     "rank": 296,
     "id": "FTF001689",
     "name": "Stillfront Group",
     "ticker": "SF",
+    "bbgTicker": "SF SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Stillfront"
@@ -6555,6 +7147,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001908",
     "name": "Gubra",
     "ticker": "GUBRA",
+    "bbgTicker": "GUBRA DC",
+    "iso": "DK",
     "hq": "København",
     "aliases": [],
     "country": "Danmark",
@@ -6568,13 +7162,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 32602,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Dansk børsnotert selskap innen helsesektoren (legemidler, bioteknologi, medisinsk utstyr eller helsetjenester). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 8.0 mrd. kr."
+    "clue": "Dansk selskap innen helsesektoren (legemidler, bioteknologi, medisinsk utstyr eller helsetjenester) (SFT, børsverdi ca. 8.0 mrd. kr)."
   },
   {
     "rank": 298,
     "id": "FTF002037",
     "name": "Okeanis Eco Tankers",
     "ticker": "OET",
+    "bbgTicker": "OET NO",
+    "iso": "NO",
     "hq": "Athen / Oslo",
     "aliases": [
       "Alafouzos"
@@ -6597,6 +7193,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001922",
     "name": "John Mattson Fastighetsföretagen",
     "ticker": "JOHN",
+    "bbgTicker": "JOHN SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -6610,13 +7208,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 247218,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 4.4 mrd. kr."
+    "clue": "Svensk selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling) (SFT, børsverdi ca. 4.4 mrd. kr)."
   },
   {
     "rank": 300,
     "id": "FTF001911",
     "name": "Heimar",
     "ticker": "HEIMA",
+    "bbgTicker": "HEIMA IR",
+    "iso": "IS",
     "hq": "Reykjavik",
     "aliases": [],
     "country": "Island",
@@ -6630,13 +7230,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 5316259,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Islandsk børsnotert selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 5.2 mrd. kr."
+    "clue": "Islandsk selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling) (SFT, børsverdi ca. 5.2 mrd. kr)."
   },
   {
     "rank": 301,
     "id": "FTF002044",
     "name": "Salmon Evolution",
     "ticker": "SALME",
+    "bbgTicker": "SALME NO",
+    "iso": "NO",
     "hq": "Indre Harøy (Hustadvika)",
     "aliases": [
       "Landbasert Laks"
@@ -6659,6 +7261,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002011",
     "name": "Gofore",
     "ticker": "GOFOR",
+    "bbgTicker": "GOFOR FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [],
     "country": "Finland",
@@ -6672,13 +7276,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 124514,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Finsk børsnotert selskap innen teknologisektoren (programvare, halvledere, IT-tjenester eller digitale plattformer). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 1.8 mrd. kr."
+    "clue": "Finsk selskap innen teknologisektoren (programvare, halvledere, IT-tjenester eller digitale plattformer) (SFT, børsverdi ca. 1.8 mrd. kr)."
   },
   {
     "rank": 303,
     "id": "FTF002059",
     "name": "Taaleri",
     "ticker": "TAALE",
+    "bbgTicker": "TAALE FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [],
     "country": "Finland",
@@ -6692,13 +7298,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 156942,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Finsk børsnotert selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 2.3 mrd. kr."
+    "clue": "Finsk selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap) (SFT, børsverdi ca. 2.3 mrd. kr)."
   },
   {
     "rank": 304,
     "id": "FTF002056",
     "name": "Stockholm Nordtech Group",
     "ticker": "STOCK",
+    "bbgTicker": "STOCK SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -6712,13 +7320,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 200000,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen teknologisektoren (programvare, halvledere, IT-tjenester eller digitale plattformer). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 2.6 mrd. kr."
+    "clue": "Svensk selskap innen teknologisektoren (programvare, halvledere, IT-tjenester eller digitale plattformer) (SFT, børsverdi ca. 2.6 mrd. kr)."
   },
   {
     "rank": 305,
     "id": "FTF002025",
     "name": "Magnora",
     "ticker": "MAGN",
+    "bbgTicker": "MAGN NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Sevan Marine"
@@ -6741,6 +7351,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002004",
     "name": "Endomines Finland",
     "ticker": "ENDOM",
+    "bbgTicker": "ENDOM FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [],
     "country": "Finland",
@@ -6754,13 +7366,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 122012,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Finsk børsnotert selskap innen materialsektoren (metall, gruvedrift, skog/treforedling eller spesialkjemi). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 3.8 mrd. kr."
+    "clue": "Finsk selskap innen materialsektoren (metall, gruvedrift, skog/treforedling eller spesialkjemi) (SFT, børsverdi ca. 3.8 mrd. kr)."
   },
   {
     "rank": 307,
     "id": "FTF001436",
     "name": "Orrön Energy",
     "ticker": "ORRON",
+    "bbgTicker": "ORRON SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Lundin Energy Renewables"
@@ -6783,6 +7397,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002038",
     "name": "Oma Säästöpankki",
     "ticker": "OMA",
+    "bbgTicker": "OMA FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [],
     "country": "Finland",
@@ -6796,13 +7412,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 87583,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Finsk børsnotert selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 4.3 mrd. kr."
+    "clue": "Finsk selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap) (SFT, børsverdi ca. 4.3 mrd. kr)."
   },
   {
     "rank": 309,
     "id": "FTF002045",
     "name": "Savox Communications",
     "ticker": "SAVOX",
+    "bbgTicker": "SAVOX FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [],
     "country": "Finland",
@@ -6816,13 +7434,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 85000,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Finsk børsnotert selskap innen telekomsektoren (mobilnett, bredbånd, fiber eller kommunikasjonsutstyr). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 2.2 mrd. kr."
+    "clue": "Finsk selskap innen telekomsektoren (mobilnett, bredbånd, fiber eller kommunikasjonsutstyr) (SFT, børsverdi ca. 2.2 mrd. kr)."
   },
   {
     "rank": 310,
     "id": "FTF001995",
     "name": "Better Collective",
     "ticker": "BETCO",
+    "bbgTicker": "BETCO SS",
+    "iso": "SE",
     "hq": "København",
     "aliases": [
       "Action Network",
@@ -6846,6 +7466,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001337",
     "name": "Hexagon Composites",
     "ticker": "HEX",
+    "bbgTicker": "HEX NO",
+    "iso": "NO",
     "hq": "Ålesund",
     "aliases": [
       "Hexagon Agility",
@@ -6869,6 +7491,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002018",
     "name": "Investment AB Öresund",
     "ticker": "INVES",
+    "bbgTicker": "INVES SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -6882,13 +7506,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 68927,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 6.5 mrd. kr."
+    "clue": "Svensk selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap) (SFT, børsverdi ca. 6.5 mrd. kr)."
   },
   {
     "rank": 313,
     "id": "FTF002050",
     "name": "Sotkamo Silver",
     "ticker": "SOTKA",
+    "bbgTicker": "SOTKA FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [],
     "country": "Finland",
@@ -6902,13 +7528,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 2011017,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Finsk børsnotert selskap innen materialsektoren (metall, gruvedrift, skog/treforedling eller spesialkjemi). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 1.4 mrd. kr."
+    "clue": "Finsk selskap innen materialsektoren (metall, gruvedrift, skog/treforedling eller spesialkjemi) (SFT, børsverdi ca. 1.4 mrd. kr)."
   },
   {
     "rank": 314,
     "id": "FTF002029",
     "name": "MT Hoejgaard Holding",
     "ticker": "MT",
+    "bbgTicker": "MT DC",
+    "iso": "DK",
     "hq": "København",
     "aliases": [],
     "country": "Danmark",
@@ -6922,13 +7550,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 20797,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Dansk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 3.3 mrd. kr."
+    "clue": "Dansk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 3.3 mrd. kr)."
   },
   {
     "rank": 315,
     "id": "FTF002026",
     "name": "Magnora Data Center",
     "ticker": "MDC",
+    "bbgTicker": "MDC NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Magnora"
@@ -6951,6 +7581,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001948",
     "name": "Bera",
     "ticker": "BERA",
+    "bbgTicker": "BERA IR",
+    "iso": "IS",
     "hq": "Reykjavik",
     "aliases": [],
     "country": "Island",
@@ -6964,13 +7596,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 7172273,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Islandsk børsnotert selskap innen konsumvaresektoren (sjømat, mat, drikke eller dagligvarer). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 3.4 mrd. kr."
+    "clue": "Islandsk selskap innen konsumvaresektoren (sjømat, mat, drikke eller dagligvarer) (SFT, børsverdi ca. 3.4 mrd. kr)."
   },
   {
     "rank": 317,
     "id": "FTF002016",
     "name": "Humble Group",
     "ticker": "HUMBL",
+    "bbgTicker": "HUMBL SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -6984,13 +7618,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 1243907,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen konsumvaresektoren (sjømat, mat, drikke eller dagligvarer). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 3.0 mrd. kr."
+    "clue": "Svensk selskap innen konsumvaresektoren (sjømat, mat, drikke eller dagligvarer) (SFT, børsverdi ca. 3.0 mrd. kr)."
   },
   {
     "rank": 318,
     "id": "FTF001927",
     "name": "Lime Technologies",
     "ticker": "LIME",
+    "bbgTicker": "LIME SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -7004,13 +7640,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 40114,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen teknologisektoren (programvare, halvledere, IT-tjenester eller digitale plattformer). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 2.7 mrd. kr."
+    "clue": "Svensk selskap innen teknologisektoren (programvare, halvledere, IT-tjenester eller digitale plattformer) (SFT, børsverdi ca. 2.7 mrd. kr)."
   },
   {
     "rank": 319,
     "id": "FTF001631",
     "name": "Solstad Offshore",
     "ticker": "SOFF",
+    "bbgTicker": "SOFF NO",
+    "iso": "NO",
     "hq": "Skudeneshavn (Karmøy)",
     "aliases": [
       "Solstad Maritime"
@@ -7033,6 +7671,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001991",
     "name": "Aktiebolag Fagerhult",
     "ticker": "AKTIE",
+    "bbgTicker": "AKTIE SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -7046,13 +7686,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 348501,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 3.1 mrd. kr."
+    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 3.1 mrd. kr)."
   },
   {
     "rank": 321,
     "id": "FTF001889",
     "name": "Bruton",
     "ticker": "BRUT",
+    "bbgTicker": "BRUT NO",
+    "iso": "NO",
     "hq": "Oslo",
     "aliases": [
       "Andes Tankers"
@@ -7075,6 +7717,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001904",
     "name": "Fiskars",
     "ticker": "FSKRS",
+    "bbgTicker": "FSKRS FH",
+    "iso": "FI",
     "hq": "Esbo (Espoo)",
     "aliases": [
       "Iittala",
@@ -7098,6 +7742,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002041",
     "name": "Panoro Energy",
     "ticker": "PEN",
+    "bbgTicker": "PEN NO",
+    "iso": "NO",
     "hq": "London / Oslo",
     "aliases": [
       "Panoro"
@@ -7120,6 +7766,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001924",
     "name": "Knowit",
     "ticker": "KNOW",
+    "bbgTicker": "KNOW SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Knowit Norge"
@@ -7142,6 +7790,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF002017",
     "name": "Incap",
     "ticker": "INCAP",
+    "bbgTicker": "INCAP FH",
+    "iso": "FI",
     "hq": "Helsingfors",
     "aliases": [],
     "country": "Finland",
@@ -7155,13 +7805,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 49450,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Finsk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 3.0 mrd. kr."
+    "clue": "Finsk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 3.0 mrd. kr)."
   },
   {
     "rank": 326,
     "id": "FTF001942",
     "name": "Norion Bank",
     "ticker": "NORIO",
+    "bbgTicker": "NORIO SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -7175,13 +7827,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 74945,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 11.8 mrd. kr."
+    "clue": "Svensk selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap) (SFT, børsverdi ca. 11.8 mrd. kr)."
   },
   {
     "rank": 327,
     "id": "FTF002048",
     "name": "Sedana Medical",
     "ticker": "SEDAN",
+    "bbgTicker": "SEDAN SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -7195,13 +7849,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 478539,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen helsesektoren (legemidler, bioteknologi, medisinsk utstyr eller helsetjenester). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 0.8 mrd. kr."
+    "clue": "Svensk selskap innen helsesektoren (legemidler, bioteknologi, medisinsk utstyr eller helsetjenester) (SFT, børsverdi ca. 0.8 mrd. kr)."
   },
   {
     "rank": 328,
     "id": "FTF001364",
     "name": "Intrum",
     "ticker": "INTRUM",
+    "bbgTicker": "INTRUM SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "Intrum Justitia",
@@ -7225,6 +7881,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001851",
     "name": "Recovery Holdco (Eierselskap i Jøtul)",
     "ticker": "JOTUL",
+    "bbgTicker": "JOTUL NO",
+    "iso": "NO",
     "hq": "Fredrikstad",
     "aliases": [
       "Jøtul"
@@ -7247,6 +7905,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001234",
     "name": "Electrolux",
     "ticker": "ELUX-B",
+    "bbgTicker": "ELUXB SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [
       "AEG",
@@ -7270,6 +7930,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001113",
     "name": "Bakkegruppen",
     "ticker": "BAKKE",
+    "bbgTicker": "BAKKE NO",
+    "iso": "NO",
     "hq": "Aurskog / Oslo",
     "aliases": [
       "Bakke Bolig",
@@ -7293,6 +7955,8 @@ window.PORTFOLIO_COMPANIES = [
     "id": "FTF001172",
     "name": "Catella",
     "ticker": "CATEL",
+    "bbgTicker": "CATEL SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -7306,13 +7970,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 33080,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 1.9 mrd. kr."
+    "clue": "Svensk selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap) (SFT, børsverdi ca. 1.9 mrd. kr)."
   },
   {
     "rank": 333,
     "id": "FTF001893",
     "name": "cBrain",
     "ticker": "CBRAI",
+    "bbgTicker": "CBRAI DC",
+    "iso": "DK",
     "hq": "København",
     "aliases": [],
     "country": "Danmark",
@@ -7326,13 +7992,15 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 6878,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Dansk børsnotert selskap innen teknologisektoren (programvare, halvledere, IT-tjenester eller digitale plattformer). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 1.5 mrd. kr."
+    "clue": "Dansk selskap innen teknologisektoren (programvare, halvledere, IT-tjenester eller digitale plattformer) (SFT, børsverdi ca. 1.5 mrd. kr)."
   },
   {
     "rank": 334,
     "id": "FTF002043",
     "name": "Salix Group",
     "ticker": "SALIX",
+    "bbgTicker": "SALIX SS",
+    "iso": "SE",
     "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
@@ -7346,6 +8014,6 @@ window.PORTFOLIO_COMPANIES = [
     "shares": 1759,
     "isTopPool": false,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon). Inngår i Folketrygdfondets 2026-portefølje (Statens fond i Tromsø (SFT)) med en børsverdi på ca. 5.2 mrd. kr."
+    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 5.2 mrd. kr)."
   }
 ];
