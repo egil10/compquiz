@@ -310,14 +310,14 @@
     const parts = [];
     if (n >= 1) {
       const city = (t.hq || "?").split("/")[0].trim();
-      parts.push(`<span class="chip">${city}</span>`);
-      parts.push(`<span class="chip" title="Fond som eier aksjen">${t.fund.replace("+", " + ")}</span>`);
+      parts.push(`<span class="chip city" title="Hovedkontor">${city}</span>`);
+      parts.push(`<span class="chip fund" title="Fond som eier aksjen">${t.fund}</span>`);
       parts.push(`<span class="chip${n >= 2 ? "" : " dim"}">Utb. <b>${n >= 2 ? fmtPct(t.div) : "?"}</b></span>`);
       const stage = n >= 3 ? "" : n >= 2 ? " blur" : " blur grey";
       parts.push(
         t.logo
-          ? `<span class="chip"><img class="hint-logo${stage}" src="${t.logo}" alt=""></span>`
-          : `<span class="chip dim" title="Ingen logo"><svg class="hint-logo none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1M11 21v-3h2v3"/></svg></span>`
+          ? `<span class="chip logo-slot"><img class="hint-logo${stage}" src="${t.logo}" alt=""></span>`
+          : `<span class="chip logo-slot dim" title="Ingen logo"><svg class="hint-logo none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1M11 21v-3h2v3"/></svg></span>`
       );
     }
     el.hints.innerHTML = parts.join("");
