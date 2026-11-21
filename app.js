@@ -30,7 +30,17 @@
   const EXACT = 0.05; // green: within ±5 %
   const NEAR = 0.25; // yellow: within ±25 %
   const STORE_STATS = "folketrygdle_stats_2026";
-  const WIN_WORDS = ["Geni!", "Imponerende!", "Strålende!", "Flott!", "Bra!", "Puh!"];
+  // Cheers per number of guesses, mostly in Bergen dialect (bergen.kommune.no, "Ka betyr det for nokke?").
+  const WIN_WORDS = [
+    ["Hon'n pitle!", "Jehellane!", "Ka hon'n!", "Gå mann!", "Knall i padden!", "Sabla geni!", "Geni!"],
+    ["Grådig godt!", "Himla flink!", "Kjusa deg!", "Snadder!", "Du e på snei!", "Hellane!", "Imponerende!"],
+    ["Knas!", "Himla knas!", "Grådig bra!", "Det va laiti!", "Skapeli bra!", "Snadder, tjommi!", "Strålende!"],
+    ["Den e' brun!", "Skapeli!", "Tidi!", "Laiti!", "Perka!", "Godt jobba, tjommi!", "Flott!"],
+    ["Tefriss!", "Pø om pø!", "Den e' brun!", "Gem nok!", "Det gjekk!", "Bra!"],
+    ["Puh!", "Dånedimpen!", "Den va heisent!", "Jehellane, det va nære!", "I siste liten!"]
+  ];
+  const LOSE_WORDS = ["Dekarten!", "Fakerten!", "Molefonken?", "Ka hon'n!", "Gå te pisis!"];
+  const pick = (a) => a[Math.floor(Math.random() * a.length)];
 
   const COUNTRY = {
     Norge: { lat: 59.91, lon: 10.75 },
@@ -473,12 +483,12 @@
       state.revealing = false;
       renderControls();
       if (state.status === "won") {
-        toast(WIN_WORDS[state.guesses.length - 1], 2600, "win");
+        toast(pick(WIN_WORDS[state.guesses.length - 1]), 2600, "win");
         confetti();
         setTimeout(openResult, 1500);
       } else if (state.status === "lost") {
         renderBoard();
-        toast(`Fasit: ${state.target.name}`, 2600);
+        toast(`${pick(LOSE_WORDS)} ${state.target.name}`, 2800);
         setTimeout(openResult, 1800);
       } else if (!isTouch()) {
         el.input.focus();
