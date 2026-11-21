@@ -2,6 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="Cache-Control" content="no-cache" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#121213" media="(prefers-color-scheme: dark)" />
@@ -11,6 +12,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    // Old (cached) pages linked to ./#kalender, ./#statistikk, ./#hjelp – send those to the real pages.
+    (function () {
+      var m = { kalender: "kalender.html", statistikk: "statistikk.html", hjelp: "hjelp.html", data: "data.html" };
+      var k = (location.hash || location.search).replace(/^[#?]/, "");
+      if (m[k]) location.replace(m[k]); /* legacy links */
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css?v=f38664eb" />
 </head>
 <body>
