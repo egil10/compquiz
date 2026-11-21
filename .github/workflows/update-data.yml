@@ -29,18 +29,19 @@ jobs:
       - name: Install dependencies
         run: pip install yfinance pillow
 
-      - name: Pull data
-        run: python scripts/update_data.py
-
-      - name: Commit changes
+      - name: Pull data, commit and push
         run: |
-          if git diff --quiet; then
-            echo "No changes"
-            exit 0
-          fi
           git config user.name "trygdle-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A portfolio_data.js market_data.js logos
-          git commit -m "Daily data update $(date -u +%Y-%m-%d)"
-          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
+          # If main moved while we were fetching, start over from the new main
+          # (the generated files are rebuilt from scratch, so nothing is lost).
+          for attempt in 1 2 3; do
+            git fetch origin main && git reset --hard origin/main
+            python scripts/update_data.py
+            if git diff --quiet; then echo "No changes"; exit 0; fi
+            git add -A portfolio_data.js market_data.js logos
+            git commit -m "Daily data update $(date -u +%Y-%m-%d)"
+            git push origin HEAD:main && exit 0
+            sleep 10
+          done
           exit 1
