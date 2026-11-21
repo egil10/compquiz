@@ -1594,3 +1594,7 @@ a.nm:hover {
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
 }
+
+.cal-nav a.icon-btn {
+  text-decoration: none;
+}

@@ -8,6 +8,14 @@
 
   /* ---------- calendar ---------- */
 
+  // Month navigation is a real link (kalender.html?mnd=2026-10), loaded fresh like everything else.
+  const monthLink = (d, ok, label, title) => {
+    const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+    return ok
+      ? `<a class="icon-btn sm" href="kalender.html?mnd=${key}&t=${Date.now()}" aria-label="${title}">${label}</a>`
+      : `<span class="icon-btn sm" aria-hidden="true" style="opacity:.25">${label}</span>`;
+  };
+
   function renderCalendar(month) {
     const today = T.todayKey();
     const y = month.getFullYear(), m = month.getMonth();
@@ -31,17 +39,15 @@
     const nextOk = new Date(y, m + 1, 1) <= T.dateOf(today);
     $("cal-body").innerHTML = `
       <div class="cal-nav">
-        <button class="icon-btn sm" id="cal-prev" ${prevOk ? "" : "disabled"} aria-label="Forrige måned">‹</button>
+        ${monthLink(new Date(y, m - 1, 1), prevOk, "‹", "Forrige måned")}
         <b>${MONTHS[m]} ${y}</b>
-        <button class="icon-btn sm" id="cal-next" ${nextOk ? "" : "disabled"} aria-label="Neste måned">›</button>
+        ${monthLink(new Date(y, m + 1, 1), nextOk, "›", "Neste måned")}
       </div>
       <div class="cal-grid">
         ${["ma", "ti", "on", "to", "fr", "lø", "sø"].map((d) => `<span class="cal-dow">${d}</span>`).join("")}
         ${cells.join("")}
       </div>
       <div class="cal-legend"><span class="won"></span>Løst<span class="lost"></span>Ikke løst<span class="started"></span>Påbegynt</div>`;
-    $("cal-prev").onclick = () => renderCalendar(new Date(y, m - 1, 1));
-    $("cal-next").onclick = () => renderCalendar(new Date(y, m + 1, 1));
   }
 
   /* ---------- stats ---------- */
@@ -70,7 +76,12 @@
 
   if ($("cal-body")) {
     const now = new Date();
-    renderCalendar(new Date(now.getFullYear(), now.getMonth(), 1));
+    const q = new URLSearchParams(location.search).get("mnd");
+    const mm = q && q.match(/^(\d{4})-(\d\d)$/);
+    let month = mm ? new Date(+mm[1], +mm[2] - 1, 1) : new Date(now.getFullYear(), now.getMonth(), 1);
+    const first = T.dateOf(T.START_DATE);
+    if (month < new Date(first.getFullYear(), first.getMonth(), 1) || month > now) month = new Date(now.getFullYear(), now.getMonth(), 1);
+    renderCalendar(month);
   }
   if ($("stats-body")) {
     renderStats();
@@ -78,7 +89,7 @@
       try {
         localStorage.removeItem(T.STORE_STATS);
       } catch (e) {}
-      renderStats();
+      location.replace(`statistikk.html?t=${Date.now()}`);
     });
   }
 })();

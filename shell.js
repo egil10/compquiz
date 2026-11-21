@@ -61,12 +61,15 @@
   // Header navigation always loads a fresh copy of the target page (cache-busting
   // ?t=…), so an old cached page can never send you somewhere unexpected.
   // This includes the date / Frispill links: ./ = today's daily, ./?frispill = practice.
-  header.addEventListener("click", (e) => {
+  // Applies to every internal link on the page (header, calendar days, "Spill" button, …);
+  // external links (company websites, target=_blank) are left alone.
+  document.addEventListener("click", (e) => {
     const a = e.target.closest("a[href]");
     if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    if (a.target || /^(https?:|mailto:|#)/.test(a.getAttribute("href"))) return;
     e.preventDefault();
     const href = a.getAttribute("href");
-    location.href = href + (href.includes("?") ? "&" : "?") + "t=" + Date.now();
+    location.href = /[?&]t=\d+/.test(href) ? href : href + (href.includes("?") ? "&" : "?") + "t=" + Date.now();
   });
 
   // Tidy the address bar (drop the cache-busting parameter).
