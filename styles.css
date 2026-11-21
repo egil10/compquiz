@@ -1371,7 +1371,7 @@ code {
 }
 
 /* column widths (table-layout: fixed) */
-.dt [data-key="rank"] { width: 40px; }
+.dt [data-key="rank"] { width: 52px; }
 .dt [data-key="name"] { width: auto; }
 .dt [data-key="sector"] { width: 96px; }
 .dt [data-key="mcap"] { width: 64px; }
