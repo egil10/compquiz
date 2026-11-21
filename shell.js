@@ -33,7 +33,6 @@
   const header = document.getElementById("topbar");
   if (!header) return;
   const page = header.dataset.page || "game";
-  const isGame = page === "game";
   const icon = (paths, w = 21) =>
     `<svg width="${w}" height="${w}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`;
   const link = (href, key, label, svg) =>
@@ -45,11 +44,11 @@
       ${link("hjelp.html", "help", "Slik spiller du", icon('<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>', 22))}
     </div>
     <div class="brand">
-      <h1 class="title"><a href="./" id="title-link" title="${isGame ? "Last inn på nytt" : "Til spillet"}">Trygdle</a></h1>
+      <h1 class="title"><a href="./" title="Dagens selskap">Trygdle</a></h1>
       <nav class="modes" aria-label="Modus">
-        <a class="mode-btn${isGame ? " active" : ""}" data-mode="daily" href="./" title="Dagens selskap"><span id="daily-num">${shortDate()}</span></a>
+        <a class="mode-btn" data-mode="daily" href="./" title="Dagens selskap"><span id="daily-num">${shortDate()}</span></a>
         <span class="mode-sep" aria-hidden="true">·</span>
-        <a class="mode-btn" data-mode="practice" href="./#frispill" title="Ubegrenset med runder">Frispill</a>
+        <a class="mode-btn" data-mode="practice" href="./?frispill" title="Ubegrenset med runder">Frispill</a>
       </nav>
       <div id="toast" class="status" role="status" aria-live="polite"></div>
     </div>

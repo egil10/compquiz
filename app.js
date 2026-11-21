@@ -571,7 +571,7 @@
     return `${location.origin}${location.pathname}?${key}`;
   }
   function syncUrl() {
-    const want = state.mode === "daily" ? `?${state.dateKey}` : "";
+    const want = state.mode === "daily" ? `?${state.dateKey}` : "?frispill";
     if (location.search !== want || location.hash) history.replaceState(null, "", location.pathname + want);
   }
 
@@ -793,14 +793,8 @@
   /* ---------- events ---------- */
 
   function bind() {
-    document.querySelectorAll(".mode-btn").forEach((b) =>
-      b.addEventListener("click", (e) => {
-        e.preventDefault();
-        // Tapping the date while already on today's puzzle goes to the calendar page.
-        if (b.dataset.mode === "daily" && state.mode === "daily" && !state.day) location.href = "kalender.html";
-        else setMode(b.dataset.mode);
-      })
-    );
+    // Header links are plain navigation (./, ./?frispill, ./?YYYY-MM-DD) – no interception,
+    // so every button behaves the same on every page.
 
     el.input.addEventListener("input", updateAc);
     el.input.addEventListener("focus", updateAc);
@@ -841,11 +835,6 @@
     $("btn-show-result")?.addEventListener("click", openResult);
     el.btnNext?.addEventListener("click", nextRound);
 
-    // Title = reload the page (keeps the day in the URL).
-    $("title-link")?.addEventListener("click", (e) => {
-      e.preventDefault();
-      location.reload();
-    });
     document.querySelectorAll("[data-close]").forEach((b) =>
       b.addEventListener("click", () => closeModal(b.dataset.close))
     );
@@ -860,7 +849,7 @@
   }
 
   function init() {
-    const wantPractice = location.hash === "#frispill";
+    const wantPractice = /frispill/.test(location.search + location.hash);
     renderSource();
     bind();
     // Shareable day URLs: ?2026-11-21 (also accepts ?dag=2026-11-21)
@@ -871,7 +860,7 @@
     try {
       if (!localStorage.getItem("folketrygdle_seen_help")) {
         localStorage.setItem("folketrygdle_seen_help", "1");
-        location.replace(`hjelp.html?ny=1&neste=${encodeURIComponent(location.search + location.hash)}`);
+        location.replace(`hjelp.html?ny=1&neste=${encodeURIComponent(location.search)}`);
         return;
       }
     } catch (e) {}
