@@ -64,7 +64,6 @@
     ["ev", "EV/EBITDA", (r) => r.ev, (r) => (r.ev == null ? why(r, r.evNote) : fmtX(r.ev)), true, 2],
     ["own", "Eier", (r) => r.ownershipPct, (r) => fmtP(r.ownershipPct, r.ownershipPct >= 10 ? 1 : 2), true, 2],
     ["fund", "Fond", (r) => r.fund, (r) => `<span class="dt-fund">${r.fund}</span>`, false, 3],
-    ["div", "Utb.", (r) => r.div, (r) => fmtP(r.div), true, 3],
     ["ytd", "I år", (r) => r.ytd, (r) =>
       r.ytd == null ? dash : `<span class="${r.ytd >= 0 ? "pos" : "neg"}">${r.ytd >= 0 ? "+" : ""}${Math.round(r.ytd)}%</span>`, true, 1],
     ["founded", "Stiftet", (r) => r.founded, (r) => r.founded ?? dash, true, 3]
@@ -76,7 +75,7 @@
     String(s || "").toLowerCase().replace(/ø/g, "o").replace(/æ/g, "ae").normalize("NFD").replace(/[̀-ͯ]/g, "");
 
   function renderHead() {
-    const tips = { mcap: "Børsverdi i NOK", own: "Folketrygdfondets eierandel", div: "Utbytteavkastning", ytd: "Kursutvikling i år" };
+    const tips = { mcap: "Børsverdi i NOK", own: "Folketrygdfondets eierandel", ytd: "Kursutvikling i år" };
     $("thead").innerHTML = COLS.map(([key, label, , , num, prio]) => {
       const active = state.sort === key;
       return `<th class="${num ? "num" : ""}${active ? " active" : ""} p${prio}" data-key="${key}"${tips[key] ? ` title="${tips[key]}"` : ""}>${label}<i>${active ? (state.dir > 0 ? "↑" : "↓") : ""}</i></th>`;
