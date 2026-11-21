@@ -582,9 +582,9 @@
     startRound();
   }
 
+  // "Spill frispill" / "Neste selskap" load a fresh practice page (same as the header link).
   function nextRound() {
-    if (state.mode === "daily") setMode("practice");
-    else startRound();
+    location.href = `./?frispill&t=${Date.now()}`;
   }
 
   /* ---------- autocomplete ---------- */
