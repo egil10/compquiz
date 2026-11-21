@@ -36,7 +36,6 @@
   const fmtB = (b) => (b == null ? dash : b >= 1000 ? `${(b / 1000).toFixed(2)}T` : b >= 10 ? `${Math.round(b)}B` : `${b.toFixed(1)}B`);
   const fmtX = (v) => (v == null ? dash : `${v >= 20 ? Math.round(v) : v.toFixed(1)}x`);
   const fmtP = (v, d = 1) => (v == null ? dash : `${v.toFixed(d)}%`);
-  const fmtM = (v) => (v >= 1000 ? `${(v / 1000).toFixed(1)}B` : v >= 1 ? `${Math.round(v)}M` : `${v.toFixed(1)}M`);
 
   const SHORT_SECTOR = {
     Konsumvarer: "Konsum",
