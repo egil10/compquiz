@@ -403,38 +403,31 @@
       ["P/E", fmtX(t.pe)],
       ["EV/EBITDA", fmtX(t.evEbitda)],
       ["FTF eier", fmtPct(t.ownershipPct)],
-      [`FTF-post #${t.rank}`, t.marketValueMNOK >= 1000 ? `${(t.marketValueMNOK / 1000).toFixed(1)} mrd` : `${Math.round(t.marketValueMNOK)} mill`],
       ["Utbytte", fmtPct(t.div)],
-      ["Kurs", t.priceNOK ? `${t.priceNOK >= 100 ? Math.round(t.priceNOK) : t.priceNOK.toFixed(2)} kr` : "–"],
-      ["Stiftet", t.founded || "–"],
-      ["Sektor", t.sector]
+      ["Stiftet", t.founded || "–"]
     ];
-    const kicker = won
-      ? `Løst på ${state.guesses.length} av ${MAX_GUESSES}${state.hints ? ` · ${state.hints} hint` : ""}`
-      : "Fasit";
     $("result-body").innerHTML = `
       <div class="result-head">
         ${logoImg(t, "result-logo")}
         <div>
-          <p class="result-kicker ${won ? "won" : "lost"}">${kicker}</p>
           <h2 class="result-name" id="result-name">${t.name}</h2>
-          <p class="result-ticker">${flag(t.iso)}<span>${t.bbgTicker}${t.hq ? ` · ${t.hq.split("/")[0].trim()}` : ""} · ${t.fund}</span></p>
+          <p class="result-ticker">${flag(t.iso)}<span>${t.bbgTicker}</span></p>
         </div>
       </div>
       <p class="result-desc">${t.clue}</p>
       ${t.ytd ? sparkline(t.ytd) : ""}
       <dl class="facts">${facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
       <div class="result-foot">
-        <div class="mini-grid" aria-label="Dine forsøk">${grid}</div>
+        <div class="mini-grid ${won ? "won" : "lost"}" aria-label="${won ? `Løst på ${state.guesses.length}` : "Ikke løst"}">${grid}</div>
         ${
           state.mode === "daily" && isToday(state.dateKey)
-            ? `<div class="cd"><span>Neste selskap</span><b id="cd">${countdown()}</b></div>`
+            ? `<div class="cd"><span>Neste</span><b id="cd">${countdown()}</b></div>`
             : ""
         }
       </div>
       <div class="result-actions">
         <button class="ghost-btn" id="btn-share">Del</button>
-        <button class="primary-btn" id="btn-result-next">${state.mode === "daily" ? "Spill frispill" : "Neste selskap"}</button>
+        <button class="primary-btn" id="btn-result-next">${state.mode === "daily" ? "Frispill" : "Neste"}</button>
       </div>`;
     $("btn-share").addEventListener("click", share);
     $("btn-result-next").addEventListener("click", () => {
