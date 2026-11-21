@@ -121,7 +121,14 @@
     revealing: false,
     acList: [],
     acIdx: 0,
-    played: new Set(),
+    // practice companies already shown this session (survives the fresh page loads)
+    played: (() => {
+      try {
+        return new Set(JSON.parse(sessionStorage.getItem("trygdle_played") || "[]"));
+      } catch (e) {
+        return new Set();
+      }
+    })(),
   };
 
   /* ---------- helpers ---------- */
@@ -559,6 +566,9 @@
       }
       state.target = pool[Math.floor(Math.random() * pool.length)];
       state.played.add(state.target.id);
+      try {
+        sessionStorage.setItem("trygdle_played", JSON.stringify([...state.played]));
+      } catch (e) {}
     }
     el.input.value = "";
     hideAc();
