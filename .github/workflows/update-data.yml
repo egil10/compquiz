@@ -38,8 +38,9 @@ jobs:
           for attempt in 1 2 3; do
             git fetch origin main && git reset --hard origin/main
             python scripts/update_data.py
+            python scripts/stamp_assets.py
             if git diff --quiet; then echo "No changes"; exit 0; fi
-            git add -A portfolio_data.js market_data.js logos
+            git add -A portfolio_data.js market_data.js logos *.html
             git commit -m "Daily data update $(date -u +%Y-%m-%d)"
             git push origin HEAD:main && exit 0
             sleep 10

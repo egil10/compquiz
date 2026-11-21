@@ -460,8 +460,8 @@
         <button class="ghost-btn" id="btn-share">Del</button>
         <button class="primary-btn" id="btn-result-next">${state.mode === "daily" ? "Frispill" : "Neste"}</button>
       </div>`;
-    $("btn-share").addEventListener("click", share);
-    $("btn-result-next").addEventListener("click", () => {
+    $("btn-share")?.addEventListener("click", share);
+    $("btn-result-next")?.addEventListener("click", () => {
       closeModal("modal-result");
       nextRound();
     });
@@ -837,12 +837,12 @@
       if (!e.target.closest(".entry")) hideAc();
     });
 
-    el.btnHint.addEventListener("click", onHintClick);
-    $("btn-show-result").addEventListener("click", openResult);
-    el.btnNext.addEventListener("click", nextRound);
+    el.btnHint?.addEventListener("click", onHintClick);
+    $("btn-show-result")?.addEventListener("click", openResult);
+    el.btnNext?.addEventListener("click", nextRound);
 
     // Title = reload the page (keeps the day in the URL).
-    $("title-link").addEventListener("click", (e) => {
+    $("title-link")?.addEventListener("click", (e) => {
       e.preventDefault();
       location.reload();
     });
