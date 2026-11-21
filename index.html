@@ -27,6 +27,7 @@
         <span class="mode-sep" aria-hidden="true">·</span>
         <button class="mode-btn" data-mode="practice" role="tab" title="Ubegrenset med runder">Frispill</button>
       </nav>
+      <div id="toast" class="status" role="status" aria-live="polite"></div>
     </div>
     <div class="topbar-side right">
       <button id="btn-stats" class="icon-btn" aria-label="Statistikk">
@@ -73,13 +74,20 @@
       </section>
 
       <section id="done-bar" class="done-bar hidden">
-        <button id="btn-share" class="ghost-btn" type="button">Del</button>
+        <button id="btn-show-result" class="ghost-btn" type="button">Resultat</button>
         <button id="btn-next" class="primary-btn" type="button">Neste</button>
       </section>
 
       <p id="source" class="source"></p>
     </div>
   </main>
+
+  <div class="overlay hidden" id="modal-result" role="dialog" aria-modal="true" aria-labelledby="result-name">
+    <div class="sheet result-sheet">
+      <button class="close-btn" data-close="modal-result" aria-label="Lukk">&times;</button>
+      <div id="result-body"></div>
+    </div>
+  </div>
 
   <div class="overlay hidden" id="modal-stats" role="dialog" aria-modal="true">
     <div class="sheet">
@@ -113,11 +121,10 @@
         <li><span class="sw-txt">↑↓</span>Fasit er høyere / lavere</li>
         <li><span class="sw-txt">–</span>Ikke meningsfullt</li>
       </ul>
-      <p class="help-foot">Grafen viser kursen i år. Hint: by, utbytte og logo.<br />Nytt selskap hver dag.</p>
+      <p class="help-foot">Grafen viser kursen i år. Hint: by, fond (SPN/SFT), utbytte og logo.<br />Nytt selskap hver dag.</p>
     </div>
   </div>
 
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script src="portfolio_data.js"></script>
   <script src="market_data.js"></script>

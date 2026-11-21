@@ -16,8 +16,6 @@
 
   --sheet: #ffffff;
   --shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
-  --toast-bg: #121213;
-  --toast-text: #ffffff;
 
   --w: 480px;
 }
@@ -38,8 +36,6 @@
     --down: #ff6b6b;
     --sheet: #1a1a1b;
     --shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-    --toast-bg: #f8f8f8;
-    --toast-text: #121213;
   }
 }
 
@@ -843,6 +839,154 @@ code {
 
 
 /* result */
+.result-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-right: 28px;
+}
+
+.result-logo {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  object-fit: contain;
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.result-logo.logo-fallback {
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+}
+
+.result-kicker {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.result-kicker.won { color: var(--exact); }
+.result-kicker.lost { color: var(--muted); }
+
+.result-name {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.result-ticker {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.result-ticker .flag {
+  width: 18px;
+}
+
+.result-desc {
+  font-size: 13.5px;
+  line-height: 1.5;
+  margin: 14px 0 12px;
+}
+
+.result-sheet .ytd {
+  margin-bottom: 10px;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.facts div {
+  background: var(--sheet);
+  padding: 8px 10px;
+  min-width: 0;
+}
+
+.facts dt {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.facts dd {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.result-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.mini-grid {
+  display: grid;
+  gap: 3px;
+}
+
+.mini-row {
+  display: flex;
+  gap: 3px;
+}
+
+.mini {
+  width: 13px;
+  height: 13px;
+  border-radius: 2px;
+}
+
+.cd {
+  text-align: right;
+}
+
+.cd span {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.cd b {
+  font-size: 24px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.result-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.result-actions button {
+  flex: 1;
+}
+
 
 
 
@@ -861,28 +1005,52 @@ code {
 
 /* ---------- Toast ---------- */
 
-.toast {
-  position: fixed;
-  top: calc(72px + env(safe-area-inset-top));
-  left: 50%;
-  z-index: 200;
-  transform: translate(-50%, -8px);
-  background: var(--toast-bg);
-  color: var(--toast-text);
-  font-weight: 700;
-  font-size: 14px;
-  padding: 12px 16px;
-  border-radius: 6px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 180ms ease, transform 180ms ease;
-  max-width: calc(100vw - 32px);
-  text-align: center;
+/* Status messages appear in the header, replacing the mode line briefly. */
+.brand {
+  position: relative;
 }
 
-.toast.show {
+.status {
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  transform: translate(-50%, 4px);
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--text);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.status.show {
   opacity: 1;
   transform: translate(-50%, 0);
+}
+
+.status.win {
+  color: var(--exact);
+  font-size: 13px;
+  animation: cheer 600ms ease;
+}
+
+.status.error {
+  color: var(--down);
+}
+
+.brand.has-status .modes {
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+@keyframes cheer {
+  0% { transform: translate(-50%, 4px) scale(0.6); }
+  50% { transform: translate(-50%, 0) scale(1.15); }
+  100% { transform: translate(-50%, 0) scale(1); }
 }
 
 /* ---------- Small screens ---------- */

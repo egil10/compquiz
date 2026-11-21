@@ -671,5 +671,9 @@
     "FTF001631": "solstad.com",
     "FTF002041": "panoroenergy.com",
     "FTF001234": "electroluxgroup.com"
-  }
+  },
+  "logo_url": {},
+  "logo_blocklist": [
+    "f0c0aecc8696c0f0"
+  ]
 }

@@ -301,12 +301,13 @@
     const n = playing ? state.hints : 0;
     el.ytd.innerHTML = t.ytd ? sparkline(t.ytd) : "";
 
-    // From the first hint, three fixed slots: city, dividend, logo. Each hint reveals a bit more.
+    // From the first hint, four fixed slots: city, fund (SPN/SFT), dividend, logo. Each hint reveals a bit more.
     const parts = [];
     if (n >= 1) {
       const city = (t.hq || "?").split("/")[0].trim();
       parts.push(`<span class="chip">${city}</span>`);
-      parts.push(`<span class="chip${n >= 2 ? "" : " dim"}">Utbytte <b>${n >= 2 ? fmtPct(t.div) : "?"}</b></span>`);
+      parts.push(`<span class="chip" title="Fond som eier aksjen">${t.fund.replace("+", " + ")}</span>`);
+      parts.push(`<span class="chip${n >= 2 ? "" : " dim"}">Utb. <b>${n >= 2 ? fmtPct(t.div) : "?"}</b></span>`);
       const stage = n >= 3 ? "" : n >= 2 ? " blur" : " blur grey";
       parts.push(
         t.logo
@@ -353,16 +354,96 @@
     return `${head} ${score}/${MAX_GUESSES}${hints}\n\n${rows.join("\n")}\n\n${location.origin}${location.pathname}`;
   }
 
-  function share() {
+  function share(e) {
     const text = shareText();
+    const btn = e && e.currentTarget;
+    const flash = (label) => {
+      if (!btn) return toast(label);
+      const old = btn.textContent;
+      btn.textContent = label;
+      setTimeout(() => (btn.textContent = old), 1500);
+    };
     if (navigator.share && isTouch()) {
       navigator.share({ text }).catch(() => {});
     } else if (navigator.clipboard) {
       navigator.clipboard.writeText(text).then(
-        () => toast("Kopiert"),
-        () => toast("Kunne ikke kopiere")
+        () => flash("Kopiert ✓"),
+        () => flash("Kunne ikke kopiere")
       );
     }
+  }
+
+  function countdown() {
+    const now = new Date();
+    const next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    const sec = Math.max(0, Math.floor((next - now) / 1000));
+    const p = (n) => String(n).padStart(2, "0");
+    return `${p(Math.floor(sec / 3600))}:${p(Math.floor((sec % 3600) / 60))}:${p(sec % 60)}`;
+  }
+
+  let cdTimer = null;
+  function openResult() {
+    const t = state.target;
+    const won = state.status === "won";
+    const grid = state.guesses
+      .map(
+        (g) =>
+          `<div class="mini-row">${evaluate(g, t)
+            .tiles.map((x) => `<span class="mini s-${x.s}"></span>`)
+            .join("")}</div>`
+      )
+      .join("");
+    const facts = [
+      ["Børsverdi", `${fmtB(t.mcapBNOK)} kr`],
+      ["P/E", fmtX(t.pe)],
+      ["EV/EBITDA", fmtX(t.evEbitda)],
+      ["FTF eier", fmtPct(t.ownershipPct)],
+      [`FTF-post #${t.rank}`, t.marketValueMNOK >= 1000 ? `${(t.marketValueMNOK / 1000).toFixed(1)} mrd` : `${Math.round(t.marketValueMNOK)} mill`],
+      ["Utbytte", fmtPct(t.div)],
+      ["Kurs", t.priceNOK ? `${t.priceNOK >= 100 ? Math.round(t.priceNOK) : t.priceNOK.toFixed(2)} kr` : "–"],
+      ["Stiftet", t.founded || "–"],
+      ["Sektor", t.sector]
+    ];
+    const kicker = won
+      ? `Løst på ${state.guesses.length} av ${MAX_GUESSES}${state.hints ? ` · ${state.hints} hint` : ""}`
+      : "Fasit";
+    $("result-body").innerHTML = `
+      <div class="result-head">
+        ${logoImg(t, "result-logo")}
+        <div>
+          <p class="result-kicker ${won ? "won" : "lost"}">${kicker}</p>
+          <h2 class="result-name" id="result-name">${t.name}</h2>
+          <p class="result-ticker">${flag(t.iso)}<span>${t.bbgTicker}${t.hq ? ` · ${t.hq.split("/")[0].trim()}` : ""} · ${t.fund}</span></p>
+        </div>
+      </div>
+      <p class="result-desc">${t.clue}</p>
+      ${t.ytd ? sparkline(t.ytd) : ""}
+      <dl class="facts">${facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
+      <div class="result-foot">
+        <div class="mini-grid" aria-label="Dine forsøk">${grid}</div>
+        ${
+          state.mode === "daily"
+            ? `<div class="cd"><span>Neste selskap</span><b id="cd">${countdown()}</b></div>`
+            : ""
+        }
+      </div>
+      <div class="result-actions">
+        <button class="ghost-btn" id="btn-share">Del</button>
+        <button class="primary-btn" id="btn-result-next">${state.mode === "daily" ? "Spill frispill" : "Neste selskap"}</button>
+      </div>`;
+    $("btn-share").addEventListener("click", share);
+    $("btn-result-next").addEventListener("click", () => {
+      closeModal("modal-result");
+      nextRound();
+    });
+    clearInterval(cdTimer);
+    if (state.mode === "daily") {
+      cdTimer = setInterval(() => {
+        const n = $("cd");
+        if (n) n.textContent = countdown();
+      }, 1000);
+    }
+    openModal("modal-result");
   }
 
   /* ---------- game flow ---------- */
@@ -370,7 +451,7 @@
   function submitGuess(company) {
     if (!company || state.status !== "playing" || state.revealing) return;
     if (state.guesses.some((g) => g.id === company.id)) {
-      toast("Allerede gjettet");
+      toast("Allerede gjettet", 1600, "error");
       shake();
       return;
     }
@@ -397,11 +478,13 @@
       state.revealing = false;
       renderControls();
       if (state.status === "won") {
-        toast(WIN_WORDS[state.guesses.length - 1]);
+        toast(WIN_WORDS[state.guesses.length - 1], 2600, "win");
         confetti();
+        setTimeout(openResult, 1500);
       } else if (state.status === "lost") {
         renderBoard();
-        toast(state.target.name, 2500);
+        toast(`Fasit: ${state.target.name}`, 2600);
+        setTimeout(openResult, 1800);
       } else if (!isTouch()) {
         el.input.focus();
       }
@@ -414,6 +497,7 @@
     if (state.mode === "daily") recordStats(false, MAX_GUESSES);
     saveDaily();
     renderAll();
+    setTimeout(openResult, 400);
   }
 
   function onHintClick() {
@@ -464,6 +548,7 @@
     if (state.revealing) return;
     state.mode = mode;
     startRound();
+    if (mode === "daily" && state.status !== "playing") openResult();
   }
 
   function nextRound() {
@@ -653,11 +738,17 @@
   }
 
   let toastTimer;
-  function toast(msg, ms = 1600) {
+  // Short status line in the header (kind: "", "win" or "error").
+  function toast(msg, ms = 1600, kind = "") {
+    const brand = el.toast.parentElement;
     el.toast.textContent = msg;
-    el.toast.classList.add("show");
+    el.toast.className = `status show ${kind}`;
+    brand.classList.add("has-status");
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => el.toast.classList.remove("show"), ms);
+    toastTimer = setTimeout(() => {
+      el.toast.classList.remove("show");
+      brand.classList.remove("has-status");
+    }, ms);
   }
 
   function shake() {
@@ -676,6 +767,7 @@
   function closeModal(id) {
     $(id).classList.add("hidden");
     if (!document.querySelector(".overlay:not(.hidden)")) document.body.classList.remove("modal-open");
+    if (id === "modal-result") clearInterval(cdTimer);
   }
 
   function renderSource() {
@@ -708,7 +800,7 @@
         e.preventDefault();
         if (n) submitGuess(state.acList[state.acIdx]);
         else if (el.input.value.trim()) {
-          toast("Ukjent selskap");
+          toast("Ukjent selskap", 1600, "error");
           shake();
         }
       } else if (e.key === "Escape") {
@@ -728,7 +820,7 @@
     });
 
     el.btnHint.addEventListener("click", onHintClick);
-    $("btn-share").addEventListener("click", share);
+    $("btn-show-result").addEventListener("click", openResult);
     el.btnNext.addEventListener("click", nextRound);
 
     // Title = hard refresh: a fresh URL bypasses the cached page.
@@ -772,7 +864,7 @@
       localStorage.setItem("folketrygdle_seen_help", "1");
     } catch (e) {}
     if (firstVisit) openModal("modal-help");
-
+    else if (state.status !== "playing") openResult();
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);

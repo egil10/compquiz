@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Rebuild all game data from primary sources.
 
-    pip install yfinance
+    pip install yfinance pillow
     python3 scripts/update_data.py [--refresh-logos]
 
 1. Holdings: every company in Folketrygdfondet's equity portfolio (SPN + SFT),
@@ -59,6 +59,8 @@ for _old, _new in BBG_FIX.items():
 OVERRIDES = json.loads((ROOT / "scripts" / "overrides.json").read_text(encoding="utf-8"))
 FOUNDED_OVERRIDE = {k: v["year"] for k, v in OVERRIDES.get("founded", {}).items()}
 WEBSITE_OVERRIDE = OVERRIDES.get("website", {})
+LOGO_URL = OVERRIDES.get("logo_url", {})  # direct image URLs from manual review
+LOGO_BLOCKLIST = OVERRIDES.get("logo_blocklist", [])  # dHashes of generic favicons
 
 PE_MAX = 600
 EV_EBITDA_MAX = 150
@@ -364,75 +366,105 @@ def _png_size(data):
     return struct.unpack(">II", data[16:24]) if data[:8] == b"\x89PNG\r\n\x1a\n" else (0, 0)
 
 
-def _to_png(data):
-    """Convert ico/jpg/webp bytes to PNG (needs Pillow); returns None if not possible."""
-    if _png_size(data)[0]:
-        return data
+def _to_png(data, target=256):
+    """Normalise ico/png/jpg/webp bytes to a square-ish PNG (needs Pillow). None if unreadable."""
     try:
         import io
         from PIL import Image
         img = Image.open(io.BytesIO(data))
-        if hasattr(img, "ico"):  # pick the largest icon in an .ico
+        if getattr(img, "ico", None):
             img.size = max(img.ico.sizes())
         img = img.convert("RGBA")
+        if img.width > target:
+            img = img.resize((target, round(img.height * target / img.width)), Image.LANCZOS)
         out = io.BytesIO()
-        img.save(out, "PNG")
+        img.save(out, "PNG", optimize=True)
         return out.getvalue()
     except Exception:
         return None
 
 
-def _site_icon(domain):
-    """Look for apple-touch-icon / large icon links on the homepage."""
+def logo_hash(png):
+    """64-bit difference hash, used to reject generic hosting/CMS favicons."""
+    import io
+    from PIL import Image
+    g = Image.open(io.BytesIO(png)).convert("RGBA")
+    bg = Image.new("RGBA", g.size, (255, 255, 255, 255))
+    g = Image.alpha_composite(bg, g).convert("L").resize((9, 8), Image.LANCZOS)
+    px = list(g.getdata())
+    bits = "".join("1" if px[r * 9 + c] > px[r * 9 + c + 1] else "0" for r in range(8) for c in range(8))
+    return f"{int(bits, 2):016x}"
+
+
+def _is_generic(png):
     try:
-        html = get(f"https://{domain}", tries=1).decode("utf-8", "ignore")
+        h = int(logo_hash(png), 16)
     except Exception:
+        return True
+    return any(bin(h ^ int(b, 16)).count("1") <= 6 for b in LOGO_BLOCKLIST)
+
+
+def _homepage_icons(domain):
+    """All icon candidates advertised by the homepage, plus the conventional paths."""
+    html, base = "", f"https://{domain}/"
+    for url in (f"https://{domain}", f"https://www.{domain}"):
         try:
-            html = get(f"https://www.{domain}", tries=1).decode("utf-8", "ignore")
+            html, base = get(url, tries=1).decode("utf-8", "ignore"), url + "/"
+            break
         except Exception:
-            return None
-    links = re.findall(r"<link[^>]+>", html, re.I)
-    ranked = []
-    for tag in links:
+            continue
+    found = []
+    for tag in re.findall(r"<link[^>]+>", html, re.I):
         rel = re.search(r'rel=["\']([^"\']+)', tag, re.I)
         href = re.search(r'href=["\']([^"\']+)', tag, re.I)
-        if not rel or not href or "icon" not in rel.group(1).lower():
+        if not rel or not href or "icon" not in rel.group(1).lower() or href.group(1).endswith(".svg"):
             continue
         size = re.search(r'sizes=["\'](\d+)', tag)
-        score = (100 if "apple" in rel.group(1).lower() else 0) + int(size.group(1) if size else 0)
-        ranked.append((score, urllib.parse.urljoin(f"https://{domain}/", href.group(1))))
-    for _, url in sorted(ranked, reverse=True):
-        if url.endswith(".svg"):
-            continue
+        prio = 2 if "apple" in rel.group(1).lower() else 1
+        found.append((prio, int(size.group(1)) if size else 0, urllib.parse.urljoin(base, href.group(1))))
+    for path in ("apple-touch-icon.png", "apple-touch-icon-precomposed.png"):
+        found.append((2, 180, urllib.parse.urljoin(base, path)))
+    return [u for *_, u in sorted(found, reverse=True)]
+
+
+def fetch_logo(cid, website, refresh):
+    """Pick the best logo: manual URL > apple-touch-icon / declared icons > Google favicon.
+    Generic favicons (Vercel, CMS defaults, ...) listed in overrides.json are rejected."""
+    path = ROOT / "logos" / f"{cid.lower()}.png"
+    if path.exists() and not refresh:
+        return True
+    urls = []
+    if cid in LOGO_URL:
+        urls.append(LOGO_URL[cid])
+    website = WEBSITE_OVERRIDE.get(cid) or website
+    if website:
+        domain = re.sub(r"^https?://(www\.)?", "", website).split("/")[0]
+        urls += _homepage_icons(domain)
+        urls.append(f"https://www.google.com/s2/favicons?domain={domain}&sz=128")
+    best = None
+    for i, url in enumerate(urls):
         try:
             png = _to_png(get(url, tries=1))
         except Exception:
             continue
-        if png and _png_size(png)[0] >= 32:
-            return png
-    return None
-
-
-def fetch_logo(cid, website, refresh):
-    path = ROOT / "logos" / f"{cid.lower()}.png"
-    if path.exists() and not refresh:
-        return True
-    website = WEBSITE_OVERRIDE.get(cid) or website
-    if not website:
-        return False
-    domain = re.sub(r"^https?://(www\.)?", "", website).split("/")[0]
-    data = None
-    try:
-        g = get(f"https://www.google.com/s2/favicons?domain={domain}&sz=128", tries=1)
-        if _png_size(g)[0] >= 32:  # smaller = Google's fallback globe
-            data = g
-    except Exception:
-        pass
-    data = data or _site_icon(domain)
-    if not data:
+        if not png:
+            continue
+        w = _png_size(png)[0]
+        if w < 32 or (i or cid not in LOGO_URL) and _is_generic(png):
+            continue
+        if cid in LOGO_URL and i == 0:
+            best = png
+            break
+        if best is None or w > _png_size(best)[0] * 1.5:  # earlier = preferred source unless much smaller
+            best = png
+        if w >= 128:
+            break
+    if not best:
+        if path.exists() and refresh:
+            path.unlink()
         return False
     path.parent.mkdir(exist_ok=True)
-    path.write_bytes(data)
+    path.write_bytes(best)
     return True
 
 
