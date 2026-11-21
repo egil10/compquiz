@@ -1,349 +1,193 @@
 <!DOCTYPE html>
-<html lang="nb" data-theme="dark">
+<html lang="nb">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FOLKETRYGDLE 2026 — Gjett Selskapet i Folketrygdfondets Portefølje</title>
-  <meta name="description" content="Daglig og ubegrenset finans-quiz basert på Folketrygdfondets offisielle aksjeportefølje 2026 (SPN og Statens fond i Tromsø). Gjett selskapet ved hjelp av land, ICB-sektor, børsverdi, beholdning og eierandel!" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23071f18'/%3E%3Cpath d='M14 46V22l18-10 18 10v24' stroke='%2334d399' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M22 46V32h8v14M34 46V26h8v20' fill='%2377B8F2'/%3E%3C/svg%3E" />
+  <title>Folketrygdle — Porteføljens Selskapsquiz 2026</title>
+  <meta name="description" content="Minimalistisk daglig finansquiz basert på Folketrygdfondets aksjeportefølje 2026." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f2922'/%3E%3Cpath d='M9 22V12h3v10H9zm5.5 0V9h3v13h-3zM20 22v-7h3v7h-3z' fill='%23ffffff'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
-
-  <!-- Top Ambient Banner -->
-  <div class="ambient-glow" aria-hidden="true"></div>
-
-  <!-- Header -->
-  <header class="app-header">
-    <div class="header-inner">
-      <div class="brand-group">
-        <div class="brand-logo" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-            <rect width="32" height="32" rx="8" fill="url(#ftfGrad)" />
-            <path d="M8 23V14L16 9L24 14V23" stroke="#062019" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            <rect x="11" y="16" width="3.5" height="7" rx="1" fill="#062019"/>
-            <rect x="17.5" y="13" width="3.5" height="10" rx="1" fill="#062019"/>
-            <defs>
-              <linearGradient id="ftfGrad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#34D399"/>
-                <stop offset="1" stop-color="#77B8F2"/>
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-        <div>
-          <div class="brand-title-row">
-            <h1 class="brand-title">FOLKETRYGDLE</h1>
-            <span class="year-pill">2026-PORTEFØLJEN</span>
-          </div>
-          <p class="brand-subtitle">Gjett selskapet i Folketrygdfondet (SPN &amp; Tromsø-fondet)</p>
-        </div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-mark">FTF</span>
+        <span class="brand-name">Folketrygdle</span>
+        <span class="brand-meta">2026</span>
       </div>
 
-      <div class="header-actions">
-        <button id="btn-explorer" class="nav-btn" title="Utforsk alle 334 selskaper i 2026-porteføljen">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
-          <span>Portefølje (334)</span>
-        </button>
-        <button id="btn-stats" class="nav-btn" title="Din statistikk">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
-          <span>Statistikk</span>
-        </button>
-        <button id="btn-help" class="nav-btn" title="Slik spiller du">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-          <span class="hide-sm">Regler</span>
-        </button>
-        <button id="btn-theme" class="icon-btn" title="Bytt mellom mørk og lys modus" aria-label="Bytt tema">
-          <svg id="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        </button>
+      <div class="topbar-controls">
+        <div class="segmented-control" role="tablist" aria-label="Spillmodus">
+          <button class="seg-btn active" data-mode="daily" id="tab-daily">Daglig</button>
+          <button class="seg-btn" data-mode="practice-major" id="tab-practice-major">Frispill</button>
+          <button class="seg-btn" data-mode="practice-norway" id="tab-practice-norway">Norge</button>
+          <button class="seg-btn" data-mode="practice-all" id="tab-practice-all">Alle 334</button>
+        </div>
+
+        <div class="topbar-links">
+          <button id="btn-explorer" class="text-btn">Portefølje</button>
+          <button id="btn-stats" class="text-btn">Statistikk</button>
+          <button id="btn-help" class="text-btn">Regler</button>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Main Container -->
-  <main class="main-container">
-
-    <!-- Mode & Pool Selector Bar -->
-    <section class="mode-bar" aria-label="Spillmodus">
-      <div class="mode-tabs">
-        <button class="mode-tab active" data-mode="daily" id="tab-daily">
-          <span class="mode-dot"></span>
-          <span>📅 Dagens Selskap</span>
-          <span id="daily-number-badge" class="mode-badge">#1</span>
-        </button>
-        <button class="mode-tab" data-mode="practice-major" id="tab-practice-major">
-          <span>🌟 Frispill: Kjente (Topp 105)</span>
-        </button>
-        <button class="mode-tab" data-mode="practice-norway" id="tab-practice-norway">
-          <span>🇳🇴 Frispill: Oslo Børs (101)</span>
-        </button>
-        <button class="mode-tab" data-mode="practice-all" id="tab-practice-all">
-          <span>🏛️ Frispill: Hele Norden (334)</span>
+  <main class="container">
+    <!-- Status & Hints Bar -->
+    <section class="toolbar">
+      <div class="toolbar-left">
+        <span class="meta-label" id="round-label">Daglig #1</span>
+        <span class="meta-divider">·</span>
+        <span class="meta-label" id="attempt-text">0 / 6 forsøk</span>
+        <span class="meta-divider">·</span>
+        <button id="btn-toggle-candidates" class="candidates-trigger">
+          <span id="candidate-count-text">105 mulige</span>
+          <svg class="chevron-icon" id="candidate-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
       </div>
 
-      <div class="mode-right-controls">
-        <div class="attempt-counter" id="attempt-counter" title="Antall forsøk brukt">
-          Forsøk: <strong id="attempt-text">0 / 6</strong>
-        </div>
-        <button id="btn-new-round" class="btn-secondary btn-sm" title="Start en ny frispill-runde">
-          🎲 Nytt selskap
-        </button>
+      <div class="toolbar-right">
+        <button class="hint-chip" id="btn-clue-1" data-clue="1">Hint 1: Virksomhet</button>
+        <button class="hint-chip" id="btn-clue-2" data-clue="2">Hint 2: Kurs &amp; By</button>
+        <button class="hint-chip" id="btn-clue-3" data-clue="3">Hint 3: Forbokstav</button>
+        <button class="text-btn-sm" id="btn-new-round">Ny runde</button>
       </div>
     </section>
 
-    <!-- Mystery Company Dossier & Progressive Clues Card -->
-    <section class="dossier-card" aria-label="Hemmelig selskap og ledetråder">
-      <div class="dossier-header">
-        <div class="dossier-title-group">
-          <span class="dossier-eyebrow" id="dossier-eyebrow">DAGENS PORTEFØLJECASE • OFFISIELL BEHOLDNING 2026</span>
-          <h2 class="dossier-heading" id="dossier-heading">Hvilket selskap i Folketrygdfondet skal vi frem til?</h2>
-        </div>
-        <div class="dossier-Visual-pill">
-          <span class="visual-label">Andel av FTF Aksjer:</span>
-          <div class="share-meter" title="Viser omtrentlig størrelsesklasse i porteføljen">
-            <div class="share-meter-fill" id="dossier-meter-fill"></div>
-          </div>
-          <span class="visual-tier" id="dossier-tier-badge">Laster...</span>
-        </div>
-      </div>
-
-      <!-- 3 Progressive Free Clues -->
-      <div class="clue-tabs-row">
-        <button class="clue-pill" id="btn-clue-1" data-clue="1">
-          <span class="clue-icon">💡</span>
-          <span>Ledetråd 1: Hva gjør selskapet?</span>
-          <span class="clue-status" id="clue-status-1">Vis gratis</span>
-        </button>
-        <button class="clue-pill" id="btn-clue-2" data-clue="2">
-          <span class="clue-icon">📊</span>
-          <span>Ledetråd 2: Aksjekurs &amp; Hovedkontor</span>
-          <span class="clue-status" id="clue-status-2">Vis gratis</span>
-        </button>
-        <button class="clue-pill" id="btn-clue-3" data-clue="3">
-          <span class="clue-icon">🔤</span>
-          <span>Ledetråd 3: Forbokstav &amp; Ticker</span>
-          <span class="clue-status" id="clue-status-3">Vis gratis</span>
-        </button>
-      </div>
-
-      <div class="clue-display-box hidden" id="clue-display-box">
-        <div class="clue-items" id="clue-items"></div>
-      </div>
+    <!-- Active Hints Strip -->
+    <section id="clue-display-box" class="clue-strip hidden">
+      <div id="clue-items" class="clue-list"></div>
     </section>
 
-    <!-- Live Deduction Dashboard ("Portefølje-Radar") -->
-    <section class="radar-card" id="radar-card" aria-label="Portefølje-Radar og innsnevring">
-      <div class="radar-top">
-        <div class="radar-title-wrap">
-          <span class="radar-icon">🧭</span>
-          <span class="radar-title">Portefølje-Radar (Automatisk innsnevring fra dine gjetninger)</span>
-        </div>
-        <button class="candidate-badge-btn" id="btn-toggle-candidates">
-          <span id="candidate-count-text">105 mulige selskaper</span>
-          <span class="candidate-chevron" id="candidate-chevron">▼ Vis liste</span>
-        </button>
+    <!-- Collapsible Candidates & Deduction Panel -->
+    <section id="candidates-drawer" class="candidates-panel hidden">
+      <div class="deduction-summary" id="deduction-summary"></div>
+      <div class="candidates-header">
+        <span class="candidates-title">Selskaper som passer dine funn (klikk for å velge)</span>
+        <select id="candidate-sort-select" class="minimal-select">
+          <option value="rank">Sorter: FTF-størrelse (#1 →)</option>
+          <option value="mcap">Sorter: Børsverdi</option>
+          <option value="own">Sorter: Eierandel</option>
+          <option value="name">Sorter: A–Å</option>
+        </select>
       </div>
-
-      <div class="radar-grid">
-        <!-- Countries deduction -->
-        <div class="radar-box">
-          <span class="radar-label">Land i Norden</span>
-          <div class="radar-flags" id="radar-flags">
-            <span class="flag-chip" data-country="Norge">🇳🇴 Norge</span>
-            <span class="flag-chip" data-country="Sverige">🇸🇪 Sverige</span>
-            <span class="flag-chip" data-country="Danmark">🇩🇰 Danmark</span>
-            <span class="flag-chip" data-country="Finland">🇫🇮 Finland</span>
-            <span class="flag-chip" data-country="Island">🇮🇸 Island</span>
-          </div>
-        </div>
-
-        <!-- Bounds deduction -->
-        <div class="radar-box">
-          <span class="radar-label">Børsverdi (MCap)</span>
-          <div class="radar-range-val" id="radar-mcap-range">Alle størrelser</div>
-        </div>
-
-        <div class="radar-box">
-          <span class="radar-label">FTF Beholdning &amp; Rang</span>
-          <div class="radar-range-val" id="radar-ftf-range">#1 – #334</div>
-        </div>
-
-        <div class="radar-box">
-          <span class="radar-label">FTF Eierandel</span>
-          <div class="radar-range-val" id="radar-own-range">0,01 % – 15,0 %</div>
-        </div>
-      </div>
-
-      <!-- Sectors deduction strip -->
-      <div class="radar-sectors" id="radar-sectors"></div>
-
-      <!-- Collapsible Matching Candidates Drawer (Makes the game 100% winnable!) -->
-      <div class="candidates-drawer hidden" id="candidates-drawer">
-        <div class="candidates-drawer-header">
-          <span>🎯 <strong>Mulige selskaper</strong> som passer alle dine 🟩/🟨/⬆️/⬇️ treff så langt (klikk for å gjette):</span>
-          <div class="candidates-sort">
-            <label for="candidate-sort-select">Sorter:</label>
-            <select id="candidate-sort-select">
-              <option value="rank">Størst i FTF (#1 →)</option>
-              <option value="mcap">Høyest Børsverdi</option>
-              <option value="own">Høyest Eierandel %</option>
-              <option value="name">Alfabetisk (A–Å)</option>
-            </select>
-          </div>
-        </div>
-        <div class="candidates-chips-grid" id="candidates-chips-grid"></div>
-      </div>
+      <div id="candidates-chips-grid" class="candidates-grid"></div>
     </section>
 
-    <!-- Search Input & Quick Start Controls -->
-    <section class="search-section" id="search-section">
-      <div class="search-bar-wrapper">
-        <div class="search-input-container">
-          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input
-            type="text"
-            id="company-search-input"
-            class="company-search-input"
-            placeholder="Søk etter selskap, ticker (f.eks. EQNR, DNB), bransje eller land..."
-            autocomplete="off"
-            spellcheck="false"
-          />
-          <label class="smart-filter-toggle" title="Vis kun selskaper i nedtrekkslisten som passer ledetrådene du har funnet">
-            <input type="checkbox" id="chk-smart-filter" checked />
-            <span>Kun mulige treff</span>
-          </label>
-        </div>
-        <button id="btn-submit-guess" class="btn-primary">
-          <span>Gjett</span>
-          <kbd class="enter-kbd">↵</kbd>
-        </button>
-
-        <!-- Autocomplete Dropdown -->
-        <div id="autocomplete-dropdown" class="autocomplete-dropdown hidden" role="listbox"></div>
+    <!-- Search Input -->
+    <section class="search-wrap" id="search-section">
+      <div class="search-box">
+        <svg class="search-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input
+          type="text"
+          id="company-search-input"
+          class="search-input"
+          placeholder="Søk etter selskap eller ticker (f.eks. Equinor, DNB, Orkla)..."
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <label class="filter-check" title="Vis kun selskaper som passer ledetrådene">
+          <input type="checkbox" id="chk-smart-filter" checked />
+          <span>Kun mulige</span>
+        </label>
+        <button id="btn-submit-guess" class="submit-btn">Gjett</button>
       </div>
 
-      <!-- Quick-start chips shown before first guess -->
-      <div class="quick-start-bar" id="quick-start-bar">
-        <span class="quick-start-label">⚡ Hurtigstart (1 klikk):</span>
-        <div class="quick-start-chips" id="quick-start-chips"></div>
-      </div>
+      <div id="autocomplete-dropdown" class="dropdown hidden" role="listbox"></div>
     </section>
 
-    <!-- Victory / Game Over Banner (Shown when round ends) -->
-    <section class="result-banner hidden" id="result-banner" aria-live="polite"></section>
+    <!-- End-of-Round Result Card -->
+    <section id="result-banner" class="result-card hidden" aria-live="polite"></section>
 
-    <!-- Guesses Comparison Grid -->
-    <section class="board-section" aria-label="Dine gjetninger">
-      <div class="board-scroll-container">
-        <div class="board-header-row" id="board-header-row">
-          <div class="col-header col-company">Selskap</div>
-          <div class="col-header" title="Hvilket nordisk land selskapet er hjemmehørende i + kompassretning mot målet">Land &amp; Retning</div>
-          <div class="col-header" title="Offisiell ICB-bransje i Folketrygdfondet (Gul = nærbeslektet bransje)">ICB-Sektor</div>
-          <div class="col-header" title="Selskapets totale børsverdi (Market Cap) i milliarder NOK">Børsverdi (MCap)</div>
-          <div class="col-header" title="Folketrygdfondets aksjebeholdning i selskapet og rangering (#1 er størst)">FTF-Post (#Rang)</div>
-          <div class="col-header" title="Hvor stor prosentandel av selskapet Folketrygdfondet eier">FTF Eierandel %</div>
-          <div class="col-header" title="SPN = Statens pensjonsfond Norge • SFT = Statens fond i Tromsø">Fond</div>
+    <!-- Comparison Grid -->
+    <section class="grid-section" aria-label="Gjetninger">
+      <div class="grid-scroll">
+        <div class="grid-header">
+          <div class="th th-company">Selskap</div>
+          <div class="th">Land</div>
+          <div class="th">ICB-Sektor</div>
+          <div class="th">Børsverdi</div>
+          <div class="th">FTF-Post</div>
+          <div class="th">Eierandel</div>
         </div>
 
-        <div id="guesses-list" class="guesses-list"></div>
-
-        <!-- Empty Placeholder Slots -->
-        <div id="empty-slots-list" class="empty-slots-list"></div>
+        <div id="guesses-list" class="grid-body"></div>
+        <div id="empty-slots-list" class="grid-empty"></div>
       </div>
 
-      <!-- Color Legend -->
-      <div class="legend-bar">
-        <div class="legend-item">
-          <span class="legend-swatch swatch-exact"></span>
-          <span><strong>Grønn:</strong> Riktig / Blink (±15 %)</span>
+      <div class="grid-footer">
+        <div class="legend">
+          <span class="legend-entry"><span class="dot dot-exact"></span>Riktig / ±15 %</span>
+          <span class="legend-entry"><span class="dot dot-close"></span>Nærme / Beslektet</span>
+          <span class="legend-entry"><span class="dot dot-wrong"></span>Ulik</span>
+          <span class="legend-entry"><span class="mono-arrow">↑ ↓</span>Målet har høyere (↑) eller lavere (↓) verdi</span>
         </div>
-        <div class="legend-item">
-          <span class="legend-swatch swatch-close"></span>
-          <span><strong>Gul:</strong> Nærme (±55 % eller beslektet bransje)</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-swatch swatch-wrong"></span>
-          <span><strong>Mørk:</strong> Lengre unna</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-arrows">⬆️ ⬇️</span>
-          <span><strong>Piler:</strong> Målet har høyere (⬆️) eller lavere (⬇️) verdi</span>
-        </div>
-        <div class="legend-actions">
-          <button id="btn-give-up" class="btn-link-subtle">Vis fasit / Gi opp runden</button>
-        </div>
+        <button id="btn-give-up" class="giveup-btn">Vis fasit</button>
       </div>
     </section>
-
   </main>
 
-  <!-- Footer -->
-  <footer class="app-footer">
-    <div class="footer-inner">
-      <p>
-        Basert på offisielle beholdningstall fra
-        <a href="https://www.folketrygdfondet.no/nb/folketrygdfondet/portefoljeoversikt/selskaper" target="_blank" rel="noopener noreferrer">Folketrygdfondet (2026-porteføljen: SPN &amp; Statens fond i Tromsø)</a>.
-      </p>
-      <p class="footer-sub">
-        Totalt <strong>334</strong> nordiske aksjeselskaper • Markedsverdi aksjer: <strong>~258,6 mrd. NOK</strong> • Laget for rask, lærerik og vinnbar finans-quiz.
-      </p>
-    </div>
+  <footer class="footer">
+    <span>Data: <a href="https://www.folketrygdfondet.no/nb/folketrygdfondet/portefoljeoversikt/selskaper" target="_blank" rel="noopener noreferrer">Folketrygdfondet Aksjeportefølje 2026</a> (SPN &amp; Statens fond i Tromsø · 334 selskaper)</span>
   </footer>
 
-  <!-- Modal: Portfolio Explorer (All 334 Companies) -->
-  <div class="modal-backdrop hidden" id="modal-explorer" role="dialog" aria-modal="true" aria-labelledby="explorer-title">
-    <div class="modal-card modal-xl">
-      <div class="modal-header">
+  <!-- Modal: Portfolio Explorer -->
+  <div class="modal-overlay hidden" id="modal-explorer" role="dialog" aria-modal="true">
+    <div class="modal modal-wide">
+      <div class="modal-top">
         <div>
-          <h2 id="explorer-title">🏛️ Folketrygdfondets Aksjeportefølje 2026</h2>
-          <p class="modal-subtitle">Alle 334 børsnoterte selskaper i Statens pensjonsfond Norge (SPN) og Statens fond i Tromsø (SFT)</p>
+          <h2 class="modal-title">Folketrygdfondets Aksjeportefølje 2026</h2>
+          <p class="modal-sub">334 nordiske selskaper i Statens pensjonsfond Norge (SPN) og Statens fond i Tromsø (SFT)</p>
         </div>
-        <button class="modal-close-btn" data-close="modal-explorer" aria-label="Lukk">&times;</button>
+        <button class="close-btn" data-close="modal-explorer" aria-label="Lukk">&times;</button>
       </div>
-      <div class="explorer-controls">
-        <input type="text" id="explorer-search" class="explorer-input" placeholder="Søk blant 334 selskaper, ticker eller by..." />
-        <select id="explorer-country" class="explorer-select">
+
+      <div class="explorer-filters">
+        <input type="text" id="explorer-search" class="filter-input" placeholder="Søk selskap, ticker eller by..." />
+        <select id="explorer-country" class="filter-select">
           <option value="ALL">Alle land (334)</option>
-          <option value="Norge">🇳🇴 Norge (101)</option>
-          <option value="Sverige">🇸🇪 Sverige (130)</option>
-          <option value="Finland">🇫🇮 Finland (50)</option>
-          <option value="Danmark">🇩🇰 Danmark (44)</option>
-          <option value="Island">🇮🇸 Island (9)</option>
+          <option value="Norge">Norge (101)</option>
+          <option value="Sverige">Sverige (130)</option>
+          <option value="Finland">Finland (50)</option>
+          <option value="Danmark">Danmark (44)</option>
+          <option value="Island">Island (9)</option>
         </select>
-        <select id="explorer-sector" class="explorer-select">
-          <option value="ALL">Alle ICB-sektorer</option>
+        <select id="explorer-sector" class="filter-select">
+          <option value="ALL">Alle sektorer</option>
         </select>
-        <select id="explorer-fund" class="explorer-select">
-          <option value="ALL">Alle fond (SPN + SFT)</option>
-          <option value="SPN">Kun SPN (Hovedfondet)</option>
-          <option value="SFT">Kun SFT (Tromsø-fondet)</option>
+        <select id="explorer-fund" class="filter-select">
+          <option value="ALL">Alle fond</option>
+          <option value="SPN">SPN</option>
+          <option value="SFT">SFT</option>
         </select>
-        <select id="explorer-sort" class="explorer-select">
-          <option value="rank">Sorter: Størst FTF-post (#1 →)</option>
-          <option value="mcap">Sorter: Høyest Børsverdi</option>
-          <option value="own">Sorter: Høyest FTF Eierandel %</option>
-          <option value="price">Sorter: Høyest Aksjekurs</option>
-          <option value="name">Sorter: Alfabetisk (A–Å)</option>
+        <select id="explorer-sort" class="filter-select">
+          <option value="rank">FTF-post (#1 →)</option>
+          <option value="mcap">Børsverdi</option>
+          <option value="own">Eierandel %</option>
+          <option value="price">Aksjekurs</option>
+          <option value="name">Alfabetisk</option>
         </select>
       </div>
-      <div class="explorer-summary-strip" id="explorer-summary-strip"></div>
-      <div class="explorer-table-wrap">
-        <table class="explorer-table">
+
+      <div id="explorer-summary-strip" class="explorer-meta"></div>
+
+      <div class="table-scroll">
+        <table class="data-table">
           <thead>
             <tr>
               <th>#</th>
               <th>Selskap</th>
               <th>Land</th>
-              <th>ICB-Sektor</th>
+              <th>Sektor</th>
               <th>Børsverdi</th>
               <th>FTF-Post</th>
               <th>Eierandel</th>
-              <th>Aksjekurs</th>
+              <th>Kurs</th>
               <th>Fond</th>
             </tr>
           </thead>
@@ -354,70 +198,54 @@
   </div>
 
   <!-- Modal: Statistics -->
-  <div class="modal-backdrop hidden" id="modal-stats" role="dialog" aria-modal="true" aria-labelledby="stats-title">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h2 id="stats-title">📈 Din Portefølje-Statistikk</h2>
-        <button class="modal-close-btn" data-close="modal-stats" aria-label="Lukk">&times;</button>
+  <div class="modal-overlay hidden" id="modal-stats" role="dialog" aria-modal="true">
+    <div class="modal">
+      <div class="modal-top">
+        <h2 class="modal-title">Statistikk</h2>
+        <button class="close-btn" data-close="modal-stats" aria-label="Lukk">&times;</button>
       </div>
-      <div class="stats-kpi-grid" id="stats-kpi-grid"></div>
-      <h3 class="dist-heading">Gjetningsfordeling (Seire på forsøk 1–6)</h3>
-      <div class="stats-distribution" id="stats-distribution"></div>
-      <div class="modal-footer-actions">
-        <button id="btn-reset-stats" class="btn-link-subtle">Nullstill statistikk</button>
+      <div id="stats-kpi-grid" class="stats-grid"></div>
+      <div class="dist-section">
+        <div class="dist-title">Antall forsøk ved seier</div>
+        <div id="stats-distribution" class="dist-list"></div>
+      </div>
+      <div class="modal-bottom">
+        <button id="btn-reset-stats" class="giveup-btn">Nullstill statistikk</button>
       </div>
     </div>
   </div>
 
-  <!-- Modal: Rules / How to Play -->
-  <div class="modal-backdrop hidden" id="modal-help" role="dialog" aria-modal="true" aria-labelledby="help-title">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h2 id="help-title">🎯 Slik spiller du FOLKETRYGDLE 2026</h2>
-        <button class="modal-close-btn" data-close="modal-help" aria-label="Lukk">&times;</button>
+  <!-- Modal: Rules -->
+  <div class="modal-overlay hidden" id="modal-help" role="dialog" aria-modal="true">
+    <div class="modal">
+      <div class="modal-top">
+        <h2 class="modal-title">Slik spiller du</h2>
+        <button class="close-btn" data-close="modal-help" aria-label="Lukk">&times;</button>
       </div>
-      <div class="help-content">
-        <p>Finn det hemmelige selskapet fra <strong>Folketrygdfondets offisielle aksjeportefølje 2026</strong> på opptil 6 forsøk (inspirert av <em>Wordle</em>, <em>Tradle</em> og <em>Worldle</em>).</p>
-
-        <div class="help-grid">
-          <div class="help-item">
-            <span class="help-badge badge-green">🟩 Grønn</span>
-            <div>
-              <strong>Blink / Riktig!</strong>
-              <p>Riktig land, riktig ICB-sektor, riktig fond, eller tallverdi innenfor ±15 % av det hemmelige selskapet.</p>
-            </div>
+      <div class="rules-body">
+        <p>Finn det hemmelige selskapet i Folketrygdfondets aksjeportefølje (2026) på opptil 6 forsøk.</p>
+        <div class="rules-list">
+          <div class="rule-row">
+            <span class="rule-tag tag-exact">Grønn</span>
+            <span>Riktig land, riktig sektor, eller tallverdi innenfor ±15 % av fasiten.</span>
           </div>
-          <div class="help-item">
-            <span class="help-badge badge-yellow">🟨 Gul</span>
-            <div>
-              <strong>Nærme!</strong>
-              <p>Beslektet bransje (f.eks. <em>Teknologi</em> ↔ <em>Telekom</em>, <em>Konsumvarer</em> ↔ <em>Varige konsumvarer</em>) eller tallverdi innenfor ca. 0,45x–2,2x av målet.</p>
-            </div>
+          <div class="rule-row">
+            <span class="rule-tag tag-close">Gul</span>
+            <span>Beslektet bransje (f.eks. Teknologi/Telekom eller Konsumvarer/Varige konsumvarer) eller tallverdi innenfor ca. 2x av fasiten.</span>
           </div>
-          <div class="help-item">
-            <span class="help-badge badge-arrow">⬆️ / ⬇️</span>
-            <div>
-              <strong>Retningspiler</strong>
-              <p><strong>⬆️</strong> betyr at det hemmelige selskapet har <em>høyere</em> børsverdi, større FTF-beholdning eller høyere eierandel. <strong>⬇️</strong> betyr <em>lavere</em>.</p>
-            </div>
+          <div class="rule-row">
+            <span class="rule-tag tag-neutral">↑ / ↓</span>
+            <span>Pilene viser om fasiten har <strong>høyere (↑)</strong> eller <strong>lavere (↓)</strong> børsverdi, FTF-beholdning eller eierandel enn selskapet du gjettet.</span>
           </div>
-          <div class="help-item">
-            <span class="help-badge badge-radar">🧭 Radar &amp; Hjelp</span>
-            <div>
-              <strong>Portefølje-Radar &amp; Gratis Ledetråder</strong>
-              <p>Radaren snevrer automatisk inn hvilke selskaper som passer alle dine funn. Du kan også åpne 3 gratis ledetråder (virksomhet, aksjekurs og forbokstav/ticker) når som helst!</p>
-            </div>
+          <div class="rule-row">
+            <span class="rule-tag tag-neutral">Mulige</span>
+            <span>Klikk på «Mulige» i verktøylinjen (eller bruk «Kun mulige» i søkefeltet) for å se nøyaktig hvilke selskaper som passer alle ledetrådene du har samlet.</span>
           </div>
-        </div>
-
-        <div class="help-fact-box">
-          <strong>Visste du?</strong> Folketrygdfondet forvalter <em>Statens pensjonsfond Norge (SPN)</em> og det nye <em>Statens fond i Tromsø (SFT)</em> for nordiske små og mellomstore selskaper. Fondet kan eie opptil <strong>15 %</strong> av selskaper i Norge og opptil <strong>5 %</strong> i resten av Norden (Sverige, Danmark, Finland og Island).
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Toast notification -->
   <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
 
   <script src="portfolio_data.js"></script>
