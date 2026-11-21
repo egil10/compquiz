@@ -483,6 +483,10 @@ button {
   filter: blur(2.5px) grayscale(1);
 }
 
+.hint-logo.none {
+  background: none;
+}
+
 .chip.dim {
   color: var(--muted);
 }
