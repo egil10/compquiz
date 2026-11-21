@@ -1280,14 +1280,37 @@ code {
   margin: 10px 0 6px;
 }
 
+/* The table scrolls inside its own box (sticky header, and any sideways
+   scrollbar stays in view instead of at the very bottom of the page). */
 .table-wrap {
   border: 1px solid var(--line);
   border-radius: 8px;
+  overflow: auto;
+  max-height: calc(100dvh - 200px);
+  overscroll-behavior: contain;
+}
+
+.data-page {
+  height: 100dvh;
   overflow: hidden;
+}
+
+.data-page .data-main {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+}
+
+.data-page .table-wrap {
+  flex: 1;
+  max-height: none;
+  min-height: 0;
 }
 
 .dt {
   width: 100%;
+  min-width: 320px;
   border-collapse: collapse;
   table-layout: fixed;
   font-size: 13px;
