@@ -109,7 +109,6 @@
     acList: [],
     acIdx: 0,
     played: new Set(),
-    giveUpArmed: false
   };
 
   /* ---------- helpers ---------- */
@@ -322,8 +321,8 @@
     el.hints.innerHTML = parts.join("");
 
     if (state.hints >= MAX_HINTS) {
-      el.btnHint.textContent = state.giveUpArmed ? "Sikker?" : "Gi opp";
-      el.btnHint.classList.toggle("danger", state.giveUpArmed);
+      el.btnHint.textContent = "Gi opp";
+      el.btnHint.classList.add("danger");
     } else {
       el.btnHint.textContent = state.hints ? `Hint ${state.hints}/${MAX_HINTS}` : "Hint";
       el.btnHint.classList.remove("danger");
@@ -454,7 +453,6 @@
     }
 
     state.guesses.push(company);
-    state.giveUpArmed = false;
     el.input.value = "";
     hideAc();
 
@@ -502,12 +500,6 @@
     if (state.hints < MAX_HINTS) {
       state.hints++;
       saveDaily();
-    } else if (!state.giveUpArmed) {
-      state.giveUpArmed = true;
-      setTimeout(() => {
-        state.giveUpArmed = false;
-        renderHints();
-      }, 3000);
     } else {
       giveUp();
       return;
@@ -522,7 +514,6 @@
     state.guesses = [];
     state.hints = 0;
     state.status = "playing";
-    state.giveUpArmed = false;
 
     if (state.mode === "daily") {
       state.target = d.company;
