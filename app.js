@@ -948,7 +948,15 @@
       firstVisit = !localStorage.getItem("folketrygdle_seen_help");
       localStorage.setItem("folketrygdle_seen_help", "1");
     } catch (e) {}
-    if (firstVisit) openModal("modal-help");
+    // Deep links from the table page: #hjelp, #kalender, #statistikk, #frispill
+    const hash = location.hash.slice(1);
+    if (hash) history.replaceState(null, "", location.pathname);
+    if (hash === "frispill") setMode("practice");
+    else if (hash === "kalender") openCalendar();
+    else if (hash === "statistikk") {
+      renderStats();
+      openModal("modal-stats");
+    } else if (hash === "hjelp" || firstVisit) openModal("modal-help");
     // A finished daily just shows the finished board; "Resultat" reopens the popup.
   }
 

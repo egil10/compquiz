@@ -118,8 +118,13 @@ button {
   color: var(--text);
 }
 
-.icon-btn:hover {
+.icon-btn:hover,
+.icon-btn.active {
   background: var(--soft);
+}
+
+a.mode-btn {
+  text-decoration: none;
 }
 
 /* ---------- Game layout ---------- */
