@@ -1317,7 +1317,7 @@ code {
   min-width: 320px;
   border-collapse: collapse;
   table-layout: fixed;
-  font-size: 13px;
+  font-size: 12px;
   font-variant-numeric: tabular-nums;
 }
 
@@ -1327,12 +1327,12 @@ code {
   background: var(--bg);
   z-index: 1;
   text-align: left;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   color: var(--muted);
-  padding: 10px 6px;
+  padding: 9px 5px;
   border-bottom: 1px solid var(--line);
   white-space: nowrap;
   overflow: hidden;
@@ -1351,7 +1351,7 @@ code {
 }
 
 .dt td {
-  padding: 6px 6px;
+  padding: 5px 5px;
   border-bottom: 1px solid var(--line);
   white-space: nowrap;
   overflow: hidden;
@@ -1371,17 +1371,17 @@ code {
 }
 
 /* column widths (table-layout: fixed) */
-.dt [data-key="rank"] { width: 52px; }
+.dt [data-key="rank"] { width: 46px; }
 .dt [data-key="name"] { width: auto; }
-.dt [data-key="sector"] { width: 96px; }
-.dt [data-key="mcap"] { width: 64px; }
-.dt [data-key="pe"] { width: 56px; }
-.dt [data-key="ev"] { width: 82px; }
-.dt [data-key="own"] { width: 64px; }
-.dt [data-key="fund"] { width: 64px; }
-.dt [data-key="div"] { width: 54px; }
-.dt [data-key="ytd"] { width: 56px; }
-.dt [data-key="founded"] { width: 64px; }
+.dt [data-key="sector"] { width: 86px; }
+.dt [data-key="mcap"] { width: 58px; }
+.dt [data-key="pe"] { width: 50px; }
+.dt [data-key="ev"] { width: 72px; }
+.dt [data-key="own"] { width: 56px; }
+.dt [data-key="fund"] { width: 58px; }
+.dt [data-key="div"] { width: 48px; }
+.dt [data-key="ytd"] { width: 50px; }
+.dt [data-key="founded"] { width: 56px; }
 
 .dt th:first-child,
 .dt td:first-child { padding-left: 12px; }
@@ -1407,8 +1407,8 @@ code {
 }
 
 .dt-co .logo {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   border-radius: 5px;
   flex-shrink: 0;
 }
@@ -1429,12 +1429,12 @@ code {
 }
 
 .dt-nm small {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--muted);
 }
 
 .dt-fund {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   color: var(--muted);
 }
@@ -1446,7 +1446,7 @@ code {
 .dt .pos { color: var(--up); font-weight: 600; }
 .dt .neg { color: var(--down); font-weight: 600; }
 
-@media (max-width: 860px) {
+@media (max-width: 780px) {
   .dt .p3 { display: none; }
 }
 
