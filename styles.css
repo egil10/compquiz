@@ -109,6 +109,7 @@ button {
 }
 
 .icon-btn {
+  color: inherit;
   width: 44px;
   height: 44px;
   display: grid;
@@ -1179,6 +1180,8 @@ code {
 /* ---------- Small screens ---------- */
 
 @media (max-width: 420px) {
+  .topbar-side .icon-btn { width: 36px; height: 40px; }
+  .topbar-side svg { width: 20px; height: 20px; }
   .board-head span { font-size: 7.5px; text-overflow: clip; }
 }
 
@@ -1229,3 +1232,161 @@ code {
     transition: none !important;
   }
 }
+
+/* ---------- Data page ---------- */
+
+.data-page .brand-sub {
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.data-main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 16px 0;
+}
+
+.data-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.data-search {
+  flex: 1 1 260px;
+  height: 44px;
+}
+
+.data-filters {
+  display: flex;
+  gap: 2px;
+}
+
+.data-filters .mode-btn {
+  font-size: 12.5px;
+  padding: 6px 10px;
+}
+
+.data-filters .mode-btn.active {
+  background: var(--soft);
+}
+
+.data-count {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 10px 0 6px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.dt {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.dt th {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 1;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  padding: 10px 10px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dt th:hover,
+.dt th.active {
+  color: var(--text);
+}
+
+.dt th i {
+  font-style: normal;
+  margin-left: 3px;
+}
+
+.dt td {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.dt tr:last-child td {
+  border-bottom: 0;
+}
+
+.dt tbody tr:hover td {
+  background: var(--soft);
+}
+
+.dt .num {
+  text-align: right;
+}
+
+.dt .c-rank {
+  color: var(--muted);
+}
+
+.dt .c-name {
+  position: sticky;
+  left: 0;
+  background: var(--bg);
+  min-width: 190px;
+}
+
+.dt th[data-key="name"] {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+
+.dt-co {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dt-co .logo {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+}
+
+.dt-co b {
+  display: block;
+  font-weight: 600;
+}
+
+.dt-co small {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.dt-flag .flag {
+  width: 20px;
+}
+
+.dt .na {
+  color: var(--muted);
+}
+
+.dt .pos { color: var(--up); font-weight: 600; }
+.dt .neg { color: var(--down); font-weight: 600; }

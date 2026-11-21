@@ -23,6 +23,8 @@ Dataene oppdateres automatisk hver morgen av GitHub Actions (`.github/workflows/
 
 ## Data
 
+`data.html` viser hele porteføljen som en sorterbar tabell (lenke i toppen av spillet).
+
 Alt genereres av `scripts/update_data.py`:
 
 ```
