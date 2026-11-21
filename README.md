@@ -4,18 +4,18 @@ Wordle for Folketrygdfondets aksjeportefølje: finn selskapet på 6 forsøk.
 
 ## Regler
 
-Skriv navn eller ticker og trykk Enter. Hvert forsøk gir seks ruter:
+Skriv navn eller ticker og trykk Enter. Hvert forsøk gir sju ruter:
 
-| Land | Sektor | Mcap | P/E | EV/EBITDA | Eier |
-| --- | --- | --- | --- | --- | --- |
-| Land, pil mot fasit | Bransje | Børsverdi | Trailing P/E | EV / EBITDA (TTM) | Folketrygdfondets eierandel |
+| Land | Sektor | Mcap | P/E | EV/EBITDA | Eier | Stiftet |
+| --- | --- | --- | --- | --- | --- | --- |
+| Flagg, pil mot fasit | Bransje | Børsverdi | Trailing P/E | EV / EBITDA (TTM) | Folketrygdfondets eierandel | Stiftelsesår |
 
 - **Grønn**: riktig (tall innen ±5 %)
-- **Gul**: nær (beslektet sektor, tall innen ±25 %)
+- **Gul**: nær (beslektet sektor, tall innen ±25 %, stiftet innen ±10 år)
 - **Grå**: feil. ↑ / ↓ viser om fasit er høyere eller lavere.
 - **–**: ikke meningsfullt (negativt resultat, EV/EBITDA for finans).
 
-**Hint** (3): kursutvikling i år (minigraf) → stiftelsesår og by → logo og forbokstav. Deretter «Gi opp».
+Kursutviklingen i år vises alltid over søkefeltet. **Hint** (3): by → utbytte → logo (grå og uskarp → farget og uskarp → skarp). Deretter «Gi opp».
 
 **Daglig** gir alle samme selskap hver dag (blant de større postene). **Frispill** trekker fra hele porteføljen.
 

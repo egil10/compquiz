@@ -26,7 +26,7 @@
   const MAX_HINTS = 3;
   const FLIP_STAGGER = 220;
   const FLIP_DURATION = 500;
-  const TILE_COUNT = 6;
+  const TILE_COUNT = 7;
   const EXACT = 0.05; // green: within ±5 %
   const NEAR = 0.25; // yellow: within ±25 %
   const STORE_DAILY = "folketrygdle_daily_v2";
@@ -93,7 +93,6 @@
     btnHint: $("btn-hint"),
     doneBar: $("done-bar"),
     btnNext: $("btn-next"),
-    resultBody: $("result-body"),
     statsBody: $("stats-body"),
     toast: $("toast")
   };
@@ -187,6 +186,14 @@
     return { s, v: fmt(g), icon: arrow(t > g ? 0 : 180) };
   }
 
+  // Founding year: green = same year, yellow = within 10 years.
+  function evalYear(g, t, isWin) {
+    if (g == null) return { s: "wrong", v: "–", icon: "" };
+    if (t == null) return { s: "wrong", v: String(g), icon: '<i class="na">–</i>' };
+    if (isWin || g === t) return { s: "exact", v: String(g), icon: check };
+    return { s: Math.abs(g - t) <= 10 ? "close" : "wrong", v: String(g), icon: arrow(t > g ? 0 : 180) };
+  }
+
   function evaluate(g, t) {
     const win = g.id === t.id;
     const sameCountry = g.country === t.country;
@@ -210,7 +217,8 @@
         evalNum(g.mcapBNOK, t.mcapBNOK, fmtB, win),
         evalNum(g.pe, t.pe, fmtX, win),
         evalNum(g.evEbitda, t.evEbitda, fmtX, win),
-        evalNum(g.ownershipPct, t.ownershipPct, fmtPct, win)
+        evalNum(g.ownershipPct, t.ownershipPct, fmtPct, win),
+        evalYear(g.founded, t.founded, win)
       ]
     };
   }
@@ -291,14 +299,14 @@
     const t = state.target;
     const playing = state.status === "playing";
     const n = playing ? state.hints : 0;
-    el.ytd.innerHTML = playing && t.ytd ? sparkline(t.ytd) : "";
+    el.ytd.innerHTML = t.ytd ? sparkline(t.ytd) : "";
 
-    // From the first hint, three fixed slots: founded, city, logo. Each hint reveals a bit more.
+    // From the first hint, three fixed slots: city, dividend, logo. Each hint reveals a bit more.
     const parts = [];
     if (n >= 1) {
       const city = (t.hq || "?").split("/")[0].trim();
-      parts.push(`<span class="chip">Stiftet <b>${t.founded || "?"}</b></span>`);
-      parts.push(`<span class="chip${n >= 2 ? "" : " dim"}">${n >= 2 ? city : "By ?"}</span>`);
+      parts.push(`<span class="chip">${city}</span>`);
+      parts.push(`<span class="chip${n >= 2 ? "" : " dim"}">Utbytte <b>${n >= 2 ? fmtPct(t.div) : "?"}</b></span>`);
       const stage = n >= 3 ? "" : n >= 2 ? " blur" : " blur grey";
       parts.push(
         t.logo
@@ -321,7 +329,7 @@
     const done = state.status !== "playing";
     el.entry.classList.toggle("hidden", done);
     el.doneBar.classList.toggle("hidden", !done);
-    el.btnNext.textContent = state.mode === "daily" ? "Frispill" : "Neste";
+    el.btnNext.textContent = state.mode === "daily" ? "Spill frispill" : "Neste selskap";
     el.dailyNum.textContent = shortDate();
     document.querySelectorAll(".mode-btn").forEach((b) =>
       b.classList.toggle("active", b.dataset.mode === state.mode)
@@ -355,63 +363,6 @@
         () => toast("Kunne ikke kopiere")
       );
     }
-  }
-
-  function countdown() {
-    const now = new Date();
-    const next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-    const s = Math.max(0, Math.floor((next - now) / 1000));
-    const p = (n) => String(n).padStart(2, "0");
-    return `${p(Math.floor(s / 3600))}:${p(Math.floor((s % 3600) / 60))}:${p(s % 60)}`;
-  }
-
-  let cdTimer = null;
-  function openResult() {
-    const t = state.target;
-    const won = state.status === "won";
-    const facts = [
-      ["Land", t.country],
-      ["Sektor", t.sector],
-      ["Børsverdi", `${fmtB(t.mcapBNOK)} kr`],
-      ["P/E", fmtX(t.pe)],
-      ["EV/EBITDA", fmtX(t.evEbitda)],
-      ["FTF eier", fmtPct(t.ownershipPct)],
-      ["Utbytte", fmtPct(t.div)],
-      ["Kurs", t.priceNOK ? `${t.priceNOK >= 100 ? Math.round(t.priceNOK) : t.priceNOK.toFixed(2)} kr` : "–"],
-      ["Stiftet", t.founded || "–"]
-    ];
-    el.resultBody.innerHTML = `
-      ${logoImg(t, "result-logo")}
-      <p class="result-kicker">${won ? `${state.guesses.length}/${MAX_GUESSES}` : "Bedre lykke neste gang"}</p>
-      <h2 class="result-name" id="result-name">${t.name}</h2>
-      <p class="result-ticker">${t.bbgTicker}${t.hq ? ` · ${t.hq}` : ""}</p>
-      ${t.ytd ? sparkline(t.ytd) : ""}
-      <dl class="facts">${facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
-      ${
-        state.mode === "daily"
-          ? `<div class="result-foot">
-              <div class="cd"><span>Neste</span><b id="cd">${countdown()}</b></div>
-              <button class="primary-btn" id="btn-share">Del</button>
-            </div>
-            <button class="ghost-btn wide" id="btn-result-next">Frispill</button>`
-          : `<div class="result-foot">
-              <button class="ghost-btn" id="btn-share">Del</button>
-              <button class="primary-btn" id="btn-result-next">Neste</button>
-            </div>`
-      }`;
-    $("btn-share").addEventListener("click", share);
-    $("btn-result-next").addEventListener("click", () => {
-      closeModal("modal-result");
-      nextRound();
-    });
-    clearInterval(cdTimer);
-    if (state.mode === "daily") {
-      cdTimer = setInterval(() => {
-        const n = $("cd");
-        if (n) n.textContent = countdown();
-      }, 1000);
-    }
-    openModal("modal-result");
   }
 
   /* ---------- game flow ---------- */
@@ -448,11 +399,9 @@
       if (state.status === "won") {
         toast(WIN_WORDS[state.guesses.length - 1]);
         confetti();
-        setTimeout(openResult, 1300);
       } else if (state.status === "lost") {
         renderBoard();
         toast(state.target.name, 2500);
-        setTimeout(openResult, 1600);
       } else if (!isTouch()) {
         el.input.focus();
       }
@@ -465,7 +414,6 @@
     if (state.mode === "daily") recordStats(false, MAX_GUESSES);
     saveDaily();
     renderAll();
-    openResult();
   }
 
   function onHintClick() {
@@ -516,7 +464,6 @@
     if (state.revealing) return;
     state.mode = mode;
     startRound();
-    if (mode === "daily" && state.status !== "playing") openResult();
   }
 
   function nextRound() {
@@ -729,7 +676,6 @@
   function closeModal(id) {
     $(id).classList.add("hidden");
     if (!document.querySelector(".overlay:not(.hidden)")) document.body.classList.remove("modal-open");
-    if (id === "modal-result") clearInterval(cdTimer);
   }
 
   function renderSource() {
@@ -782,7 +728,7 @@
     });
 
     el.btnHint.addEventListener("click", onHintClick);
-    $("btn-show-result").addEventListener("click", openResult);
+    $("btn-share").addEventListener("click", share);
     el.btnNext.addEventListener("click", nextRound);
 
     // Title = hard refresh: a fresh URL bypasses the cached page.
@@ -826,7 +772,7 @@
       localStorage.setItem("folketrygdle_seen_help", "1");
     } catch (e) {}
     if (firstVisit) openModal("modal-help");
-    else if (state.status !== "playing") openResult();
+
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);

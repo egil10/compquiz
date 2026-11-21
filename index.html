@@ -45,13 +45,14 @@
         <span>P/E</span>
         <span title="EV/EBITDA">EV/EBITDA</span>
         <span title="Folketrygdfondets eierandel">Eier</span>
+        <span>Stiftet</span>
       </div>
       <div id="board-rows"></div>
     </section>
 
     <div class="dock">
+      <div id="ytd"></div>
       <section class="entry" id="entry">
-        <div id="ytd"></div>
         <div id="hints" class="hints" aria-live="polite"></div>
         <div id="ac" class="ac hidden" role="listbox"></div>
         <div class="entry-row">
@@ -72,20 +73,13 @@
       </section>
 
       <section id="done-bar" class="done-bar hidden">
-        <button id="btn-show-result" class="ghost-btn" type="button">Resultat</button>
+        <button id="btn-share" class="ghost-btn" type="button">Del</button>
         <button id="btn-next" class="primary-btn" type="button">Neste</button>
       </section>
 
       <p id="source" class="source"></p>
     </div>
   </main>
-
-  <div class="overlay hidden" id="modal-result" role="dialog" aria-modal="true" aria-labelledby="result-name">
-    <div class="sheet">
-      <button class="close-btn" data-close="modal-result" aria-label="Lukk">&times;</button>
-      <div id="result-body"></div>
-    </div>
-  </div>
 
   <div class="overlay hidden" id="modal-stats" role="dialog" aria-modal="true">
     <div class="sheet">
@@ -109,16 +103,17 @@
         <div class="tile s-close"><b>15x</b><i>↓</i></div>
         <div class="tile s-exact"><b>9x</b></div>
         <div class="tile s-wrong"><b>3.5%</b><i>↓</i></div>
+        <div class="tile s-close"><b>1970</b><i>↑</i></div>
       </div>
 
       <ul class="legend">
         <li><span class="sw s-exact"></span>Riktig</li>
-        <li><span class="sw s-close"></span>Nær (±25 %)</li>
+        <li><span class="sw s-close"></span>Nær (±25 %, stiftet ±10 år)</li>
         <li><span class="sw s-wrong"></span>Feil</li>
         <li><span class="sw-txt">↑↓</span>Fasit er høyere / lavere</li>
         <li><span class="sw-txt">–</span>Ikke meningsfullt</li>
       </ul>
-      <p class="help-foot">Grafen viser kursen i år. Hint: stiftet, by og logo.<br />Nytt selskap hver dag.</p>
+      <p class="help-foot">Grafen viser kursen i år. Hint: by, utbytte og logo.<br />Nytt selskap hver dag.</p>
     </div>
   </div>
 
