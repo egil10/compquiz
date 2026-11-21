@@ -36,26 +36,30 @@
   const fmtB = (b) => (b == null ? dash : b >= 1000 ? `${(b / 1000).toFixed(2)}T` : b >= 10 ? `${Math.round(b)}B` : `${b.toFixed(1)}B`);
   const fmtX = (v) => (v == null ? dash : `${v >= 20 ? Math.round(v) : v.toFixed(1)}x`);
   const fmtP = (v, d = 1) => (v == null ? dash : `${v.toFixed(d)}%`);
-  const fmtM = (v) => (v >= 1000 ? `${(v / 1000).toFixed(1)} mrd` : `${Math.round(v)} mill`);
+  const fmtM = (v) => (v >= 1000 ? `${(v / 1000).toFixed(1)}B` : v >= 1 ? `${Math.round(v)}M` : `${v.toFixed(1)}M`);
 
-  // key, label, value getter, cell renderer, numeric?
+  const SHORT_SECTOR = {
+    Konsumvarer: "Konsum",
+    "Varige konsumvarer": "Varig konsum",
+    Telekommunikasjon: "Telekom"
+  };
+
+  // key, label, value getter, cell renderer, numeric?, priority (1 = always shown, higher = hidden on narrow screens)
   const COLS = [
-    ["rank", "#", (r) => r.rank, (r) => r.rank, true],
+    ["rank", "#", (r) => r.rank, (r) => r.rank, true, 3],
     ["name", "Selskap", (r) => r.name, (r) =>
-      `<span class="dt-co">${r.logo ? `<img class="logo" src="${r.logo}" alt="" loading="lazy">` : '<span class="logo logo-fallback">' + r.name[0] + "</span>"}<span><b>${r.name}</b><small>${r.bbgTicker || ""}</small></span></span>`],
-    ["country", "Land", (r) => r.country, (r) => `<span class="dt-flag">${flag(r.iso)}</span>`],
-    ["sector", "Sektor", (r) => r.sector, (r) => r.sector],
-    ["mcap", "Mcap NOK", (r) => r.mcap, (r) => fmtB(r.mcap), true],
-    ["pe", "P/E", (r) => r.pe, (r) => fmtX(r.pe), true],
-    ["ev", "EV/EBITDA", (r) => r.ev, (r) => fmtX(r.ev), true],
-    ["own", "FTF eier", (r) => r.ownershipPct, (r) => fmtP(r.ownershipPct, 2), true],
-    ["value", "FTF-post", (r) => r.marketValueMNOK, (r) => fmtM(r.marketValueMNOK), true],
-    ["fund", "Fond", (r) => r.fund, (r) => r.fund],
-    ["div", "Utbytte", (r) => r.div, (r) => fmtP(r.div), true],
+      `<span class="dt-co">${flag(r.iso)}${r.logo ? `<img class="logo" src="${r.logo}" alt="" loading="lazy">` : '<span class="logo logo-fallback">' + r.name[0] + "</span>"}<span class="dt-nm"><b title="${r.name}">${r.name}</b><small>${r.bbgTicker || ""}</small></span></span>`, false, 1],
+    ["sector", "Sektor", (r) => r.sector, (r) => SHORT_SECTOR[r.sector] || r.sector, false, 2],
+    ["mcap", "Mcap", (r) => r.mcap, (r) => fmtB(r.mcap), true, 1],
+    ["pe", "P/E", (r) => r.pe, (r) => fmtX(r.pe), true, 1],
+    ["ev", "EV/EBITDA", (r) => r.ev, (r) => fmtX(r.ev), true, 2],
+    ["own", "Eier", (r) => r.ownershipPct, (r) => fmtP(r.ownershipPct, r.ownershipPct >= 10 ? 1 : 2), true, 2],
+    ["value", "Post", (r) => r.marketValueMNOK, (r) => fmtM(r.marketValueMNOK), true, 3],
+    ["fund", "Fond", (r) => r.fund, (r) => `<span class="dt-fund">${r.fund}</span>`, false, 3],
+    ["div", "Utb.", (r) => r.div, (r) => fmtP(r.div), true, 3],
     ["ytd", "I år", (r) => r.ytd, (r) =>
-      r.ytd == null ? dash : `<span class="${r.ytd >= 0 ? "pos" : "neg"}">${r.ytd >= 0 ? "+" : ""}${Math.round(r.ytd)}%</span>`, true],
-    ["founded", "Stiftet", (r) => r.founded, (r) => r.founded ?? dash, true],
-    ["hq", "By", (r) => r.hq, (r) => (r.hq || "").split("/")[0].trim() || dash]
+      r.ytd == null ? dash : `<span class="${r.ytd >= 0 ? "pos" : "neg"}">${r.ytd >= 0 ? "+" : ""}${Math.round(r.ytd)}%</span>`, true, 1],
+    ["founded", "Stiftet", (r) => r.founded, (r) => r.founded ?? dash, true, 3]
   ];
 
   const state = { sort: "rank", dir: 1, q: "", country: "ALL" };
@@ -64,9 +68,10 @@
     String(s || "").toLowerCase().replace(/ø/g, "o").replace(/æ/g, "ae").normalize("NFD").replace(/[̀-ͯ]/g, "");
 
   function renderHead() {
-    $("thead").innerHTML = COLS.map(([key, label, , , num]) => {
+    const tips = { mcap: "Børsverdi i NOK", own: "Folketrygdfondets eierandel", value: "Folketrygdfondets post i NOK", div: "Utbytteavkastning", ytd: "Kursutvikling i år" };
+    $("thead").innerHTML = COLS.map(([key, label, , , num, prio]) => {
       const active = state.sort === key;
-      return `<th class="${num ? "num" : ""}${active ? " active" : ""}" data-key="${key}">${label}<i>${active ? (state.dir > 0 ? "↑" : "↓") : ""}</i></th>`;
+      return `<th class="${num ? "num" : ""}${active ? " active" : ""} p${prio}" data-key="${key}"${tips[key] ? ` title="${tips[key]}"` : ""}>${label}<i>${active ? (state.dir > 0 ? "↑" : "↓") : ""}</i></th>`;
     }).join("");
     $("thead").querySelectorAll("th").forEach((th) =>
       th.addEventListener("click", () => {
@@ -102,7 +107,7 @@
     const col = COLS.find((c) => c[0] === state.sort);
     const list = rows
       .filter((r) => state.country === "ALL" || r.country === state.country)
-      .filter((r) => !q || norm([r.name, r.bbgTicker, r.sector, r.hq, r.fund].join(" ")).includes(q))
+      .filter((r) => !q || norm([r.name, r.bbgTicker, r.sector, r.hq, r.fund, r.country].join(" ")).includes(q))
       .sort((a, b) => {
         const va = col[2](a), vb = col[2](b);
         if (va == null && vb == null) return 0;
@@ -112,7 +117,7 @@
       });
     $("count").textContent = `${list.length} av ${rows.length} selskaper`;
     $("tbody").innerHTML = list
-      .map((r) => `<tr>${COLS.map(([key, , , cell, num]) => `<td class="${num ? "num" : ""} c-${key}">${cell(r)}</td>`).join("")}</tr>`)
+      .map((r) => `<tr>${COLS.map(([key, , , cell, num, prio]) => `<td class="${num ? "num" : ""} c-${key} p${prio}">${cell(r)}</td>`).join("")}</tr>`)
       .join("");
   }
 
