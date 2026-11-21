@@ -626,6 +626,66 @@
       "name": "Salix Group",
       "source": "https://www.salixgroup.se/en/",
       "note": "Company says the group was formed in 2006; its oldest unit, Thomée, dates from 1892"
+    },
+    "FTF002021": {
+      "year": 1814,
+      "name": "Kongsberg Maritime",
+      "source": "stockanalysis.com/quote/osl/KMAR/statistics (price 2026-11-20); Borsdata mcap 48,766 MNOK 2026-11-20; Euronext listing 23 Apr 2026",
+      "note": "Listed Euronext Oslo Børs 23 Apr 2026 (ticker KMAR) after demerger from Kongsberg Gruppen; state owns ~50%. Founded = Kongsberg Våpenfabrikk 1814 heritage (judgement; ASA itself 2026). No dividend paid yet (policy 40-60% of net profit) so div null."
+    },
+    "FTF001719": {
+      "year": 1996,
+      "name": "Synaferd",
+      "source": "Brreg 932441845 (stiftet 2023-10-25, Karenslyst allé 56 Oslo); Konkurransetilsynet: Synaferd owns 100% of Visma AS; FTF holdings list 31.12.2024",
+      "note": "Founded = Visma (1996); Synaferd AS entity itself incorporated 2023. Private (Hg-led)."
+    },
+    "FTF001873": {
+      "year": 1999,
+      "name": "Amasten Fastighets",
+      "source": "SBB press release on delisting (last trading day 4 Feb 2022, Nasdaq First North Premier); Affärsvärlden/PitchBook founded 1999, Stockholm",
+      "note": "Founding year 1999 per Affärsvärlden/PitchBook (corporate entity; renamed from Amasten Holding 2017) - moderate confidence. Portfolio later spun out by SBB as Neobo Fastigheter (listed 2023)."
+    },
+    "FTF002032": {
+      "year": 2026,
+      "name": "Nedhalia Topco",
+      "source": "northdata.com (Nedhalia Topco Sàrl, Luxembourg RCS B304108, reg. Jan 2026); norvato.com (Nedhalia Holding/TopCo as shareholders, main office Amersfoort); PrivateEquityWire 20 May 2026 (Hg moves ~EUR500m of Visma assets into Luxembourg vehicle Norvato)",
+      "note": "Luxembourg Sàrl, not Norwegian; parent of Norvato (SaaS portfolio carved out of Visma, ~EUR375m 2025 revenue per Norvato deck). HQ = Norvato operating HQ Amersfoort (legal seat Luxembourg). Founded = 2026 carve-out (judgement)."
+    },
+    "FTF002045": {
+      "year": 1982,
+      "name": "Savox Communications",
+      "source": "stockanalysis.com/quote/hel/SAVOX/statistics (mcap EUR 148.95m, price 2026-11-20), converted at EUR/NOK 10.454 (toll.no rate 12-25 Nov 2026); IPO Nasdaq Helsinki June 2026",
+      "note": "Listed Nasdaq Helsinki ~22 Jun 2026 (ticker SAVOX), IPO mcap ~EUR190m. No dividend paid yet. Founded 1982 per CB Insights/business databases."
+    },
+    "FTF001851": {
+      "year": 1853,
+      "name": "Recovery Holdco",
+      "source": "Brreg 935082315 Recovery Holdco AS (stiftet 2025-02-12, Oslo); Jøtul recapitalisation press releases Mar/Apr 2025 (GlobeNewswire)",
+      "note": "Founded = Jøtul (1853); holdco entity 2025, created when bondholders converted NOK 562m of bonds to equity. HQ = Jøtul at Kråkerøy, Fredrikstad."
+    },
+    "FTF001113": {
+      "year": 2012,
+      "name": "Bakkegruppen",
+      "source": "Brreg 998817862 Bakkegruppen AS (stiftet 2012-09-10, Aurskog); bakke-as.no",
+      "note": "Founded 2012 = legal entity; company site says 'over 20 years' of homebuilding (related Bakke Bolig Aurskog AS from 2009) - low confidence on business founding. Has had bonds listed on Oslo (Nordic ABM), equity unlisted. Offices Aurskog and Skøyen (Oslo)."
+    },
+    "FTF001363": {
+      "year": 1979,
+      "name": "Inteno Group",
+      "source": "CB Insights (founded 1979; another source 1980); Genexis/Cision 31 Jan 2023 (Inteno Group becomes Genexis Group, owned by Accent Equity-led consortium)",
+      "note": "Never found as exchange-listed equity; private (Accent Equity). Renamed Genexis Group 2023; old site intenogroup.com. Founding 1979 low-moderate confidence (1980 also cited)."
+    },
+    "FTF002000": {
+      "year": 2020,
+      "name": "Cynca Nordic",
+      "source": "MarketScreener insider data (Conny Ryk founder of Vestum 2020-12-31); Yahoo (listed shell WeSC inc. 1999, renamed Vestum 2021); Vestum->Cynca rename July 2026",
+      "note": "Founding year only requested. 2020 = Vestum founded by Conny Ryk (TradingView says 2021); listed legal entity dates to 1999 as WeSC."
+    },
+    "FTF002050": {
+      "year": 1983,
+      "name": "Sotkamo Silver",
+      "source": "Yahoo Finance/StockAnalysis/Simply Wall St profiles (incorporated 1983); Skatteverket (renamed Gexco AB -> Sotkamo Silver AB 2010)",
+      "note": "Founding year only requested. 1983 = incorporation; 2010 = rename to Sotkamo Silver (judgement: 1983)."
     }
   },
   "website": {
@@ -670,7 +730,15 @@
     "FTF002016": "humblegroup.com",
     "FTF001631": "solstad.com",
     "FTF002041": "panoroenergy.com",
-    "FTF001234": "electroluxgroup.com"
+    "FTF001234": "electroluxgroup.com",
+    "FTF002021": "kongsbergmaritime.com",
+    "FTF001719": "visma.com",
+    "FTF001873": "amasten.se",
+    "FTF002032": "norvato.com",
+    "FTF002045": "savox.com",
+    "FTF001851": "jotul.com",
+    "FTF001113": "bakke-as.no",
+    "FTF001363": "genexis.eu"
   },
   "logo_url": {
     "FTF001167": "https://carlsberg-group-2022.euwest01.umbraco.io/media/lpzj40jb/carlsberg-group_rgb.png",
@@ -1031,6 +1099,86 @@
     "FTF002061": "Dansk IT-konsern fra Aarhus som utvikler skreddersydd programvare innen helse, finans og sky.",
     "FTF002063": "Svensk app for nummeridentifisering og spamblokkering med over 400 millioner brukere.",
     "FTF002066": "Svensk cybersikkerhetsselskap som lager fysiske sikkerhetsnøkler mot phishing.",
-    "FTF002067": "Elbillader-selskap fra Stavanger som selger smarte ladestasjoner for hjem og borettslag."
+    "FTF002067": "Elbillader-selskap fra Stavanger som selger smarte ladestasjoner for hjem og borettslag.",
+    "FTF002021": "Leverer navigasjon, automasjon og fremdrift til skip; utskilt fra forsvarskonsern i 2026",
+    "FTF001719": "Holdingselskap som eier hele programvarekonsernet Visma, kjent for regnskap- og lønnssystemer",
+    "FTF001873": "Svensk eiendomsselskap med utleieboliger i mindre byer; kjøpt opp av SBB i 2022",
+    "FTF002032": "Toppselskap for en gruppe på rundt 30 programvareselskaper skilt ut fra Visma i 2026",
+    "FTF002045": "Lager kommunikasjonsutstyr og hodesett for brannvesen, politi og forsvar; børsnotert i 2026",
+    "FTF001851": "Eier en norsk ovnsprodusent fra 1853; obligasjonseierne tok over hele selskapet i 2025",
+    "FTF001113": "Boligutvikler på Romerike med egen husfabrikk som leverer nøkkelferdige boliger",
+    "FTF001363": "Svensk utvikler av bredbåndsrutere og programvare for fiber; slått sammen med Genexis i 2023"
+  },
+  "manual_market": {
+    "FTF002021": {
+      "mcapBNOK": 48.77,
+      "pe": 19.48,
+      "evEbitda": 12.54,
+      "website": "kongsbergmaritime.com",
+      "hq": "Kongsberg",
+      "status": "listed",
+      "founded": 1814,
+      "source": "stockanalysis.com/quote/osl/KMAR/statistics (price 2026-11-20); Borsdata mcap 48,766 MNOK 2026-11-20; Euronext listing 23 Apr 2026",
+      "name": "Kongsberg Maritime"
+    },
+    "FTF001719": {
+      "website": "visma.com",
+      "hq": "Oslo",
+      "status": "unlisted",
+      "founded": 1996,
+      "source": "Brreg 932441845 (stiftet 2023-10-25, Karenslyst allé 56 Oslo); Konkurransetilsynet: Synaferd owns 100% of Visma AS; FTF holdings list 31.12.2024",
+      "name": "Synaferd"
+    },
+    "FTF001873": {
+      "website": "amasten.se",
+      "hq": "Stockholm",
+      "status": "delisted 2022",
+      "founded": 1999,
+      "source": "SBB press release on delisting (last trading day 4 Feb 2022, Nasdaq First North Premier); Affärsvärlden/PitchBook founded 1999, Stockholm",
+      "name": "Amasten Fastighets"
+    },
+    "FTF002032": {
+      "website": "norvato.com",
+      "hq": "Amersfoort",
+      "status": "unlisted",
+      "founded": 2026,
+      "source": "northdata.com (Nedhalia Topco Sàrl, Luxembourg RCS B304108, reg. Jan 2026); norvato.com (Nedhalia Holding/TopCo as shareholders, main office Amersfoort); PrivateEquityWire 20 May 2026 (Hg moves ~EUR500m of Visma assets into Luxembourg vehicle Norvato)",
+      "name": "Nedhalia Topco"
+    },
+    "FTF002045": {
+      "mcapBNOK": 1.56,
+      "pe": 13.4,
+      "evEbitda": 12.56,
+      "website": "savox.com",
+      "hq": "Espoo",
+      "status": "listed",
+      "founded": 1982,
+      "source": "stockanalysis.com/quote/hel/SAVOX/statistics (mcap EUR 148.95m, price 2026-11-20), converted at EUR/NOK 10.454 (toll.no rate 12-25 Nov 2026); IPO Nasdaq Helsinki June 2026",
+      "name": "Savox Communications"
+    },
+    "FTF001851": {
+      "website": "jotul.com",
+      "hq": "Fredrikstad",
+      "status": "unlisted",
+      "founded": 1853,
+      "source": "Brreg 935082315 Recovery Holdco AS (stiftet 2025-02-12, Oslo); Jøtul recapitalisation press releases Mar/Apr 2025 (GlobeNewswire)",
+      "name": "Recovery Holdco"
+    },
+    "FTF001113": {
+      "website": "bakke-as.no",
+      "hq": "Aurskog",
+      "status": "unlisted",
+      "founded": 2012,
+      "source": "Brreg 998817862 Bakkegruppen AS (stiftet 2012-09-10, Aurskog); bakke-as.no",
+      "name": "Bakkegruppen"
+    },
+    "FTF001363": {
+      "website": "genexis.eu",
+      "hq": "Stockholm",
+      "status": "unlisted",
+      "founded": 1979,
+      "source": "CB Insights (founded 1979; another source 1980); Genexis/Cision 31 Jan 2023 (Inteno Group becomes Genexis Group, owned by Accent Equity-led consortium)",
+      "name": "Inteno Group"
+    }
   }
 }

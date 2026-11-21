@@ -509,7 +509,7 @@ window.PORTFOLIO_COMPANIES = [
     "ticker": "KMAR",
     "bbgTicker": "KMAR NO",
     "iso": "NO",
-    "hq": "Kongsberg / Ålesund",
+    "hq": "Kongsberg",
     "aliases": [
       "Rolls-Royce Commercial Marine"
     ],
@@ -520,7 +520,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 5.05,
     "shares": 44437346,
     "isMajorPool": true,
-    "clue": "Verdensledende leverandør av maritim teknologi, fremdriftssystemer, dynamisk posisjonering (DP) og dekksutstyr til den globale handelsflåten."
+    "clue": "Leverer navigasjon, automasjon og fremdrift til skip; utskilt fra forsvarskonsern i 2026"
   },
   {
     "rank": 26,
@@ -1136,7 +1136,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.91,
     "shares": 1506564909,
     "isMajorPool": true,
-    "clue": "Eierselskapet for Folketrygdfondets investering i den norske programvarekjempen Visma, Europas ledende leverandør av skybasert regnskaps- og ERP-programvare."
+    "clue": "Holdingselskap som eier hele programvarekonsernet Visma, kjent for regnskap- og lønnssystemer"
   },
   {
     "rank": 56,
@@ -4150,7 +4150,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 2.67,
     "shares": 3779464,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling) (SFT, børsverdi ca. 2.4 mrd. kr)."
+    "clue": "Svensk eiendomsselskap med utleieboliger i mindre byer; kjøpt opp av SBB i 2022"
   },
   {
     "rank": 205,
@@ -4609,7 +4609,7 @@ window.PORTFOLIO_COMPANIES = [
     "ticker": "NEDH",
     "bbgTicker": "NEDH NO",
     "iso": "NO",
-    "hq": "Oslo",
+    "hq": "Amersfoort",
     "aliases": [
       "ECIT"
     ],
@@ -4620,7 +4620,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.91,
     "shares": 1491500,
     "isMajorPool": false,
-    "clue": "Eierselskapet knyttet til det rasktvoksende nordiske regnskaps-, økonomi- og IT-konsernet ECIT."
+    "clue": "Toppselskap for en gruppe på rundt 30 programvareselskaper skilt ut fra Visma i 2026"
   },
   {
     "rank": 229,
@@ -6165,7 +6165,7 @@ window.PORTFOLIO_COMPANIES = [
     "ticker": "SAVOX",
     "bbgTicker": "SAVOX FH",
     "iso": "FI",
-    "hq": "Helsingfors",
+    "hq": "Espoo",
     "aliases": [],
     "country": "Finland",
     "sector": "Telekommunikasjon",
@@ -6174,7 +6174,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.48,
     "shares": 85000,
     "isMajorPool": false,
-    "clue": "Finsk selskap innen telekomsektoren (mobilnett, bredbånd, fiber eller kommunikasjonsutstyr) (SFT, børsverdi ca. 2.2 mrd. kr)."
+    "clue": "Lager kommunikasjonsutstyr og hodesett for brannvesen, politi og forsvar; børsnotert i 2026"
   },
   {
     "rank": 309,
@@ -6558,7 +6558,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 10.78,
     "shares": 60662,
     "isMajorPool": false,
-    "clue": "Eierselskapet knyttet til den tradisjonsrike norske støpejerns- og vedovnsprodusenten Jøtul i Fredrikstad (grunnlagt 1853)."
+    "clue": "Eier en norsk ovnsprodusent fra 1853; obligasjonseierne tok over hele selskapet i 2025"
   },
   {
     "rank": 329,
@@ -6588,7 +6588,7 @@ window.PORTFOLIO_COMPANIES = [
     "ticker": "BAKKE",
     "bbgTicker": "BAKKE NO",
     "iso": "NO",
-    "hq": "Aurskog / Oslo",
+    "hq": "Aurskog",
     "aliases": [
       "Bakke Bolig",
       "Mestergruppen"
@@ -6600,7 +6600,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.05,
     "shares": 840092,
     "isMajorPool": false,
-    "clue": "Norsk boligutvikler og entreprenør på Østlandet innen leilighets- og småhusprosjekter."
+    "clue": "Boligutvikler på Romerike med egen husfabrikk som leverer nøkkelferdige boliger"
   },
   {
     "rank": 331,
@@ -6663,7 +6663,7 @@ window.PORTFOLIO_COMPANIES = [
     "ticker": "",
     "bbgTicker": "",
     "iso": "SE",
-    "hq": "",
+    "hq": "Stockholm",
     "aliases": [],
     "country": "Sverige",
     "sector": "Telekommunikasjon",
@@ -6672,6 +6672,6 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.44,
     "shares": 44395,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen telekommunikasjon."
+    "clue": "Svensk utvikler av bredbåndsrutere og programvare for fiber; slått sammen med Genexis i 2023"
   }
 ];
