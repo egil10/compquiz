@@ -44,7 +44,632 @@
       "year": 1978,
       "name": "Indutrade",
       "source": ""
+    },
+    "FTF001311": {
+      "year": 2010,
+      "name": "Hafnia",
+      "source": "https://hafnia.com/about-hafnia/",
+      "note": "Predecessor Tankers Inc./Hafnia Management founded 2010; Hafnia Tankers formed 2012-13; merged with BW Tankers 2019"
+    },
+    "FTF001163": {
+      "year": 1935,
+      "name": "BW LPG",
+      "source": "https://bwlpg.com/about/our-history",
+      "note": "Company cites origin in Bergesen (1935); BW LPG listed 2013"
+    },
+    "FTF001095": {
+      "year": 1968,
+      "name": "Atea",
+      "source": "https://snl.no/Atea",
+      "note": "Founded as Merkantildata"
+    },
+    "FTF001165": {
+      "year": 2008,
+      "name": "Cadeler",
+      "source": "https://companydata.dk/en/virksomhed/31180503-cadeler-a-s",
+      "note": "Founded as Blue Ocean Ships A/S; later Swire Blue Ocean, renamed Cadeler 2020"
+    },
+    "FTF001854": {
+      "year": 1985,
+      "name": "SoftwareOne",
+      "source": "https://en.wikipedia.org/wiki/SoftwareOne",
+      "note": "Swiss company; listed in Oslo after Crayon merger"
+    },
+    "FTF001240": {
+      "year": 2001,
+      "name": "Elmera Group",
+      "source": "https://en.wikipedia.org/wiki/Fjordkraft",
+      "note": "Founded as Fjordkraft"
+    },
+    "FTF001896": {
+      "year": 1995,
+      "name": "Euronav",
+      "source": "https://en.wikipedia.org/wiki/CMB.TECH",
+      "note": "Euronav founded 1995 as CMB tanker arm; renamed CMB.TECH 2024"
+    },
+    "FTF001166": {
+      "year": 1944,
+      "name": "Hiab",
+      "source": "https://en.wikipedia.org/wiki/Hiab",
+      "note": "Hydrauliska Industri AB founded 1944 in Hudiksvall; formerly Cargotec"
+    },
+    "FTF001167": {
+      "year": 1847,
+      "name": "Carlsberg Breweries",
+      "source": "https://en.wikipedia.org/wiki/Carlsberg_Group",
+      "note": ""
+    },
+    "FTF001947": {
+      "year": 1974,
+      "name": "OEM International",
+      "source": "https://www.oem.se/en/about-oem/history",
+      "note": "Founded in Tranås as OEM Automatic"
+    },
+    "FTF001586": {
+      "year": 2004,
+      "name": "Sagax",
+      "source": "https://www.cbinsights.com/company/sagax",
+      "note": "Property business started 2004 (legal entity incorporated 1995 as Effnet, renamed 2004); aggregator-sourced"
+    },
+    "FTF001880": {
+      "year": 1964,
+      "name": "Asker Healthcare Group",
+      "source": "https://www.nalka.com/?p=2018",
+      "note": "Roots in 1964 medical supplies business (Tamro/OneMed); Asker group name later"
+    },
+    "FTF001852": {
+      "year": 2019,
+      "name": "Röko",
+      "source": "https://stockanalysis.com/quote/sto/ROKO.B/company/",
+      "note": ""
+    },
+    "FTF002009": {
+      "year": 1996,
+      "name": "General Oceans",
+      "source": "https://live.euronext.com/en/products/equities/company-news/2026-03-09-general-oceans-intends-apply-listing-euronext-oslo-bors",
+      "note": "Core business Nortek founded 1996; General Oceans platform established 2021"
+    },
+    "FTF001871": {
+      "year": 1792,
+      "name": "ALM Brand",
+      "source": "https://en.wikipedia.org/wiki/Alm._Brand",
+      "note": ""
+    },
+    "FTF001866": {
+      "year": 2015,
+      "name": "AddLife",
+      "source": "https://news.cision.com/addlife/r/addlife-listed-on-nasdaq-stockholm-main-market,c2727844",
+      "note": "Spun off from Addtech; formed 2015, listed 2016"
+    },
+    "FTF001384": {
+      "year": 2008,
+      "name": "Karnell Group",
+      "source": "https://www.cbinsights.com/company/karnell/",
+      "note": "Founded by Karlander and Rignell 2008; listed group entity formed 2017"
+    },
+    "FTF001534": {
+      "year": 1917,
+      "name": "Orion",
+      "source": "https://en.wikipedia.org/wiki/Orion_Corporation",
+      "note": ""
+    },
+    "FTF001915": {
+      "year": 1994,
+      "name": "Hoist Finance",
+      "source": "https://int.hoistfinance.com/about-us/",
+      "note": ""
+    },
+    "FTF001932": {
+      "year": 1995,
+      "name": "Medicover",
+      "source": "https://en.wikipedia.org/wiki/Medicover",
+      "note": ""
+    },
+    "FTF001074": {
+      "year": 1862,
+      "name": "Alleima",
+      "source": "https://en.wikipedia.org/wiki/Alleima",
+      "note": "Roots in Sandvik (1862); demerged from Sandvik and listed 2022"
+    },
+    "FTF001964": {
+      "year": 2004,
+      "name": "Sdiptech",
+      "source": "https://en.wikipedia.org/wiki/Sdiptech",
+      "note": ""
+    },
+    "FTF001853": {
+      "year": 1980,
+      "name": "SENTIA",
+      "source": "https://live.euronext.com/en/products/equities/company-news/2025-05-26-nordic-construction-group-sentia-intends-apply-listing",
+      "note": "Main business HENT established 1980 in Trondheim; Sentia ASA holding incorporated 2012"
+    },
+    "FTF001909": {
+      "year": 2003,
+      "name": "Hagar",
+      "source": "https://en.wikipedia.org/wiki/Hagar_(company)",
+      "note": "Hagar hf. formed 2003; key businesses older (Hagkaup 1959, Bónus 1989)"
+    },
+    "FTF001955": {
+      "year": 2000,
+      "name": "RaySearch Laboratories",
+      "source": "https://en.wikipedia.org/wiki/RaySearch_Laboratories",
+      "note": ""
+    },
+    "FTF001960": {
+      "year": 2013,
+      "name": "RVRC Holding",
+      "source": "https://corporate.revolutionrace.com/en/revolutionrace-in-brief/",
+      "note": "RevolutionRace; some sources say 2014 (launch)"
+    },
+    "FTF001903": {
+      "year": 2006,
+      "name": "Festi",
+      "source": "https://stockanalysis.com/quote/ice/FESTI/company",
+      "note": "Company incorporated 2006 (formerly N1 hf, N1 brand from 2007 Esso/Bílanaust merger; renamed Festi 2018). Low confidence: predecessor Olíufélagið (Esso) far older"
+    },
+    "FTF001938": {
+      "year": 1993,
+      "name": "NCAB Group",
+      "source": "https://www.ncabgroup.com",
+      "note": ""
+    },
+    "FTF001967": {
+      "year": 1825,
+      "name": "SJF Bank",
+      "source": "https://stockanalysis.com/quote/cph/SJF/company/",
+      "note": "Formerly Sparekassen Sjælland-Fyn (2016 merger); roots to Holbæk Amts Sparekasse 1825"
+    },
+    "FTF001435": {
+      "year": 1944,
+      "name": "Lundbergs",
+      "source": "https://en.wikipedia.org/wiki/L_E_Lundbergf%C3%B6retagen",
+      "note": ""
+    },
+    "FTF002023": {
+      "year": 1959,
+      "name": "Lindab International",
+      "source": "https://en.wikipedia.org/wiki/Lindab",
+      "note": ""
+    },
+    "FTF001899": {
+      "year": 1971,
+      "name": "Embla Medical",
+      "source": "https://en.wikipedia.org/wiki/%C3%96ssur",
+      "note": "Formerly Össur"
+    },
+    "FTF001934": {
+      "year": 1997,
+      "name": "MilDef Group",
+      "source": "https://stockanalysis.com/quote/sto/MILDEF/company",
+      "note": ""
+    },
+    "FTF001714": {
+      "year": 1889,
+      "name": "SWECO",
+      "source": "https://swecogroup.com/about-us/our-history",
+      "note": "Oldest predecessor Theorells (1889); Sweco name/formation 1997"
+    },
+    "FTF001560": {
+      "year": 1866,
+      "name": "Ratos",
+      "source": "https://en.wikipedia.org/wiki/Ratos",
+      "note": "Origins in Söderberg & Haak (1866)"
+    },
+    "FTF001869": {
+      "year": 1948,
+      "name": "Alimak Group",
+      "source": "https://corporate.alimakgroup.com/en/",
+      "note": ""
+    },
+    "FTF001916": {
+      "year": 2014,
+      "name": "Instalco",
+      "source": "https://en.wikipedia.org/wiki/Instalco",
+      "note": ""
+    },
+    "FTF001918": {
+      "year": 1999,
+      "name": "INVISIO",
+      "source": "https://www.invisio.com",
+      "note": ""
+    },
+    "FTF001688": {
+      "year": 2010,
+      "name": "Stendörren Fastigheter",
+      "source": "https://stockanalysis.com/quote/sto/STEF.B/company",
+      "note": "Incorporated 2010 (as Header Compression Sweden Holding AB), renamed 2014"
+    },
+    "FTF001902": {
+      "year": 2018,
+      "name": "Fastighetsbolaget Emilshus",
+      "source": "https://stockanalysis.com/quote/sto/EMIL.B/company",
+      "note": ""
+    },
+    "FTF001987": {
+      "year": 1906,
+      "name": "Bergman & Beving",
+      "source": "https://en.wikipedia.org/wiki/Bergman_%26_Beving",
+      "note": ""
+    },
+    "FTF001931": {
+      "year": 2001,
+      "name": "MedCap",
+      "source": "https://stockanalysis.com/quote/sto/MCAP/company/",
+      "note": ""
+    },
+    "FTF001910": {
+      "year": 2008,
+      "name": "Hanza",
+      "source": "https://hanza.com",
+      "note": ""
+    },
+    "FTF001939": {
+      "year": 2000,
+      "name": "Nivika Fastigheter",
+      "source": "https://www.affarsvarlden.se/analys/nivika-tar-fastigheterna-till-borsen",
+      "note": ""
+    },
+    "FTF002012": {
+      "year": 1983,
+      "name": "GRK Infra",
+      "source": "https://stockanalysis.com/quote/hel/GRK/company",
+      "note": "Founded as Graniittirakennus Kallio"
+    },
+    "FTF002030": {
+      "year": 2001,
+      "name": "Napatech",
+      "source": "https://en.wikipedia.org/wiki/Napatech",
+      "note": ""
+    },
+    "FTF001975": {
+      "year": 1982,
+      "name": "UIE",
+      "source": "https://stockanalysis.com/quote/lon/0KGQ/company",
+      "note": ""
+    },
+    "FTF001846": {
+      "year": 2020,
+      "name": "Moreld",
+      "source": "https://globalmaritime.com/moreld-group/",
+      "note": "Formed 2020 by HitecVision combining portfolio companies"
+    },
+    "FTF002040": {
+      "year": 2006,
+      "name": "Ovzon",
+      "source": "https://en.wikipedia.org/wiki/Ovzon",
+      "note": ""
+    },
+    "FTF001950": {
+      "year": 2018,
+      "name": "Paratus Energy Services",
+      "source": "https://www.cbinsights.com/company/paratus-energy",
+      "note": "Founded 2018 as Seadrill New Finance in Seadrill's restructuring; renamed Paratus in 2022"
+    },
+    "FTF001385": {
+      "year": 1947,
+      "name": "KB Components",
+      "source": "https://storage.mfn.se/a/kb-components/cc12f902-8874-4abb-a2b6-8294e6798979/kb-components-annual-report-2025.pdf",
+      "note": ""
+    },
+    "FTF001943": {
+      "year": 2011,
+      "name": "NTG Nordic Transport Group",
+      "source": "https://ntg.com/about/",
+      "note": ""
+    },
+    "FTF001242": {
+      "year": 2007,
+      "name": "Endúr",
+      "source": "https://hk.finance.yahoo.com/quote/ENDUR.OL/profile",
+      "note": "Low confidence. Legal entity is ex-Bergen Group ASA, cited as founded 2007; renamed Endúr in 2019 after the Endúr Fabricom merger"
+    },
+    "FTF001878": {
+      "year": 2007,
+      "name": "Archer",
+      "source": "https://stockanalysis.com/quote/osl/ARCH/company/",
+      "note": "Founded 2007 as Seawell (Seadrill spin-off); became Archer in 2011 after merging with Allis-Chalmers"
+    },
+    "FTF001983": {
+      "year": 2020,
+      "name": "Vimian Group",
+      "source": "https://movora.com/news/fidelio-forms-vimian-a-global-powerhouse-within-animal-health",
+      "note": "Group formed by Fidelio Capital in 2020; its first unit (Nextmune) dates from a 2015 investment"
+    },
+    "FTF001997": {
+      "year": 1976,
+      "name": "Bohus",
+      "source": "https://en.wikipedia.org/wiki/Bohus_(retailer)",
+      "note": "Founded as Samarbeidende Møbelhandlere AS"
+    },
+    "FTF001926": {
+      "year": 1999,
+      "name": "Kvika banki",
+      "source": "https://en.wikipedia.org/wiki/MP_Bank",
+      "note": "Predecessor MP Verðbréf/MP banki founded 1999; became Kvika after merging with Straumur in 2015"
+    },
+    "FTF001707": {
+      "year": 2024,
+      "name": "Sveafastigheter",
+      "source": "https://www.realtid.se/spara-placera/handelsstart-for-avknoppade-sveafastigheter/",
+      "note": "Low confidence. Listed company was formed in 2024 as a spin-off of SBB's residential portfolio; the original Sveafastigheter Bostad developer dates to 2014/15"
+    },
+    "FTF001935": {
+      "year": 1906,
+      "name": "Momentum Group",
+      "source": "https://stockanalysis.com/quote/sto/MMGR.B/company",
+      "note": "Roots in Bergman & Beving (1906); current listed group was spun off from Alligo in 2022"
+    },
+    "FTF001965": {
+      "year": 2006,
+      "name": "Smartoptics Group",
+      "source": "https://www.cbinsights.com/company/smartoptics",
+      "note": ""
+    },
+    "FTF001999": {
+      "year": 2016,
+      "name": "BW Energy",
+      "source": "https://bwenergy.no/about-us/our-history",
+      "note": "Started as BW Offshore's E&P division"
+    },
+    "FTF001526": {
+      "year": 1973,
+      "name": "Odfjell Technology",
+      "source": "https://stockanalysis.com/quote/osl/OTL/company/",
+      "note": "Business dates to Odfjell Drilling (1973); demerged as a standalone company in 2022"
+    },
+    "FTF001449": {
+      "year": 1984,
+      "name": "Medistim",
+      "source": "https://stockanalysis.com/quote/osl/MEDI/company",
+      "note": ""
+    },
+    "FTF002002": {
+      "year": 2007,
+      "name": "Eastnine",
+      "source": "https://www.eastnine.com/en/history",
+      "note": "Founded as East Capital Explorer; renamed 2017"
+    },
+    "FTF002031": {
+      "year": 1944,
+      "name": "Nederman Holding",
+      "source": "https://www.nederman.com/en-gb/about-us/our-history",
+      "note": ""
+    },
+    "FTF002061": {
+      "year": 1996,
+      "name": "Trifork Group",
+      "source": "https://investor.trifork.com/?p=3947",
+      "note": "Company-cited year; the Danish A/S was registered in 1998"
+    },
+    "FTF001957": {
+      "year": 1942,
+      "name": "Rejlers",
+      "source": "https://www.rejlers.com/about-rejlers/history/",
+      "note": ""
+    },
+    "FTF002005": {
+      "year": 1981,
+      "name": "Ependion",
+      "source": "https://stenaadactum.com/en/portfolio-companies/ependion/",
+      "note": "Founded as Beijer Electronics in 1981; renamed Ependion in 2023"
+    },
+    "FTF001958": {
+      "year": 2001,
+      "name": "Revenio Group",
+      "source": "https://it.finance.yahoo.com/quote/0KFH.L/profile",
+      "note": "Low confidence. Legal entity (ex-Done Solutions) cited as incorporated 2001; the Icare business is cited as 2003"
+    },
+    "FTF001901": {
+      "year": 2005,
+      "name": "Enity Holding",
+      "source": "https://www.preqin.com/data/profile/asset/bluestep-bank-ab/240839",
+      "note": "Founded as Bluestep (mortgage lender) in 2005"
+    },
+    "FTF002014": {
+      "year": 1934,
+      "name": "Hampidjan",
+      "source": "https://www.worldfishing.net/news/global-reach-icelandic-roots/1469393.article",
+      "note": ""
+    },
+    "FTF001956": {
+      "year": 2008,
+      "name": "Reitir",
+      "source": "https://stockanalysis.com/quote/ice/REITIR/company/",
+      "note": "Low confidence. Incorporation year per profiles; roots go back to the Kringlan mall (1987)"
+    },
+    "FTF001992": {
+      "year": 2021,
+      "name": "Anora Group",
+      "source": "https://en.wikipedia.org/wiki/Anora_Group",
+      "note": "Created by the 2021 merger of Altia and Arcus"
+    },
+    "FTF001952": {
+      "year": 1994,
+      "name": "Proact IT Group",
+      "source": "https://nordic9.com/companies/proact-it-group-ab-company0402747678/",
+      "note": ""
+    },
+    "FTF002063": {
+      "year": 2009,
+      "name": "Truecaller",
+      "source": "https://en.wikipedia.org/wiki/Truecaller",
+      "note": ""
+    },
+    "FTF001394": {
+      "year": 2018,
+      "name": "Klaveness Combination Carriers",
+      "source": "https://www.klaveness.com/businesses/klaveness-combination-carriers",
+      "note": "Established 2018 by consolidating Klaveness combination-carrier activities that date from the 1990s and 2000s"
+    },
+    "FTF001689": {
+      "year": 2010,
+      "name": "Stillfront Group",
+      "source": "https://en.wikipedia.org/wiki/Stillfront_Group",
+      "note": ""
+    },
+    "FTF002037": {
+      "year": 2018,
+      "name": "Okeanis Eco Tankers",
+      "source": "https://emis.com/php/company-profile/MH/Okeanis_Eco_Tankers_Corp_en_14786811.html",
+      "note": ""
+    },
+    "FTF001922": {
+      "year": 1965,
+      "name": "John Mattson Fastighetsföretagen",
+      "source": "https://stockanalysis.com/quote/sto/JOMA/company",
+      "note": ""
+    },
+    "FTF001911": {
+      "year": 2009,
+      "name": "Heimar",
+      "source": "https://stockanalysis.com/quote/ice/HEIMAR/company",
+      "note": "Founded as Reginn hf. in 2009; renamed Heimar in 2024"
+    },
+    "FTF002044": {
+      "year": 2017,
+      "name": "Salmon Evolution",
+      "source": "https://www.tradingview.com/symbols/OSL:SALME",
+      "note": "Business founded 2017; current ASA entity incorporated 2020"
+    },
+    "FTF002056": {
+      "year": 2021,
+      "name": "Stockholm Nordtech Group",
+      "source": "https://nordtechgroup.com",
+      "note": "Company site says active since 2021; some databases say 2020"
+    },
+    "FTF002004": {
+      "year": 2005,
+      "name": "Endomines Finland",
+      "source": "https://evli.com/en/equity-research/endomines",
+      "note": "Endomines AB founded 2005; redomiciled to Finland (Endomines Finland Oyj) in 2021"
+    },
+    "FTF001995": {
+      "year": 2004,
+      "name": "Better Collective",
+      "source": "https://bettercollective.com/about/",
+      "note": ""
+    },
+    "FTF001337": {
+      "year": 2000,
+      "name": "Hexagon Composites",
+      "source": "https://hexagongroup.com/our-history",
+      "note": "Formed in 2000 by merging Norwegian Applied Technology and Devold AMT; legal entity incorporated 1985"
+    },
+    "FTF002018": {
+      "year": 1890,
+      "name": "Investment AB Öresund",
+      "source": "https://en.wikipedia.org/wiki/Investment_AB_%C3%96resund",
+      "note": "Founded in 1890 as the marine insurer Sjöförsäkrings AB Öresund; became an investment company in 1961 (the Wikipedia infobox says 1961)"
+    },
+    "FTF002029": {
+      "year": 1918,
+      "name": "MT Hoejgaard Holding",
+      "source": "https://en.wikipedia.org/wiki/MT_H%C3%B8jgaard",
+      "note": "Højgaard & Schultz founded 1918 (Monberg & Thorsen 1919); merged as MT Højgaard in 2001; holding company formed 2019"
+    },
+    "FTF002026": {
+      "year": 2026,
+      "name": "Magnora Data Center",
+      "source": "https://magnoradc.com/about-us/",
+      "note": "Established spring 2026 as a spin-off from Magnora ASA (incorporated 23 April 2026)"
+    },
+    "FTF001948": {
+      "year": 1913,
+      "name": "Bera",
+      "source": "https://stockanalysis.com/quote/ice/BERA/company/",
+      "note": "Formerly Ölgerðin Egill Skallagrímsson, founded 1913; renamed Bera in 2026"
+    },
+    "FTF002016": {
+      "year": 2009,
+      "name": "Humble Group",
+      "source": "https://stockanalysis.com/quote/sto/HUMBLE/company/",
+      "note": "Listed entity incorporated 2009 as Bayn; renamed Humble Group in 2021. The Humble brand dates from about 2017"
+    },
+    "FTF001991": {
+      "year": 1945,
+      "name": "Aktiebolag Fagerhult",
+      "source": "https://fagerhultgroup.com/about-us/timeline",
+      "note": ""
+    },
+    "FTF001889": {
+      "year": 2023,
+      "name": "Bruton",
+      "source": "https://stockanalysis.com/quote/osl/BRUT/company",
+      "note": "Bermuda company incorporated July 2023"
+    },
+    "FTF002041": {
+      "year": 2009,
+      "name": "Panoro Energy",
+      "source": "https://stockanalysis.com/quote/osl/PEN/company/",
+      "note": "Incorporated April 2009; became operational and listed after the 2010 demerger from Norse Energy and merger with Pan-Petroleum"
+    },
+    "FTF002017": {
+      "year": 1985,
+      "name": "Incap",
+      "source": "https://www.inderes.fi/releases/incap-celebrates-40-years-with-a-focus-on-future-talent-and-community-impact",
+      "note": ""
+    },
+    "FTF002048": {
+      "year": 2005,
+      "name": "Sedana Medical",
+      "source": "https://news.cision.com/sedana-medical/about",
+      "note": ""
+    },
+    "FTF001172": {
+      "year": 1987,
+      "name": "Catella",
+      "source": "https://www.catella.com/en/investor-relations/catella-as-an-investment",
+      "note": "Company says founded 1987; the listed legal entity (formerly Scribona) dates from 1961"
+    },
+    "FTF002043": {
+      "year": 2006,
+      "name": "Salix Group",
+      "source": "https://www.salixgroup.se/en/",
+      "note": "Company says the group was formed in 2006; its oldest unit, Thomée, dates from 1892"
     }
   },
-  "website": {}
+  "website": {
+    "FTF001501": "hydro.com",
+    "FTF001063": "akerbp.com",
+    "FTF001820": "yara.com",
+    "FTF001653": "sb1sornorge.no",
+    "FTF001587": "salmar.no",
+    "FTF001287": "frontlineplc.cy",
+    "FTF001392": "kitron.com",
+    "FTF001350": "hoeghautoliners.com",
+    "FTF001775": "upm.com",
+    "FTF001597": "satsgroup.com",
+    "FTF001241": "elopak.com",
+    "FTF001780": "valmet.com",
+    "FTF001712": "handelsbanken.com",
+    "FTF001167": "carlsberggroup.com",
+    "FTF001150": "bouvet.no",
+    "FTF001244": "entra.no",
+    "FTF001120": "bavarian-nordic.com",
+    "FTF001877": "aqgroup.com",
+    "FTF001882": "beijeralma.se",
+    "FTF001960": "revolutionrace.com",
+    "FTF001903": "festi.is",
+    "FTF001912": "hexatronic.com",
+    "FTF001938": "ncabgroup.com",
+    "FTF001967": "sjfbank.dk",
+    "FTF001545": "pexip.com",
+    "FTF001749": "torm.com",
+    "FTF001934": "mildef.com",
+    "FTF001869": "alimakgroup.com",
+    "FTF002012": "grk.fi",
+    "FTF001385": "kbcomponents.com",
+    "FTF001524": "odfjell.com",
+    "FTF001971": "tokmannigroup.com",
+    "FTF001935": "momentum.group",
+    "FTF001875": "apotea.se",
+    "FTF001937": "multiconsultgroup.com",
+    "FTF001689": "stillfront.com",
+    "FTF002038": "omasp.fi",
+    "FTF002018": "oresund.se",
+    "FTF002016": "humblegroup.com",
+    "FTF001631": "solstad.com",
+    "FTF002041": "panoroenergy.com",
+    "FTF001234": "electroluxgroup.com"
+  }
 }

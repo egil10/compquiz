@@ -293,17 +293,17 @@
     const n = playing ? state.hints : 0;
     el.ytd.innerHTML = playing && t.ytd ? sparkline(t.ytd) : "";
 
+    // From the first hint, three fixed slots: founded, city, logo. Each hint reveals a bit more.
     const parts = [];
     if (n >= 1) {
+      const city = (t.hq || "?").split("/")[0].trim();
       parts.push(`<span class="chip">Stiftet <b>${t.founded || "?"}</b></span>`);
-      parts.push(`<span class="chip">${(t.hq || "?").split("/")[0].trim()}</span>`);
-    }
-    if (n >= 2) {
-      const letter = n >= 3 ? `<b>${t.name[0]}</b>…` : "";
+      parts.push(`<span class="chip${n >= 2 ? "" : " dim"}">${n >= 2 ? city : "By ?"}</span>`);
+      const stage = n >= 3 ? "" : n >= 2 ? " blur" : " blur grey";
       parts.push(
         t.logo
-          ? `<span class="chip"><img class="hint-logo${n >= 3 ? "" : " blur"}" src="${t.logo}" alt="">${letter}</span>`
-          : `<span class="chip"><b>${t.name[0]}</b>${n >= 3 ? t.name[1] || "" : ""}…</span>`
+          ? `<span class="chip"><img class="hint-logo${stage}" src="${t.logo}" alt=""></span>`
+          : `<span class="chip${n >= 3 ? "" : " dim"}">${n >= 3 ? `<b>${t.name[0]}</b>…` : "Logo ?"}</span>`
       );
     }
     el.hints.innerHTML = parts.join("");

@@ -60,7 +60,7 @@ OVERRIDES = json.loads((ROOT / "scripts" / "overrides.json").read_text(encoding=
 FOUNDED_OVERRIDE = {k: v["year"] for k, v in OVERRIDES.get("founded", {}).items()}
 WEBSITE_OVERRIDE = OVERRIDES.get("website", {})
 
-PE_MAX = 250
+PE_MAX = 600
 EV_EBITDA_MAX = 150
 
 
@@ -214,7 +214,27 @@ def resolve_yahoo(c, known=None):
     return None, None
 
 
-def market_figures(info, sector):
+def ttm_from_statements(symbol, rows):
+    """Sum the last four quarters of an income-statement row (fallback when Yahoo's summary lacks it)."""
+    try:
+        q = yf.Ticker(symbol).quarterly_income_stmt
+        for row in rows:
+            if row in q.index:
+                vals = q.loc[row].dropna().tolist()[:4]
+                if len(vals) == 4:
+                    return float(sum(vals))
+        a = yf.Ticker(symbol).income_stmt
+        for row in rows:
+            if row in a.index:
+                vals = a.loc[row].dropna().tolist()
+                if vals:
+                    return float(vals[0])
+    except Exception:
+        pass
+    return None
+
+
+def market_figures(info, sector, symbol=None):
     cur = info["currency"]
     fin = info.get("financialCurrency") or cur
     mcap = num(info.get("marketCap"))
@@ -224,13 +244,22 @@ def market_figures(info, sector):
     price = num(info.get("regularMarketPrice")) or num(info.get("currentPrice"))
     f = fx(fin, cur)
 
-    if cur == fin and num(info.get("trailingPE")):
-        pe = info["trailingPE"]
-    else:
-        pe = mcap / (ni * f) if ni else None
+    # P/E: Yahoo's trailing P/E when currencies match, else market cap / FX-adjusted net income.
+    pe = num(info.get("trailingPE")) if cur == fin else None
+    if pe is None and ni is None and symbol:
+        ni = ttm_from_statements(symbol, ["Net Income Common Stockholders", "Net Income"])
+    if pe is None and ni:
+        pe = mcap / (ni * f)
     if pe is not None and not (0 < pe <= PE_MAX):
         pe = None
 
+    # EV/EBITDA: fill a missing EV from debt and cash, a missing EBITDA from the statements.
+    if ev is None and mcap:
+        debt, cash = num(info.get("totalDebt")), num(info.get("totalCash"))
+        if debt is not None or cash is not None:
+            ev = mcap + ((debt or 0) - (cash or 0)) * f
+    if ebitda is None and symbol and sector != "Finans":
+        ebitda = ttm_from_statements(symbol, ["EBITDA", "Normalized EBITDA"])
     ev_ebitda = ev / (ebitda * f) if ev and ebitda else None
     if sector == "Finans" or (ev_ebitda is not None and not (0 < ev_ebitda <= EV_EBITDA_MAX)):
         ev_ebitda = None
@@ -447,7 +476,7 @@ def main():
         if not info:
             return c, None, line + " NO MARKET DATA"
         try:
-            m = market_figures(info, c["sector"])
+            m = market_figures(info, c["sector"], sym)
         except Exception as e:
             return c, None, line + f" FAILED ({e})"
         m["yahoo"] = sym

@@ -454,15 +454,27 @@ button {
 }
 
 .hint-logo {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   border-radius: 5px;
   object-fit: contain;
   background: #fff;
 }
 
+.hint-logo {
+  transition: filter 300ms ease;
+}
+
 .hint-logo.blur {
-  filter: blur(3px);
+  filter: blur(2.5px);
+}
+
+.hint-logo.blur.grey {
+  filter: blur(2.5px) grayscale(1);
+}
+
+.chip.dim {
+  color: var(--muted);
 }
 
 @keyframes pop {
