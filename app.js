@@ -1,10 +1,29 @@
 (function () {
   "use strict";
 
-  const COMPANIES = window.PORTFOLIO_COMPANIES || [];
-  const MAX_GUESSES = 6;
+  const MULT = window.PORTFOLIO_MULTIPLES || {};
+  const MAJOR = (window.PORTFOLIO_COMPANIES || []).filter((c) => c.isMajorPool);
+  // Only companies with live key figures are playable/guessable.
+  const COMPANIES = MAJOR.filter((c) => MULT[c.bbgTicker]).map((c) => {
+    const m = MULT[c.bbgTicker];
+    return {
+      ...c,
+      pe: m.pe,
+      evEbitda: m.evEbitda,
+      mcapBNOK: m.mcapBNOK ?? c.mcapBNOK,
+      sharePriceNOK: m.priceNOK ?? c.sharePriceNOK
+    };
+  });
 
-  const COUNTRY_COORDS = {
+  const MAX_GUESSES = 6;
+  const MAX_HINTS = 3;
+  const FLIP_STAGGER = 260;
+  const FLIP_DURATION = 500;
+  const STORE_DAILY = "folketrygdle_daily_v2";
+  const STORE_STATS = "folketrygdle_stats_2026";
+  const WIN_WORDS = ["Geni!", "Imponerende!", "Strålende!", "Flott!", "Bra!", "Puh!"];
+
+  const COUNTRY = {
     Norge: { lat: 59.91, lon: 10.75, iso: "NO" },
     Sverige: { lat: 59.33, lon: 18.06, iso: "SE" },
     Danmark: { lat: 55.68, lon: 12.57, iso: "DK" },
@@ -12,1155 +31,699 @@
     Island: { lat: 64.15, lon: -21.94, iso: "IS" }
   };
 
-  const SECTOR_CLUSTERS = {
-    Energi: "ENERGI_KRAFT",
-    Forsyning: "ENERGI_KRAFT",
-    Industri: "INDUSTRI_MAT",
-    Materialer: "INDUSTRI_MAT",
-    Konsumvarer: "KONSUM",
-    "Varige konsumvarer": "KONSUM",
-    Teknologi: "TECH_TELE",
-    Telekommunikasjon: "TECH_TELE",
-    Finans: "FINANS_EIENDOM",
-    Eiendom: "FINANS_EIENDOM",
-    Helse: "HELSE"
+  const SECTOR_CLUSTER = {
+    Energi: "energy", Forsyning: "energy",
+    Industri: "ind", Materialer: "ind",
+    Konsumvarer: "cons", "Varige konsumvarer": "cons",
+    Teknologi: "tech", Telekommunikasjon: "tech",
+    Finans: "fin", Eiendom: "fin",
+    Helse: "health"
   };
 
   const SHORT_SECTOR = {
-    Energi: "Energi",
-    Forsyning: "Forsyning",
-    Industri: "Industri",
-    Materialer: "Materialer",
     Konsumvarer: "Konsum",
     "Varige konsumvarer": "Varig konsum",
-    Teknologi: "Teknologi",
-    Telekommunikasjon: "Telekom",
-    Finans: "Finans",
-    Eiendom: "Eiendom",
-    Helse: "Helse"
+    Telekommunikasjon: "Telekom"
   };
 
-  const ALL_SECTORS = Object.keys(SECTOR_CLUSTERS);
+  const ARROW =
+    '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>';
+  const CHECK =
+    '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+  const arrow = (deg) => `<i style="transform:rotate(${Math.round(deg)}deg)">${ARROW}</i>`;
 
-  // Clean inline SVGs (12px)
-  const SVG = {
-    up: '<svg class="svg-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>',
-    down: '<svg class="svg-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>',
-    check: '<svg class="svg-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
-    bulb: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>',
-    pin: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
-    tag: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>',
-    copy: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>',
-    refresh: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>'
+  const $ = (id) => document.getElementById(id);
+  const el = {
+    dailyNum: $("daily-num"),
+    rows: $("board-rows"),
+    hints: $("hints"),
+    entry: $("entry"),
+    input: $("guess-input"),
+    ac: $("ac"),
+    btnHint: $("btn-hint"),
+    doneBar: $("done-bar"),
+    btnShowResult: $("btn-show-result"),
+    btnNext: $("btn-next"),
+    resultBody: $("result-body"),
+    statsBody: $("stats-body"),
+    toast: $("toast")
   };
 
-  function compassSvg(deg) {
-    return `<svg class="svg-arrow" style="transform:rotate(${Math.round(deg)}deg)" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>`;
-  }
-
-  let state = {
+  const state = {
     mode: "daily",
     target: null,
     guesses: [],
-    unlockedClues: { 1: false, 2: false, 3: false },
+    hints: 0,
     status: "playing",
     dailyNumber: 1,
-    dailyDateKey: "",
-    candidatesOpen: false,
-    acHighlightIdx: 0,
-    acFiltered: [],
-    playedIds: new Set()
+    dateKey: "",
+    revealing: false,
+    acList: [],
+    acIdx: 0,
+    played: new Set(),
+    giveUpArmed: false
   };
 
-  const el = {
-    roundLabel: document.getElementById("round-label"),
-    attemptDots: document.getElementById("attempt-dots"),
-    btnClue1: document.getElementById("btn-clue-1"),
-    btnClue2: document.getElementById("btn-clue-2"),
-    btnClue3: document.getElementById("btn-clue-3"),
-    clueDisplayBox: document.getElementById("clue-display-box"),
-    clueItems: document.getElementById("clue-items"),
-    btnToggleCandidates: document.getElementById("btn-toggle-candidates"),
-    candidateCountText: document.getElementById("candidate-count-text"),
-    candidateChevron: document.getElementById("candidate-chevron"),
-    candidatesDrawer: document.getElementById("candidates-drawer"),
-    deductionSummary: document.getElementById("deduction-summary"),
-    candidatesChipsGrid: document.getElementById("candidates-chips-grid"),
-    candidateSortSelect: document.getElementById("candidate-sort-select"),
-    searchInput: document.getElementById("company-search-input"),
-    chkSmartFilter: document.getElementById("chk-smart-filter"),
-    btnSubmitGuess: document.getElementById("btn-submit-guess"),
-    acDropdown: document.getElementById("autocomplete-dropdown"),
-    resultBanner: document.getElementById("result-banner"),
-    guessesList: document.getElementById("guesses-list"),
-    emptySlotsList: document.getElementById("empty-slots-list"),
-    btnNewRound: document.getElementById("btn-new-round"),
-    btnGiveUp: document.getElementById("btn-give-up"),
-    btnExplorer: document.getElementById("btn-explorer"),
-    btnStats: document.getElementById("btn-stats"),
-    btnHelp: document.getElementById("btn-help"),
-    modalExplorer: document.getElementById("modal-explorer"),
-    modalStats: document.getElementById("modal-stats"),
-    modalHelp: document.getElementById("modal-help"),
-    explorerSearch: document.getElementById("explorer-search"),
-    explorerCountry: document.getElementById("explorer-country"),
-    explorerSector: document.getElementById("explorer-sector"),
-    explorerFund: document.getElementById("explorer-fund"),
-    explorerSort: document.getElementById("explorer-sort"),
-    explorerSummaryStrip: document.getElementById("explorer-summary-strip"),
-    explorerTbody: document.getElementById("explorer-tbody"),
-    statsKpiGrid: document.getElementById("stats-kpi-grid"),
-    statsDistribution: document.getElementById("stats-distribution"),
-    btnResetStats: document.getElementById("btn-reset-stats"),
-    toast: document.getElementById("toast")
-  };
+  /* ---------- helpers ---------- */
 
-  function getBbg(c) {
-    if (c.bbgTicker) return c.bbgTicker;
-    const suffixMap = { Norge: "NO", Sverige: "SS", Danmark: "DC", Finland: "FH", Island: "IR" };
-    return `${(c.ticker || "").replace("-", "")} ${suffixMap[c.country] || "NO"}`;
+  const norm = (s) =>
+    (s || "")
+      .toLowerCase()
+      .replace(/ø/g, "o")
+      .replace(/æ/g, "ae")
+      .normalize("NFD")
+      .replace(/[̀-ͯ]/g, "")
+      .replace(/[^a-z0-9 ]/g, "")
+      .trim();
+
+  const iso = (c) => c.iso || (COUNTRY[c.country] || {}).iso || "";
+  const sectorShort = (s) => SHORT_SECTOR[s] || s;
+
+  function fmtB(b) {
+    if (b >= 1000) return `${(b / 1000).toFixed(1).replace(/\.0$/, "")}T`;
+    if (b >= 100) return `${Math.round(b)}B`;
+    if (b >= 10) return `${b.toFixed(0)}B`;
+    return `${b.toFixed(1)}B`;
+  }
+  const fmtX = (v) => (v == null ? "–" : `${v >= 20 ? Math.round(v) : +v.toFixed(1)}x`);
+
+  function bearing(from, to) {
+    const a = COUNTRY[from], b = COUNTRY[to];
+    if (!a || !b) return 0;
+    const dLat = b.lat - a.lat;
+    const dLon = (b.lon - a.lon) * Math.cos(((a.lat + b.lat) * Math.PI) / 360);
+    return (Math.atan2(dLon, dLat) * 180) / Math.PI;
   }
 
-  function getIso(c) {
-    if (c.iso) return c.iso;
-    return (COUNTRY_COORDS[c.country] && COUNTRY_COORDS[c.country].iso) || "NO";
+  function dateKeyToday() {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
   }
 
-  function fmtCompactNOK(bnok) {
-    if (bnok >= 100) return `${Math.round(bnok)}B`;
-    if (bnok >= 10) return `${bnok.toFixed(1)}B`;
-    return `${bnok.toFixed(2)}B`;
-  }
-
-  function fmtCompactFTF(mnok) {
-    if (mnok >= 1000) return `${(mnok / 1000).toFixed(1)}B`;
-    return `${Math.round(mnok)}M`;
-  }
-
-  function getActivePool(mode = state.mode) {
-    if (mode === "daily" || mode === "practice-major") {
-      return COMPANIES.filter((c) => c.isMajorPool);
+  function dailyInfo() {
+    const dateKey = dateKeyToday();
+    const epoch = new Date("2026-01-01T00:00:00");
+    const num = Math.max(1, Math.floor((new Date(dateKey + "T00:00:00") - epoch) / 86400000) + 1);
+    let h = 2166136261;
+    for (let i = 0; i < dateKey.length; i++) {
+      h ^= dateKey.charCodeAt(i);
+      h = Math.imul(h, 16777619);
     }
-    if (mode === "practice-norway") {
-      return COMPANIES.filter((c) => c.country === "Norge");
-    }
-    return COMPANIES;
-  }
-
-  function getCompassIcon(fromCountry, toCountry) {
-    if (fromCountry === toCountry) return SVG.check;
-    const c1 = COUNTRY_COORDS[fromCountry];
-    const c2 = COUNTRY_COORDS[toCountry];
-    if (!c1 || !c2) return "";
-    const dLat = c2.lat - c1.lat;
-    const dLon = (c2.lon - c1.lon) * Math.cos(((c1.lat + c2.lat) * Math.PI) / 360);
-    const angle = (Math.atan2(dLon, dLat) * 180) / Math.PI;
-    return compassSvg(angle);
-  }
-
-  function evaluateGuess(guess, target) {
-    const isWin = guess.id === target.id;
-
-    // 1. Country
-    const countryExact = guess.country === target.country;
-    const countryEval = {
-      state: countryExact ? "exact" : "wrong",
-      iso: getIso(guess),
-      icon: getCompassIcon(guess.country, target.country),
-      code: countryExact ? "[=]" : "[x]"
-    };
-
-    // 2. Sector
-    const sectorExact = guess.sector === target.sector;
-    const sameCluster = SECTOR_CLUSTERS[guess.sector] === SECTOR_CLUSTERS[target.sector];
-    const sectorState = sectorExact ? "exact" : sameCluster ? "close" : "wrong";
-    const sectorEval = {
-      state: sectorState,
-      name: SHORT_SECTOR[guess.sector] || guess.sector,
-      code: sectorExact ? "[=]" : sameCluster ? "[~]" : "[x]"
-    };
-
-    // 3. Market Cap
-    const mcapRatio =
-      Math.max(guess.mcapBNOK, target.mcapBNOK) /
-      Math.max(Math.min(guess.mcapBNOK, target.mcapBNOK), 0.05);
-    const mcapDiffPct = Math.abs(guess.mcapBNOK - target.mcapBNOK) / Math.max(target.mcapBNOK, 0.1);
-    const mcapState = isWin || mcapDiffPct <= 0.15 ? "exact" : mcapRatio <= 2.2 ? "close" : "wrong";
-    const mcapHigher = target.mcapBNOK > guess.mcapBNOK;
-    const mcapIcon =
-      isWin || guess.mcapBNOK === target.mcapBNOK ? SVG.check : mcapHigher ? SVG.up : SVG.down;
-
-    const mcapEval = {
-      state: mcapState,
-      val: fmtCompactNOK(guess.mcapBNOK),
-      icon: mcapIcon,
-      code: mcapState === "exact" ? "[=]" : mcapHigher ? "[^]" : "[v]"
-    };
-
-    // 4. FTF Holding & Rank
-    const ftfRatio =
-      Math.max(guess.marketValueMNOK, target.marketValueMNOK) /
-      Math.max(Math.min(guess.marketValueMNOK, target.marketValueMNOK), 0.05);
-    const rankDiff = Math.abs(guess.rank - target.rank);
-    const ftfState =
-      isWin || ftfRatio <= 1.18 || rankDiff <= 5
-        ? "exact"
-        : ftfRatio <= 2.3 || rankDiff <= 25
-        ? "close"
-        : "wrong";
-    const ftfHigher = target.marketValueMNOK > guess.marketValueMNOK;
-    const ftfIcon =
-      isWin || guess.rank === target.rank ? SVG.check : ftfHigher ? SVG.up : SVG.down;
-
-    const ftfEval = {
-      state: ftfState,
-      val: fmtCompactFTF(guess.marketValueMNOK),
-      rank: `#${guess.rank}`,
-      icon: ftfIcon,
-      code: ftfState === "exact" ? "[=]" : ftfHigher ? "[^]" : "[v]"
-    };
-
-    // 5. FTF Ownership %
-    const ownAbsDiff = Math.abs(guess.ownershipPct - target.ownershipPct);
-    const ownRelDiff = ownAbsDiff / Math.max(target.ownershipPct, 0.05);
-    const ownState =
-      isWin || ownAbsDiff <= 0.5 || ownRelDiff <= 0.15
-        ? "exact"
-        : ownAbsDiff <= 2.2 || ownRelDiff <= 0.55
-        ? "close"
-        : "wrong";
-    const ownHigher = target.ownershipPct > guess.ownershipPct;
-    const ownIcon =
-      isWin || guess.ownershipPct === target.ownershipPct
-        ? SVG.check
-        : ownHigher
-        ? SVG.up
-        : SVG.down;
-
-    const ownEval = {
-      state: ownState,
-      val: `${guess.ownershipPct.toFixed(1)}%`,
-      icon: ownIcon,
-      code: ownState === "exact" ? "[=]" : ownHigher ? "[^]" : "[v]"
-    };
-
-    return {
-      isWin,
-      country: countryEval,
-      sector: sectorEval,
-      mcap: mcapEval,
-      ftf: ftfEval,
-      own: ownEval
-    };
-  }
-
-  function computeDeductions() {
-    const t = state.target;
-    const guessedIds = new Set(state.guesses.map((g) => g.id));
-
-    let confirmedCountry = null;
-    const eliminatedCountries = new Set();
-
-    let confirmedSector = null;
-    let relatedCluster = null;
-    const eliminatedSectors = new Set();
-
-    let minMcap = 0;
-    let maxMcap = Infinity;
-
-    let minRank = 1;
-    let maxRank = COMPANIES.length;
-
-    let minOwn = 0;
-    let maxOwn = 100;
-
-    for (const g of state.guesses) {
-      if (g.id === t.id) {
-        confirmedCountry = t.country;
-        confirmedSector = t.sector;
-        minMcap = maxMcap = t.mcapBNOK;
-        minRank = maxRank = t.rank;
-        minOwn = maxOwn = t.ownershipPct;
+    // Hash over the full pool so the daily pick stays stable when data coverage changes;
+    // step forward to the next company that has key figures.
+    const start = Math.abs(h) % MAJOR.length;
+    let company = COMPANIES[0];
+    for (let i = 0; i < MAJOR.length; i++) {
+      const found = COMPANIES.find((c) => c.id === MAJOR[(start + i) % MAJOR.length].id);
+      if (found) {
+        company = found;
         break;
       }
-
-      if (g.country === t.country) {
-        confirmedCountry = t.country;
-      } else {
-        eliminatedCountries.add(g.country);
-      }
-
-      if (g.sector === t.sector) {
-        confirmedSector = t.sector;
-      } else if (SECTOR_CLUSTERS[g.sector] === SECTOR_CLUSTERS[t.sector]) {
-        relatedCluster = SECTOR_CLUSTERS[t.sector];
-        eliminatedSectors.add(g.sector);
-      } else {
-        const gCluster = SECTOR_CLUSTERS[g.sector];
-        for (const s of ALL_SECTORS) {
-          if (SECTOR_CLUSTERS[s] === gCluster) {
-            eliminatedSectors.add(s);
-          }
-        }
-      }
-
-      if (t.mcapBNOK > g.mcapBNOK) {
-        minMcap = Math.max(minMcap, g.mcapBNOK);
-      } else if (t.mcapBNOK < g.mcapBNOK) {
-        maxMcap = Math.min(maxMcap, g.mcapBNOK);
-      }
-
-      if (t.marketValueMNOK > g.marketValueMNOK) {
-        maxRank = Math.min(maxRank, g.rank - 1);
-      } else if (t.marketValueMNOK < g.marketValueMNOK) {
-        minRank = Math.max(minRank, g.rank + 1);
-      }
-
-      if (t.ownershipPct > g.ownershipPct) {
-        minOwn = Math.max(minOwn, g.ownershipPct);
-      } else if (t.ownershipPct < g.ownershipPct) {
-        maxOwn = Math.min(maxOwn, g.ownershipPct);
-      }
     }
+    return { dateKey, num, company };
+  }
 
-    if (confirmedSector) {
-      for (const s of ALL_SECTORS) {
-        if (s !== confirmedSector) eliminatedSectors.add(s);
-      }
-    } else if (relatedCluster) {
-      for (const s of ALL_SECTORS) {
-        if (SECTOR_CLUSTERS[s] !== relatedCluster) eliminatedSectors.add(s);
-      }
-    }
+  /* ---------- evaluation ---------- */
 
-    const pool = getActivePool();
-    const candidates = pool.filter((c) => {
-      if (state.status === "playing" && guessedIds.has(c.id)) return false;
-      if (confirmedCountry && c.country !== confirmedCountry) return false;
-      if (eliminatedCountries.has(c.country)) return false;
-      if (confirmedSector && c.sector !== confirmedSector) return false;
-      if (eliminatedSectors.has(c.sector)) return false;
-      if (c.mcapBNOK < minMcap || c.mcapBNOK > maxMcap) return false;
-      if (c.rank < minRank || c.rank > maxRank) return false;
-      if (c.ownershipPct < minOwn || c.ownershipPct > maxOwn) return false;
-      return true;
-    });
+  function evalNum(g, t, closeRatio, fmt, isWin) {
+    if (g == null && t == null) return { s: "exact", v: "–", icon: "" };
+    if (g == null) return { s: "wrong", v: "–", icon: "" };
+    if (t == null) return { s: "wrong", v: fmt(g), icon: '<i class="na">–</i>' };
+    if (isWin || g === t) return { s: "exact", v: fmt(g), icon: `<i>${CHECK}</i>` };
+    const diff = Math.abs(g - t) / Math.max(Math.abs(t), 0.01);
+    const ratio = Math.max(g, t) / Math.max(Math.min(g, t), 0.01);
+    const s = diff <= 0.15 ? "exact" : ratio <= closeRatio ? "close" : "wrong";
+    return { s, v: fmt(g), icon: arrow(t > g ? 0 : 180) };
+  }
 
+  function evaluate(g, t) {
+    const win = g.id === t.id;
+    const sameCountry = g.country === t.country;
+    const sameSector = g.sector === t.sector;
+    const related = SECTOR_CLUSTER[g.sector] === SECTOR_CLUSTER[t.sector];
     return {
-      confirmedCountry,
-      confirmedSector,
-      minMcap,
-      maxMcap,
-      minRank,
-      maxRank,
-      minOwn,
-      maxOwn,
-      candidates
+      win,
+      tiles: [
+        {
+          s: sameCountry ? "exact" : "wrong",
+          v: iso(g),
+          icon: sameCountry ? `<i>${CHECK}</i>` : arrow(bearing(g.country, t.country)),
+          title: g.country
+        },
+        {
+          s: sameSector ? "exact" : related ? "close" : "wrong",
+          v: sectorShort(g.sector),
+          icon: "",
+          title: g.sector,
+          small: true
+        },
+        evalNum(g.mcapBNOK, t.mcapBNOK, 2, fmtB, win),
+        evalNum(g.pe, t.pe, 1.5, fmtX, win),
+        evalNum(g.evEbitda, t.evEbitda, 1.5, fmtX, win)
+      ]
     };
   }
 
-  function getTodayDateKey() {
-    const now = new Date();
-    const y = now.getFullYear();
-    const m = String(now.getMonth() + 1).padStart(2, "0");
-    const d = String(now.getDate()).padStart(2, "0");
-    return `${y}-${m}-${d}`;
+  /* ---------- rendering ---------- */
+
+  function tileHtml(t, animate, i, win) {
+    const flipDelay = i * FLIP_STAGGER;
+    const bounceDelay = 4 * FLIP_STAGGER + FLIP_DURATION + i * 90;
+    const delay = animate
+      ? ` style="animation-delay:${flipDelay}ms${win ? `, ${bounceDelay}ms` : ""}"`
+      : "";
+    return `<div class="tile s-${t.s}${animate ? " flip" : ""}${t.small ? " small" : ""}"${delay}${
+      t.title ? ` title="${t.title}"` : ""
+    }><b>${t.v}</b>${t.icon}</div>`;
   }
 
-  function getDailyPuzzleInfo() {
-    const dateKey = getTodayDateKey();
-    const epoch = new Date("2026-01-01T00:00:00");
-    const now = new Date();
-    const diffDays = Math.max(1, Math.floor((now - epoch) / (1000 * 60 * 60 * 24)) + 1);
-    const majorPool = getActivePool("daily");
-
-    let hash = 2166136261;
-    for (let i = 0; i < dateKey.length; i++) {
-      hash ^= dateKey.charCodeAt(i);
-      hash = Math.imul(hash, 16777619);
+  function renderBoard(animateLast = false) {
+    const html = [];
+    for (let r = 0; r < MAX_GUESSES; r++) {
+      const g = state.guesses[r];
+      if (g) {
+        const ev = evaluate(g, state.target);
+        const anim = animateLast && r === state.guesses.length - 1;
+        html.push(`
+          <div class="row${anim && ev.win ? " win" : ""}">
+            <div class="row-name">${g.name}<span>${g.bbgTicker}</span></div>
+            <div class="tiles">${ev.tiles.map((t, i) => tileHtml(t, anim, i, ev.win)).join("")}</div>
+          </div>`);
+      } else {
+        const active = r === state.guesses.length && state.status === "playing";
+        html.push(`
+          <div class="row empty${active ? " active" : ""}">
+            <div class="row-name">${active ? '<em id="live-name"></em>' : "&nbsp;"}</div>
+            <div class="tiles">${'<div class="tile"></div>'.repeat(5)}</div>
+          </div>`);
+      }
     }
-    const idx = Math.abs(hash) % majorPool.length;
-    return {
-      dateKey,
-      dailyNumber: diffDays,
-      company: majorPool[idx]
-    };
+    el.rows.innerHTML = html.join("");
   }
 
-  function maskCompanyName(clueText, company) {
-    let masked = clueText;
-    const parts = [company.name, ...(company.aliases || [])].filter((x) => x && x.length >= 3);
-    for (const p of parts) {
-      const escaped = p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      const regex = new RegExp(escaped, "gi");
-      masked = masked.replace(regex, "___");
-    }
-    return masked;
+  function maskName(text, c) {
+    let out = text;
+    [c.name, ...(c.aliases || [])]
+      .filter((p) => p && p.length >= 3)
+      .forEach((p) => {
+        out = out.replace(new RegExp(p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi"), "___");
+      });
+    return out;
   }
 
-  function renderToolbarAndHints() {
+  function hintTexts(t) {
+    return [
+      `Folketrygdfondet eier <b>${t.ownershipPct.toFixed(2)} %</b> · post nr. <b>${t.rank}</b> i porteføljen`,
+      `Hovedkontor i <b>${t.hq}</b> · navnet starter på <b>${t.name[0]}</b>`,
+      maskName(t.clue, t)
+    ];
+  }
+
+  function renderHints() {
     const t = state.target;
-    if (!t) return;
+    const shown = state.status === "playing" ? state.hints : 0;
+    el.hints.innerHTML = hintTexts(t)
+      .slice(0, shown)
+      .map((h, i) => `<p><span class="n">${i + 1}</span><span>${h}</span></p>`)
+      .join("");
 
-    el.roundLabel.textContent =
-      state.mode === "daily" ? `#${state.dailyNumber}` : state.mode === "practice-norway" ? "NO" : "2026";
-
-    // Render 6 attempt dots
-    const dots = [];
-    for (let i = 0; i < MAX_GUESSES; i++) {
-      let cls = "attempt-dot";
-      if (i < state.guesses.length) {
-        cls += state.guesses[i].id === t.id ? " won" : " used";
-      }
-      dots.push(`<span class="${cls}"></span>`);
-    }
-    el.attemptDots.innerHTML = dots.join("");
-
-    el.btnClue1.classList.toggle("unlocked", Boolean(state.unlockedClues[1]));
-    el.btnClue2.classList.toggle("unlocked", Boolean(state.unlockedClues[2]));
-    el.btnClue3.classList.toggle("unlocked", Boolean(state.unlockedClues[3]));
-
-    const lines = [];
-    if (state.unlockedClues[1]) {
-      lines.push({
-        icon: SVG.bulb,
-        text: maskCompanyName(t.clue, t)
-      });
-    }
-    if (state.unlockedClues[2]) {
-      lines.push({
-        icon: SVG.pin,
-        text: `${t.hq} · Kurs: ~${Math.round(t.sharePriceNOK)} NOK · ${t.fund}`
-      });
-    }
-    if (state.unlockedClues[3]) {
-      const bbg = getBbg(t);
-      const parts = bbg.split(" ");
-      const root = parts[0];
-      const exch = parts[1] || "";
-      const maskedBbg =
-        root.length > 2
-          ? `${root[0]}${"·".repeat(root.length - 2)}${root[root.length - 1]} ${exch}`
-          : `${root[0]}· ${exch}`;
-      lines.push({
-        icon: SVG.tag,
-        text: `Navn: ${t.name[0].toUpperCase()}… (${t.name.length}) · BBG: ${maskedBbg}`
-      });
-    }
-
-    if (lines.length === 0) {
-      el.clueDisplayBox.classList.add("hidden");
-      el.clueItems.innerHTML = "";
+    if (state.hints >= MAX_HINTS) {
+      el.btnHint.textContent = state.giveUpArmed ? "Sikker?" : "Gi opp";
+      el.btnHint.classList.toggle("danger", state.giveUpArmed);
     } else {
-      el.clueDisplayBox.classList.remove("hidden");
-      el.clueItems.innerHTML = lines
-        .map(
-          (l) => `
-          <div class="clue-row">
-            <span class="clue-icon">${l.icon}</span>
-            <span>${l.text}</span>
-          </div>`
-        )
-        .join("");
+      el.btnHint.textContent = state.hints ? `Hint ${state.hints}/${MAX_HINTS}` : "Hint";
+      el.btnHint.classList.remove("danger");
     }
   }
 
-  function renderCandidatesPanel() {
-    const ded = computeDeductions();
-    el.candidateCountText.textContent = String(ded.candidates.length);
-    el.candidateChevron.classList.toggle("open", state.candidatesOpen);
-
-    const pills = [];
-    if (ded.confirmedCountry) {
-      const iso = (COUNTRY_COORDS[ded.confirmedCountry] || {}).iso || ded.confirmedCountry;
-      pills.push(`<span class="ded-pill"><strong>${iso}</strong></span>`);
-    }
-    if (ded.confirmedSector) {
-      pills.push(`<span class="ded-pill"><strong>${SHORT_SECTOR[ded.confirmedSector] || ded.confirmedSector}</strong></span>`);
-    }
-    if (ded.minMcap > 0 || ded.maxMcap < Infinity) {
-      const mcapTxt =
-        ded.minMcap > 0 && ded.maxMcap < Infinity
-          ? `${fmtCompactNOK(ded.minMcap)}–${fmtCompactNOK(ded.maxMcap)}`
-          : ded.minMcap > 0
-          ? `>${fmtCompactNOK(ded.minMcap)}`
-          : `<${fmtCompactNOK(ded.maxMcap)}`;
-      pills.push(`<span class="ded-pill">MCap <strong>${mcapTxt}</strong></span>`);
-    }
-    if (ded.minRank > 1 || ded.maxRank < COMPANIES.length) {
-      pills.push(`<span class="ded-pill"><strong>#${ded.minRank}–#${ded.maxRank}</strong></span>`);
-    }
-    if (ded.minOwn > 0 || ded.maxOwn < 100) {
-      const ownTxt =
-        ded.minOwn > 0 && ded.maxOwn < 100
-          ? `${ded.minOwn.toFixed(1)}–${ded.maxOwn.toFixed(1)}%`
-          : ded.minOwn > 0
-          ? `>${ded.minOwn.toFixed(1)}%`
-          : `<${ded.maxOwn.toFixed(1)}%`;
-      pills.push(`<span class="ded-pill">Eier <strong>${ownTxt}</strong></span>`);
-    }
-    el.deductionSummary.innerHTML = pills.join("");
-
-    const sortBy = el.candidateSortSelect.value;
-    const sorted = [...ded.candidates].sort((a, b) => {
-      if (sortBy === "mcap") return b.mcapBNOK - a.mcapBNOK;
-      if (sortBy === "own") return b.ownershipPct - a.ownershipPct;
-      if (sortBy === "name") return a.name.localeCompare(b.name, "nb");
-      return a.rank - b.rank;
-    });
-
-    el.candidatesChipsGrid.innerHTML = sorted
-      .map(
-        (c) => `
-        <button class="cand-btn" data-id="${c.id}">
-          <div class="cand-info">
-            <div class="cand-title">${c.name}</div>
-            <div class="cand-bbg">${getBbg(c)} · ${SHORT_SECTOR[c.sector] || c.sector}</div>
-          </div>
-          <div class="cand-num">
-            <div>${fmtCompactNOK(c.mcapBNOK)}</div>
-            <div>#${c.rank}</div>
-          </div>
-        </button>`
-      )
-      .join("");
-
-    el.candidatesChipsGrid.querySelectorAll(".cand-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const comp = COMPANIES.find((x) => x.id === btn.getAttribute("data-id"));
-        if (comp) submitGuess(comp);
-      });
-    });
+  function renderControls() {
+    const done = state.status !== "playing";
+    el.entry.classList.toggle("hidden", done);
+    el.doneBar.classList.toggle("hidden", !done);
+    el.btnNext.textContent = state.mode === "daily" ? "Spill frispill" : "Neste selskap";
+    el.dailyNum.textContent = `#${state.dailyNumber}`;
+    document.querySelectorAll(".mode-btn").forEach((b) =>
+      b.classList.toggle("active", b.dataset.mode === state.mode)
+    );
   }
 
-  function renderGrid() {
-    el.guessesList.innerHTML = state.guesses
-      .map((g) => {
-        const ev = evaluateGuess(g, state.target);
-        return `
-        <div class="grid-row">
-          <div class="cell cell-company ${ev.isWin ? "state-exact" : ""}">
-            <span class="cell-company-name" title="${g.name}">${g.name}</span>
-            <span class="cell-bbg-tag">${getBbg(g)}</span>
-          </div>
-
-          <div class="cell state-${ev.country.state}" title="${g.country}">
-            <span>${ev.country.iso}</span>
-            ${ev.country.icon}
-          </div>
-
-          <div class="cell state-${ev.sector.state}" title="${g.sector}">
-            <span class="sector-cell-text">${ev.sector.name}</span>
-          </div>
-
-          <div class="cell state-${ev.mcap.state} cell-mono">
-            <span>${ev.mcap.val}</span>
-            ${ev.mcap.icon}
-          </div>
-
-          <div class="cell state-${ev.ftf.state} cell-mono">
-            <span>${ev.ftf.val}</span>
-            <span class="rank-sub">${ev.ftf.rank}</span>
-            ${ev.ftf.icon}
-          </div>
-
-          <div class="cell state-${ev.own.state} cell-mono">
-            <span>${ev.own.val}</span>
-            ${ev.own.icon}
-          </div>
-        </div>`;
-      })
-      .join("");
-
-    const remaining = Math.max(0, MAX_GUESSES - state.guesses.length);
-    const emptyRows = [];
-    for (let i = 0; i < remaining; i++) {
-      emptyRows.push(`
-        <div class="empty-row">
-          <div class="empty-cell"></div>
-          <div class="empty-cell"></div>
-          <div class="empty-cell"></div>
-          <div class="empty-cell"></div>
-          <div class="empty-cell"></div>
-          <div class="empty-cell"></div>
-        </div>`);
-    }
-    el.emptySlotsList.innerHTML = emptyRows.join("");
+  function renderAll(animateLast) {
+    renderBoard(animateLast);
+    renderHints();
+    renderControls();
   }
 
-  function renderResultBanner() {
-    if (state.status === "playing") {
-      el.resultBanner.classList.add("hidden");
-      el.searchInput.disabled = false;
-      el.btnSubmitGuess.disabled = false;
-      el.btnGiveUp.classList.remove("hidden");
+  /* ---------- result ---------- */
+
+  function shareText() {
+    const ICON = { exact: "🟩", close: "🟨", wrong: "⬛" };
+    const head = state.mode === "daily" ? `Folketrygdle #${state.dailyNumber}` : "Folketrygdle (frispill)";
+    const score = state.status === "won" ? state.guesses.length : "X";
+    const hints = state.hints ? ` · ${state.hints} hint` : "";
+    const rows = state.guesses.map((g) =>
+      evaluate(g, state.target).tiles.map((t) => ICON[t.s]).join("")
+    );
+    return `${head} ${score}/${MAX_GUESSES}${hints}\n\n${rows.join("\n")}\n\n${location.origin}${location.pathname}`;
+  }
+
+  function share() {
+    const text = shareText();
+    if (navigator.share && matchMedia("(pointer: coarse)").matches) {
+      navigator.share({ text }).catch(() => {});
       return;
     }
-
-    el.searchInput.disabled = true;
-    el.btnSubmitGuess.disabled = true;
-    el.btnGiveUp.classList.add("hidden");
-
-    const t = state.target;
-    const isWon = state.status === "won";
-    el.resultBanner.classList.remove("hidden", "lost");
-    if (!isWon) el.resultBanner.classList.add("lost");
-
-    el.resultBanner.innerHTML = `
-      <div class="result-header">
-        <div class="result-title-group">
-          <span class="result-title">${t.name}</span>
-          <span class="bbg-pill">${getBbg(t)}</span>
-        </div>
-        <div class="result-actions">
-          <button id="btn-share-result" class="action-btn" title="Kopier resultat">${SVG.copy}<span>Del</span></button>
-          <button id="btn-play-again-banner" class="action-btn primary">${SVG.refresh}<span>Ny</span></button>
-        </div>
-      </div>
-
-      <p class="result-desc">${t.clue}</p>
-
-      <div class="result-stats">
-        <span class="res-pill"><strong>${getIso(t)}</strong> · ${t.hq}</span>
-        <span class="res-pill"><strong>${t.sector}</strong></span>
-        <span class="res-pill">MCap <strong>${fmtCompactNOK(t.mcapBNOK)} NOK</strong></span>
-        <span class="res-pill">FTF <strong>${fmtCompactFTF(t.marketValueMNOK)} (#${t.rank})</strong></span>
-        <span class="res-pill">Eier <strong>${t.ownershipPct.toFixed(2)}%</strong></span>
-        <span class="res-pill">Kurs <strong>${Math.round(t.sharePriceNOK)} kr</strong></span>
-      </div>
-    `;
-
-    document.getElementById("btn-share-result").addEventListener("click", copyShareResult);
-    document.getElementById("btn-play-again-banner").addEventListener("click", () => {
-      if (state.mode === "daily") {
-        setMode("practice-major");
-      } else {
-        startNewRound();
-      }
-    });
-  }
-
-  function copyShareResult() {
-    const modeTitle =
-      state.mode === "daily" ? `Folketrygdle #${state.dailyNumber}` : `Folketrygdle`;
-    const score =
-      state.status === "won" ? `${state.guesses.length}/${MAX_GUESSES}` : `X/${MAX_GUESSES}`;
-
-    const rows = state.guesses.map((g) => {
-      const ev = evaluateGuess(g, state.target);
-      return `${ev.country.code}${ev.sector.code}${ev.mcap.code}${ev.ftf.code}${ev.own.code}`;
-    });
-
-    const text = `${modeTitle} ${score}\n${rows.join("\n")}\nhttps://egil10.github.io/compquiz/`;
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(() => {
-        showToast("Kopiert");
-      });
-    } else {
-      showToast("Kopiert");
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(
+        () => toast("Kopiert til utklippstavlen"),
+        () => toast("Kunne ikke kopiere")
+      );
     }
   }
 
+  function countdown() {
+    const now = new Date();
+    const next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    const s = Math.max(0, Math.floor((next - now) / 1000));
+    const p = (n) => String(n).padStart(2, "0");
+    return `${p(Math.floor(s / 3600))}:${p(Math.floor((s % 3600) / 60))}:${p(s % 60)}`;
+  }
+
+  let cdTimer = null;
+  function openResult() {
+    const t = state.target;
+    const won = state.status === "won";
+    const facts = [
+      ["Land", `${t.country}`],
+      ["Sektor", t.sector],
+      ["Børsverdi", `${fmtB(t.mcapBNOK)} NOK`],
+      ["P/E", fmtX(t.pe)],
+      ["EV/EBITDA", fmtX(t.evEbitda)],
+      ["FTF eier", `${t.ownershipPct.toFixed(2)} %`]
+    ];
+    el.resultBody.innerHTML = `
+      <p class="result-kicker">${won ? `Løst på ${state.guesses.length}/${MAX_GUESSES}` : "Ikke denne gangen"}</p>
+      <h2 class="result-name" id="result-name">${t.name}</h2>
+      <p class="result-ticker">${t.bbgTicker} · ${t.hq}</p>
+      <p class="result-desc">${t.clue}</p>
+      <dl class="facts">${facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
+      ${
+        state.mode === "daily"
+          ? `<div class="result-foot">
+              <div class="cd"><span>Neste selskap om</span><b id="cd">${countdown()}</b></div>
+              <button class="primary-btn share" id="btn-share">Del</button>
+            </div>
+            <button class="ghost-btn wide" id="btn-result-next">Spill frispill</button>`
+          : `<div class="result-foot">
+              <button class="ghost-btn" id="btn-share">Del</button>
+              <button class="primary-btn" id="btn-result-next">Neste selskap</button>
+            </div>`
+      }`;
+    $("btn-share").addEventListener("click", share);
+    $("btn-result-next").addEventListener("click", () => {
+      closeModal("modal-result");
+      nextRound();
+    });
+    clearInterval(cdTimer);
+    if (state.mode === "daily") {
+      cdTimer = setInterval(() => {
+        const n = $("cd");
+        if (n) n.textContent = countdown();
+      }, 1000);
+    }
+    openModal("modal-result");
+  }
+
+  /* ---------- game flow ---------- */
+
   function submitGuess(company) {
-    if (!company || state.status !== "playing") return;
+    if (!company || state.status !== "playing" || state.revealing) return;
     if (state.guesses.some((g) => g.id === company.id)) {
-      showToast(`Allerede gjettet: ${company.name}`);
+      toast("Allerede gjettet");
+      shakeActiveRow();
       return;
     }
 
     state.guesses.push(company);
-    el.searchInput.value = "";
-    hideAutocomplete();
+    state.giveUpArmed = false;
+    el.input.value = "";
+    hideAc();
 
-    if (state.guesses.length >= 2) state.unlockedClues[1] = true;
-    if (state.guesses.length >= 4) state.unlockedClues[2] = true;
-    if (state.guesses.length >= 5) state.unlockedClues[3] = true;
+    const won = company.id === state.target.id;
+    if (won) state.status = "won";
+    else if (state.guesses.length >= MAX_GUESSES) state.status = "lost";
 
-    if (company.id === state.target.id) {
-      state.status = "won";
-      state.unlockedClues = { 1: true, 2: true, 3: true };
-      recordGameStats(true, state.guesses.length);
-    } else if (state.guesses.length >= MAX_GUESSES) {
-      state.status = "lost";
-      state.unlockedClues = { 1: true, 2: true, 3: true };
-      recordGameStats(false, MAX_GUESSES);
-    }
+    if (state.status !== "playing" && state.mode === "daily") recordStats(won, state.guesses.length);
+    saveDaily();
 
-    if (state.mode === "daily") {
-      saveDailyProgress();
-    }
-
-    renderToolbarAndHints();
-    renderGrid();
-    renderCandidatesPanel();
-    renderResultBanner();
+    state.revealing = true;
+    renderBoard(true);
+    renderHints();
+    const total = 4 * FLIP_STAGGER + FLIP_DURATION;
+    // Settle tiles into their final state even if animations were paused (e.g. background tab).
+    setTimeout(() => el.rows.querySelectorAll(".flip").forEach((t) => t.classList.remove("flip")), total + 1000);
+    setTimeout(() => {
+      state.revealing = false;
+      renderControls();
+      if (state.status === "won") {
+        toast(WIN_WORDS[state.guesses.length - 1]);
+        setTimeout(openResult, 1300);
+      } else if (state.status === "lost") {
+        toast(state.target.name, 2500);
+        setTimeout(openResult, 1600);
+      } else if (!isTouch()) {
+        el.input.focus();
+      }
+    }, total);
   }
 
-  function giveUpRound() {
+  function giveUp() {
     if (state.status !== "playing") return;
     state.status = "lost";
-    state.unlockedClues = { 1: true, 2: true, 3: true };
-    recordGameStats(false, MAX_GUESSES);
-    if (state.mode === "daily") {
-      saveDailyProgress();
-    }
-    renderToolbarAndHints();
-    renderCandidatesPanel();
-    renderResultBanner();
+    if (state.mode === "daily") recordStats(false, MAX_GUESSES);
+    saveDaily();
+    renderAll();
+    openResult();
   }
 
-  function updateAutocomplete() {
-    if (state.status !== "playing") {
-      hideAutocomplete();
-      return;
-    }
-
-    const q = el.searchInput.value.trim().toLowerCase();
-    const qClean = q.replace(/\s+equity$/i, "").trim();
-    const smartOnly = el.chkSmartFilter.checked && state.guesses.length > 0;
-    const ded = computeDeductions();
-    const candidateIds = new Set(ded.candidates.map((c) => c.id));
-    const guessedIds = new Set(state.guesses.map((g) => g.id));
-
-    let list = COMPANIES.filter((c) => !guessedIds.has(c.id));
-    if (smartOnly && qClean.length === 0) {
-      list = list.filter((c) => candidateIds.has(c.id));
-    }
-
-    if (qClean.length > 0) {
-      // When user explicitly types a ticker/name, search all unguessed companies (or prioritize candidates)
-      const baseList = smartOnly ? list.filter((c) => candidateIds.has(c.id)) : list;
-      const sourceList = baseList.length > 0 ? baseList : list;
-
-      list = sourceList
-        .map((c) => {
-          const nameL = c.name.toLowerCase();
-          const tickerL = (c.ticker || "").toLowerCase();
-          const bbgL = getBbg(c).toLowerCase();
-          const bbgRootL = bbgL.split(" ")[0];
-          const aliasMatch = (c.aliases || []).some((a) => a.toLowerCase().includes(qClean));
-
-          let score = 0;
-          if (bbgL === qClean || bbgRootL === qClean || tickerL === qClean || nameL === qClean) {
-            score = 100;
-          } else if (bbgL.startsWith(qClean) || tickerL.startsWith(qClean)) {
-            score = 92;
-          } else if (nameL.startsWith(qClean)) {
-            score = 85;
-          } else if (aliasMatch) {
-            score = 75;
-          } else if (nameL.includes(qClean) || bbgL.includes(qClean)) {
-            score = 60;
-          }
-
-          if (score > 0 && candidateIds.has(c.id)) {
-            score += 4;
-          }
-          return { company: c, score };
-        })
-        .filter((item) => item.score > 0)
-        .sort((a, b) => b.score - a.score || a.company.rank - b.company.rank)
-        .map((item) => item.company);
+  function onHintClick() {
+    if (state.status !== "playing") return;
+    if (state.hints < MAX_HINTS) {
+      state.hints++;
+      saveDaily();
+    } else if (!state.giveUpArmed) {
+      state.giveUpArmed = true;
+      setTimeout(() => {
+        state.giveUpArmed = false;
+        renderHints();
+      }, 3000);
     } else {
-      const poolIds = new Set(getActivePool().map((c) => c.id));
-      list = list.filter((c) => poolIds.has(c.id)).slice(0, 22);
-    }
-
-    state.acFiltered = list.slice(0, 22);
-    state.acHighlightIdx = 0;
-
-    if (state.acFiltered.length === 0) {
-      el.acDropdown.innerHTML = `
-        <div class="ac-row" style="justify-content:center;color:var(--text-muted);">
-          Ingen treff
-        </div>`;
-      el.acDropdown.classList.remove("hidden");
+      giveUp();
       return;
     }
+    renderHints();
+  }
 
-    el.acDropdown.innerHTML = state.acFiltered
-      .map((c, idx) => {
-        const isCand = candidateIds.has(c.id);
-        return `
-        <div class="ac-row ${idx === state.acHighlightIdx ? "active" : ""}" data-idx="${idx}" role="option">
-          <div class="ac-left">
-            <span class="bbg-pill">${getBbg(c)}</span>
-            <span class="ac-name">${c.name}</span>
-            ${state.guesses.length > 0 && isCand ? '<span class="ac-dot-fit" title="Passer ledetråder"></span>' : ""}
-          </div>
-          <div class="ac-right">
-            <span>${SHORT_SECTOR[c.sector] || c.sector}</span>
-            <span>${fmtCompactNOK(c.mcapBNOK)}</span>
-            <span>#${c.rank}</span>
-          </div>
-        </div>`;
+  function startRound() {
+    const d = dailyInfo();
+    state.dailyNumber = d.num;
+    state.dateKey = d.dateKey;
+    state.guesses = [];
+    state.hints = 0;
+    state.status = "playing";
+    state.giveUpArmed = false;
+
+    if (state.mode === "daily") {
+      state.target = d.company;
+      loadDaily(d);
+    } else {
+      let pool = COMPANIES.filter((c) => !state.played.has(c.id) && c.id !== d.company.id);
+      if (!pool.length) {
+        state.played.clear();
+        pool = COMPANIES;
+      }
+      state.target = pool[Math.floor(Math.random() * pool.length)];
+      state.played.add(state.target.id);
+    }
+    el.input.value = "";
+    hideAc();
+    renderAll();
+  }
+
+  function setMode(mode) {
+    if (state.revealing) return;
+    state.mode = mode;
+    startRound();
+    if (mode === "daily" && state.status !== "playing") openResult();
+  }
+
+  function nextRound() {
+    if (state.mode === "daily") setMode("practice");
+    else startRound();
+  }
+
+  /* ---------- autocomplete ---------- */
+
+  function search(q) {
+    const nq = norm(q);
+    if (!nq) return [];
+    const guessed = new Set(state.guesses.map((g) => g.id));
+    return COMPANIES.filter((c) => !guessed.has(c.id))
+      .map((c) => {
+        const name = norm(c.name);
+        const tick = norm(c.ticker);
+        const bbg = norm(c.bbgTicker);
+        const words = name.split(" ");
+        let s = 0;
+        if (tick === nq || bbg === nq || name === nq) s = 100;
+        else if (tick.startsWith(nq) || bbg.startsWith(nq)) s = 90;
+        else if (name.startsWith(nq)) s = 85;
+        else if (words.some((w) => w.startsWith(nq))) s = 75;
+        else if ((c.aliases || []).some((a) => norm(a).includes(nq))) s = 65;
+        else if (name.includes(nq)) s = 55;
+        return { c, s };
       })
-      .join("");
-
-    el.acDropdown.classList.remove("hidden");
-
-    el.acDropdown.querySelectorAll(".ac-row[data-idx]").forEach((row) => {
-      row.addEventListener("mousedown", (e) => {
-        e.preventDefault();
-        const idx = Number(row.getAttribute("data-idx"));
-        if (state.acFiltered[idx]) {
-          submitGuess(state.acFiltered[idx]);
-        }
-      });
-    });
+      .filter((x) => x.s > 0)
+      .sort((a, b) => b.s - a.s || a.c.rank - b.c.rank)
+      .slice(0, 6)
+      .map((x) => x.c);
   }
 
-  function hideAutocomplete() {
-    el.acDropdown.classList.add("hidden");
+  function updateAc() {
+    const q = el.input.value;
+    const live = $("live-name");
+    if (live) live.textContent = q;
+    state.acList = search(q);
+    state.acIdx = 0;
+    if (!q.trim()) return hideAc();
+    if (!state.acList.length) {
+      el.ac.innerHTML = '<div class="ac-empty">Ingen treff</div>';
+    } else {
+      el.ac.innerHTML = state.acList
+        .map(
+          (c, i) => `
+          <button type="button" class="ac-row${i === 0 ? " active" : ""}" data-i="${i}" role="option">
+            <span class="ac-name">${c.name}</span>
+            <span class="ac-tick">${c.bbgTicker}</span>
+          </button>`
+        )
+        .join("");
+    }
+    el.ac.classList.remove("hidden");
   }
 
-  function saveDailyProgress() {
-    const payload = {
-      dateKey: state.dailyDateKey,
-      targetId: state.target.id,
-      guessIds: state.guesses.map((g) => g.id),
-      unlockedClues: state.unlockedClues,
-      status: state.status
-    };
+  function highlightAc() {
+    el.ac.querySelectorAll(".ac-row").forEach((r, i) => r.classList.toggle("active", i === state.acIdx));
+  }
+
+  function hideAc() {
+    el.ac.classList.add("hidden");
+    el.ac.innerHTML = "";
+  }
+
+  /* ---------- persistence ---------- */
+
+  function saveDaily() {
+    if (state.mode !== "daily") return;
     try {
-      localStorage.setItem("folketrygdle_daily_2026", JSON.stringify(payload));
+      localStorage.setItem(
+        STORE_DAILY,
+        JSON.stringify({
+          dateKey: state.dateKey,
+          targetId: state.target.id,
+          guessIds: state.guesses.map((g) => g.id),
+          hints: state.hints,
+          status: state.status
+        })
+      );
     } catch (e) {}
   }
 
-  function loadDailyProgress(dateKey, targetCompany) {
+  function loadDaily(d) {
     try {
-      const raw = localStorage.getItem("folketrygdle_daily_2026");
-      if (!raw) return false;
-      const saved = JSON.parse(raw);
-      if (saved.dateKey !== dateKey || saved.targetId !== targetCompany.id) return false;
-
-      state.guesses = (saved.guessIds || [])
-        .map((id) => COMPANIES.find((c) => c.id === id))
-        .filter(Boolean);
-      state.unlockedClues = saved.unlockedClues || { 1: false, 2: false, 3: false };
+      const saved = JSON.parse(localStorage.getItem(STORE_DAILY) || "null");
+      if (!saved || saved.dateKey !== d.dateKey || saved.targetId !== d.company.id) return;
+      state.guesses = saved.guessIds.map((id) => COMPANIES.find((c) => c.id === id)).filter(Boolean);
+      state.hints = saved.hints || 0;
       state.status = saved.status || "playing";
-      return true;
-    } catch (e) {
-      return false;
-    }
+    } catch (e) {}
   }
 
   function getStats() {
+    const base = { played: 0, won: 0, currentStreak: 0, maxStreak: 0, dist: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 } };
     try {
-      const raw = localStorage.getItem("folketrygdle_stats_2026");
-      if (raw) return JSON.parse(raw);
-    } catch (e) {}
-    return {
-      played: 0,
-      won: 0,
-      currentStreak: 0,
-      maxStreak: 0,
-      dist: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 }
-    };
+      return { ...base, ...JSON.parse(localStorage.getItem(STORE_STATS) || "{}") };
+    } catch (e) {
+      return base;
+    }
   }
 
-  function recordGameStats(won, numGuesses) {
+  function recordStats(won, n) {
     const s = getStats();
-    s.played += 1;
+    s.played++;
     if (won) {
-      s.won += 1;
-      s.currentStreak += 1;
+      s.won++;
+      s.currentStreak++;
       s.maxStreak = Math.max(s.maxStreak, s.currentStreak);
-      const bucket = Math.min(6, Math.max(1, numGuesses));
-      s.dist[bucket] = (s.dist[bucket] || 0) + 1;
+      s.dist[n] = (s.dist[n] || 0) + 1;
     } else {
       s.currentStreak = 0;
     }
     try {
-      localStorage.setItem("folketrygdle_stats_2026", JSON.stringify(s));
+      localStorage.setItem(STORE_STATS, JSON.stringify(s));
     } catch (e) {}
   }
 
-  function renderStatsModal() {
+  function renderStats() {
     const s = getStats();
-    const winPct = s.played > 0 ? Math.round((s.won / s.played) * 100) : 0;
-
-    el.statsKpiGrid.innerHTML = `
-      <div class="stat-card">
-        <div class="stat-val">${s.played}</div>
-        <div class="stat-lbl">Spilt</div>
+    const pct = s.played ? Math.round((s.won / s.played) * 100) : 0;
+    const max = Math.max(1, ...Object.values(s.dist));
+    const cur = state.mode === "daily" && state.status === "won" ? state.guesses.length : 0;
+    el.statsBody.innerHTML = `
+      <div class="kpis">
+        <div><b>${s.played}</b><span>Spilt</span></div>
+        <div><b>${pct}</b><span>Seier %</span></div>
+        <div><b>${s.currentStreak}</b><span>Streak</span></div>
+        <div><b>${s.maxStreak}</b><span>Beste</span></div>
       </div>
-      <div class="stat-card">
-        <div class="stat-val">${winPct}%</div>
-        <div class="stat-lbl">Seier</div>
+      <h3 class="dist-title">Fordeling</h3>
+      <div class="dist">
+        ${[1, 2, 3, 4, 5, 6]
+          .map((n) => {
+            const v = s.dist[n] || 0;
+            return `<div class="dist-row"><span>${n}</span><div class="bar${n === cur ? " cur" : ""}" style="width:${Math.max(
+              7,
+              (v / max) * 100
+            )}%">${v}</div></div>`;
+          })
+          .join("")}
       </div>
-      <div class="stat-card">
-        <div class="stat-val">${s.currentStreak}</div>
-        <div class="stat-lbl">Streak</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-val">${s.maxStreak}</div>
-        <div class="stat-lbl">Maks</div>
-      </div>
-    `;
-
-    const maxBucket = Math.max(1, ...Object.values(s.dist));
-    el.statsDistribution.innerHTML = [1, 2, 3, 4, 5, 6]
-      .map((n) => {
-        const count = s.dist[n] || 0;
-        const widthPct = Math.max(6, Math.round((count / maxBucket) * 100));
-        return `
-        <div class="dist-item">
-          <span>${n}</span>
-          <div class="dist-track">
-            <div class="dist-fill" style="width:${widthPct}%">${count}</div>
-          </div>
-        </div>`;
-      })
-      .join("");
+      <p class="stats-note">Kun daglige runder teller.</p>`;
   }
 
-  function initExplorerModal() {
-    el.explorerSector.innerHTML =
-      `<option value="ALL">Alle sektorer</option>` +
-      ALL_SECTORS.map((s) => `<option value="${s}">${s}</option>`).join("");
+  /* ---------- ui utils ---------- */
 
-    const updateTable = () => {
-      const q = el.explorerSearch.value.trim().toLowerCase();
-      const country = el.explorerCountry.value;
-      const sector = el.explorerSector.value;
-      const fund = el.explorerFund.value;
-      const sort = el.explorerSort.value;
-
-      let filtered = COMPANIES.filter((c) => {
-        if (country !== "ALL" && c.country !== country) return false;
-        if (sector !== "ALL" && c.sector !== sector) return false;
-        if (fund !== "ALL" && !c.fund.includes(fund)) return false;
-        if (q) {
-          const matchName = c.name.toLowerCase().includes(q);
-          const matchBbg = getBbg(c).toLowerCase().includes(q);
-          const matchTicker = c.ticker.toLowerCase().includes(q);
-          const matchAlias = (c.aliases || []).some((a) => a.toLowerCase().includes(q));
-          if (!matchName && !matchBbg && !matchTicker && !matchAlias) return false;
-        }
-        return true;
-      });
-
-      filtered.sort((a, b) => {
-        if (sort === "mcap") return b.mcapBNOK - a.mcapBNOK;
-        if (sort === "own") return b.ownershipPct - a.ownershipPct;
-        if (sort === "price") return b.sharePriceNOK - a.sharePriceNOK;
-        if (sort === "name") return a.name.localeCompare(b.name, "nb");
-        return a.rank - b.rank;
-      });
-
-      const totalFtfBNOK = filtered.reduce((acc, c) => acc + c.marketValueMNOK, 0) / 1000;
-      el.explorerSummaryStrip.textContent = `${filtered.length} selskaper · FTF: ${totalFtfBNOK.toFixed(1)}B NOK`;
-
-      el.explorerTbody.innerHTML = filtered
-        .map(
-          (c) => `
-          <tr>
-            <td class="cell-mono">#${c.rank}</td>
-            <td><strong>${c.name}</strong></td>
-            <td><span class="bbg-pill">${getBbg(c)}</span></td>
-            <td>${getIso(c)}</td>
-            <td>${SHORT_SECTOR[c.sector] || c.sector}</td>
-            <td class="cell-mono">${fmtCompactNOK(c.mcapBNOK)}</td>
-            <td class="cell-mono">${fmtCompactFTF(c.marketValueMNOK)}</td>
-            <td class="cell-mono">${c.ownershipPct.toFixed(2)}%</td>
-            <td class="cell-mono">${c.fund}</td>
-          </tr>`
-        )
-        .join("");
-    };
-
-    el.explorerSearch.addEventListener("input", updateTable);
-    el.explorerCountry.addEventListener("change", updateTable);
-    el.explorerSector.addEventListener("change", updateTable);
-    el.explorerFund.addEventListener("change", updateTable);
-    el.explorerSort.addEventListener("change", updateTable);
-
-    updateTable();
-  }
-
-  function setMode(newMode) {
-    state.mode = newMode;
-    document.querySelectorAll(".seg-btn").forEach((tab) => {
-      tab.classList.toggle("active", tab.getAttribute("data-mode") === newMode);
-    });
-    startNewRound();
-  }
-
-  function startNewRound() {
-    const dailyInfo = getDailyPuzzleInfo();
-    state.dailyNumber = dailyInfo.dailyNumber;
-    state.dailyDateKey = dailyInfo.dateKey;
-
-    state.guesses = [];
-    state.unlockedClues = { 1: false, 2: false, 3: false };
-    state.status = "playing";
-
-    if (state.mode === "daily") {
-      state.target = dailyInfo.company;
-      loadDailyProgress(dailyInfo.dateKey, dailyInfo.company);
-    } else {
-      const pool = getActivePool(state.mode);
-      let available = pool.filter((c) => !state.playedIds.has(c.id));
-      if (available.length === 0) {
-        state.playedIds.clear();
-        available = pool;
-      }
-      const picked = available[Math.floor(Math.random() * available.length)];
-      state.target = picked;
-      state.playedIds.add(picked.id);
-    }
-
-    renderToolbarAndHints();
-    renderGrid();
-    renderCandidatesPanel();
-    renderResultBanner();
-  }
-
-  let toastTimer = null;
-  function showToast(msg) {
+  let toastTimer;
+  function toast(msg, ms = 1600) {
     el.toast.textContent = msg;
-    el.toast.classList.remove("hidden");
-    if (toastTimer) clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => {
-      el.toast.classList.add("hidden");
-    }, 2200);
+    el.toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.toast.classList.remove("show"), ms);
   }
 
-  function bindEvents() {
-    document.querySelectorAll(".seg-btn").forEach((tab) => {
-      tab.addEventListener("click", () => {
-        setMode(tab.getAttribute("data-mode"));
-      });
-    });
+  function shakeActiveRow() {
+    const row = el.rows.querySelector(".row.active") || el.entry;
+    row.classList.remove("shake");
+    void row.offsetWidth;
+    row.classList.add("shake");
+  }
 
-    el.btnNewRound.addEventListener("click", () => {
-      if (state.mode === "daily") {
-        setMode("practice-major");
-      } else {
-        startNewRound();
-      }
-    });
+  const isTouch = () => matchMedia("(pointer: coarse)").matches;
 
-    [1, 2, 3].forEach((num) => {
-      const btn = document.getElementById(`btn-clue-${num}`);
-      btn.addEventListener("click", () => {
-        state.unlockedClues[num] = !state.unlockedClues[num];
-        if (state.mode === "daily") saveDailyProgress();
-        renderToolbarAndHints();
-      });
-    });
+  function openModal(id) {
+    $(id).classList.remove("hidden");
+    document.body.classList.add("modal-open");
+  }
+  function closeModal(id) {
+    $(id).classList.add("hidden");
+    if (!document.querySelector(".overlay:not(.hidden)")) document.body.classList.remove("modal-open");
+    if (id === "modal-result") clearInterval(cdTimer);
+  }
 
-    el.btnToggleCandidates.addEventListener("click", () => {
-      state.candidatesOpen = !state.candidatesOpen;
-      el.candidatesDrawer.classList.toggle("hidden", !state.candidatesOpen);
-      renderCandidatesPanel();
-    });
+  /* ---------- events ---------- */
 
-    el.candidateSortSelect.addEventListener("change", renderCandidatesPanel);
+  function bind() {
+    document.querySelectorAll(".mode-btn").forEach((b) =>
+      b.addEventListener("click", () => setMode(b.dataset.mode))
+    );
 
-    el.searchInput.addEventListener("focus", updateAutocomplete);
-    el.searchInput.addEventListener("input", updateAutocomplete);
-    el.chkSmartFilter.addEventListener("change", () => {
-      updateAutocomplete();
-      el.searchInput.focus();
-    });
-
-    el.searchInput.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowDown") {
+    el.input.addEventListener("input", updateAc);
+    el.input.addEventListener("focus", updateAc);
+    el.input.addEventListener("keydown", (e) => {
+      const n = state.acList.length;
+      if (e.key === "ArrowDown" && n) {
         e.preventDefault();
-        if (state.acFiltered.length > 0) {
-          state.acHighlightIdx = (state.acHighlightIdx + 1) % state.acFiltered.length;
-          highlightAcRow();
-        }
-      } else if (e.key === "ArrowUp") {
+        state.acIdx = (state.acIdx + 1) % n;
+        highlightAc();
+      } else if (e.key === "ArrowUp" && n) {
         e.preventDefault();
-        if (state.acFiltered.length > 0) {
-          state.acHighlightIdx =
-            (state.acHighlightIdx - 1 + state.acFiltered.length) % state.acFiltered.length;
-          highlightAcRow();
-        }
+        state.acIdx = (state.acIdx - 1 + n) % n;
+        highlightAc();
       } else if (e.key === "Enter") {
         e.preventDefault();
-        if (state.acFiltered.length > 0) {
-          submitGuess(state.acFiltered[state.acHighlightIdx] || state.acFiltered[0]);
+        if (n) submitGuess(state.acList[state.acIdx]);
+        else if (el.input.value.trim()) {
+          toast("Fant ikke selskapet");
+          shakeActiveRow();
         }
       } else if (e.key === "Escape") {
-        hideAutocomplete();
+        hideAc();
       }
     });
 
-    el.btnSubmitGuess.addEventListener("click", () => {
-      if (state.acFiltered.length > 0) {
-        submitGuess(state.acFiltered[state.acHighlightIdx] || state.acFiltered[0]);
-      } else {
-        updateAutocomplete();
-        if (state.acFiltered.length > 0) {
-          submitGuess(state.acFiltered[0]);
-        }
-      }
+    // pointerdown so the input keeps focus (keyboard stays open on mobile)
+    el.ac.addEventListener("pointerdown", (e) => {
+      const row = e.target.closest(".ac-row");
+      if (!row) return;
+      e.preventDefault();
+      submitGuess(state.acList[Number(row.dataset.i)]);
     });
 
-    document.addEventListener("click", (e) => {
-      if (!e.target.closest(".search-wrap")) {
-        hideAutocomplete();
-      }
+    document.addEventListener("pointerdown", (e) => {
+      if (!e.target.closest(".entry")) hideAc();
     });
 
-    el.btnGiveUp.addEventListener("click", giveUpRound);
+    el.btnHint.addEventListener("click", onHintClick);
+    el.btnShowResult.addEventListener("click", openResult);
+    el.btnNext.addEventListener("click", nextRound);
 
-    el.btnExplorer.addEventListener("click", () => {
-      el.modalExplorer.classList.remove("hidden");
+    $("btn-help").addEventListener("click", () => openModal("modal-help"));
+    $("btn-stats").addEventListener("click", () => {
+      renderStats();
+      openModal("modal-stats");
     });
-    el.btnStats.addEventListener("click", () => {
-      renderStatsModal();
-      el.modalStats.classList.remove("hidden");
-    });
-    el.btnHelp.addEventListener("click", () => {
-      el.modalHelp.classList.remove("hidden");
-    });
-
-    document.querySelectorAll(".close-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const targetModal = document.getElementById(btn.getAttribute("data-close"));
-        if (targetModal) targetModal.classList.add("hidden");
-      });
+    $("btn-reset-stats").addEventListener("click", () => {
+      try {
+        localStorage.removeItem(STORE_STATS);
+      } catch (e) {}
+      renderStats();
+      toast("Statistikk nullstilt");
     });
 
-    document.querySelectorAll(".modal-overlay").forEach((overlay) => {
-      overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) overlay.classList.add("hidden");
-      });
-    });
-
-    el.btnResetStats.addEventListener("click", () => {
-      localStorage.removeItem("folketrygdle_stats_2026");
-      renderStatsModal();
-      showToast("Nullstilt");
+    document.querySelectorAll("[data-close]").forEach((b) =>
+      b.addEventListener("click", () => closeModal(b.dataset.close))
+    );
+    document.querySelectorAll(".overlay").forEach((o) =>
+      o.addEventListener("click", (e) => {
+        if (e.target === o) closeModal(o.id);
+      })
+    );
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") document.querySelectorAll(".overlay:not(.hidden)").forEach((o) => closeModal(o.id));
     });
   }
 
-  function highlightAcRow() {
-    const items = el.acDropdown.querySelectorAll(".ac-row[data-idx]");
-    items.forEach((item, idx) => {
-      if (idx === state.acHighlightIdx) {
-        item.classList.add("active");
-        item.scrollIntoView({ block: "nearest" });
-      } else {
-        item.classList.remove("active");
-      }
-    });
+  function renderSource() {
+    const meta = window.MULTIPLES_META || {};
+    const pMeta = window.PORTFOLIO_META || {};
+    const fmtDate = (d) => (d ? d.split("-").reverse().join(".") : "");
+    $("source").textContent =
+      `Kurs og multipler: ${meta.source || "Yahoo Finance"} ${fmtDate(meta.date)} · ` +
+      `FTF-beholdning ${fmtDate(pMeta.reportDate)}`;
   }
 
   function init() {
-    bindEvents();
-    initExplorerModal();
-    startNewRound();
+    renderSource();
+    bind();
+    startRound();
+    let firstVisit = false;
+    try {
+      firstVisit = !localStorage.getItem("folketrygdle_seen_help");
+      localStorage.setItem("folketrygdle_seen_help", "1");
+    } catch (e) {}
+    if (firstVisit) openModal("modal-help");
+    else if (state.status !== "playing") openResult();
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
 })();
