@@ -22,7 +22,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 3.56,
     "shares": 91020939,
     "isMajorPool": true,
-    "clue": "Norges desidert største energiselskap og Folketrygdfondets aller største enkeltinvestering. Operatør på norsk sokkel (bl.a. Johan Sverdrup og Troll) og stor innen havvind."
+    "clue": "Norges største energiselskap, operatør av bl.a. Johan Sverdrup og Troll."
   },
   {
     "rank": 2,
@@ -43,7 +43,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 5.68,
     "shares": 81870459,
     "isMajorPool": true,
-    "clue": "Norges største finanskonsern og bank. Har hovedkontor i Bjørvika i Oslo og er Folketrygdfondets nest største aksjepost."
+    "clue": "Norges største bank og finanskonsern, med hovedkontor i Bjørvika i Oslo."
   },
   {
     "rank": 3,
@@ -64,7 +64,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 4.88,
     "shares": 42956672,
     "isMajorPool": true,
-    "clue": "Høyteknologikonsern med røtter tilbake til 1814. Verdensledende innen forsvarssystemer (missiler, luftvern), romfart og maritim elektronikk."
+    "clue": "Norsk forsvars- og teknologikonsern bak NASAMS-luftvern, missiler og maritim elektronikk."
   },
   {
     "rank": 4,
@@ -84,7 +84,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 6.16,
     "shares": 121825889,
     "isMajorPool": true,
-    "clue": "Tradisjonsrikt norsk industrikonsern grunnlagt i 1905 av Sam Eyde og Kristian Birkeland. En av verdens ledende produsenter av lavkarbon-aluminium og vannkraft."
+    "clue": "Aluminiums- og kraftkonsern grunnlagt i 1905 av Sam Eyde og Kristian Birkeland."
   },
   {
     "rank": 5,
@@ -105,7 +105,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 5.25,
     "shares": 33162849,
     "isMajorPool": true,
-    "clue": "Et av Europas største uavhengige olje- og gasselskaper på norsk sokkel, med Kjell Inge Røkkes Aker og britiske BP som hovedeiere."
+    "clue": "Uavhengig oljeselskap på norsk sokkel, operatør av Valhall, Edvard Grieg og Yggdrasil."
   },
   {
     "rank": 6,
@@ -126,7 +126,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 11.2,
     "shares": 47563249,
     "isMajorPool": true,
-    "clue": "Ledende nordisk konsern innen tjenestepensjon, livsforsikring, kapitalforvaltning og bank med hovedkontor på Lysaker."
+    "clue": "Nordisk konsern innen tjenestepensjon, livsforsikring og kapitalforvaltning, basert på Lysaker."
   },
   {
     "rank": 7,
@@ -147,7 +147,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 8.65,
     "shares": 45631223,
     "isMajorPool": true,
-    "clue": "Verdens største produsent av oppdrettslaks med hovedkontor i Bergen. Skiftet navn fra Marine Harvest i 2019."
+    "clue": "Verdens største produsent av oppdrettslaks, med hovedkontor i Bergen."
   },
   {
     "rank": 8,
@@ -167,7 +167,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 4.28,
     "shares": 58501579,
     "isMajorPool": true,
-    "clue": "Norges største telekomselskap med drøyt 150 års historie. Stor mobil- og bredbåndsoperatør i hele Norden og Asia."
+    "clue": "Norges største telekomselskap, med mobil- og bredbåndsvirksomhet i Norden og Asia."
   },
   {
     "rank": 9,
@@ -188,7 +188,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 8.03,
     "shares": 24051978,
     "isMajorPool": true,
-    "clue": "Global gigant innen undervannsentrepriser (SURF), rørlegging og offshore vind-installasjoner, notert på Oslo Børs med Kristian Siem som sentral eier."
+    "clue": "Global leverandør av undervannsentrepriser, rørlegging og havvindinstallasjon."
   },
   {
     "rank": 10,
@@ -209,7 +209,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 7.6,
     "shares": 74874735,
     "isMajorPool": true,
-    "clue": "Nordisk merkevare- og industrielt investeringsselskap bak kjente hverdagsprodukter som Grandiosa, Toro, Stabburet, Nidar, Lilleborg og en stor eierpost i Jotun."
+    "clue": "Nordisk merkevarekonsern bak Grandiosa, Stabburet og Nidar, og storeier i Jotun."
   },
   {
     "rank": 11,
@@ -229,7 +229,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 6.3,
     "shares": 16039944,
     "isMajorPool": true,
-    "clue": "Verdensledende produsent av mineralgjødsel, ammoniakk og planteernæring. Skilt ut fra Norsk Hydro i 2004."
+    "clue": "Verdensledende produsent av mineralgjødsel og ammoniakk, skilt ut fra Hydro i 2004."
   },
   {
     "rank": 12,
@@ -249,7 +249,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 4.24,
     "shares": 21185433,
     "isMajorPool": true,
-    "clue": "Norges største skadeforsikringsselskap, kjent for vekter-logoen og årlig kundeutbytte gjennom Gjensidigestiftelsen."
+    "clue": "Norges største skadeforsikringsselskap, eid i stor grad av en stiftelse som gir kundeutbytte."
   },
   {
     "rank": 13,
@@ -271,7 +271,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 6.35,
     "shares": 23850274,
     "isMajorPool": true,
-    "clue": "Storbank dannet ved fusjonen mellom SpareBank 1 SR-Bank og SpareBank 1 Sørøst-Norge. Norges største sparebankkonsern."
+    "clue": "Stavanger-basert storbank for Rogaland, Agder og Østlandet, dannet ved fusjon i 2024."
   },
   {
     "rank": 14,
@@ -292,7 +292,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.21,
     "shares": 9522383,
     "isMajorPool": true,
-    "clue": "Nordens mest verdifulle børsnoterte selskap. Dansk farmasigigant som leder verdensmarkedet innen diabetes- og fedmemedisiner (bl.a. Ozempic og Wegovy)."
+    "clue": "Dansk legemiddelgigant innen diabetes- og fedmebehandling."
   },
   {
     "rank": 15,
@@ -315,7 +315,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 8.35,
     "shares": 18210274,
     "isMajorPool": true,
-    "clue": "Nordisk rubrikkgigant (tidligere Schibsted Marketplaces) som eier digitale markedsplasser som FINN.no i Norge, Blocket i Sverige, Bilbasen i Danmark og Oikotie i Finland."
+    "clue": "Nordisk eier av digitale rubrikkmarkedsplasser som FINN.no, Blocket og Bilbasen."
   },
   {
     "rank": 16,
@@ -335,7 +335,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 10.75,
     "shares": 21480678,
     "isMajorPool": true,
-    "clue": "Fabelaktig norsk halvlederselskap med røtter fra NTNU i Trondheim. Verdensledende på mikrobrikker for Bluetooth Low Energy, Wi-Fi og IoT."
+    "clue": "Trondheimsk halvlederselskap, verdensledende på Bluetooth Low Energy-brikker."
   },
   {
     "rank": 17,
@@ -356,7 +356,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 5.74,
     "shares": 7789786,
     "isMajorPool": true,
-    "clue": "En av verdens største og mest effektive produsenter av oppdrettslaks, grunnlagt av Gustav Witzøe på Frøya i Trøndelag."
+    "clue": "Lakseoppdretter grunnlagt av Gustav Witzøe på Frøya i Trøndelag."
   },
   {
     "rank": 18,
@@ -376,7 +376,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.4,
     "shares": 19722324,
     "isMajorPool": true,
-    "clue": "Svensk industrijuvel i Wallenberg-sfæren. Verdensledende på kompressorer, vakuumløsninger, industriverktøy og energiteknikk."
+    "clue": "Svensk Wallenberg-eid verdensleder på kompressorer, vakuumpumper og industriverktøy."
   },
   {
     "rank": 19,
@@ -397,7 +397,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 3.41,
     "shares": 85171156,
     "isMajorPool": true,
-    "clue": "Et av de største olje- og gasselskapene på norsk sokkel med hovedkontor på Forus i Sandnes, majoritetseid av italienske Eni."
+    "clue": "Olje- og gasselskap på norsk sokkel med hovedkontor på Forus, majoritetseid av italienske Eni."
   },
   {
     "rank": 20,
@@ -418,7 +418,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 4.11,
     "shares": 3051397,
     "isMajorPool": true,
-    "clue": "Industrielt investeringsselskap på Fornebu kontrollert av Kjell Inge Røkke, med store eierposter i Aker BP, Aker Solutions, Cognite og Aker BioMarine."
+    "clue": "Kjell Inge Røkkes industrielle investeringsselskap på Fornebu."
   },
   {
     "rank": 21,
@@ -439,7 +439,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 4.53,
     "shares": 10082471,
     "isMajorPool": true,
-    "clue": "Et av verdens mest kjente tankrederier for frakt av råolje (VLCC og Suezmax), bygget opp av skipsreder John Fredriksen."
+    "clue": "Tankrederi for råolje (VLCC og Suezmax), bygget opp av John Fredriksen."
   },
   {
     "rank": 22,
@@ -460,7 +460,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.21,
     "shares": 6541929,
     "isMajorPool": true,
-    "clue": "Wallenberg-familiens mektige svenske investeringsselskap, storaksjonær i bl.a. Atlas Copco, ABB, AstraZeneca, SEB, Saab og Ericsson."
+    "clue": "Wallenberg-familiens svenske investeringsselskap, storeier i ABB, Atlas Copco og SEB."
   },
   {
     "rank": 23,
@@ -480,7 +480,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 9.82,
     "shares": 13258948,
     "isMajorPool": true,
-    "clue": "Skandinavias og Norges største børsnoterte entreprenør- og anleggskonsern innen bygg, vei, jernbane og asfalt."
+    "clue": "Norges største børsnoterte entreprenør innen bygg, vei, jernbane og asfalt."
   },
   {
     "rank": 24,
@@ -500,7 +500,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 9.88,
     "shares": 21610534,
     "isMajorPool": true,
-    "clue": "Ledende skandinavisk elektronikkprodusent (EMS) som produserer avansert elektronikk for forsvars-, medisin-, industri- og elektrifiseringssektoren."
+    "clue": "Skandinavisk kontraktsprodusent av elektronikk (EMS), særlig til forsvar og medisin."
   },
   {
     "rank": 25,
@@ -542,7 +542,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 7.83,
     "shares": 19275741,
     "isMajorPool": true,
-    "clue": "Internasjonalt offshorerederi og subseakonsern fra Austevoll med en stor flåte av avanserte konstruksjons-, ankerhåndterings- og subseaskip."
+    "clue": "Offshorerederi og subseakonsern fra Austevoll med avanserte konstruksjons- og ankerskip."
   },
   {
     "rank": 27,
@@ -562,7 +562,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 7.56,
     "shares": 22370292,
     "isMajorPool": true,
-    "clue": "Verdensledende innen panteautomater, sensorteknologi for sortering/gjenvinning og matsortering, grunnlagt av brødrene Petter og Tore Planke i 1972."
+    "clue": "Verdensleder på panteautomater og sensorbasert sortering, grunnlagt av brødrene Planke i 1972."
   },
   {
     "rank": 28,
@@ -584,7 +584,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 8.19,
     "shares": 16100102,
     "isMajorPool": true,
-    "clue": "Verdens største leverandør av seismikkdata og undergrunnsdata til energibransjen, styrket etter sammenslåingen med PGS."
+    "clue": "Verdens største leverandør av seismikk- og undergrunnsdata, slått sammen med PGS i 2024."
   },
   {
     "rank": 29,
@@ -604,7 +604,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 8.53,
     "shares": 5063334,
     "isMajorPool": true,
-    "clue": "Den ledende lakseoppdretteren på Færøyene og i Skottland, notert på Oslo Børs og kjent for kontroll på hele verdikjeden fra fôr til ferdig laks."
+    "clue": "Den ledende lakseoppdretteren på Færøyene, også stor i Skottland."
   },
   {
     "rank": 30,
@@ -625,7 +625,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.31,
     "shares": 10706995,
     "isMajorPool": true,
-    "clue": "Nordens største bankkonsern målt i markedsverdi og kundebase, med hovedkontor i Helsingfors og stor virksomhet i Norge, Sverige, Danmark og Finland."
+    "clue": "Nordens største bank, med hovedkontor i Helsingfors."
   },
   {
     "rank": 31,
@@ -645,7 +645,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 13.55,
     "shares": 22620206,
     "isMajorPool": true,
-    "clue": "Norges største lavprisvarekjede med over 280 butikker fra nord til sør (og eier av svenske ÖoB). Folketrygdfondet eier over 13 % av selskapet!"
+    "clue": "Norges største lavpriskjede med over 280 butikker, og eier av svenske ÖoB."
   },
   {
     "rank": 32,
@@ -665,7 +665,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 4.92,
     "shares": 4056374,
     "isMajorPool": true,
-    "clue": "Rasktvoksende norsk skadeforsikringsselskap som retter seg mot bedriftsmarkedet og offentlig sektor i Norden, Storbritannia og Frankrike."
+    "clue": "Skadeforsikrer for bedrifter og offentlig sektor i Norden, Storbritannia og Frankrike."
   },
   {
     "rank": 33,
@@ -685,7 +685,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 5.85,
     "shares": 29245653,
     "isMajorPool": true,
-    "clue": "Verdens største operatør av produkttankskip og kjemikalietankere, notert i Oslo og New York med Andreas Sohmen-Paos BW Group som storaksjonær."
+    "clue": "Verdens største operatør av produkttankskip, i BW Group-sfæren."
   },
   {
     "rank": 34,
@@ -705,7 +705,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.63,
     "shares": 7679211,
     "isMajorPool": true,
-    "clue": "Svensk global produsent av gruve- og anleggsutstyr, borerigger og fjellsikring, skilt ut fra Atlas Copco i 2018."
+    "clue": "Svensk produsent av gruve- og anleggsutstyr, skilt ut fra Atlas Copco i 2018."
   },
   {
     "rank": 35,
@@ -725,7 +725,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 11.72,
     "shares": 11724388,
     "isMajorPool": true,
-    "clue": "Et av verdens mest avanserte bioraffinerier i Sarpsborg, som lager bærekraftige biokjemikalier, lignin, spesialcellulose og vanillin av norsk gran."
+    "clue": "Bioraffineri i Sarpsborg som lager spesialcellulose, lignin og vanillin av gran."
   },
   {
     "rank": 36,
@@ -746,7 +746,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 3.97,
     "shares": 136119670,
     "isMajorPool": true,
-    "clue": "Norsk robotikksuksess fra Nedre Vats i Rogaland! Verdensledende på kubebaserte lagerroboter som henter varer lynraskt for globale netthandelsgiganter."
+    "clue": "Norsk robotselskap fra Nedre Vats, verdensledende på kubebaserte lagerroboter."
   },
   {
     "rank": 37,
@@ -767,7 +767,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 7.58,
     "shares": 8612346,
     "isMajorPool": true,
-    "clue": "Et av Norges ledende entreprenør- og industrikonsern innen anlegg, bygg, eiendom, offshore riving og miljø."
+    "clue": "Norsk entreprenørkonsern innen anlegg, bygg, eiendom og offshore riving."
   },
   {
     "rank": 38,
@@ -788,7 +788,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 5.97,
     "shares": 9510737,
     "isMajorPool": true,
-    "clue": "Verdens ledende eier og operatør av store gasstankskip (VLGC) som frakter flytende petroleumsgass (LPG) globalt."
+    "clue": "Verdens ledende eier av store gasstankskip (VLGC) for flytende petroleumsgass."
   },
   {
     "rank": 39,
@@ -808,7 +808,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.37,
     "shares": 4160194,
     "isMajorPool": true,
-    "clue": "En av Sveriges og Baltikums største banker med dype røtter i den svenske sparebankbevegelsen."
+    "clue": "En av Sveriges og Baltikums største banker, med røtter i den svenske sparebankbevegelsen."
   },
   {
     "rank": 40,
@@ -828,7 +828,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.2,
     "shares": 11477781,
     "isMajorPool": true,
-    "clue": "Finsk teknologikjempe og en av verdens ledende leverandører av 5G-mobilnettverk, fiberinfrastruktur og telekompatenter."
+    "clue": "Finsk leverandør av mobilnett og fiberinfrastruktur, tidligere verdens største mobilprodusent."
   },
   {
     "rank": 41,
@@ -849,7 +849,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 9.63,
     "shares": 101582947,
     "isMajorPool": true,
-    "clue": "Lavprisflyselskapet med rød snute og halehelter som også eier Widerøe, og frakter millioner av passasjerer i Norden og Europa."
+    "clue": "Lavprisflyselskap med halehelter på flyene, og eier av Widerøe."
   },
   {
     "rank": 42,
@@ -869,7 +869,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 9.54,
     "shares": 15253057,
     "isMajorPool": true,
-    "clue": "Norsk fornybarselskap som utvikler, bygger og drifter store solkraft-, vindkraft-, vannkraft- og batteriprosjekter i fremvoksende markeder."
+    "clue": "Norsk fornybarselskap som bygger sol-, vind- og vannkraft i fremvoksende markeder."
   },
   {
     "rank": 43,
@@ -890,7 +890,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.26,
     "shares": 613769,
     "isMajorPool": true,
-    "clue": "Dansk transport- og logistikkgigant som etter en rekke gigantoppkjøp er et av verdens aller største speditør- og fraktselskaper."
+    "clue": "Dansk logistikkgigant, en av verdens største speditører etter kjøpet av DB Schenker."
   },
   {
     "rank": 44,
@@ -910,7 +910,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 8.81,
     "shares": 85877209,
     "isMajorPool": true,
-    "clue": "Norges eldste oljeselskap (grunnlagt 1971), med betydelig oljeproduksjon i Kurdistan (Irak), Nordsjøen og Vest-Afrika."
+    "clue": "Norges eldste oljeselskap (1971), med stor produksjon i Kurdistan og Nordsjøen."
   },
   {
     "rank": 45,
@@ -930,7 +930,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.31,
     "shares": 2543047,
     "isMajorPool": true,
-    "clue": "Danmarks største bank og finanskonsern med sterk tilstedeværelse i hele Norden."
+    "clue": "Danmarks største bank, med sterk tilstedeværelse i hele Norden."
   },
   {
     "rank": 46,
@@ -951,7 +951,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 6.82,
     "shares": 7667509,
     "isMajorPool": true,
-    "clue": "Nordens og Baltikums største leverandør av IT-infrastruktur, maskinvare, programvare og konsulenttjenester til bedrifter og offentlig sektor."
+    "clue": "Nordens og Baltikums største leverandør av IT-infrastruktur til bedrifter og offentlig sektor."
   },
   {
     "rank": 47,
@@ -972,7 +972,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 5.84,
     "shares": 28738047,
     "isMajorPool": true,
-    "clue": "Ledende norsk ingeniør- og leverandørselskap som bygger plattformer, subseautstyr og fornybarprosjekter for energibransjen."
+    "clue": "Norsk leverandør av ingeniørtjenester, plattformer og feltutbygging for energibransjen."
   },
   {
     "rank": 48,
@@ -993,7 +993,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 4.61,
     "shares": 8787201,
     "isMajorPool": true,
-    "clue": "Verdensledende norsk bilskipsrederi (RoRo) som frakter biler og rullende materiell over verdenshavene med sine nye ammoniakk-klare Aurora-skip."
+    "clue": "Norsk bilskipsrederi (RoRo) med nye ammoniakk-klare Aurora-skip."
   },
   {
     "rank": 49,
@@ -1014,7 +1014,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.3,
     "shares": 3370543,
     "isMajorPool": true,
-    "clue": "Svensk verdensleder innen låser, adgangskontroll, digitale dørlåser (bl.a. TrioVing og Yale Doorman) og sikkerhetsløsninger."
+    "clue": "Svensk verdensleder innen låser, adgangskontroll og digitale dørlåser."
   },
   {
     "rank": 50,
@@ -1034,7 +1034,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.39,
     "shares": 3915139,
     "isMajorPool": true,
-    "clue": "Dansk industrikjempe og verdens største vestlige produsent av vindturbiner på land og til havs."
+    "clue": "Dansk produsent av vindturbiner, verdens største utenfor Kina."
   },
   {
     "rank": 51,
@@ -1054,7 +1054,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.95,
     "shares": 8259268,
     "isMajorPool": true,
-    "clue": "Verdens største bilskips- og RoRo-logistikkselskap, eid i fellesskap av norske Wilh. Wilhelmsen og svenske Wallenius."
+    "clue": "Verdens største bilskips- og RoRo-rederi, med norske og svenske røtter."
   },
   {
     "rank": 52,
@@ -1074,7 +1074,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 8.79,
     "shares": 32342731,
     "isMajorPool": true,
-    "clue": "Norsk industrikonsern grunnlagt av Sam Eyde i 1904. En av verdens ledende produsenter av silisium, silikon og ferrolegeringer."
+    "clue": "Silisium- og silikonprodusent grunnlagt av Sam Eyde i 1904."
   },
   {
     "rank": 53,
@@ -1095,7 +1095,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 4.79,
     "shares": 18473595,
     "isMajorPool": true,
-    "clue": "Ledende rederi med spesialiserte oppjekkbare kranskip som frakter og installerer gigantiske havvindturbiner og fundamenter."
+    "clue": "Rederi med oppjekkbare kranskip som installerer havvindturbiner og fundamenter."
   },
   {
     "rank": 54,
@@ -1116,7 +1116,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.36,
     "shares": 9524595,
     "isMajorPool": true,
-    "clue": "Finsk forsikringsgigant som eier Nordens største skadeforsikringsselskap If, danske Topdanmark og britiske Hastings."
+    "clue": "Finsk forsikringskonsern som eier Nordens største skadeforsikrer If."
   },
   {
     "rank": 55,
@@ -1157,7 +1157,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 4.29,
     "shares": 25571678,
     "isMajorPool": true,
-    "clue": "Et av verdens største sjømatkonsern innen laks, ørret og hvitfisk (trålerflåten Havfisk), majoritetseid av Austevoll Seafood."
+    "clue": "Bergensk sjømatkonsern innen laks, ørret og hvitfisk, majoritetseid av Austevoll Seafood."
   },
   {
     "rank": 57,
@@ -1179,7 +1179,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.13,
     "shares": 2630659,
     "isMajorPool": true,
-    "clue": "Svensk industribauta (AB Volvo) som produserer lastebiler, anleggsmaskiner, busser og båtmotorer (Volvo Penta)."
+    "clue": "Svensk produsent av lastebiler, busser, anleggsmaskiner og båtmotorer."
   },
   {
     "rank": 58,
@@ -1201,7 +1201,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.61,
     "shares": 3680361,
     "isMajorPool": true,
-    "clue": "Skandinavias største skadeforsikringskonsern med sterk posisjon i Danmark, Norge og Sverige (Trygg-Hansa)."
+    "clue": "Dansk skadeforsikrer, en av Skandinavias største med sterk posisjon i Norge og Sverige."
   },
   {
     "rank": 59,
@@ -1222,7 +1222,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.27,
     "shares": 1273893,
     "isMajorPool": true,
-    "clue": "Dansk bioteknologigigant skapt i 2024 ved fusjonen mellom enzymlederen Novozymes og bakteriekultur-selskapet Chr. Hansen."
+    "clue": "Dansk bioteknologiselskap innen enzymer og bakteriekulturer, dannet ved fusjon i 2024."
   },
   {
     "rank": 60,
@@ -1243,7 +1243,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.87,
     "shares": 1850571,
     "isMajorPool": true,
-    "clue": "Dansk verdensleder innen høreapparater (bl.a. Oticon), hørselsdiagnostikk og implantater."
+    "clue": "Dansk verdensleder innen høreapparater, hørselsdiagnostikk og implantater."
   },
   {
     "rank": 61,
@@ -1263,7 +1263,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.33,
     "shares": 1973278,
     "isMajorPool": true,
-    "clue": "Finsk industrikonsern som er verdensledende på skipsmotorer, maritim teknologi og fleksible kraftverk/batterilagring."
+    "clue": "Finsk verdensleder på skipsmotorer, maritim teknologi og fleksible gasskraftverk."
   },
   {
     "rank": 62,
@@ -1283,7 +1283,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.3,
     "shares": 1241142,
     "isMajorPool": true,
-    "clue": "Svensk ingeniørgigant innen varmevekslere, separatorer og væskehåndtering for energi-, maritim- og næringsmiddelindustrien."
+    "clue": "Svensk verdensleder på varmevekslere, separatorer og væskehåndtering."
   },
   {
     "rank": 63,
@@ -1303,7 +1303,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.74,
     "shares": 1002263,
     "isMajorPool": true,
-    "clue": "Tradisjonsrikt dansk ingeniør- og teknologiselskap som leverer prosessutstyr og service til den globale gruve- og sementindustrien."
+    "clue": "Dansk leverandør av prosessutstyr og service til den globale gruveindustrien."
   },
   {
     "rank": 64,
@@ -1323,7 +1323,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.23,
     "shares": 1197216,
     "isMajorPool": true,
-    "clue": "Finsk verdensleder innen heiser, rulletrapper og automatiske dører i høyhus og kollektivknutepunkter over hele kloden."
+    "clue": "Finsk verdensleder innen heiser, rulletrapper og automatiske dører."
   },
   {
     "rank": 65,
@@ -1344,7 +1344,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 6.71,
     "shares": 2852136,
     "isMajorPool": true,
-    "clue": "Fred. Olsen-sfærens børsnoterte holdingselskap på Oslo Børs, med store investeringer i vindkraft, havvind-installasjonsskip og cruise."
+    "clue": "Fred. Olsen-familiens holdingselskap med vindkraft, havvindskip og cruise."
   },
   {
     "rank": 66,
@@ -1364,7 +1364,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 8.24,
     "shares": 25211953,
     "isMajorPool": true,
-    "clue": "Et av Europas ledende selskaper innen mobilmeldingstjenester (CPaaS, bedrifts-SMS, RCS og WhatsApp-kommunikasjon) med hovedkontor i Oslo."
+    "clue": "Oslo-basert leverandør av mobilmeldinger for bedrifter (SMS, RCS og WhatsApp) i Europa."
   },
   {
     "rank": 67,
@@ -1384,7 +1384,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.94,
     "shares": 9363325,
     "isMajorPool": true,
-    "clue": "Dansk spesialisert legemiddelselskap som utelukkende forsker på og utvikler medisiner mot hjernesykdommer, migrene og psykiatriske lidelser."
+    "clue": "Dansk legemiddelselskap spesialisert på hjernesykdommer, migrene og psykiatri."
   },
   {
     "rank": 68,
@@ -1404,7 +1404,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.15,
     "shares": 5082847,
     "isMajorPool": true,
-    "clue": "Svensk telekomkjempe grunnlagt i 1876, en av verdens viktigste leverandører av 5G-mobilnett og telekomutstyr."
+    "clue": "Svensk telekomkjempe grunnlagt i 1876, en av verdens største leverandører av 5G-nett."
   },
   {
     "rank": 69,
@@ -1424,7 +1424,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.4,
     "shares": 2092698,
     "isMajorPool": true,
-    "clue": "Finsk skogindustri- og биоmaterialkjempe som produserer papirmasse, trelast, spesialpapir, etiketter og biodrivstoff."
+    "clue": "Finsk skogindustrikonsern innen papirmasse, papir, etiketter og biodrivstoff."
   },
   {
     "rank": 70,
@@ -1445,7 +1445,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 2.6,
     "shares": 5747195,
     "isMajorPool": true,
-    "clue": "Globalt IT- og skyprogramvareselskap notert på Oslo Børs etter sammenslåingen med det norske teknologiselskapet Crayon Group."
+    "clue": "Sveitsisk IT- og skyprogramvareselskap, notert i Oslo etter fusjonen med Crayon."
   },
   {
     "rank": 71,
@@ -1465,7 +1465,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.14,
     "shares": 2773868,
     "isMajorPool": true,
-    "clue": "Svensk storbank i Wallenberg-sfæren med svært sterk posisjon innen bedriftsbank, investeringsbank og formuesforvaltning i Norden."
+    "clue": "Svensk storbank i Wallenberg-sfæren, sterk innen bedrifts- og investeringsbank."
   },
   {
     "rank": 72,
@@ -1485,7 +1485,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 2.1,
     "shares": 5641585,
     "isMajorPool": true,
-    "clue": "Dansk medisinteknisk selskap som oppfant Ambu-bagen og er verdensledende på engangsendoskoper til sykehus."
+    "clue": "Dansk medtech som oppfant den manuelle gjenopplivingsbagen, nå ledende på engangsendoskoper."
   },
   {
     "rank": 73,
@@ -1506,7 +1506,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 6.17,
     "shares": 12314201,
     "isMajorPool": true,
-    "clue": "Nordens største treningssenterkjede med over 270 sentre i Norge, Sverige, Finland og Danmark."
+    "clue": "Nordens største treningssenterkjede med rundt 270 sentre i fire land."
   },
   {
     "rank": 74,
@@ -1526,7 +1526,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.85,
     "shares": 781729,
     "isMajorPool": true,
-    "clue": "Et av Norges mest tradisjonsrike maritime industrikonsern (grunnlagt 1861), hovedeier i Wallenius Wilhelmsen og verdensledende på maritim service."
+    "clue": "Maritimt konsern grunnlagt i 1861 i Tønsberg, verdensledende på maritim service."
   },
   {
     "rank": 75,
@@ -1547,7 +1547,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 10.42,
     "shares": 4235950,
     "isMajorPool": true,
-    "clue": "Norges største tekstil- og interiørkjede (Kid Interiør i Norge og Hemtex i Sverige, Finland og Estland). Folketrygdfondet eier over 10 %!"
+    "clue": "Norges største interiør- og tekstilkjede, og eier av svenske Hemtex."
   },
   {
     "rank": 76,
@@ -1567,7 +1567,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.6,
     "shares": 350357,
     "isMajorPool": true,
-    "clue": "Danmarks tredje største børsnoterte bank med hovedkontor i Silkeborg på Jylland."
+    "clue": "En av Danmarks største banker, med hovedkontor i Silkeborg."
   },
   {
     "rank": 77,
@@ -1587,7 +1587,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.39,
     "shares": 881412,
     "isMajorPool": true,
-    "clue": "Dansk medisinteknisk verdensleder innen stomi-, kontinens-, urologi- og sårpleieprodukter."
+    "clue": "Dansk medtech innen stomi-, kontinens- og sårpleieprodukter."
   },
   {
     "rank": 78,
@@ -1607,7 +1607,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.26,
     "shares": 165082,
     "isMajorPool": true,
-    "clue": "Dansk bioteknologisuksess som utvikler banebrytende antistoff-behandlinger mot kreft (bl.a. storlegemiddelet Darzalex)."
+    "clue": "Dansk bioteknologiselskap som utvikler antistoffbehandlinger mot kreft."
   },
   {
     "rank": 79,
@@ -1627,7 +1627,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 4.68,
     "shares": 12590744,
     "isMajorPool": true,
-    "clue": "Norsk emballasjekonsern kjent verden over for Pure-Pak melke- og juicekartonger i mer enn 70 land."
+    "clue": "Norsk produsent av kartonger til melk og juice, kjent for Pure-Pak."
   },
   {
     "rank": 80,
@@ -1648,7 +1648,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 2.56,
     "shares": 1497632,
     "isMajorPool": true,
-    "clue": "Globalt logistikk- og rederikonsern grunnlagt av Jacob Stolt-Nielsen, verdensledende på kjemikalietankere, tankterminaler, tankcontainere og piggvaroppdrett."
+    "clue": "Globalt konsern med kjemikalietankskip, tankterminaler, tankcontainere og piggvaroppdrett."
   },
   {
     "rank": 81,
@@ -1668,7 +1668,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.55,
     "shares": 293217,
     "isMajorPool": true,
-    "clue": "Dansk industrikonsern som produserer høyspent- og sjøkabler som knytter sammen europeiske strømnett og havvindparker."
+    "clue": "Dansk produsent av høyspent- og sjøkabler for strømnett og havvind."
   },
   {
     "rank": 82,
@@ -1688,7 +1688,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 3.83,
     "shares": 16989421,
     "isMajorPool": true,
-    "clue": "Oslo-basert containerrederi som eier og drifter en stor flåte av feeder-containerskip for regionale handelsruter."
+    "clue": "Oslo-notert rederi med en stor flåte av mindre feederskip for regional linjefart."
   },
   {
     "rank": 83,
@@ -1708,7 +1708,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.17,
     "shares": 1315949,
     "isMajorPool": true,
-    "clue": "Finsk energiselskap som har blitt verdens største produsent av fornybart flydrivstoff (SAF) og fornybar diesel fra avfall og rester."
+    "clue": "Finsk selskap, verdens største produsent av fornybar diesel og bærekraftig flydrivstoff."
   },
   {
     "rank": 84,
@@ -1728,7 +1728,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.45,
     "shares": 1125411,
     "isMajorPool": true,
-    "clue": "Nordens ledende digitale spare- og investeringsplattform for aksje- og fondssparere i Sverige, Norge, Danmark og Finland."
+    "clue": "Nordisk nettmegler og spareplattform for aksjer og fond i fire land."
   },
   {
     "rank": 85,
@@ -1748,7 +1748,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.23,
     "shares": 865496,
     "isMajorPool": true,
-    "clue": "Svensk sikkerhetsselskap (skilt ut fra Securitas) som håndterer kontanttransport, verdilogistikk og betalingsløsninger i Europa og USA."
+    "clue": "Svensk kontanthåndterer og verditransportør, skilt ut fra Securitas, aktiv i Europa og USA."
   },
   {
     "rank": 86,
@@ -1768,7 +1768,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.67,
     "shares": 1056594,
     "isMajorPool": false,
-    "clue": "Sveriges største digitale nettmegler og sparebank med over 2 millioner svenske kunder."
+    "clue": "Sveriges største nettmegler for privatpersoner, med over to millioner sparekunder."
   },
   {
     "rank": 87,
@@ -1790,7 +1790,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 7.87,
     "shares": 9004488,
     "isMajorPool": true,
-    "clue": "Konsernet bak Fjordkraft og NorgesEnergi – Norges største strømleverandør til husholdninger og bedrifter i Norden."
+    "clue": "Konsernet bak Fjordkraft, Norges største strømleverandør til husholdninger."
   },
   {
     "rank": 88,
@@ -1810,7 +1810,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 3.86,
     "shares": 2473013,
     "isMajorPool": true,
-    "clue": "Høyteknologiselskap fra Trondheim som utvikler avanserte sonarer for havbunnskartlegging, brikker for bompenger/fartsskrivere og elektronikk."
+    "clue": "Trondheimsbasert teknologiselskap som lager sonarer, bomstasjonsbrikker og elektronikk."
   },
   {
     "rank": 89,
@@ -1830,7 +1830,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.28,
     "shares": 2294209,
     "isMajorPool": false,
-    "clue": "Finsk industrigigant som leverer knuseverk, prosessutstyr og teknologi til den globale gruve- og pukkverksindustrien."
+    "clue": "Finsk leverandør av knuseverk og prosessutstyr til gruve- og pukkverksindustrien."
   },
   {
     "rank": 90,
@@ -1850,7 +1850,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.89,
     "shares": 2816940,
     "isMajorPool": true,
-    "clue": "Stort internasjonalt tank- og tørrlastrederi med fokus på grønn maritim omstilling og ammoniakk/hydrogen-drevne skip."
+    "clue": "Antwerpen-basert rederi med tankskip, tørrlast og satsing på hydrogen- og ammoniakkskip."
   },
   {
     "rank": 91,
@@ -1870,7 +1870,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.87,
     "shares": 1613118,
     "isMajorPool": false,
-    "clue": "Finsk verdensleder innen maskiner, automasjon og prosessutstyr til papir-, kartong-, cellulose- og bioenergiindustrien."
+    "clue": "Finsk verdensleder på maskiner og automasjon for papir-, kartong- og cellulosefabrikker."
   },
   {
     "rank": 92,
@@ -1890,7 +1890,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.55,
     "shares": 2643804,
     "isMajorPool": false,
-    "clue": "Svensk global grossist og distributør av kjøleanlegg, klimaanlegg (HVAC) og miljøvennlige varmepumper."
+    "clue": "Svensk global grossist innen kjøle-, klimaanlegg og varmepumper."
   },
   {
     "rank": 93,
@@ -1910,7 +1910,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.57,
     "shares": 912049,
     "isMajorPool": false,
-    "clue": "Dansk servicegigant med over 350 000 ansatte globalt innen renhold, kantine, eiendomsdrift og arbeidsplassledelse."
+    "clue": "Dansk servicegigant med over 300 000 ansatte innen renhold, kantine og eiendomsdrift."
   },
   {
     "rank": 94,
@@ -1933,7 +1933,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.19,
     "shares": 1283155,
     "isMajorPool": false,
-    "clue": "Svensk hygienekjempe (skilt ut fra SCA i 2017) bak kjente merkevarer som Tork, Libero, Libresse, Lotus og Tena."
+    "clue": "Svensk hygienekonsern skilt ut fra SCA, bak bleier, bind og tørkepapir som Tork og Tena."
   },
   {
     "rank": 95,
@@ -1953,7 +1953,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.12,
     "shares": 2463347,
     "isMajorPool": true,
-    "clue": "En av Nordens største og mest solide storbanker, kjent for sin desentraliserte kontormodell og sterke posisjon i Sverige og Norge."
+    "clue": "Svensk storbank kjent for desentralisert kontormodell og sterk posisjon i Sverige."
   },
   {
     "rank": 96,
@@ -1975,7 +1975,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.76,
     "shares": 2658709,
     "isMajorPool": false,
-    "clue": "Dansk lydteknologiselskap (grunnlagt 1869) som står bak Jabra-hodetelefoner, SteelSeries gaming-utstyr og ReSound høreapparater."
+    "clue": "Dansk lydteknologiselskap fra 1869 bak Jabra-headset og ReSound-høreapparater."
   },
   {
     "rank": 97,
@@ -1995,7 +1995,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 3.0,
     "shares": 9526434,
     "isMajorPool": true,
-    "clue": "Norges største tverrfaglige rådgivende ingeniør- og arkitektselskap som planlegger samferdsel, bygg, vannkraft og byutvikling i Norden."
+    "clue": "Norges største rådgivende ingeniør- og arkitektselskap, med hovedkontor i Sandvika."
   },
   {
     "rank": 98,
@@ -2015,7 +2015,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.83,
     "shares": 539983,
     "isMajorPool": false,
-    "clue": "Finsk industriselskap (tidligere Cargotec) som er verdensledende på lastebilkraner, krokløftere og lasthåndteringsutstyr på vei."
+    "clue": "Finsk verdensleder på lastebilkraner, krokløftere og lasthåndtering, utskilt fra Cargotec."
   },
   {
     "rank": 99,
@@ -2037,7 +2037,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.19,
     "shares": 248482,
     "isMajorPool": true,
-    "clue": "Et av verdens største bryggerikonsern, grunnlagt i København i 1847 og eier av norske Ringnes, Farris, Solo og Tuborg."
+    "clue": "Dansk bryggerigigant grunnlagt i København i 1847, eier av Ringnes og Tuborg."
   },
   {
     "rank": 100,
@@ -2057,7 +2057,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.11,
     "shares": 1393582,
     "isMajorPool": true,
-    "clue": "Dansk energigigant som transformerte seg fra olje og gass (DONG Energy) til å bli verdens største utvikler og operatør av havvindparker."
+    "clue": "Dansk energiselskap, tidligere DONG Energy, verdens største utvikler av havvindparker."
   },
   {
     "rank": 101,
@@ -2077,7 +2077,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 6.65,
     "shares": 6900198,
     "isMajorPool": true,
-    "clue": "Norsk IT- og digitaliseringskonsulentselskap med over 2 300 ansatte som bygger samfunnskritiske løsninger for energi og offentlig sektor."
+    "clue": "Norsk IT- og digitaliseringskonsulent med over 2 000 ansatte, sterk innen energi og offentlig."
   },
   {
     "rank": 102,
@@ -2097,7 +2097,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.12,
     "shares": 2302009,
     "isMajorPool": false,
-    "clue": "Nordens største tekniske installatør innen elektro, rør, ventilasjon og byggautomasjon."
+    "clue": "Nordens største tekniske installatør innen elektro, rør og ventilasjon."
   },
   {
     "rank": 103,
@@ -2117,7 +2117,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.23,
     "shares": 411539,
     "isMajorPool": false,
-    "clue": "Finsk høyteknologiselskap som er verdensledende på værstasjoner, meteorologiske sensorer og industrielle måleinstrumenter (til og med på Mars!)."
+    "clue": "Finsk verdensleder på værsensorer og måleinstrumenter, med utstyr helt på Mars."
   },
   {
     "rank": 104,
@@ -2137,7 +2137,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.38,
     "shares": 2520836,
     "isMajorPool": true,
-    "clue": "Et av Norges største børsnoterte næringseiendomsselskaper med moderne kontorbygg rundt store kollektivknutepunkter i Oslo, Bergen og Trondheim."
+    "clue": "Norsk næringseiendomsselskap med kontorbygg ved kollektivknutepunkter i Oslo og Bergen."
   },
   {
     "rank": 105,
@@ -2157,7 +2157,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.15,
     "shares": 547598,
     "isMajorPool": false,
-    "clue": "Svensk internasjonalt biofarmasøytisk selskap spesialisert på legemidler mot sjeldne sykdommer (blødersykdom og immunologi)."
+    "clue": "Svensk biofarmasøytisk selskap med legemidler mot sjeldne sykdommer som blødersykdom."
   },
   {
     "rank": 106,
@@ -2177,7 +2177,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.69,
     "shares": 4768941,
     "isMajorPool": false,
-    "clue": "Svensk vekstorientert investeringsselskap grunnlagt i 1936, kjent for investeringer i digitale helse-, programvare- og klimateknologiselskaper."
+    "clue": "Svensk investeringsselskap fra 1936 med eierandeler i helse-, programvare- og klimateknologi."
   },
   {
     "rank": 107,
@@ -2197,7 +2197,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.21,
     "shares": 1236926,
     "isMajorPool": false,
-    "clue": "Svensk investeringsselskap kontrollert av Gustaf Douglas-familien med store eierposter i bl.a. Assa Abloy, Tomra og Sweco."
+    "clue": "Svensk investeringsselskap kontrollert av Douglas-familien, storeier i bl.a. Assa Abloy."
   },
   {
     "rank": 108,
@@ -2217,7 +2217,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.28,
     "shares": 1423324,
     "isMajorPool": false,
-    "clue": "Svensk ledende teknikkhandelskonsern som distribuerer industrielle komponenter og systemer i Nord-Europa."
+    "clue": "Svensk teknikkhandelskonsern fra Tranås som distribuerer industrikomponenter i Nord-Europa."
   },
   {
     "rank": 109,
@@ -2238,7 +2238,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.55,
     "shares": 3132998,
     "isMajorPool": true,
-    "clue": "Stort pelagisk fiskeri- og havbrukskonsern fra Vestlandet som eier drøyt 52 % av Lerøy Seafood Group og 50 % av Pelagia."
+    "clue": "Vestlandsk fiskeri- og sjømatkonsern som eier over halvparten av Lerøy Seafood."
   },
   {
     "rank": 110,
@@ -2258,7 +2258,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.18,
     "shares": 350328,
     "isMajorPool": true,
-    "clue": "Svensk teknologigigant og verdens ubestridte markedsleder innen plattformer og direkte-strømmede spill for live-kasino på nett."
+    "clue": "Svensk verdensleder på live-kasino-strømming og spillplattformer for nettkasinoer."
   },
   {
     "rank": 111,
@@ -2278,7 +2278,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.29,
     "shares": 642052,
     "isMajorPool": false,
-    "clue": "Dansk farmasiselskap som er verdensledende på allergivaksinasjon (allergen immunterapi i tablett- og dråpeform)."
+    "clue": "Dansk verdensleder på allergivaksiner, med immunterapi i tablett- og dråpeform."
   },
   {
     "rank": 112,
@@ -2298,7 +2298,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.34,
     "shares": 568704,
     "isMajorPool": false,
-    "clue": "Finlands største telekommunikasjons- og digitale tjenesteselskap innen mobil, bredbånd og industriell programvare."
+    "clue": "Finlands største teleselskap innen mobil, bredbånd og digitale tjenester."
   },
   {
     "rank": 113,
@@ -2318,7 +2318,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.74,
     "shares": 3707219,
     "isMajorPool": false,
-    "clue": "Finsk kapitalforvalter og livsforsikringsselskap som ble skilt ut fra Sampo og børsnotert i Helsingfors i 2023."
+    "clue": "Finsk livsforsikrer og kapitalforvalter, skilt ut fra Sampo og børsnotert i 2023."
   },
   {
     "rank": 114,
@@ -2338,7 +2338,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.26,
     "shares": 195315,
     "isMajorPool": true,
-    "clue": "Verdens største smykkeprodusent målt i antall solgte smykker, kjent for sine armbånd og charms."
+    "clue": "Dansk smykkeselskap, verdens største målt i antall solgte smykker, kjent for charms."
   },
   {
     "rank": 115,
@@ -2358,7 +2358,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.31,
     "shares": 2162772,
     "isMajorPool": false,
-    "clue": "Europas største private skogeier med 2,7 millioner hektar skog i Nord-Sverige, som produserer trelast, papirmasse, kraftemballasje og vindkraft."
+    "clue": "Europas største private skogeier, med skog i Nord-Sverige, trelast, masse og emballasje."
   },
   {
     "rank": 116,
@@ -2378,7 +2378,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.14,
     "shares": 385220,
     "isMajorPool": true,
-    "clue": "Svensk gruve- og smelteverkskonsern som utvinner og foredler sink, kobber, nikkel, gull og sølv – inkludert storsmelteverket Boliden Odda i Hardanger."
+    "clue": "Svensk gruve- og smelteverkskonsern innen sink og kobber, eier smelteverket i Odda."
   },
   {
     "rank": 117,
@@ -2398,7 +2398,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.61,
     "shares": 371332,
     "isMajorPool": false,
-    "clue": "Svensk biofarmasøytisk selskap i Lund som utvikler langtidsvirkende medisiner basert på sin patenterte FluidCrystal-teknologi."
+    "clue": "Legemiddelselskap i Lund som lager langtidsvirkende medisiner, bl.a. mot opioidavhengighet."
   },
   {
     "rank": 118,
@@ -2418,7 +2418,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.06,
     "shares": 766270,
     "isMajorPool": true,
-    "clue": "Et av verdens aller største børsnoterte oppkjøpsfond (Private Equity) og infrastrukturforvaltere, grunnlagt i samarbeid med Wallenberg-sfæren."
+    "clue": "Svensk gigant innen oppkjøpsfond og infrastruktur, grunnlagt med Wallenberg-familien."
   },
   {
     "rank": 119,
@@ -2438,7 +2438,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.32,
     "shares": 1352289,
     "isMajorPool": false,
-    "clue": "Stort svensk næringseiendomsselskap spesialisert på lager- og lettindustri-eiendommer i Norden og Europa."
+    "clue": "Svensk eiendomsselskap spesialisert på lager- og lettindustrieiendom i Norden og Europa."
   },
   {
     "rank": 120,
@@ -2458,7 +2458,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.66,
     "shares": 716057,
     "isMajorPool": false,
-    "clue": "Finsk global spesialist på matemballasje, kaffekopper og bærekraftig engangsemballasje i over 30 land."
+    "clue": "Finsk global produsent av matemballasje, papirkopper og engangsemballasje."
   },
   {
     "rank": 121,
@@ -2478,7 +2478,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.69,
     "shares": 2633745,
     "isMajorPool": false,
-    "clue": "Ledende nordisk helsekonsern som forsyner sykehus, klinikker og kommuner i Europa med medisinsk forbruksmateriell og utstyr."
+    "clue": "Nordisk leverandør av medisinsk forbruksmateriell og utstyr til sykehus og kommuner."
   },
   {
     "rank": 122,
@@ -2498,7 +2498,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.75,
     "shares": 480351,
     "isMajorPool": false,
-    "clue": "Finsk produsent av tunge containertrucker, elektriske gaffeltrucker og havnekraner, skilt ut som eget børsnotert selskap fra Cargotec i 2024."
+    "clue": "Finsk produsent av containertrucker og tunge gaffeltrucker, utskilt fra Cargotec i 2024."
   },
   {
     "rank": 123,
@@ -2518,7 +2518,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.18,
     "shares": 1888778,
     "isMajorPool": false,
-    "clue": "Europas og Norges ledende leverandør av tilkoblede boligalarmer og smart sikkerhetsovervåking for hjem og småbedrifter."
+    "clue": "Europas ledende leverandør av tilkoblede boligalarmer og alarmovervåking."
   },
   {
     "rank": 124,
@@ -2538,7 +2538,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.73,
     "shares": 106520,
     "isMajorPool": false,
-    "clue": "Svensk evigvarende oppkjøpsselskap (seriefirmaplokker) som kjøper og videreutvikler lønnsomme europeiske nisjebedrifter."
+    "clue": "Svensk evigvarende eier som kjøper og utvikler lønnsomme europeiske nisjebedrifter."
   },
   {
     "rank": 125,
@@ -2558,7 +2558,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.35,
     "shares": 948472,
     "isMajorPool": false,
-    "clue": "Svensk medisinteknisk kjempe som leverer ventilatorer, hjerte-lunge-maskiner og operasjonsromsutstyr til intensivavdelinger globalt."
+    "clue": "Svensk medtekselskap som lager respiratorer, hjerte-lunge-maskiner og operasjonsutstyr."
   },
   {
     "rank": 126,
@@ -2578,7 +2578,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 4.95,
     "shares": 9523809,
     "isMajorPool": true,
-    "clue": "Norsk havteknologikonsern (med bl.a. Nortek i Bærum) som leverer akustiske strømmålere, undervannssensorer og navigasjonsutstyr for havforskning og forsvar."
+    "clue": "Norsk havteknologikonsern som eier Nortek og lager akustiske strømmålere og undervannssensorer."
   },
   {
     "rank": 127,
@@ -2598,7 +2598,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.99,
     "shares": 1490433,
     "isMajorPool": false,
-    "clue": "Et av Nordens største omsorgsselskaper som driver sykehjem, eldreomsorg og hjemmetjenester i Sverige, Finland og Danmark."
+    "clue": "Et av Nordens største omsorgsselskaper med sykehjem og eldreomsorg i Sverige og Finland."
   },
   {
     "rank": 128,
@@ -2620,7 +2620,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.51,
     "shares": 1211671,
     "isMajorPool": false,
-    "clue": "Skandinavias ledende omsorgskonsern som i Norge er mest kjent gjennom datterselskapet Stendi (barnevern, brukerstyrt personlig assistanse og omsorg)."
+    "clue": "Skandinavisk omsorgskonsern, i Norge kjent gjennom Stendi innen barnevern og assistanse."
   },
   {
     "rank": 129,
@@ -2640,7 +2640,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.13,
     "shares": 21185928,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert industrikonsern som eier over hundre små og mellomstore bedrifter innen handel, industri og tjenester."
+    "clue": "Svensk konglomerat som eier over hundre små og mellomstore bedrifter i handel og industri."
   },
   {
     "rank": 130,
@@ -2660,7 +2660,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.53,
     "shares": 7472983,
     "isMajorPool": false,
-    "clue": "Danmarks nest største skadeforsikringskonsern etter oppkjøpet av den danske delen av Codan."
+    "clue": "Danmarks nest største skadeforsikrer etter oppkjøpet av Codans danske virksomhet."
   },
   {
     "rank": 131,
@@ -2680,7 +2680,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.13,
     "shares": 555652,
     "isMajorPool": false,
-    "clue": "Svensk seriefirmaplokker kontrollert av Carl Bennet. Verdensledende innen tannlegeutstyr, rivningsroboter og nisjeteknologi."
+    "clue": "Svensk seriekjøper kontrollert av Carl Bennet, kjent for tannlegeutstyr og rivningsroboter."
   },
   {
     "rank": 132,
@@ -2700,7 +2700,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.81,
     "shares": 640420,
     "isMajorPool": false,
-    "clue": "Dansk vaksineselskap som utvikler og produserer livsviktige reise-, rabies-, flått- og koppevaksiner."
+    "clue": "Dansk vaksineselskap som lager kopper-, rabies-, flått- og reisevaksiner."
   },
   {
     "rank": 133,
@@ -2720,7 +2720,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.9,
     "shares": 1056321,
     "isMajorPool": false,
-    "clue": "Svensk livsvitenskaps- og medteknologikonsern (skilt ut fra Addtech) som leverer laboratorieutstyr og medisinteknikk i Europa."
+    "clue": "Svensk medteknikk- og laboratoriekonsern, skilt ut fra Addtech i 2016."
   },
   {
     "rank": 134,
@@ -2740,7 +2740,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.23,
     "shares": 4582366,
     "isMajorPool": false,
-    "clue": "Svensk industrikjempe fra Småland som er en av Europas største produsenter av varmepumper, varmtvannsberedere og vedovner."
+    "clue": "Svensk varmepumpeprodusent fra Markaryd i Småland, også kjent for vedovner og beredere."
   },
   {
     "rank": 135,
@@ -2760,7 +2760,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.22,
     "shares": 791305,
     "isMajorPool": false,
-    "clue": "Svensk teknikk- og industrikonsern som eier over 200 spesialiserte teknologibedrifter i Europa."
+    "clue": "Svensk industrikonsern som eier over 200 spesialiserte teknologibedrifter i Europa."
   },
   {
     "rank": 136,
@@ -2780,7 +2780,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.82,
     "shares": 14331928,
     "isMajorPool": false,
-    "clue": "En av Islands største forretningsbanker med røtter tilbake til 1875."
+    "clue": "En av Islands tre store forretningsbanker, med røtter tilbake til 1875."
   },
   {
     "rank": 137,
@@ -2800,7 +2800,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 3.53,
     "shares": 1887642,
     "isMajorPool": false,
-    "clue": "Svensk industrielt teknologikonsern som kjøper og videreutvikler nisjeprodusenter i Norden."
+    "clue": "Svensk konsern som kjøper og videreutvikler nordiske nisjeprodusenter innen industri."
   },
   {
     "rank": 138,
@@ -2821,7 +2821,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.66,
     "shares": 757648,
     "isMajorPool": false,
-    "clue": "Et av Nordens største IT-tjeneste- og programvareselskaper (også kjent som Tietoevry etter fusjonen med norske EVRY)."
+    "clue": "Finsk-norsk IT-tjenestekonsern, et av Nordens største, fusjonert med EVRY i 2019."
   },
   {
     "rank": 139,
@@ -2841,7 +2841,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.13,
     "shares": 189553,
     "isMajorPool": false,
-    "clue": "Finlands ledende farmasiselskap som utvikler legemidler innen onkologi (prostatakreft), nevrologi og inhalatorer."
+    "clue": "Finsk legemiddelselskap innen prostatakreft, nevrologi og inhalatorer."
   },
   {
     "rank": 140,
@@ -2862,7 +2862,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.47,
     "shares": 231779,
     "isMajorPool": false,
-    "clue": "Danmarks nest største drikkevarekonsern som eier norske Hansa Borg Bryggerier, Solera (vinimport), Faxe Kondi og Royal Beer."
+    "clue": "Dansk drikkevarekonsern som eier Hansa Borg Bryggerier og Faxe Kondi."
   },
   {
     "rank": 141,
@@ -2882,7 +2882,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.73,
     "shares": 10041455,
     "isMajorPool": false,
-    "clue": "Ledende islandsk universalbank innen bank, forsikring (Vörður) og kapitalforvaltning."
+    "clue": "Islandsk universalbank med bank, forsikring via Vörður og kapitalforvaltning."
   },
   {
     "rank": 142,
@@ -2903,7 +2903,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.04,
     "shares": 6442,
     "isMajorPool": true,
-    "clue": "Dansk verdensberømt containerskips- og logistikkgigant med den lyseblå syvtakkede stjernen på skipssiden."
+    "clue": "Dansk containerrederi- og logistikkgigant med syvtakket hvit stjerne på blå bakgrunn."
   },
   {
     "rank": 143,
@@ -2923,7 +2923,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.8,
     "shares": 848072,
     "isMajorPool": false,
-    "clue": "Svensk global produsent av valsede aluminiumprodukter til varmevekslere i elbiler, klimaanlegg og batterikasser."
+    "clue": "Svensk produsent av valset aluminium til varmevekslere i biler og klimaanlegg."
   },
   {
     "rank": 144,
@@ -2943,7 +2943,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.77,
     "shares": 2934648,
     "isMajorPool": false,
-    "clue": "Svensk medisinteknisk selskap som er verdensledende på stråleterapimaskiner og gammakniv for presisjonsbehandling av kreft og hjernesvulster."
+    "clue": "Svensk verdensleder på stråleterapimaskiner og gammakniv for kreftbehandling."
   },
   {
     "rank": 145,
@@ -2963,7 +2963,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.91,
     "shares": 796960,
     "isMajorPool": false,
-    "clue": "Svensk kredittforvalter og spesialisert bank som kjøper og forvalter misligholdte låneporteføljer fra europeiske banker."
+    "clue": "Svensk spesialbank som kjøper og forvalter misligholdte låneporteføljer i Europa."
   },
   {
     "rank": 146,
@@ -2983,7 +2983,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.58,
     "shares": 1105159,
     "isMajorPool": false,
-    "clue": "Svensk global handels- og logistikkpartner for skruer, muttere, festemateriell og småkomponenter (C-parts) til industrien."
+    "clue": "Svensk handelspartner for skruer, muttere og festemateriell til industrien, fra Värnamo."
   },
   {
     "rank": 147,
@@ -3004,7 +3004,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.55,
     "shares": 277210,
     "isMajorPool": false,
-    "clue": "Svensk verdensleder innen industriell kommunikasjon (IIoT) som får fabrikkmaskiner og roboter til å snakke sammen."
+    "clue": "Svensk leder i industriell kommunikasjon som kobler sammen fabrikkmaskiner, fra Halmstad."
   },
   {
     "rank": 148,
@@ -3024,7 +3024,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.21,
     "shares": 441255,
     "isMajorPool": false,
-    "clue": "Dansk verdensleder innen brannsikker steinull-isolasjon til boliger, næringsbygg og industri."
+    "clue": "Dansk verdensleder på brannsikker steinullisolasjon til bygg og industri."
   },
   {
     "rank": 149,
@@ -3044,7 +3044,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.37,
     "shares": 571166,
     "isMajorPool": false,
-    "clue": "Svensk-notert internasjonalt helse- og diagnostikkonsern med sykehus, klinikker og laboratorier i Sentral- og Øst-Europa."
+    "clue": "Svensknotert helsekonsern med sykehus, klinikker og laboratorier i Øst-Europa."
   },
   {
     "rank": 150,
@@ -3064,7 +3064,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.18,
     "shares": 430467,
     "isMajorPool": false,
-    "clue": "Finsk verdensleder innen tunge industrikraner, traverskraner og containerhåndtering i havner."
+    "clue": "Finsk verdensleder på industrikraner, traverskraner og havnekraner."
   },
   {
     "rank": 151,
@@ -3085,7 +3085,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.06,
     "shares": 569779,
     "isMajorPool": false,
-    "clue": "Et av Nordens største rene kraftkonsern med enorm vannkraft- og kjernekraftproduksjon i Finland og Sverige."
+    "clue": "Finsk kraftkonsern med stor vann- og kjernekraftproduksjon i Finland og Sverige."
   },
   {
     "rank": 152,
@@ -3105,7 +3105,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.63,
     "shares": 578993,
     "isMajorPool": false,
-    "clue": "Svensk global produsent av elektriske styreskap, kablagesystemer og metallkomponenter for krevende industrikunder."
+    "clue": "Svensk underleverandør av el-skap, kabelsystemer og metallkomponenter, fra Västerås."
   },
   {
     "rank": 153,
@@ -3125,7 +3125,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.57,
     "shares": 1429102,
     "isMajorPool": false,
-    "clue": "Svensk produsent av avanserte rustfrie spesialstål og legeringer, skilt ut fra industrigiganten Sandvik i 2022."
+    "clue": "Svensk produsent av avansert rustfritt stål og legeringer, skilt ut fra Sandvik i 2022."
   },
   {
     "rank": 154,
@@ -3145,7 +3145,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.43,
     "shares": 1778480,
     "isMajorPool": false,
-    "clue": "Stort svensk-finsk rådgivende ingeniør- og designselskap innen energi, industri og infrastruktur."
+    "clue": "Svensk-finsk rådgivende ingeniørselskap innen energi, industri og infrastruktur."
   },
   {
     "rank": 155,
@@ -3166,7 +3166,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.41,
     "shares": 366636,
     "isMajorPool": false,
-    "clue": "Svensk forskningsbasert biofarmasiselskap som står bak det banebrytende Alzheimer-legemiddelet Leqembi."
+    "clue": "Svensk biofarmaselskap i Stockholm som utviklet et banebrytende antistoff mot Alzheimer."
   },
   {
     "rank": 156,
@@ -3186,7 +3186,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.25,
     "shares": 466926,
     "isMajorPool": false,
-    "clue": "Svensk teknologikonsern som eier nisjebedrifter innen byinfrastruktur, vannrensing, transport og energieffektivisering."
+    "clue": "Svensk konsern som eier nisjebedrifter innen infrastruktur, vann, transport og energi."
   },
   {
     "rank": 157,
@@ -3206,7 +3206,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.12,
     "shares": 280463,
     "isMajorPool": false,
-    "clue": "Svensk industrikonsern spesialisert på avansert polymerteknologi som tetter, demper og beskytter i luftfart, helse og industri."
+    "clue": "Svensk polymerteknologikonsern som lager tetninger og dempere for industri og luftfart."
   },
   {
     "rank": 158,
@@ -3226,7 +3226,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.72,
     "shares": 1802829,
     "isMajorPool": false,
-    "clue": "Svensk skog- og emballasjekonsern som lager slitesterkt nyfiberbasert kartong- og emballasjepapir som erstatter plast."
+    "clue": "Svensk produsent av nyfiberbasert kartong og emballasjepapir som erstatter plast."
   },
   {
     "rank": 159,
@@ -3247,7 +3247,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.57,
     "shares": 1359793,
     "isMajorPool": true,
-    "clue": "Norsk borerigg-selskap med hovedkontor i Bergen som eier og opererer noen av verdens mest avanserte halvt nedsenkbare borerigger i Nordsjøen."
+    "clue": "Bergensk riggselskap som eier og driver avanserte halvt nedsenkbare borerigger i Nordsjøen."
   },
   {
     "rank": 160,
@@ -3267,7 +3267,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.05,
     "shares": 203704,
     "isMajorPool": false,
-    "clue": "Tradisjonsrikt svensk investeringsselskap (Lundberg-sfæren) med store eierposter i Volvo, Sandvik, Handelsbanken, Essity og SCA."
+    "clue": "Svensk investeringsselskap i Handelsbanken-sfæren, storeier i Volvo, Sandvik og Essity."
   },
   {
     "rank": 161,
@@ -3287,7 +3287,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.87,
     "shares": 310408,
     "isMajorPool": false,
-    "clue": "Finsk teknologiselskap spesialisert på kryptert taktisk militærkommunikasjon, sikre telefoner og medisinsk biosignal-teknologi."
+    "clue": "Finsk teknologiselskap fra Oulu innen sikker militærkommunikasjon og medisinsk måleteknologi."
   },
   {
     "rank": 162,
@@ -3308,7 +3308,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.35,
     "shares": 1366251,
     "isMajorPool": false,
-    "clue": "Stort nordisk bygg- og entreprenørkonsern på Oslo Børs som bl.a. omfatter stor-entreprenøren HENT."
+    "clue": "Norsk bygg- og entreprenørkonsern på Oslo Børs, som bl.a. eier storentreprenøren HENT."
   },
   {
     "rank": 163,
@@ -3328,7 +3328,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.89,
     "shares": 871970,
     "isMajorPool": false,
-    "clue": "Svensk bioteknologiselskap som er verdensledende på klinisk dokumenterte probiotika-dråper og melkesyrebakterier for mage- og tarmhelse."
+    "clue": "Svensk selskap kjent for probiotiske dråper og melkesyrebakterier for mage og tarm."
   },
   {
     "rank": 164,
@@ -3346,7 +3346,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.63,
     "shares": 339492,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen materialsektoren (metall, gruvedrift, skog/treforedling eller spesialkjemi) (SFT, børsverdi ca. 16.4 mrd. kr)."
+    "clue": "Svensk industrikonsern fra Uppsala som eier en av Europas største produsenter av fjærer."
   },
   {
     "rank": 165,
@@ -3368,7 +3368,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.25,
     "shares": 1261672,
     "isMajorPool": false,
-    "clue": "Nordisk nisjebankkonsern som eier Bank Norwegian, Nordax Bank og Svensk Hypotekspension."
+    "clue": "Nordisk forbrukslånbank som eier Bank Norwegian og Nordax Bank."
   },
   {
     "rank": 166,
@@ -3390,7 +3390,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.97,
     "shares": 10760053,
     "isMajorPool": false,
-    "clue": "Islands største dagligvare- og handelskonsern som driver den ikoniske lavpriskjeden Bónus (med sparegrisen!) og Hagkaup."
+    "clue": "Islands største dagligvarekonsern, driver lavpriskjeden Bónus med sparegrisen og Hagkaup."
   },
   {
     "rank": 167,
@@ -3412,7 +3412,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.04,
     "shares": 194896,
     "isMajorPool": true,
-    "clue": "Svensk forsvars- og luftfartsgigant bak jagerflyet JAS 39 Gripen, overvåkingsflyet GlobalEye, ubåter og Carl-Gustaf rekylfri kanon."
+    "clue": "Svensk forsvarskonsern bak jagerflyet Gripen, ubåter og overvåkingsflyet GlobalEye."
   },
   {
     "rank": 168,
@@ -3432,7 +3432,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.49,
     "shares": 362395,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert investeringsselskap med store eierposter i teknologibedrifter som Mycronic, Vitrolife og Yubico."
+    "clue": "Svensk investeringsselskap med store eierposter i teknologi- og medtekbedrifter."
   },
   {
     "rank": 169,
@@ -3453,7 +3453,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.11,
     "shares": 442639,
     "isMajorPool": false,
-    "clue": "Finsk handelsgigant innen dagligvare (K-Market), bilimport og byggevare – og eier av norske Byggmakker og Onninen."
+    "clue": "Finsk handelskonsern innen dagligvare, byggevare og bil, eier av norske Byggmakker."
   },
   {
     "rank": 170,
@@ -3476,7 +3476,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.66,
     "shares": 1874924,
     "isMajorPool": false,
-    "clue": "Nordens store godteri- og sjokoladeselskap bak klassikere som Ahlgrens bilar, Läkerol, Malaco, Center og Kexchoklad."
+    "clue": "Nordisk godteriprodusent bak klassikere som Ahlgrens bilar, Läkerol og Kexchoklad."
   },
   {
     "rank": 171,
@@ -3496,7 +3496,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.34,
     "shares": 413491,
     "isMajorPool": false,
-    "clue": "Svensk medisinteknisk programvareselskap som utvikler det avanserte kreft-strålebehandlingssystemet RayStation."
+    "clue": "Svensk utvikler av programvare for planlegging av strålebehandling mot kreft."
   },
   {
     "rank": 172,
@@ -3516,7 +3516,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.3,
     "shares": 211513,
     "isMajorPool": false,
-    "clue": "Dansk bioteknologiselskap som utvikler neste generasjons peptidbaserte legemidler mot fedme og sjeldne stoffskiftesykdommer."
+    "clue": "Dansk bioteknologiselskap som utvikler peptidbaserte legemidler mot fedme."
   },
   {
     "rank": 173,
@@ -3536,7 +3536,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.63,
     "shares": 417978,
     "isMajorPool": false,
-    "clue": "Svensk ortopedisk medteknologiselskap i Lund som lager injiserbare, antibiotika-frigjørende beinerstatninger (Cerament)."
+    "clue": "Svensk medtekselskap i Lund som lager injiserbare beinerstatninger med antibiotika."
   },
   {
     "rank": 174,
@@ -3557,7 +3557,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.28,
     "shares": 1278759,
     "isMajorPool": false,
-    "clue": "Skandinavias ledende leverandør av juridiske oppslagsverk, lovkommentarer og KI-verktøy for advokater og domstoler."
+    "clue": "Skandinavisk leverandør av juridiske oppslagsverk og KI-verktøy for advokater."
   },
   {
     "rank": 175,
@@ -3577,7 +3577,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.42,
     "shares": 1524500,
     "isMajorPool": false,
-    "clue": "Det svenske netthandelsselskapet bak det populære frilufts- og turklærmerket RevolutionRace."
+    "clue": "Svensk netthandelsselskap bak et populært merke for frilufts- og turklær."
   },
   {
     "rank": 176,
@@ -3599,7 +3599,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.15,
     "shares": 3587154,
     "isMajorPool": false,
-    "clue": "Stort islandsk handelskonsern som eier dagligvarekjeden Krónan, bensinstasjonene N1 og elektronikkjeden ELKO."
+    "clue": "Islandsk handelskonsern med dagligvarekjeden Krónan, bensinstasjonene N1 og ELKO."
   },
   {
     "rank": 177,
@@ -3619,7 +3619,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.95,
     "shares": 2109183,
     "isMajorPool": false,
-    "clue": "Svensk teknologikonsern som leverer fiberoptiske kabler, rørsystemer og sjøkabler for utbygging av raskt bredbånd."
+    "clue": "Svensk leverandør av fiberoptiske kabler og rørsystemer for bredbåndsutbygging."
   },
   {
     "rank": 178,
@@ -3639,7 +3639,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.9,
     "shares": 662562,
     "isMajorPool": false,
-    "clue": "Tradisjonsrik finsk bank, kapitalforvalter og livsforsikrer med røtter tilbake til Finlands eldste sparebank fra 1825."
+    "clue": "Finsk bank, kapitalforvalter og livsforsikrer med røtter tilbake til 1825."
   },
   {
     "rank": 179,
@@ -3659,7 +3659,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.87,
     "shares": 151036,
     "isMajorPool": false,
-    "clue": "Dansk høyteknologiselskap som produserer automatiske celletellere brukt innen kreftforskning og celleterapi."
+    "clue": "Dansk produsent av automatiske celletellere brukt i forskning og celleterapi."
   },
   {
     "rank": 180,
@@ -3679,7 +3679,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.51,
     "shares": 950284,
     "isMajorPool": false,
-    "clue": "Svensk global leverandør av mønsterkort (PCB / kretskort) til krevende elektronikk- og industrikunder."
+    "clue": "Svensk global leverandør av kretskort (PCB) til elektronikk- og industrikunder."
   },
   {
     "rank": 181,
@@ -3697,7 +3697,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.89,
     "shares": 144726,
     "isMajorPool": false,
-    "clue": "Dansk selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap) (SFT, børsverdi ca. 9.1 mrd. kr)."
+    "clue": "Dansk sparebank med base i Holbæk og filialer på Sjælland og Fyn."
   },
   {
     "rank": 182,
@@ -3717,7 +3717,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.97,
     "shares": 1011239,
     "isMajorPool": true,
-    "clue": "Norsk programvareselskap som leverer sikre videomøte- og samhandlingsløsninger til forsvar, helsevesen, domstoler og storbedrifter."
+    "clue": "Norsk leverandør av sikre videomøteløsninger til forsvar, helse og storbedrifter."
   },
   {
     "rank": 183,
@@ -3738,7 +3738,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.06,
     "shares": 138977,
     "isMajorPool": false,
-    "clue": "Fredrik Lundbergs svenske eiendoms- og investeringsselskap med store poster i Holmen, Hufvudstaden og Industrivärden."
+    "clue": "Svensk familiekontrollert investeringsselskap med poster i Holmen og Industrivärden."
   },
   {
     "rank": 184,
@@ -3756,7 +3756,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.65,
     "shares": 1582740,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 12.0 mrd. kr)."
+    "clue": "Svensk produsent av polymerkomponenter til medisinteknikk, industri og elektronikk."
   },
   {
     "rank": 185,
@@ -3776,7 +3776,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.75,
     "shares": 589584,
     "isMajorPool": false,
-    "clue": "Ledende nordisk produsent av ventilasjonskanaler, inneklimasystemer og takrenner i stål."
+    "clue": "Nordisk produsent av ventilasjonskanaler, inneklimasystemer og takrenner i stål."
   },
   {
     "rank": 186,
@@ -3796,7 +3796,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.62,
     "shares": 1787438,
     "isMajorPool": false,
-    "clue": "Svensk produsent av profesjonelle storkjøkken-, kantine- og industrivaskerimaskiner (skilt ut fra Electrolux i 2020)."
+    "clue": "Svensk produsent av storkjøkkenutstyr og vaskerimaskiner for profesjonelle kunder."
   },
   {
     "rank": 187,
@@ -3816,7 +3816,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.45,
     "shares": 1907542,
     "isMajorPool": false,
-    "clue": "Verdensledende islandsk-dansk produsent av bioniske proteser, kunstige ledd og ortopediske hjelpemidler (tidligere kjent som Össur!)."
+    "clue": "Islandsk-dansk verdensleder innen bioniske proteser og ortopediske hjelpemidler."
   },
   {
     "rank": 188,
@@ -3836,7 +3836,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.92,
     "shares": 289084,
     "isMajorPool": false,
-    "clue": "Svensk medisinteknisk pioner innen maskinperfusjon og oppbevaring av donororganer (lunger, hjerte og lever) før transplantasjon."
+    "clue": "Svensk medtekselskap som bevarer donororganer med maskinperfusjon før transplantasjon."
   },
   {
     "rank": 189,
@@ -3854,7 +3854,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.35,
     "shares": 86667,
     "isMajorPool": false,
-    "clue": "Dansk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 22.0 mrd. kr)."
+    "clue": "Dansk industrikonglomerat med eierposter i fiskefôr, elektronikk og fibertekstiler."
   },
   {
     "rank": 190,
@@ -3874,7 +3874,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.02,
     "shares": 1199486,
     "isMajorPool": false,
-    "clue": "Svensk verdensleder innen tiltrotatorer – det fleksible 'håndleddet' som gjør gravemaskiner langt mer effektive."
+    "clue": "Svensk verdensleder innen tiltrotatorer, det fleksible håndleddet på gravemaskiner."
   },
   {
     "rank": 191,
@@ -3895,7 +3895,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.58,
     "shares": 148182,
     "isMajorPool": false,
-    "clue": "Norsk-notert olje- og gasselskap (tidligere Noreco) som er nest største eier i Tyra-gassfeltet og Dansk Undergrunds Consortium (DUC) i dansk Nordsjø."
+    "clue": "Oslo-notert olje- og gasselskap og nest største eier i Tyra-feltet i dansk Nordsjø."
   },
   {
     "rank": 192,
@@ -3915,7 +3915,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.28,
     "shares": 285570,
     "isMajorPool": false,
-    "clue": "Et av verdens ledende produkttankrederier, grunnlagt i Danmark i 1889, som frakter raffinerte oljeprodukter globalt."
+    "clue": "Dansk produkttankrederi grunnlagt i 1889 som frakter raffinerte oljeprodukter."
   },
   {
     "rank": 193,
@@ -3935,7 +3935,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.8,
     "shares": 375071,
     "isMajorPool": false,
-    "clue": "Svensk forsvarsleverandør som lager ekstremt robuste, militærgraderte datamaskiner, nettbrettløsninger og servere for feltbruk."
+    "clue": "Svensk leverandør av robuste, militærgraderte datamaskiner og nettbrett for felten."
   },
   {
     "rank": 194,
@@ -3955,7 +3955,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.15,
     "shares": 538959,
     "isMajorPool": false,
-    "clue": "Europas største arkitekt- og ingeniørrådgivningsselskap med over 22 000 eksperter innen byutvikling, energi og samferdsel."
+    "clue": "Europas største arkitekt- og ingeniørrådgiver innen byutvikling, energi og samferdsel."
   },
   {
     "rank": 195,
@@ -3976,7 +3976,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.41,
     "shares": 2034451,
     "isMajorPool": false,
-    "clue": "Svensk børsnotert industrikonsern med røtter fra 1866 som eier nordiske selskaper innen konstruksjon, industri og konsum."
+    "clue": "Svensk børsnotert industrikonsern fra 1866 som eier nordiske bygg- og industribedrifter."
   },
   {
     "rank": 196,
@@ -3996,7 +3996,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.52,
     "shares": 564235,
     "isMajorPool": false,
-    "clue": "Svensk verdensleder innen byggeplassheiser, industriheiser og fasadevedlikehold på skyskrapere."
+    "clue": "Svensk verdensleder innen byggeplassheiser, industriheiser og fasadeadkomst."
   },
   {
     "rank": 197,
@@ -4016,7 +4016,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.65,
     "shares": 1746714,
     "isMajorPool": false,
-    "clue": "Nordisk installasjonskonsern med over 130 datterselskaper innen rør, elektro, ventilasjon og industri i Sverige, Norge og Finland."
+    "clue": "Nordisk installasjonskonsern innen rør, elektro og ventilasjon med over 100 datterselskap."
   },
   {
     "rank": 198,
@@ -4034,7 +4034,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.93,
     "shares": 112023,
     "isMajorPool": false,
-    "clue": "Dansk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 7.4 mrd. kr)."
+    "clue": "Dansk produsent av sprøytestøpte plastkomponenter og belegg til industrien."
   },
   {
     "rank": 199,
@@ -4072,7 +4072,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.16,
     "shares": 377694,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling) (SFT, børsverdi ca. 5.8 mrd. kr)."
+    "clue": "Svensk eiendomsselskap med logistikk- og lagerbygg i Stockholm-regionen."
   },
   {
     "rank": 201,
@@ -4092,7 +4092,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.53,
     "shares": 158466,
     "isMajorPool": false,
-    "clue": "Et av Danmarks eldste rederier (grunnlagt 1871), stor global operatør av tørrlast- og produkttankskip."
+    "clue": "Dansk rederi fra 1871, en stor global operatør av tørrlast- og produkttankskip."
   },
   {
     "rank": 202,
@@ -4114,7 +4114,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.77,
     "shares": 446551,
     "isMajorPool": false,
-    "clue": "Europas største vindus- og dørkonsern, som i Norge eier kjente merkevarer som Lyssand, Frekhaug Vinduet og Diplomat."
+    "clue": "Europas største vindus- og dørkonsern, eier av norske Lyssand og Frekhaug Vinduet."
   },
   {
     "rank": 203,
@@ -4132,7 +4132,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.02,
     "shares": 1167274,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling) (SFT, børsverdi ca. 6.5 mrd. kr)."
+    "clue": "Svensk eiendomsselskap fra Vetlanda med nærings- og lagerbygg i Småland."
   },
   {
     "rank": 204,
@@ -4170,7 +4170,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.4,
     "shares": 400000,
     "isMajorPool": false,
-    "clue": "Dansk verdensledende produsent av bærekraftig fiskefôr til lakseoppdrett i Norge, Chile, Skottland og globalt."
+    "clue": "Dansk verdensledende produsent av fiskefôr til lakseoppdrett i Norge og Chile."
   },
   {
     "rank": 206,
@@ -4190,7 +4190,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.36,
     "shares": 748089,
     "isMajorPool": false,
-    "clue": "Svensk global ventilasjonsprodusent (i Norge godt kjent for Villavent boligventilasjon og aggregater)."
+    "clue": "Svensk global ventilasjonsprodusent, i Norge kjent for Villavent boligventilasjon."
   },
   {
     "rank": 207,
@@ -4210,7 +4210,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.01,
     "shares": 172270,
     "isMajorPool": false,
-    "clue": "Finsk bryggerikonsern grunnlagt i 1878 som produserer øl, sider, leskedrikk og mineralvann i Finland og Baltikum."
+    "clue": "Finsk bryggeri fra 1878 med øl, sider og leskedrikk i Finland og Baltikum."
   },
   {
     "rank": 208,
@@ -4228,7 +4228,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.77,
     "shares": 204148,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 7.9 mrd. kr)."
+    "clue": "Svensk industrikonsern med verneutstyr, arbeidsklær og verktøy til profesjonelle."
   },
   {
     "rank": 209,
@@ -4249,7 +4249,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.63,
     "shares": 4468257,
     "isMajorPool": false,
-    "clue": "Oljeservice-investeringsselskap i Aker-sfæren med eierposter i bl.a. boreutstyrsleverandøren HMH og spesialskip."
+    "clue": "Investeringsselskap i Aker-sfæren med eierposter i oljeservice, bl.a. boreutstyr (HMH)."
   },
   {
     "rank": 210,
@@ -4269,7 +4269,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.54,
     "shares": 690813,
     "isMajorPool": false,
-    "clue": "Finlands største private helseforetak med hundrevis av klinikker, bedriftshelsetjenester og sykehus."
+    "clue": "Finlands største private helseforetak med klinikker og bedriftshelsetjenester."
   },
   {
     "rank": 211,
@@ -4287,7 +4287,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.74,
     "shares": 111250,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen helsesektoren (legemidler, bioteknologi, medisinsk utstyr eller helsetjenester) (SFT, børsverdi ca. 8.1 mrd. kr)."
+    "clue": "Svensk konsern innen medisinteknikk og spesialiserte legemidler."
   },
   {
     "rank": 212,
@@ -4305,7 +4305,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.63,
     "shares": 394068,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 9.3 mrd. kr)."
+    "clue": "Svensk kontraktsprodusent med fabrikker i Norden, Baltikum, Tyskland og Kina."
   },
   {
     "rank": 213,
@@ -4327,7 +4327,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.43,
     "shares": 351105,
     "isMajorPool": true,
-    "clue": "Skandinavias største alpinanleggsoperatør som eier og drifter skistedene Trysil og Hemsedal i Norge, samt Sälen, Åre og Vemdalen i Sverige."
+    "clue": "Skandinavias største alpinanleggsoperatør, eier av Trysil, Hemsedal, Sälen og Åre."
   },
   {
     "rank": 214,
@@ -4345,7 +4345,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 2.08,
     "shares": 1541949,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling) (SFT, børsverdi ca. 2.7 mrd. kr)."
+    "clue": "Eiendomsselskap fra Värnamo med nærings- og boligeiendom i Småland."
   },
   {
     "rank": 215,
@@ -4363,7 +4363,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.0,
     "shares": 258585,
     "isMajorPool": false,
-    "clue": "Finsk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 9.3 mrd. kr)."
+    "clue": "Finsk infrastrukturentreprenør innen vei, jernbane og energi i Finland og Sverige."
   },
   {
     "rank": 216,
@@ -4384,7 +4384,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.56,
     "shares": 311759,
     "isMajorPool": true,
-    "clue": "Industrielt investeringsselskap grunnlagt i 1896 som produserer vannkraft og bygger grønne teknologiselskaper som Volue og ENRX."
+    "clue": "Industrielt investeringsselskap fra 1896 med vannkraft og grønne teknologiselskaper."
   },
   {
     "rank": 217,
@@ -4404,7 +4404,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.03,
     "shares": 1132701,
     "isMajorPool": false,
-    "clue": "Teknologiselskap notert på Oslo Børs som produserer lynraske programmerbare nettverkskort (SmartNICs) for datasentre, cybersikkerhet og telekom."
+    "clue": "Oslo-notert produsent av programmerbare nettverkskort (SmartNICs) for datasentre."
   },
   {
     "rank": 218,
@@ -4422,7 +4422,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.32,
     "shares": 99558,
     "isMajorPool": false,
-    "clue": "Dansk selskap innen konsumvaresektoren (sjømat, mat, drikke eller dagligvarer) (SFT, børsverdi ca. 16.7 mrd. kr)."
+    "clue": "Dansk investeringsselskap hvis hovedaktivum er palmeoljeplantasjer i Malaysia."
   },
   {
     "rank": 219,
@@ -4443,7 +4443,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.54,
     "shares": 2757829,
     "isMajorPool": false,
-    "clue": "Norsk industrikonsern innen vedlikehold, modifikasjon og undervannsinstallasjoner på sokkelen (eier bl.a. Moreld Apply og Ocean Installer)."
+    "clue": "Norsk leverandør av vedlikehold, modifikasjon og undervannsinstallasjoner offshore."
   },
   {
     "rank": 220,
@@ -4464,7 +4464,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.08,
     "shares": 974584,
     "isMajorPool": false,
-    "clue": "Et av Nordens største eiendomsselskaper ledet av gründer Erik Selin, og største aksjonær i norske Entra."
+    "clue": "Et av Nordens største eiendomsselskaper, ledet av gründer Erik Selin."
   },
   {
     "rank": 221,
@@ -4484,7 +4484,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.98,
     "shares": 756271,
     "isMajorPool": false,
-    "clue": "Forretningsbank i Oslo spesialisert på finansiering av eiendomsprosjekter, bedrifter og shipping/offshore."
+    "clue": "Oslo-bank spesialisert på finansiering av eiendomsprosjekter, bedrifter og shipping."
   },
   {
     "rank": 222,
@@ -4502,7 +4502,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.11,
     "shares": 1770247,
     "isMajorPool": false,
-    "clue": "Finsk selskap innen konsumvaresektoren (sjømat, mat, drikke eller dagligvarer) (SFT, børsverdi ca. 4.6 mrd. kr)."
+    "clue": "Finsk matprodusent kjent for kolesterolsenkende plantestanoler og havreprodukter."
   },
   {
     "rank": 223,
@@ -4522,7 +4522,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.22,
     "shares": 239787,
     "isMajorPool": true,
-    "clue": "Svensk friluftsmerkevare kjent verden over for takbokser, sykkelstativer, barnevogner og ryggsekker til bil og aktivt uteliv."
+    "clue": "Svensk merkevare for takbokser, sykkelstativer, barnevogner og ryggsekker."
   },
   {
     "rank": 224,
@@ -4542,7 +4542,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.4,
     "shares": 817726,
     "isMajorPool": true,
-    "clue": "Finlands nasjonale flyselskap (grunnlagt 1923), kjent for sine ruter mellom Nord-Europa og Asia via knutepunktet i Helsingfors."
+    "clue": "Finlands nasjonale flyselskap, kjent for ruter mellom Europa og Asia via Helsingfors."
   },
   {
     "rank": 225,
@@ -4560,7 +4560,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.45,
     "shares": 1573196,
     "isMajorPool": false,
-    "clue": "Finsk selskap innen materialsektoren (metall, gruvedrift, skog/treforedling eller spesialkjemi) (SFT, børsverdi ca. 10.9 mrd. kr)."
+    "clue": "Finsk produsent av lett kartong av ferskfiber til emballasje for mat og forbruksvarer."
   },
   {
     "rank": 226,
@@ -4580,7 +4580,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.69,
     "shares": 1609227,
     "isMajorPool": false,
-    "clue": "Finlands største entreprenør- og byutviklingskonsern innen boligbygging, næringsbygg og infrastruktur."
+    "clue": "Finlands største entreprenør- og byutviklingskonsern innen bolig og infrastruktur."
   },
   {
     "rank": 227,
@@ -4600,7 +4600,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.19,
     "shares": 639495,
     "isMajorPool": false,
-    "clue": "Svensk verdensledende konsern innen avanserte gummi-, silikon- og polymerblandinger til bil- og verkstedindustrien."
+    "clue": "Svensk verdensleder innen gummi- og polymerblandinger til bil- og industrikunder."
   },
   {
     "rank": 228,
@@ -4638,7 +4638,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.38,
     "shares": 248253,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap) (SFT, børsverdi ca. 11.9 mrd. kr)."
+    "clue": "Svensk nisjebank for betalingsløsninger i nettbutikkers kasse og forbrukerkreditt."
   },
   {
     "rank": 230,
@@ -4658,7 +4658,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.45,
     "shares": 1645424,
     "isMajorPool": true,
-    "clue": "Et av verdens ledende lakseoppdrettsselskaper med hovedkontor i Bergen og oppdrett i Rogaland, Finnmark og Canada."
+    "clue": "Lakseoppdretter med hovedkontor i Bergen og oppdrett i Rogaland og Finnmark."
   },
   {
     "rank": 231,
@@ -4678,7 +4678,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.89,
     "shares": 994096,
     "isMajorPool": false,
-    "clue": "Svensk satellittkommunikasjonsselskap som leverer mobilt høyhastighets-bredbånd via egne satellitter til forsvar og beredskap."
+    "clue": "Svensk leverandør av mobil satellittkommunikasjon via egne satellitter til forsvar."
   },
   {
     "rank": 232,
@@ -4698,7 +4698,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.36,
     "shares": 493077,
     "isMajorPool": false,
-    "clue": "Svensk verdensledende medisinteknisk selskap innen assistert befruktning (IVF-medier, inkubatorer og genetisk testing)."
+    "clue": "Svensk verdensledende medtekselskap innen assistert befruktning (IVF)."
   },
   {
     "rank": 233,
@@ -4719,7 +4719,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.56,
     "shares": 957540,
     "isMajorPool": false,
-    "clue": "Energiserviceselskap på Oslo Børs (med John Fredriksen som storaksjonær) som eier spesialiserte rørleggingsskip i Brasil og oppjekkbare borerigger i Mexico."
+    "clue": "Oslo-notert energiserviceselskap med rørleggingsskip i Brasil og jackup-rigger i Mexico."
   },
   {
     "rank": 234,
@@ -4739,7 +4739,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.18,
     "shares": 6209043,
     "isMajorPool": true,
-    "clue": "Ledende uavhengig nordisk investeringsbank og meglerhus innen aksjemegling, børsnoteringer og oppkjøpsrådgivning."
+    "clue": "Uavhengig nordisk investeringsbank innen aksjemegling, børsnoteringer og M&A."
   },
   {
     "rank": 235,
@@ -4760,7 +4760,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.66,
     "shares": 168077,
     "isMajorPool": false,
-    "clue": "Finsk programvareselskap som utvikler kryssplattform-rammeverket Qt (opprinnelig skapt av norske Trolltech i Oslo!) brukt i bilskjermer og dingser verden over."
+    "clue": "Finsk utvikler av et kryssplattform-rammeverk for programvare, opprinnelig fra Oslo."
   },
   {
     "rank": 236,
@@ -4778,7 +4778,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.96,
     "shares": 1100000,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SPN, børsverdi ca. 2.2 mrd. kr)."
+    "clue": "Svensk produsent av sprøytestøpte plastkomponenter, særlig til kjøretøyindustrien."
   },
   {
     "rank": 237,
@@ -4796,7 +4796,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.65,
     "shares": 148085,
     "isMajorPool": false,
-    "clue": "Dansk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 6.6 mrd. kr)."
+    "clue": "Dansk speditør og logistikkselskap innen vei-, sjø- og flyfrakt i Europa."
   },
   {
     "rank": 238,
@@ -4817,7 +4817,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.73,
     "shares": 374473,
     "isMajorPool": false,
-    "clue": "Norsk maritimt infrastruktur- og akvakulturkonsern som bygger kaier, dammer, broer og landbaserte oppdrettsanlegg (Artec Aqua)."
+    "clue": "Norsk konsern som bygger kaier, broer og landbaserte oppdrettsanlegg."
   },
   {
     "rank": 239,
@@ -4837,7 +4837,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.82,
     "shares": 786137,
     "isMajorPool": false,
-    "clue": "Et av Nordens ledende facility management-selskaper som tar seg av kantine, renhold, vaktmestertjenester og kontordrift."
+    "clue": "Nordisk facility management-selskap innen kantine, renhold og eiendomsdrift."
   },
   {
     "rank": 240,
@@ -4858,7 +4858,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.03,
     "shares": 1684866,
     "isMajorPool": false,
-    "clue": "Det finske konsernet (tidligere Stockmann) bak motekjeden Lindex og de ikoniske Stockmann-varehusene."
+    "clue": "Finsknotert motekonsern bak en svensk klesbutikkjede for kvinner og barn."
   },
   {
     "rank": 241,
@@ -4879,7 +4879,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.25,
     "shares": 1302062,
     "isMajorPool": false,
-    "clue": "Trondheimsbasert olje- og gasselskap som har spesialisert seg på å forlenge levetiden til modne felt på norsk sokkel som Draugen og Brage."
+    "clue": "Trondheimsbasert olje- og gasselskap som forlenger livet til felt som Draugen og Brage."
   },
   {
     "rank": 242,
@@ -4899,7 +4899,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.65,
     "shares": 1641704,
     "isMajorPool": false,
-    "clue": "Norsk brønnservice- og boreselskap som utfører plattformboring, brønnintervensjon og plugging av brønner på sokkelen."
+    "clue": "Norsk brønnserviceselskap innen plattformboring, brønnintervensjon og plugging."
   },
   {
     "rank": 243,
@@ -4919,7 +4919,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.24,
     "shares": 1268423,
     "isMajorPool": false,
-    "clue": "Svensk globalt dyrehelsekonsern som leverer veterinærmedisin, ortopediske implantater og diagnostikk for kjæledyr."
+    "clue": "Svensk dyrehelsekonsern med veterinærprodukter, ortopediske implantater og diagnostikk."
   },
   {
     "rank": 244,
@@ -4939,7 +4939,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.51,
     "shares": 925000,
     "isMajorPool": false,
-    "clue": "Verdens største uavhengige podkast-plattform for publisering, lytting og annonsering."
+    "clue": "Svensk plattform for publisering, distribusjon og annonsering i podkaster."
   },
   {
     "rank": 245,
@@ -4957,7 +4957,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.4,
     "shares": 265527,
     "isMajorPool": false,
-    "clue": "Finsk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 9.3 mrd. kr)."
+    "clue": "Finsk kontraktsprodusent av elektronikk med hovedkontor i Sievi."
   },
   {
     "rank": 246,
@@ -4977,7 +4977,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.48,
     "shares": 1485983,
     "isMajorPool": false,
-    "clue": "Svensk medisinteknisk selskap (skilt ut fra Getinge) som lager pasientløftere, sykehussenger og hjelpemidler for pleiesektoren."
+    "clue": "Svensk medtekselskap som lager pasientløftere og sykehussenger til pleiesektoren."
   },
   {
     "rank": 247,
@@ -4997,7 +4997,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.13,
     "shares": 1125000,
     "isMajorPool": true,
-    "clue": "Norges største møbel- og interiørkjede målt i omsetning med varehus over hele landet."
+    "clue": "Norges største møbel- og interiørkjede med varehus over hele landet."
   },
   {
     "rank": 248,
@@ -5015,7 +5015,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.81,
     "shares": 35210110,
     "isMajorPool": false,
-    "clue": "Islandsk selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap) (SFT, børsverdi ca. 4.5 mrd. kr)."
+    "clue": "Islandsk bank innen investeringsbank, kapitalforvaltning og forbrukerlån."
   },
   {
     "rank": 249,
@@ -5035,7 +5035,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.71,
     "shares": 272229,
     "isMajorPool": false,
-    "clue": "Nordens største skjønnhets- og helsekjede som driver Matas i Danmark og KICKS i Norge, Sverige og Finland."
+    "clue": "Nordens største skjønnhets- og helsekjede, eier av KICKS i Norge og Sverige."
   },
   {
     "rank": 250,
@@ -5053,7 +5053,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.57,
     "shares": 1141969,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling) (SPN, børsverdi ca. 6.1 mrd. kr)."
+    "clue": "Svensk eiendomsselskap med utleieboliger, skilt ut fra SBB i 2024."
   },
   {
     "rank": 251,
@@ -5074,7 +5074,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.41,
     "shares": 328292,
     "isMajorPool": false,
-    "clue": "Et av verdens ledende kjemikalietankrederier med base i Bergen og over 110 års maritim historie."
+    "clue": "Bergensbasert kjemikalietankrederi, et av verdens ledende, med over 110 års historie."
   },
   {
     "rank": 252,
@@ -5094,7 +5094,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.72,
     "shares": 421081,
     "isMajorPool": false,
-    "clue": "Finlands største lavprisvarekjede (Finlands svar på Europris) som også eier Dollarstore i Sverige og Danmark."
+    "clue": "Finlands største lavpriskjede, som også eier lavprisbutikker i Sverige og Danmark."
   },
   {
     "rank": 253,
@@ -5112,7 +5112,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.57,
     "shares": 286986,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 5.8 mrd. kr)."
+    "clue": "Svensk teknisk handelskonsern som leverer industrikomponenter og tjenester til industrien."
   },
   {
     "rank": 254,
@@ -5133,7 +5133,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.79,
     "shares": 691038,
     "isMajorPool": true,
-    "clue": "Norsk elbillader-suksess fra Stavanger som utvikler og selger smarte ladestasjoner (Zaptec Go og Zaptec Pro) for hjem og borettslag i hele Europa."
+    "clue": "Elbillader-selskap fra Stavanger som selger smarte ladestasjoner for hjem og borettslag."
   },
   {
     "rank": 255,
@@ -5151,7 +5151,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.52,
     "shares": 312723,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen materialsektoren (metall, gruvedrift, skog/treforedling eller spesialkjemi) (SFT, børsverdi ca. 6.3 mrd. kr)."
+    "clue": "Svensk verdensleder på nettingvegger for maskinvern og lagersikring, basert i Hillerstorp."
   },
   {
     "rank": 256,
@@ -5171,7 +5171,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.67,
     "shares": 655996,
     "isMajorPool": false,
-    "clue": "Oslo-basert teknologiselskap som leverer optisk nettverksutstyr som øker kapasiteten i fiberkabler for datasentre og telekom."
+    "clue": "Oslo-selskap som lager optisk nettverksutstyr som øker kapasiteten i fiberkabler."
   },
   {
     "rank": 257,
@@ -5191,7 +5191,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.06,
     "shares": 437631,
     "isMajorPool": false,
-    "clue": "Norsk medieteknologiselskap i Oslo som leverer maskinvare og programvare for direktesendt TV-strømming av verdens største sportsbegivenheter."
+    "clue": "Oslo-selskap som lager utstyr for direktesendt TV-distribusjon av store sportsbegivenheter."
   },
   {
     "rank": 258,
@@ -5211,7 +5211,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.38,
     "shares": 397713,
     "isMajorPool": false,
-    "clue": "Sveriges største rendyrkede nettapotek med millioner av pakker sendt årlig fra sitt høyt automatiserte lager."
+    "clue": "Sveriges største rendyrkede nettapotek, med et høyt automatisert lager i Morgongåva."
   },
   {
     "rank": 259,
@@ -5231,7 +5231,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.22,
     "shares": 579056,
     "isMajorPool": false,
-    "clue": "Olje- og gasselskap i BW-gruppen som utvikler oljefelt utenfor kysten av Gabon, Brasil og Namibia."
+    "clue": "Olje- og gasselskap som utvikler felt utenfor kysten av Gabon, Brasil og Namibia."
   },
   {
     "rank": 260,
@@ -5251,7 +5251,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.74,
     "shares": 6000000,
     "isMajorPool": false,
-    "clue": "Norsk børsnotert inkasso- og gjeldsforvaltningsselskap med virksomhet i Norden, Tyskland, Spania og Italia."
+    "clue": "Norsk inkasso- og gjeldsoppkjøpsselskap med virksomhet i Norden, Spania, Italia og Tyskland."
   },
   {
     "rank": 261,
@@ -5269,7 +5269,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.58,
     "shares": 1687040,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen materialsektoren (metall, gruvedrift, skog/treforedling eller spesialkjemi) (SFT, børsverdi ca. 4.8 mrd. kr)."
+    "clue": "Svensk gruveselskap som gjenåpner en kobbergruve ved Kiruna."
   },
   {
     "rank": 262,
@@ -5289,7 +5289,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 1.3,
     "shares": 512384,
     "isMajorPool": false,
-    "clue": "Leverandør av brønnservice, boreverktøy og ingeniørtjenester, skilt ut fra Odfjell Drilling i 2022."
+    "clue": "Norsk leverandør av brønnservice, boreverktøy og ingeniørtjenester, skilt ut i 2022."
   },
   {
     "rank": 263,
@@ -5309,7 +5309,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.65,
     "shares": 119311,
     "isMajorPool": false,
-    "clue": "Norsk medisinteknisk juvel som er verdensledende på ultralydsonder som måler blodstrøm under hjertekirurgi."
+    "clue": "Norsk verdensleder på ultralydutstyr som måler blodstrøm under hjertekirurgi."
   },
   {
     "rank": 264,
@@ -5329,7 +5329,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.65,
     "shares": 180810,
     "isMajorPool": true,
-    "clue": "Et av Norges ledende rådgivende ingeniør- og arkitektmiljøer innen bygg, samferdsel, fornybar energi og miljø."
+    "clue": "Et av Norges største rådgivende ingeniør- og arkitektmiljøer innen bygg, samferdsel og energi."
   },
   {
     "rank": 265,
@@ -5347,7 +5347,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.0,
     "shares": 550000,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling) (SFT, børsverdi ca. 4.5 mrd. kr)."
+    "clue": "Svensk eiendomsselskap som eier moderne kontorbygg i Baltikum og Polen."
   },
   {
     "rank": 266,
@@ -5367,7 +5367,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.35,
     "shares": 97990,
     "isMajorPool": false,
-    "clue": "Verdensberømt finsk produsent av skogsmaskiner (hogstmaskiner og lassbærere) som brukes i skogbruket over hele Norden."
+    "clue": "Finsk produsent av skogsmaskiner (hogstmaskiner og lassbærere) fra Vieremä."
   },
   {
     "rank": 267,
@@ -5388,7 +5388,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.63,
     "shares": 1128333,
     "isMajorPool": false,
-    "clue": "Nordens største netthandelsaktør innen oppussing, byggevarer, hage og interiør (Bygghemma og Nordic Nest)."
+    "clue": "Nordens største netthandelskonsern innen byggevarer, oppussing, hage og interiør."
   },
   {
     "rank": 268,
@@ -5406,7 +5406,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.53,
     "shares": 186376,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 4.7 mrd. kr)."
+    "clue": "Svensk verdensleder på industrielle avsug og luftfiltrering, med hovedkontor i Helsingborg."
   },
   {
     "rank": 269,
@@ -5426,7 +5426,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.89,
     "shares": 176308,
     "isMajorPool": false,
-    "clue": "Dansk programvare- og teknologikonsern som utvikler skreddersydde digitale løsninger innen helse, finans, smarte bygg og sky."
+    "clue": "Dansk IT-konsern fra Aarhus som utvikler skreddersydd programvare innen helse, finans og sky."
   },
   {
     "rank": 270,
@@ -5446,7 +5446,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.5,
     "shares": 204720,
     "isMajorPool": false,
-    "clue": "Ikonisk finsk design- og motehus grunnlagt i 1951, berømt verden over for sine fargerike tekstiler og Unikko-blomstermønsteret."
+    "clue": "Ikonisk finsk designhus fra 1951, kjent for fargerike tekstiler og valmuemønsteret."
   },
   {
     "rank": 271,
@@ -5464,7 +5464,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.73,
     "shares": 166525,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 3.3 mrd. kr)."
+    "clue": "Svensk rådgivende ingeniørselskap innen energi, bygg, industri og infrastruktur i Norden."
   },
   {
     "rank": 272,
@@ -5484,7 +5484,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.41,
     "shares": 325266,
     "isMajorPool": false,
-    "clue": "Finsk verdensleder innen lydisolerte kontorbokser og telefonrom ('pods') som står i moderne kontorlandskap verden over."
+    "clue": "Finsk verdensleder på lydisolerte telefonbokser og møteroms-pods for kontorlandskap."
   },
   {
     "rank": 273,
@@ -5504,7 +5504,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.0,
     "shares": 1022255,
     "isMajorPool": false,
-    "clue": "Finsk cybersikkerhetsselskap som leverer antivirus, VPN og digital svindelbeskyttelse til millioner av forbrukere."
+    "clue": "Finsk cybersikkerhetsselskap med antivirus, VPN og svindelbeskyttelse for forbrukere."
   },
   {
     "rank": 274,
@@ -5522,7 +5522,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.49,
     "shares": 159675,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 4.8 mrd. kr)."
+    "clue": "Svensk konsern innen robust industriell datakommunikasjon og nettverksutstyr."
   },
   {
     "rank": 275,
@@ -5542,7 +5542,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.66,
     "shares": 557317,
     "isMajorPool": true,
-    "clue": "Tradisjonsrikt norsk treforedlingskonsern med store fabrikker i Skogn og Saugbrugs (Halden) som produserer publikasjonspapir og bølgepapp-kartong."
+    "clue": "Norsk treforedlingskonsern med fabrikker på Skogn og i Halden som lager papir og kartong."
   },
   {
     "rank": 276,
@@ -5562,7 +5562,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.59,
     "shares": 171425,
     "isMajorPool": false,
-    "clue": "Finsk helseteknologiselskap som er verdensledende på øyetrykksmålere (tonometre) og netthinneskannere for øyeleger."
+    "clue": "Finsk helseteknologiselskap, verdensledende på øyetrykksmålere og netthinneskannere."
   },
   {
     "rank": 277,
@@ -5584,7 +5584,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.24,
     "shares": 158501,
     "isMajorPool": false,
-    "clue": "Nordens største kyllingprodusent, som i Norge eier merkevaren Den Stolte Hane (og Kronfågel i Sverige)."
+    "clue": "Nordens største kyllingprodusent, med virksomhet i Sverige, Norge, Danmark, Finland og Irland."
   },
   {
     "rank": 278,
@@ -5605,7 +5605,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.25,
     "shares": 139122,
     "isMajorPool": false,
-    "clue": "Stort dansk fergerederi og logistikkselskap med frakt- og passasjerferger i Nord-Europa."
+    "clue": "Stort dansk fergerederi og logistikkselskap med frakt- og passasjerruter i Nord-Europa."
   },
   {
     "rank": 279,
@@ -5625,7 +5625,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.65,
     "shares": 1846858,
     "isMajorPool": false,
-    "clue": "Nordisk digital nisjebank innen forbrukslån, kredittkort og høyrentekonto (tidligere Komplett Bank)."
+    "clue": "Nordisk digital nisjebank innen forbrukslån, kredittkort og sparekontoer."
   },
   {
     "rank": 280,
@@ -5645,7 +5645,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.42,
     "shares": 361037,
     "isMajorPool": false,
-    "clue": "Svensk cybersikkerhetsselskap som har skapt YubiKey – den fysiske sikkerhetsnøkkelen som brukes av verdens største teknologiselskaper mot phishing."
+    "clue": "Svensk cybersikkerhetsselskap som lager fysiske sikkerhetsnøkler mot phishing."
   },
   {
     "rank": 281,
@@ -5663,7 +5663,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.59,
     "shares": 296219,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap) (SFT, børsverdi ca. 3.5 mrd. kr)."
+    "clue": "Nordisk spesialbank for boliglån til kunder storbankene avviser, også egenkapitallån for 60+."
   },
   {
     "rank": 282,
@@ -5681,7 +5681,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.49,
     "shares": 3092412,
     "isMajorPool": false,
-    "clue": "Islandsk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 4.2 mrd. kr)."
+    "clue": "Islandsk produsent av fiskenett, trål og tauverk til fiskeri og havbruk verden over."
   },
   {
     "rank": 283,
@@ -5699,7 +5699,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.0,
     "shares": 258000,
     "isMajorPool": false,
-    "clue": "Finsk selskap innen forsyningssektoren (fornybar kraftproduksjon, strømsalg eller miljøtjenester) (SFT, børsverdi ca. 3.0 mrd. kr)."
+    "clue": "Finsk miljøtjenesteselskap innen avfallshåndtering, gjenvinning og eiendomsdrift."
   },
   {
     "rank": 284,
@@ -5717,7 +5717,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.31,
     "shares": 2106429,
     "isMajorPool": false,
-    "clue": "Islandsk selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling) (SFT, børsverdi ca. 6.2 mrd. kr)."
+    "clue": "Et av Islands største næringseiendomsselskaper, eier av kjøpesenteret Kringlan i Reykjavik."
   },
   {
     "rank": 285,
@@ -5738,7 +5738,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.22,
     "shares": 192155,
     "isMajorPool": false,
-    "clue": "Bioteknologi- og antarktisk krillfangstselskap i Aker-sfæren som produserer omega-3 og krillingredienser til helsekost og fiskefôr."
+    "clue": "Norsk selskap som fanger antarktisk krill og lager omega-3 og krillingredienser."
   },
   {
     "rank": 286,
@@ -5760,7 +5760,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.69,
     "shares": 464153,
     "isMajorPool": false,
-    "clue": "Det nordiske vin- og brennevinskonsernet skapt ved fusjonen mellom norske Arcus (Linie Aquavit, Gammel Opland) og finske Altia (Koskenkorva)."
+    "clue": "Nordisk vin- og brennevinskonsern, skapt ved en norsk-finsk fusjon i 2021."
   },
   {
     "rank": 287,
@@ -5778,7 +5778,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.51,
     "shares": 142786,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen teknologisektoren (programvare, halvledere, IT-tjenester eller digitale plattformer) (SFT, børsverdi ca. 3.5 mrd. kr)."
+    "clue": "Svensk IT-tjenesteselskap som leverer datasenter-, lagrings- og skyinfrastruktur."
   },
   {
     "rank": 288,
@@ -5798,7 +5798,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.35,
     "shares": 1209304,
     "isMajorPool": false,
-    "clue": "Svensk apputvikler bak en av verdens mest nedlastede telefonkatalog- og spamblokkerings-apper med over 400 millioner aktive brukere."
+    "clue": "Svensk app for nummeridentifisering og spamblokkering med over 400 millioner brukere."
   },
   {
     "rank": 289,
@@ -5818,7 +5818,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.33,
     "shares": 198349,
     "isMajorPool": false,
-    "clue": "Norsk spesialrederi som opererer kombinasjonsskip som frakter både tørrlast og våtlast på samme rundreise for å kutte utslipp og tomkjøring."
+    "clue": "Norsk rederi med skip som frakter både tørrlast og våtlast for å kutte ballastseiling."
   },
   {
     "rank": 290,
@@ -5838,7 +5838,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.4,
     "shares": 7298096,
     "isMajorPool": true,
-    "clue": "Norsk hydrogenteknologiselskap med røtter fra Norsk Hydro på Rjukan (1927), som produserer elektrolysører for grønt hydrogen."
+    "clue": "Norsk hydrogenselskap med røtter fra Rjukan som lager elektrolysører for grønt hydrogen."
   },
   {
     "rank": 291,
@@ -5856,7 +5856,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.36,
     "shares": 103739,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen teknologisektoren (programvare, halvledere, IT-tjenester eller digitale plattformer) (SFT, børsverdi ca. 4.6 mrd. kr)."
+    "clue": "Svensk kontraktsprodusent av elektronikk (EMS) med fabrikker i Europa og Asia."
   },
   {
     "rank": 292,
@@ -5874,7 +5874,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.26,
     "shares": 984410,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 6.2 mrd. kr)."
+    "clue": "Svensk samling nisjeselskaper innen infrastruktur, vann og avløp og tekniske tjenester."
   },
   {
     "rank": 293,
@@ -5894,7 +5894,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.0,
     "shares": 115644,
     "isMajorPool": false,
-    "clue": "Finsk produsent av modulære hurtigladere for elbiler, elektriske lastebiler og båter."
+    "clue": "Finsk produsent av modulære hurtigladere for elbiler, elektriske lastebiler og busser."
   },
   {
     "rank": 294,
@@ -5912,7 +5912,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.49,
     "shares": 90822,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 3.3 mrd. kr)."
+    "clue": "Svensk konsulentselskap som bruker forretningssimuleringer til lederutvikling og strategi."
   },
   {
     "rank": 295,
@@ -5932,7 +5932,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.71,
     "shares": 3681410,
     "isMajorPool": false,
-    "clue": "Svensk spillkonsern som eier en rekke internasjonale spillstudioer innen gratis-å-spille strategi- og mobilspill."
+    "clue": "Svensk spillkonsern som eier en rekke studioer innen gratis strategi- og mobilspill."
   },
   {
     "rank": 296,
@@ -5950,7 +5950,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.2,
     "shares": 32602,
     "isMajorPool": false,
-    "clue": "Dansk selskap innen helsesektoren (legemidler, bioteknologi, medisinsk utstyr eller helsetjenester) (SFT, børsverdi ca. 8.0 mrd. kr)."
+    "clue": "Dansk forskningsselskap som utvikler peptidbaserte legemidler mot fedme og stoffskiftesykdom."
   },
   {
     "rank": 297,
@@ -5970,7 +5970,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.08,
     "shares": 32274,
     "isMajorPool": false,
-    "clue": "Moderne råoljetankrederi (VLCC og Suezmax) notert i Oslo og New York, grunnlagt av den greske skipsrederfamilien Alafouzos."
+    "clue": "Moderne gresk-kontrollert rederi med råoljeskip (VLCC og Suezmax), notert i Oslo og New York."
   },
   {
     "rank": 298,
@@ -5988,7 +5988,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.33,
     "shares": 247218,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling) (SFT, børsverdi ca. 4.4 mrd. kr)."
+    "clue": "Svensk boligutleieselskap med leiligheter i Stockholm-området, særlig på Lidingö."
   },
   {
     "rank": 299,
@@ -6006,7 +6006,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.27,
     "shares": 5316259,
     "isMajorPool": false,
-    "clue": "Islandsk selskap innen eiendomssektoren (næringseiendom, logistikkbygg eller boligutvikling) (SFT, børsverdi ca. 5.2 mrd. kr)."
+    "clue": "Et av Islands største næringseiendomsselskaper, eier av kjøpesenteret Smáralind."
   },
   {
     "rank": 300,
@@ -6026,7 +6026,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.63,
     "shares": 3500000,
     "isMajorPool": false,
-    "clue": "Norsk pioner innen landbasert lakseoppdrett med gjennomstrømmingsteknologi på Indre Harøy i Møre og Romsdal."
+    "clue": "Norsk pioner innen landbasert lakseoppdrett, med anlegg på Indre Harøy i Møre og Romsdal."
   },
   {
     "rank": 301,
@@ -6044,7 +6044,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.76,
     "shares": 124514,
     "isMajorPool": false,
-    "clue": "Finsk selskap innen teknologisektoren (programvare, halvledere, IT-tjenester eller digitale plattformer) (SFT, børsverdi ca. 1.8 mrd. kr)."
+    "clue": "Finsk digitaliseringskonsulent fra Tammerfors som leverer IT- og designtjenester."
   },
   {
     "rank": 302,
@@ -6062,7 +6062,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.56,
     "shares": 156942,
     "isMajorPool": false,
-    "clue": "Finsk selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap) (SFT, børsverdi ca. 2.3 mrd. kr)."
+    "clue": "Finsk kapitalforvalter med fond innen fornybar energi, eier også et garantiforsikringsselskap."
   },
   {
     "rank": 303,
@@ -6080,7 +6080,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.46,
     "shares": 200000,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen teknologisektoren (programvare, halvledere, IT-tjenester eller digitale plattformer) (SFT, børsverdi ca. 2.6 mrd. kr)."
+    "clue": "Svensk eier av forretningskritiske, bransjespesifikke B2B-programvareselskaper i Norden."
   },
   {
     "rank": 304,
@@ -6100,7 +6100,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.69,
     "shares": 500000,
     "isMajorPool": false,
-    "clue": "Norsk utvikler av fornybarprosjekter innen solkraft, landvind, havvind og batterilagring i Norden, Storbritannia og Sør-Afrika."
+    "clue": "Norsk utvikler av sol-, vind- og batteriprosjekter i Norden, Storbritannia og Sør-Afrika."
   },
   {
     "rank": 305,
@@ -6118,7 +6118,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.32,
     "shares": 122012,
     "isMajorPool": false,
-    "clue": "Finsk selskap innen materialsektoren (metall, gruvedrift, skog/treforedling eller spesialkjemi) (SFT, børsverdi ca. 3.8 mrd. kr)."
+    "clue": "Finsk gullgruveselskap med gruvedrift i Pampalo i Øst-Finland."
   },
   {
     "rank": 306,
@@ -6138,7 +6138,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.52,
     "shares": 1495759,
     "isMajorPool": false,
-    "clue": "Fornybarselskap i Lundin-sfæren med vind- og vannkraftproduksjon i Norden (oppstod da Lundin Energy solgte oljevirksomheten til Aker BP)."
+    "clue": "Fornybarselskap i Lundin-sfæren med vind- og vannkraft i Norden, tidligere oljeselskap."
   },
   {
     "rank": 307,
@@ -6156,7 +6156,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.0,
     "shares": 87583,
     "isMajorPool": false,
-    "clue": "Finsk selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap) (SFT, børsverdi ca. 4.3 mrd. kr)."
+    "clue": "Finsk sparebank med hovedkontor i Seinäjoki og kontorer over hele Finland."
   },
   {
     "rank": 308,
@@ -6195,7 +6195,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.15,
     "shares": 89746,
     "isMajorPool": false,
-    "clue": "Dansk-svensk sportsmediekonsern som eier store sportsnettsteder, e-sportportaler (HLTV) og spillsamfunn globalt."
+    "clue": "Dansk sportsmediekonsern som eier sportsnettsteder og spillsammenligningstjenester."
   },
   {
     "rank": 310,
@@ -6216,7 +6216,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.36,
     "shares": 1163082,
     "isMajorPool": false,
-    "clue": "Industrikonsern fra Ålesund som er verdensledende på lette høytrykkstanker i kompositt for biogass og naturgass til tungtransport."
+    "clue": "Ålesund-konsern som er verdensledende på lette høytrykkstanker for gass til tungtransport."
   },
   {
     "rank": 311,
@@ -6234,7 +6234,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.15,
     "shares": 68927,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap) (SFT, børsverdi ca. 6.5 mrd. kr)."
+    "clue": "Svensk investeringsselskap med en konsentrert portefølje av børsnoterte aksjer."
   },
   {
     "rank": 312,
@@ -6252,7 +6252,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.62,
     "shares": 2011017,
     "isMajorPool": false,
-    "clue": "Finsk selskap innen materialsektoren (metall, gruvedrift, skog/treforedling eller spesialkjemi) (SFT, børsverdi ca. 1.4 mrd. kr)."
+    "clue": "Finsk gruveselskap som driver en sølvgruve i Kainuu-regionen."
   },
   {
     "rank": 313,
@@ -6270,7 +6270,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.27,
     "shares": 20797,
     "isMajorPool": false,
-    "clue": "Dansk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 3.3 mrd. kr)."
+    "clue": "Et av Danmarks største bygg- og anleggskonsern."
   },
   {
     "rank": 314,
@@ -6290,7 +6290,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.7,
     "shares": 700000,
     "isMajorPool": false,
-    "clue": "Norsk utvikler av grønne, krafteffektive datasentre i Norden, skilt ut fra fornybarselskapet Magnora."
+    "clue": "Norsk utvikler av grønne, krafteffektive datasentre i Norden."
   },
   {
     "rank": 315,
@@ -6308,7 +6308,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.25,
     "shares": 7172273,
     "isMajorPool": false,
-    "clue": "Islandsk selskap innen konsumvaresektoren (sjømat, mat, drikke eller dagligvarer) (SFT, børsverdi ca. 3.4 mrd. kr)."
+    "clue": "Islandsk drikkevareprodusent og -importør, med bryggeritradisjoner tilbake til 1913."
   },
   {
     "rank": 316,
@@ -6326,7 +6326,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.28,
     "shares": 1243907,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen konsumvaresektoren (sjømat, mat, drikke eller dagligvarer) (SFT, børsverdi ca. 3.0 mrd. kr)."
+    "clue": "Svensk oppkjøpsdrevet konsern innen snacks, sunn mat, drikke og pleieprodukter."
   },
   {
     "rank": 317,
@@ -6344,7 +6344,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.3,
     "shares": 40114,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen teknologisektoren (programvare, halvledere, IT-tjenester eller digitale plattformer) (SFT, børsverdi ca. 2.7 mrd. kr)."
+    "clue": "Svensk programvareselskap fra Lund som leverer CRM-systemer til nordiske bedrifter."
   },
   {
     "rank": 318,
@@ -6364,7 +6364,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.18,
     "shares": 144878,
     "isMajorPool": false,
-    "clue": "Tradisjonsrikt offshorerederi fra Skudeneshavn på Karmøy med en av verdens største flåter av konstruksjons- og ankerhåndteringsskip."
+    "clue": "Offshorerederi fra Skudeneshavn med stor flåte av konstruksjons- og ankerhåndteringsskip."
   },
   {
     "rank": 319,
@@ -6382,7 +6382,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.2,
     "shares": 348501,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 3.1 mrd. kr)."
+    "clue": "Svensk belysningskonsern som lager profesjonell innendørs- og utendørsbelysning."
   },
   {
     "rank": 320,
@@ -6402,7 +6402,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.19,
     "shares": 116149,
     "isMajorPool": false,
-    "clue": "Investerings- og rederiselskap på Oslo Børs med fokus på moderne VLCC-supertankere med LNG-drift."
+    "clue": "Investerings- og rederiselskap på Oslo Børs med moderne VLCC-supertankere."
   },
   {
     "rank": 321,
@@ -6423,7 +6423,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.04,
     "shares": 35895,
     "isMajorPool": true,
-    "clue": "Finlands eldste selskap (grunnlagt 1649!), berømt for de oransje Fiskars-saksene, økser, Iittala-glass og Royal Copenhagen-porselen."
+    "clue": "Finlands eldste selskap (1649), kjent for oransje sakser, øks og designglass."
   },
   {
     "rank": 322,
@@ -6443,7 +6443,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.15,
     "shares": 202846,
     "isMajorPool": false,
-    "clue": "Uavhengig olje- og gasselskap notert på Oslo Børs med oljeproduksjon i Ekvatorial-Guinea, Gabon og Tunisia."
+    "clue": "Olje- og gasselskap på Oslo Børs med produksjon i Ekvatorial-Guinea, Gabon og Tunisia."
   },
   {
     "rank": 323,
@@ -6463,7 +6463,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.23,
     "shares": 62577,
     "isMajorPool": false,
-    "clue": "Stort nordisk IT- og digitaliseringskonsulentselskap med stor virksomhet i både Sverige og Norge."
+    "clue": "Svensk IT- og digitaliseringskonsulent med stor virksomhet i både Sverige og Norge."
   },
   {
     "rank": 324,
@@ -6481,7 +6481,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.17,
     "shares": 49450,
     "isMajorPool": false,
-    "clue": "Finsk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 3.0 mrd. kr)."
+    "clue": "Finsk kontraktsprodusent av elektronikk (EMS) med fabrikker i Finland, India og Estland."
   },
   {
     "rank": 325,
@@ -6499,7 +6499,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.04,
     "shares": 74945,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap) (SFT, børsverdi ca. 11.8 mrd. kr)."
+    "clue": "Svensk bank fra Göteborg innen bedrifts- og eiendomslån samt forbrukslån."
   },
   {
     "rank": 326,
@@ -6517,7 +6517,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.48,
     "shares": 478539,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen helsesektoren (legemidler, bioteknologi, medisinsk utstyr eller helsetjenester) (SFT, børsverdi ca. 0.8 mrd. kr)."
+    "clue": "Svensk medtekselskap som utvikler inhalasjonssedering for pasienter på intensivavdelinger."
   },
   {
     "rank": 327,
@@ -6538,7 +6538,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.79,
     "shares": 1078836,
     "isMajorPool": false,
-    "clue": "Europas største inkasso- og kredittforvaltningsselskap etter sammenslåingen av svenske Intrum Justitia og norske Lindorff."
+    "clue": "Europas største inkasso- og kredittforvaltningsselskap, med hovedkontor i Stockholm."
   },
   {
     "rank": 328,
@@ -6579,7 +6579,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.01,
     "shares": 43938,
     "isMajorPool": true,
-    "clue": "Svensk globalt hvitevarekonsern som produserer kjøleskap, komfyrer, oppvaskmaskiner og støvsugere under merker som Electrolux og AEG."
+    "clue": "Svensk globalt hvitevarekonsern som lager kjøleskap, komfyrer, oppvask- og vaskemaskiner."
   },
   {
     "rank": 330,
@@ -6618,7 +6618,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.04,
     "shares": 33080,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen finanssektoren (bank, forsikring, kapitalforvaltning eller investeringsselskap) (SFT, børsverdi ca. 1.9 mrd. kr)."
+    "clue": "Svensk kapitalforvalter og rådgiver spesialisert på eiendomsinvesteringer i Europa."
   },
   {
     "rank": 332,
@@ -6636,7 +6636,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.03,
     "shares": 6878,
     "isMajorPool": false,
-    "clue": "Dansk selskap innen teknologisektoren (programvare, halvledere, IT-tjenester eller digitale plattformer) (SFT, børsverdi ca. 1.5 mrd. kr)."
+    "clue": "Dansk programvareselskap som lager digitale saksbehandlingssystemer for offentlig sektor."
   },
   {
     "rank": 333,
@@ -6654,7 +6654,7 @@ window.PORTFOLIO_COMPANIES = [
     "ownershipPct": 0.0,
     "shares": 1759,
     "isMajorPool": false,
-    "clue": "Svensk selskap innen industrisektoren (ingeniørkunst, maritimt, transport, bygg/anlegg eller produksjon) (SFT, børsverdi ca. 5.2 mrd. kr)."
+    "clue": "Nordisk handels- og distribusjonskonsern innen byggevarer, emballasje, hage og skogbruk."
   },
   {
     "rank": 334,
