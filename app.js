@@ -29,7 +29,6 @@
   const TILE_COUNT = 7;
   const EXACT = 0.05; // green: within ±5 %
   const NEAR = 0.25; // yellow: within ±25 %
-  const STORE_DAILY = "folketrygdle_daily_v2";
   const STORE_STATS = "folketrygdle_stats_2026";
   const WIN_WORDS = ["Geni!", "Imponerende!", "Strålende!", "Flott!", "Bra!", "Puh!"];
 
@@ -105,6 +104,7 @@
     status: "playing",
     dailyNumber: 1,
     dateKey: "",
+    day: null, // selected archive day (null = today)
     revealing: false,
     acList: [],
     acIdx: 0,
@@ -143,35 +143,40 @@
     return (Math.atan2(dLon, dLat) * 180) / Math.PI;
   }
 
+  const START_DATE = "2026-11-01"; // first daily puzzle; the archive starts here
+
+  const keyOf = (d) =>
+    `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  const dateOf = (key) => new Date(key + "T00:00:00");
+  const dateKeyToday = () => keyOf(new Date());
+  const isToday = (key) => key === dateKeyToday();
+
   // e.g. "21. nov"
-  const shortDate = () =>
-    new Date().toLocaleDateString("nb-NO", { day: "numeric", month: "short" }).replace(/\.$/, "");
+  const shortDate = (key = dateKeyToday()) =>
+    dateOf(key).toLocaleDateString("nb-NO", { day: "numeric", month: "short" }).replace(/\.$/, "");
 
-  function dateKeyToday() {
-    const d = new Date();
-    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-  }
+  // Deterministic shuffle of the daily pool, identical for every player: day N of the
+  // calendar gets entry N of the shuffled list, so no repeats until the pool is exhausted.
+  const DAILY_ORDER = (() => {
+    const ids = DAILY_POOL.map((c) => c.id).filter((id) => BY_ID.has(id)).sort();
+    let seed = 20261101;
+    const rand = () => {
+      seed = (seed + 0x6d2b79f5) | 0;
+      let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    for (let i = ids.length - 1; i > 0; i--) {
+      const j = Math.floor(rand() * (i + 1));
+      [ids[i], ids[j]] = [ids[j], ids[i]];
+    }
+    return ids;
+  })();
 
-  function dailyInfo() {
-    const dateKey = dateKeyToday();
-    const epoch = new Date("2026-01-01T00:00:00");
-    const num = Math.max(1, Math.floor((new Date(dateKey + "T00:00:00") - epoch) / 86400000) + 1);
-    let h = 2166136261;
-    for (let i = 0; i < dateKey.length; i++) {
-      h ^= dateKey.charCodeAt(i);
-      h = Math.imul(h, 16777619);
-    }
-    // Step forward until we hit a company that has market data.
-    const start = Math.abs(h) % DAILY_POOL.length;
-    let company = COMPANIES[0];
-    for (let i = 0; i < DAILY_POOL.length; i++) {
-      const found = BY_ID.get(DAILY_POOL[(start + i) % DAILY_POOL.length].id);
-      if (found) {
-        company = found;
-        break;
-      }
-    }
-    return { dateKey, num, company };
+  function dailyInfo(dateKey = state.day || dateKeyToday()) {
+    const num = Math.round((dateOf(dateKey) - dateOf(START_DATE)) / 86400000);
+    const idx = ((num % DAILY_ORDER.length) + DAILY_ORDER.length) % DAILY_ORDER.length;
+    return { dateKey, num: num + 1, company: BY_ID.get(DAILY_ORDER[idx]) };
   }
 
   /* ---------- evaluation ---------- */
@@ -331,7 +336,7 @@
     el.entry.classList.toggle("hidden", done);
     el.doneBar.classList.toggle("hidden", !done);
     el.btnNext.textContent = state.mode === "daily" ? "Spill frispill" : "Neste selskap";
-    el.dailyNum.textContent = shortDate();
+    el.dailyNum.textContent = shortDate(state.dateKey);
     document.querySelectorAll(".mode-btn").forEach((b) =>
       b.classList.toggle("active", b.dataset.mode === state.mode)
     );
@@ -347,7 +352,7 @@
 
   function shareText() {
     const ICON = { exact: "🟩", close: "🟨", wrong: "⬛" };
-    const head = state.mode === "daily" ? `Trygdle ${shortDate()}` : "Trygdle";
+    const head = state.mode === "daily" ? `Trygdle ${shortDate(state.dateKey)}` : "Trygdle";
     const score = state.status === "won" ? state.guesses.length : "X";
     const hints = state.hints ? ` · ${state.hints} hint` : "";
     const rows = state.guesses.map((g) => evaluate(g, state.target).tiles.map((t) => ICON[t.s]).join(""));
@@ -422,7 +427,7 @@
       <div class="result-foot">
         <div class="mini-grid" aria-label="Dine forsøk">${grid}</div>
         ${
-          state.mode === "daily"
+          state.mode === "daily" && isToday(state.dateKey)
             ? `<div class="cd"><span>Neste selskap</span><b id="cd">${countdown()}</b></div>`
             : ""
         }
@@ -437,7 +442,7 @@
       nextRound();
     });
     clearInterval(cdTimer);
-    if (state.mode === "daily") {
+    if (state.mode === "daily" && isToday(state.dateKey)) {
       cdTimer = setInterval(() => {
         const n = $("cd");
         if (n) n.textContent = countdown();
@@ -465,7 +470,7 @@
     if (won) state.status = "won";
     else if (state.guesses.length >= MAX_GUESSES) state.status = "lost";
 
-    if (state.status !== "playing" && state.mode === "daily") recordStats(won, state.guesses.length);
+    if (state.status !== "playing" && state.mode === "daily" && isToday(state.dateKey)) recordStats(won, state.guesses.length);
     saveDaily();
 
     state.revealing = true;
@@ -494,7 +499,7 @@
   function giveUp() {
     if (state.status !== "playing") return;
     state.status = "lost";
-    if (state.mode === "daily") recordStats(false, MAX_GUESSES);
+    if (state.mode === "daily" && isToday(state.dateKey)) recordStats(false, MAX_GUESSES);
     saveDaily();
     renderAll();
     setTimeout(openResult, 400);
@@ -547,6 +552,7 @@
   function setMode(mode) {
     if (state.revealing) return;
     state.mode = mode;
+    if (mode === "daily") state.day = null;
     startRound();
     if (mode === "daily" && state.status !== "playing") openResult();
   }
@@ -613,13 +619,14 @@
 
   /* ---------- persistence ---------- */
 
+  const dayKey = (d) => `trygdle_day_${d}`;
+
   function saveDaily() {
     if (state.mode !== "daily") return;
     try {
       localStorage.setItem(
-        STORE_DAILY,
+        dayKey(state.dateKey),
         JSON.stringify({
-          dateKey: state.dateKey,
           targetId: state.target.id,
           guessIds: state.guesses.map((g) => g.id),
           hints: state.hints,
@@ -629,14 +636,88 @@
     } catch (e) {}
   }
 
-  function loadDaily(d) {
+  function loadDay(dateKey) {
     try {
-      const saved = JSON.parse(localStorage.getItem(STORE_DAILY) || "null");
-      if (!saved || saved.dateKey !== d.dateKey || saved.targetId !== d.company.id) return;
-      state.guesses = saved.guessIds.map((id) => BY_ID.get(id)).filter(Boolean);
-      state.hints = saved.hints || 0;
-      state.status = saved.status || "playing";
-    } catch (e) {}
+      return JSON.parse(localStorage.getItem(dayKey(dateKey)) || "null");
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function loadDaily(d) {
+    const saved = loadDay(d.dateKey);
+    if (!saved || saved.targetId !== d.company.id) return;
+    state.guesses = saved.guessIds.map((id) => BY_ID.get(id)).filter(Boolean);
+    state.hints = saved.hints || 0;
+    state.status = saved.status || "playing";
+  }
+
+  /* ---------- calendar ---------- */
+
+  const MONTHS = ["januar", "februar", "mars", "april", "mai", "juni", "juli", "august", "september", "oktober", "november", "desember"];
+  let calMonth = null; // Date of the first day of the shown month
+
+  function renderCalendar() {
+    const today = dateKeyToday();
+    const first = dateOf(START_DATE);
+    if (!calMonth) {
+      const sel = dateOf(state.mode === "daily" ? state.dateKey : today);
+      calMonth = new Date(sel.getFullYear(), sel.getMonth(), 1);
+    }
+    const y = calMonth.getFullYear(), m = calMonth.getMonth();
+    const lead = (new Date(y, m, 1).getDay() + 6) % 7; // Monday first
+    const days = new Date(y, m + 1, 0).getDate();
+    const cells = [];
+    for (let i = 0; i < lead; i++) cells.push('<span class="cal-day empty"></span>');
+    for (let d = 1; d <= days; d++) {
+      const key = keyOf(new Date(y, m, d));
+      const disabled = key < START_DATE || key > today;
+      const saved = disabled ? null : loadDay(key);
+      const res = saved && saved.status !== "playing" ? ` ${saved.status}` : saved && saved.guessIds.length ? " started" : "";
+      const sel = state.mode === "daily" && key === state.dateKey ? " selected" : "";
+      cells.push(
+        `<button class="cal-day${res}${sel}${key === today ? " today" : ""}" data-day="${key}"${disabled ? " disabled" : ""}>${d}</button>`
+      );
+    }
+    const prevOk = new Date(y, m, 1) > first;
+    const nextOk = new Date(y, m + 1, 1) <= dateOf(today);
+    $("cal-body").innerHTML = `
+      <div class="cal-nav">
+        <button class="icon-btn sm" id="cal-prev" ${prevOk ? "" : "disabled"} aria-label="Forrige måned">‹</button>
+        <b>${MONTHS[m]} ${y}</b>
+        <button class="icon-btn sm" id="cal-next" ${nextOk ? "" : "disabled"} aria-label="Neste måned">›</button>
+      </div>
+      <div class="cal-grid">
+        ${["ma", "ti", "on", "to", "fr", "lø", "sø"].map((d) => `<span class="cal-dow">${d}</span>`).join("")}
+        ${cells.join("")}
+      </div>
+      <div class="cal-legend"><span class="won"></span>Løst<span class="lost"></span>Ikke løst<span class="started"></span>Påbegynt</div>`;
+    $("cal-prev").onclick = () => {
+      calMonth = new Date(y, m - 1, 1);
+      renderCalendar();
+    };
+    $("cal-next").onclick = () => {
+      calMonth = new Date(y, m + 1, 1);
+      renderCalendar();
+    };
+    $("cal-body").querySelectorAll(".cal-day[data-day]:not([disabled])").forEach((b) => {
+      b.onclick = () => playDay(b.dataset.day);
+    });
+  }
+
+  function openCalendar() {
+    calMonth = null;
+    renderCalendar();
+    openModal("modal-calendar");
+  }
+
+  function playDay(key) {
+    if (state.revealing) return;
+    closeModal("modal-calendar");
+    state.mode = "daily";
+    state.day = isToday(key) ? null : key;
+    startRound();
+    if (state.status !== "playing") openResult();
   }
 
   function getStats() {
@@ -781,7 +862,11 @@
 
   function bind() {
     document.querySelectorAll(".mode-btn").forEach((b) =>
-      b.addEventListener("click", () => setMode(b.dataset.mode))
+      b.addEventListener("click", () => {
+        // Tapping the date while already on a daily puzzle opens the calendar.
+        if (b.dataset.mode === "daily" && state.mode === "daily") openCalendar();
+        else setMode(b.dataset.mode);
+      })
     );
 
     el.input.addEventListener("input", updateAc);
@@ -829,6 +914,7 @@
       location.replace(`${location.pathname}?r=${Date.now()}`);
     });
     $("btn-help").addEventListener("click", () => openModal("modal-help"));
+    $("btn-calendar").addEventListener("click", openCalendar);
     $("btn-stats").addEventListener("click", () => {
       renderStats();
       openModal("modal-stats");

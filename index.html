@@ -30,6 +30,9 @@
       <div id="toast" class="status" role="status" aria-live="polite"></div>
     </div>
     <div class="topbar-side right">
+      <button id="btn-calendar" class="icon-btn" aria-label="Velg dag" title="Tidligere dager">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>
+      </button>
       <button id="btn-stats" class="icon-btn" aria-label="Statistikk">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
       </button>
@@ -86,6 +89,14 @@
     <div class="sheet result-sheet">
       <button class="close-btn" data-close="modal-result" aria-label="Lukk">&times;</button>
       <div id="result-body"></div>
+    </div>
+  </div>
+
+  <div class="overlay hidden" id="modal-calendar" role="dialog" aria-modal="true">
+    <div class="sheet cal-sheet">
+      <button class="close-btn" data-close="modal-calendar" aria-label="Lukk">&times;</button>
+      <h2 class="sheet-title">Velg dag</h2>
+      <div id="cal-body"></div>
     </div>
   </div>
 

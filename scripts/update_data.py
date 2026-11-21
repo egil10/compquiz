@@ -375,6 +375,11 @@ def _to_png(data, target=256):
         if getattr(img, "ico", None):
             img.size = max(img.ico.sizes())
         img = img.convert("RGBA")
+        if img.width > img.height * 1.3 or img.height > img.width * 1.3:  # pad wordmarks to a square
+            side = max(img.size)
+            sq = Image.new("RGBA", (side, side), (0, 0, 0, 0))
+            sq.paste(img, ((side - img.width) // 2, (side - img.height) // 2))
+            img = sq
         if img.width > target:
             img = img.resize((target, round(img.height * target / img.width)), Image.LANCZOS)
         out = io.BytesIO()

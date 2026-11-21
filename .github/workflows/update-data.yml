@@ -1,0 +1,45 @@
+name: Update market data
+
+# Refresh prices, multiples and the YTD charts every morning so the daily
+# puzzle always uses fresh numbers. The daily company itself is chosen in the
+# browser from the date, identically for every player.
+on:
+  schedule:
+    - cron: "15 4 * * *" # 04:15 UTC ≈ 05:15/06:15 in Oslo
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install yfinance pillow
+
+      - name: Pull data
+        run: python scripts/update_data.py
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git config user.name "trygdle-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A portfolio_data.js market_data.js logos
+          git commit -m "Daily data update $(date -u +%Y-%m-%d)"
+          git push

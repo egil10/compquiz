@@ -672,7 +672,30 @@
     "FTF002041": "panoroenergy.com",
     "FTF001234": "electroluxgroup.com"
   },
-  "logo_url": {},
+  "logo_url": {
+    "FTF001167": "https://carlsberg-group-2022.euwest01.umbraco.io/media/lpzj40jb/carlsberg-group_rgb.png",
+    "FTF001870": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/ALK-Abell%C3%B3_logo.svg/250px-ALK-Abell%C3%B3_logo.svg.png",
+    "FTF001120": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Bavarian_Nordic_logo.svg/250px-Bavarian_Nordic_logo.svg.png",
+    "FTF001361": "https://www.indutrade.com/ui/images/favicons/apple-touch-icon.png",
+    "FTF001877": "https://www.aqgroup.com/templates/pages/aqg/g/aq_logo_.jpg",
+    "FTF001882": "https://beijeralma.se/wp-content/themes/beijer-alma/images/social-logo.jpg",
+    "FTF001938": "https://www.ncabgroup.com/wp-content/uploads/2023/03/logo_ncab_facebook-e1678026520666.png",
+    "FTF001545": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Pexip_logo.svg/250px-Pexip_logo.svg.png",
+    "FTF001257": "https://upload.wikimedia.org/wikipedia/commons/2/29/Evolution_Gaming_logo_2020.JPG",
+    "FTF001749": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Torm_house_flag.svg/330px-Torm_house_flag.svg.png",
+    "FTF001975": "https://www.uie.dk/assets/img/logo-uie-blue.png",
+    "FTF001542": "https://images.weserv.nl/?url=www.paretobank.no/logo.svg&w=256&h=256&output=png",
+    "FTF002027": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Matas_(drug_store)_logo.svg/250px-Matas_(drug_store)_logo.svg.png",
+    "FTF001524": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Odfjell_logo.svg/330px-Odfjell_logo.svg.png",
+    "FTF001875": "https://upload.wikimedia.org/wikipedia/commons/5/55/Apotea-logo.png",
+    "FTF001689": "https://upload.wikimedia.org/wikipedia/commons/7/71/Stillfront-logo-black.png",
+    "FTF002016": "https://humblegroup.com/wp-content/uploads/2025/11/Humble-Group-Website-image.png",
+    "FTF001631": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Solstad_Offshore-logo.svg/250px-Solstad_Offshore-logo.svg.png",
+    "FTF002048": "https://mb.cision.com/Public/15764/logo/92612f9f4fa58e63_org.png",
+    "FTF002004": "https://endomines.com/wp-content/uploads/2024/01/Endomines_Logo_RGB.png",
+    "FTF001436": "https://www.orron.com/wp-content/uploads/2022/06/Orron_logo_color_featured.png",
+    "FTF001995": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Better_Collective_Logo.png"
+  },
   "logo_blocklist": [
     "f0c0aecc8696c0f0"
   ]
